@@ -1,0 +1,1029 @@
+---
+title: "step2_descriptives"
+author: "Bria Long"
+date: "2024-10-03"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(ggthemes)
+library(assertthat)
+library(langcog) # for CIs
+library(mirt)
+library(ggpubr)
+library(knitr)
+library(dplyr)
+library(here)
+library(lme4)
+library(lmerTest)
+library(digest)
+library(viridis)
+```
+
+```{r}
+load(file=here::here('data/preprocessed/all_trial_data.Rdata'))
+```
+
+```{r}
+load(file=here::here('data/preprocessed/summary_by_distractor.Rdata'))
+```
+
+
+# Methods
+
+## Stimuli selection
+
+## Procedure
+
+## Testing contexts
+### School contexts
+### Preschool context 
+### Online child testing context 
+### Online adult testing
+
+```{r}
+n_by_age_group <- df.4AFC.trials %>%
+  group_by(age_group) %>%
+  summarize(num_participants = length(unique(pid)))
+
+trials_by_participant <- df.4AFC.trials %>%
+  group_by(pid) %>%
+  summarize(num_trials = length(unique(targetWord)))
+```
+
+# Participants
+After pre-processing, we included data from 3870 participants from preschools, schools, and online testing contexts around the country (range `r min(n_by_age_group$num_participants)` to `r max(n_by_age_group$num_participants)`), who completed, on average, 24.8 4AFC trials that were sampled randomly from the stimuli set (max=86; different maximum numbers of trials were included in different testing contexts). Participants who scored near chance (chance=25%, threshold=30%) and were school-aged (6+ years) and above were excluded from analyses; this excluded XX participants who completed an average of XX trials.
+
+
+
+
+
+Summary by distractor type and numAFC by age, group, use confidence intervals here (langcog package, same as tidyboot)
+
+```{r}
+df.4AFC.distractor.summary.byAge.perc <- df.4AFC.distractor.summary.byAge.clean %>% 
+  ungroup() %>%
+  mutate(wordPairing = factor(wordPairing, levels = c('target','hard','easy','distal'), labels = c("Target word", "High sim. dist", "Med sim. dist.", "Low sim. dist.")))  %>% # just reordering
+  group_by(age_group, numAFC, wordPairing) %>% 
+  multi_boot_standard(col = 'perc', na.rm=TRUE)  
+
+```
+
+```{r}
+df.4AFC.distractor.summary.byAge.perc.byaoa <- df.4AFC.distractor.summary.byAge.clean %>% 
+  ungroup() %>%
+  mutate(wordPairing = factor(wordPairing, levels = c('target','hard','easy','distal'), labels = c("Target word", "High sim. dist", "Med sim. dist.", "Low sim. dist.")))  %>% # just reordering
+  group_by(age_group, wordPairing, AoA_Bin_Name) %>% 
+  multi_boot_standard(col = 'perc', na.rm=TRUE)  
+
+```
+
+
+
+# Descriptive plots
+## Plot gradient in selection across target type within age
+First visualize within each age group -- can plots nAFCs by different colors
+
+
+
+## Plot gradient in selection across age within afc
+Now plot within afc, with age groups as colors
+Make adults grey here (lots of extra code) so that the kid age gradient isn't too compressed
+
+```{r}
+ggplot(data = df.4AFC.distractor.summary.byAge.perc %>% filter(age_group<25), aes(x=wordPairing, y=mean, col=age_group)) +
+  geom_point(alpha=.8) +
+  geom_point(data = df.4AFC.distractor.summary.byAge.perc %>% filter(age_group==25), color='grey', alpha=.8) +
+  geom_linerange(aes(y=mean, ymax = ci_upper, ymin = ci_lower), alpha=.3) +
+  geom_linerange(data = df.4AFC.distractor.summary.byAge.perc %>% filter(age_group==25), aes(y=mean, ymax = ci_upper, ymin = ci_lower), alpha=.3, color='grey') +
+  geom_line(data = df.4AFC.distractor.summary.byAge.perc %>% filter(age_group==25), color='grey',aes(group=age_group)) +
+  geom_line(aes(group=age_group)) +
+  theme(aspect.ratio=.75) +
+  scale_color_viridis_c(name='Age (in years)') +
+  xlab('') +
+  ylab('Proportion chosen') +
+  theme_few() +
+  ylim(0,1) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+
+# ggsave(filename = 'figures/prop_chosen_by_type_by_age.pdf', width=6, height=5, units='in')
+```
+
+
+```{r}
+ggplot(data = df.4AFC.distractor.summary.byAge.perc.byaoa %>% filter(age_group<25), aes(x=wordPairing, y=mean, col=age_group)) +
+  geom_point(alpha=.8) +
+  geom_point(data = df.4AFC.distractor.summary.byAge.perc.byaoa %>% filter(age_group==25), color='grey', alpha=.8) +
+  geom_linerange(aes(y=mean, ymax = ci_upper, ymin = ci_lower), alpha=.3) +
+  geom_linerange(data = df.4AFC.distractor.summary.byAge.perc.byaoa %>% filter(age_group==25), aes(y=mean, ymax = ci_upper, ymin = ci_lower), alpha=.3, color='grey') +
+  geom_line(data = df.4AFC.distractor.summary.byAge.perc.byaoa %>% filter(age_group==25), color='grey',aes(group=age_group)) +
+  geom_line(aes(group=age_group)) +
+  facet_wrap(~AoA_Bin_Name) +
+  theme(aspect.ratio=.75) +
+  scale_color_viridis_c(name='Age (in years)') +
+  xlab('') +
+  ylab('Proportion chosen') +
+  theme_few() +
+  ylim(0,1) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+
+
+```{r}
+df.4AFC.distractor.summary.byAge.errors_only <- df.4AFC.distractor.summary.byAge %>%
+  ungroup() %>%
+   filter(wordPairing != 'target') %>%
+   mutate(wordPairingLabels = factor(wordPairing, levels = c('target','hard','easy','distal'), labels = c("Target word", "High sim. dist", "Med sim. dist.", "Low sim. dist.")))  %>% # just reordering
+  group_by(age_group, wordPairing) %>% 
+  summarize(prop_errors = mean(perc, na.rm=TRUE)) %>%
+  pivot_wider(values_from = 'prop_errors', names_from = 'wordPairing') %>%
+  mutate(prop_hard_errors = hard / (hard + easy + distal))
+
+```
+
+```{r}
+ggplot(df.4AFC.distractor.summary.byAge.errors_only, aes(x=age_group, y=prop_hard_errors)) +
+  geom_point() +
+  geom_smooth(span=1) +
+  theme_few()
+```
+
+```{r}
+df.4AFC.distractor.summary.rt <- df.4AFC.distractor.summary.byAge.clean %>% 
+  ungroup() %>%
+  mutate(wordPairing = factor(wordPairing, levels = c('target','hard','easy','distal'), labels = c("Target word", "High sim. dist", "Med sim. dist.", "Low sim. dist.")))  %>% # just reordering
+  group_by(age_group, numAFC, wordPairing) %>% 
+  multi_boot_standard(col = 'medianRT', na.rm=TRUE) 
+
+
+```
+
+```{r}
+ggplot(data = df.4AFC.distractor.summary.rt %>% filter(age_group<25), aes(x=wordPairing, y=mean, col=age_group)) +
+  geom_point(alpha=.8) +
+  geom_point(data = df.4AFC.distractor.summary.rt %>% filter(age_group==25), color='grey', alpha=.8) +
+  geom_linerange(aes(y=mean, ymax = ci_upper, ymin = ci_lower), alpha=.3) +
+  geom_linerange(data = df.4AFC.distractor.summary.rt %>% filter(age_group==25), aes(y=mean, ymax = ci_upper, ymin = ci_lower), alpha=.3, color='grey') +
+  geom_line(data = df.4AFC.distractor.summary.rt %>% filter(age_group==25), color='grey',aes(group=age_group)) +
+  geom_line(aes(group=age_group)) +
+  theme(aspect.ratio=.75) +
+  scale_color_viridis_c(name='Age (in years)') +
+  xlab('') +
+  ylab('response time (ms)') +
+  theme_few()
+```
+
+```{r}
+# ggplot(data = df.multiAFC.distractor.summary.errors_only %>% filter(age_group<25), aes(x=age_group, y=mean, col=wordPairing)) +
+#   geom_point(alpha=.8) +
+#   geom_linerange(aes(y=mean, ymax = ci_upper, ymin = ci_lower), alpha=.3) +
+#   # geom_line(aes(group=wordPairing)) +
+#   theme(aspect.ratio=.75) +
+#   # scale_color_viridis_c(name='Age (in years)') +
+#   xlab('') +
+#   ylab('Proportion chosen') +
+#   theme_few() +
+#   ylim(0,.4) +
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+```
+
+
+
+
+Third way of visaulizing this data -- which kinds of items were chosen as a function of age in each NAFC
+
+
+
+# VSS PLOTS 
+## Proportion chosen by AoA
+```{r}
+
+ggplot(data = df.4AFC.distractor.summary.byAge.perc.byaoa, aes(x=age_group, y=mean, col=wordPairing, fill=wordPairing)) +
+  geom_point() +
+  geom_linerange(aes(y=mean, ymax = ci_upper, ymin = ci_lower), alpha=.8) +
+  geom_smooth(aes(group=wordPairing), span=10, alpha=.2) +
+  facet_wrap(~AoA_Bin_Name) +
+  theme(aspect.ratio=.75) +
+  # scale_color_solarized(name='Item') +
+  xlab('') +
+  ylab('Proportion chosen') +
+  theme_few() +
+  ylim(0,1) +
+  ggtitle('Proportion images chosen by # of distractors')
+```
+
+
+
+
+
+
+
+# Error type analyses across age
+
+Construct dataframe across participants
+```{r}
+df.4AFC.distractor.summary.byPid <- df.4AFC.trials.clean %>%
+  group_by(targetWord,  answerWord, numAFC, wordPairing, pid, age_group) %>%
+  tally() %>%
+  filter(wordPairing != 'target') # only incorrect trials
+```
+ 
+Make data structure that calculate RELATIVE error rates by each trial type by age
+Important to replace NAs with 0s here
+
+```{r}
+dist_by_pid_4afc <- df.4AFC.distractor.summary.byPid %>%
+  group_by(pid, wordPairing, age_group) %>%
+  summarize(num_errors = n()) %>%
+  pivot_wider(values_from = "num_errors", names_from = "wordPairing") %>%
+  mutate(total_num_errors = sum(c(hard,easy,distal), na.rm=TRUE)) %>%
+  mutate(prop_hard = (hard / total_num_errors)) %>%
+  mutate(prop_easy = (easy / total_num_errors)) %>%
+  mutate(prop_distal = (distal / total_num_errors)) %>%
+  pivot_longer(cols = starts_with('prop'), names_to = "wordPairing", values_to = "prop") %>%
+  select(pid, wordPairing, prop, total_num_errors, age_group) %>%
+  mutate(prop = replace_na(prop, replace=0))
+
+# dist_by_pid_3afc <- df.multiAFC.distractor.summary.byPid %>%
+#   filter(numAFC==3) %>%
+#   group_by(pid,numAFC, wordPairing, age_group) %>%
+#   summarize(num_errors = n()) %>%
+#   pivot_wider(values_from = "num_errors", names_from = "wordPairing") %>%
+#   mutate(prop_hard = (hard / sum(c(hard,easy), na.rm=TRUE))) %>%
+#   mutate(prop_easy = (easy / sum(c(hard,easy), na.rm=TRUE))) %>%
+#   pivot_longer(cols = starts_with('prop'), names_to = "wordPairing", values_to = "prop") %>%
+#   select(pid, wordPairing, prop, age_group) %>%
+#   mutate(prop = replace_na(prop, replace=0))
+```
+
+construct CIs by age and make individual data structures for plotting
+```{r}
+dist_by_pid_by_age <- dist_by_pid_4afc %>%
+  group_by(age_group, wordPairing) %>%
+  multi_boot_standard(col= 'prop', na.rm=TRUE)
+
+dist_by_pid_by_age_raw <- dist_by_pid_4afc 
+  # full_join(dist_by_pid_4afc) 
+```
+
+```{R}
+dist_by_pid_4afc_by_aoa <- df.4AFC.distractor.summary.byPid %>%
+  left_join(clip_cor_by_model %>% distinct(Word1, AoA_Est_Word1, AoA_Bin_Name), by=c('targetWord'='Word1')) %>%
+  ungroup() %>%
+  group_by(pid, wordPairing, AoA_Bin_Name,  age_group) %>%
+  summarize(num_errors = n()) %>%
+  pivot_wider(values_from = "num_errors", names_from = "wordPairing") %>%
+  mutate(total_num_errors = sum(c(hard,easy,distal), na.rm=TRUE)) %>%
+  mutate(prop_hard = (hard / total_num_errors)) %>%
+  mutate(prop_easy = (easy / total_num_errors)) %>%
+  mutate(prop_distal = (distal / total_num_errors)) %>%
+  pivot_longer(cols = starts_with('prop'), names_to = "wordPairing", values_to = "prop") %>%
+  select(pid, wordPairing, prop, total_num_errors, age_group, AoA_Bin_Name) %>%
+  mutate(prop = replace_na(prop, replace=0))
+```
+
+```{r}
+dist_by_pid_by_age_by_aoa <- dist_by_pid_4afc_by_aoa %>%
+  group_by(age_group, wordPairing,AoA_Bin_Name) %>%
+  multi_boot_standard(col= 'prop', na.rm=TRUE)
+```
+
+
+Plot the main effect here by aoa
+```{r}
+ggplot(data = dist_by_pid_by_age_by_aoa, aes(x=age_group, y=mean, col=wordPairing)) +
+  geom_linerange(data = dist_by_pid_by_age_by_aoa, aes(y=mean, ymin=ci_lower, ymax = ci_upper), position=position_dodge(width=.4)) +
+  geom_point(data = dist_by_pid_by_age_by_aoa, aes(y=mean), position=position_dodge(width=.4)) +
+  geom_smooth(data = dist_by_pid_by_age_by_aoa, aes(group=wordPairing), span=20) +
+  ylab('Proportion of errors') +
+  xlab('Age (in years)') +
+  theme_few() +
+  facet_wrap(~AoA_Bin_Name) +
+  geom_smooth(span=20)
+```
+```{r}
+ggplot(data = dist_by_pid_by_age_by_aoa %>% filter(wordPairing=='prop_hard'), aes(x=age_group, y=mean, col=AoA_Bin_Name, fill=AoA_Bin_Name)) +
+  geom_linerange(data = dist_by_pid_by_age_by_aoa %>% filter(wordPairing=='prop_hard'), aes(y=mean, ymin=ci_lower, ymax = ci_upper), position=position_dodge(width=.4)) +
+  geom_point(data = dist_by_pid_by_age_by_aoa %>% filter(wordPairing=='prop_hard'), aes(y=mean), position=position_dodge(width=.4)) +
+  geom_smooth(data = dist_by_pid_by_age_by_aoa %>% filter(wordPairing=='prop_hard'), aes(group=AoA_Bin_Name), span=20, alpha=.1) +
+  ylab('Proportion of errors on related distractor') +
+  xlab('Age (in years)') +
+  theme_few() +
+  geom_smooth(span=20)
+```
+
+
+Plot the main effect here
+```{r}
+ggplot(data = dist_by_pid_by_age, aes(x=age_group, y=mean, col=wordPairing)) +
+  geom_linerange(data = dist_by_pid_by_age, aes(y=mean, ymin=ci_lower, ymax = ci_upper), position=position_dodge(width=.4)) +
+  geom_point(data = dist_by_pid_by_age, aes(y=mean), position=position_dodge(width=.4)) +
+  geom_smooth(data = dist_by_pid_by_age, aes(group=age_group)) +
+  ylab('Proportion of errors') +
+  xlab('Age (in years)') +
+  theme_few() +
+  # facet_wrap(~numAFC) +
+  geom_smooth(span=20)
+```
+
+
+Make data structure so we can model the proportion of errors by age as a function of the total number of errors rather than just proportion -- nice because we could have very different rates across participants (adults make few errors, kids might make a lot but do fewer trials, etc)
+```{r}
+error_by4afc_for_glmer <- df.4AFC.distractor.summary.byPid %>%
+  filter(numAFC==4) %>%
+  group_by(pid,numAFC, wordPairing, age_group) %>%
+  summarize(num_errors = n()) %>%
+  pivot_wider(values_from = "num_errors", names_from = "wordPairing") %>%
+  mutate(hard = replace_na(hard, replace=0)) %>%
+  mutate(easy = replace_na(easy, replace=0)) %>%
+  mutate(distal = replace_na(distal, replace=0)) %>%
+  mutate(total_num_errors = sum(c(hard,easy,distal))) 
+
+
+# error_by3afc_for_glmer <- df.multiAFC.distractor.summary.byPid %>%
+#   filter(numAFC==3) %>%
+#   group_by(pid,numAFC, wordPairing, age_group) %>%
+#   summarize(num_errors = n()) %>%
+#   pivot_wider(values_from = "num_errors", names_from = "wordPairing") %>%
+#   mutate(hard = replace_na(hard, replace=0)) %>%
+#   mutate(easy = replace_na(easy, replace=0)) %>%
+#   mutate(total_num_errors = sum(c(hard,easy))) 
+```
+
+stats for 4afc
+```{r}
+summary(glmer(cbind(hard,total_num_errors) ~  scale(age_group) +
+(1 | pid), error_by4afc_for_glmer, family = "binomial", control=glmerControl(optCtrl=list(maxfun=20000),optimizer=c("bobyqa"))))
+```
+
+<!-- stats for 3afc -->
+```{r}
+# summary(glmer(cbind(hard,total_num_errors) ~  scale(age_group) +
+# (1 | pid), error_by3afc_for_glmer, family = "binomial", control=glmerControl(optCtrl=list(maxfun=20000),optimizer=c("bobyqa"))))
+```
+
+
+## Construct details 4AFC distractor data structures
+
+```{r}
+dist_by_4afc <- df.4AFC.distractor.summary.byPid %>%
+  # filter(numAFC==4) %>%
+  group_by(targetWord, wordPairing, age_group) %>%
+  summarize(num_errors = n()) %>%
+  pivot_wider(values_from = "num_errors", names_from = "wordPairing") %>%
+  group_by(targetWord, age_group) %>%
+  mutate(total_num_errors = sum(c(hard,easy,distal), na.rm=TRUE)) %>%
+  mutate(prop_hard = (hard / total_num_errors)) %>%
+  mutate(prop_easy = (easy / total_num_errors)) %>%
+  mutate(prop_distal = (distal / total_num_errors)) %>%
+  pivot_longer(cols = starts_with('prop'), names_to = "wordPairing", values_to = "prop") %>%
+  select(wordPairing, prop, total_num_errors, age_group) %>%
+  mutate(prop = replace_na(prop, replace=0)) %>%
+  mutate(wordPairing = str_split_fixed(wordPairing,'_',2)[,2]) %>%
+  left_join(clip_cor_by_model %>% rename(targetWord=Word1)) %>% # joins using wordPairing
+  ungroup() %>%
+  mutate(age_group = replace(age_group, age_group==11, 10)) %>%
+  mutate(aoa_bin = ntile(AoA_Est_Word1,3)) 
+
+
+dist_by_4afc_trial_count <- df.4AFC.distractor.summary.byPid %>%
+  group_by(targetWord, age_group) %>%
+  summarize(num_trials = length(unique(pid)), check = n())
+
+```
+
+OK, there's some REAL data heterogeneity we need to be thinkng a bout
+```{r}
+ggplot(data = dist_by_4afc_trial_count, aes(x=age_group, y=num_trials)) +
+  geom_point(alpha=.1)
+```
+
+
+
+## Import clip values
+### multimodal
+Function to get back item names
+```{r}
+getItemName <- function(filepath) {
+  # Split the filepath by '/' and get the last part (filename with extension)
+  short_filepath <- tail(strsplit(filepath, '/')[[1]], 1)
+  
+  # Remove the '.jpg' extension from the filename to get just the name
+  shorter_filepath <- sub('\\.jpg$', '', short_filepath)
+  return(shorter_filepath)
+}
+```
+
+```{r}
+multimodal_sim = read_csv(here::here('data/preprocessed_data/clip_sim.csv')) %>%
+  mutate(targetWord = text1) %>%
+  group_by(targetWord) %>%
+  mutate(short_image1 = getItemName(image1), 
+         short_image2 = getItemName(image2),
+         short_image3 = getItemName(image3),
+         short_image4 = getItemName(image4)) 
+
+image_structure <- multimodal_sim %>%
+  select(-starts_with('image')) %>%
+  pivot_longer(cols=starts_with('short'), values_to='answerWord', names_to = 'distractorNum') %>%
+  mutate(distractorNum = str_split_fixed(distractorNum,'_',2)[,2]) %>%
+  select(-text1)
+
+longer_values_logits <- multimodal_sim %>%
+  pivot_longer(cols=ends_with('logit'), values_to='logits', names_to = 'distractorNum')  %>%
+  select(targetWord, distractorNum, logits) %>%
+  mutate(distractorNum = str_split_fixed(distractorNum,'_',2)[,1])
+
+longer_values_probs <- multimodal_sim %>%
+  pivot_longer(cols=ends_with('prob'), values_to='probs', names_to = 'distractorNum')  %>%
+  select(targetWord, distractorNum, probs) %>%
+  mutate(distractorNum = str_split_fixed(distractorNum,'_',2)[,1])
+
+```
+
+
+
+
+Join them all together, that was annoying
+```{R}
+multimodal_clip <- image_structure %>%
+  left_join(longer_values_probs) %>%
+  left_join(longer_values_logits) %>%
+  rename(Word2 = answerWord, clip_logit_multi = logits, clip_prob_multi = probs) %>%
+  left_join(multimodal_sim %>% distinct(trial, targetWord))
+```
+
+
+### Import visual only clip values
+```{R}
+visual_only_sim = read_csv(here::here('data/preprocessed_data/vv-image-cors-clip.csv')) %>%
+  pivot_longer(cols=starts_with('image'), values_to='visual_cor', names_to='distractorNum') %>%
+  left_join(image_structure)
+```
+
+```{R}
+multimodal_clip_all <- multimodal_clip %>%
+  left_join(visual_only_sim)
+```
+
+
+Join this back with distractor patterns from humans
+```{r}
+dist_by_4afc_full <- dist_by_4afc %>%
+  left_join(multimodal_clip_all) %>%
+  left_join(item_level_for_modeling) # gives us number of responses by item/age
+```
+
+simple data structure for just looking at proportion correct by target word
+```{r}
+redo <- item_level_for_modeling %>%
+  left_join(multimodal_clip %>% filter(targetWord==Word2))  
+```
+
+Not a great correlation between overall PC and error
+```{R}
+ggplot(redo, aes(x=clip_prob_multi, y=percent_correct, size=num_participants)) +
+  geom_point(alpha=.2) +
+  theme_few(base_size=8) +
+  facet_grid(~age_group) +
+  theme(aspect.ratio=1, legend.position='none')  +
+  geom_smooth(method='lm', aes(weight=num_participants))
+
+```
+
+```{R}
+ggplot(redo, aes(x=clip_logit_multi, y=percent_correct, size=num_participants)) +
+  geom_point(alpha=.05) +
+  theme_few(base_size=8) +
+  facet_grid(~age_group) +
+  theme(aspect.ratio=1, legend.position='none') +
+  stat_cor(method = "pearson", aes(label = ..r.label..), size=2) 
+
+```
+
+
+# Sidebar - Look at language vs. multimodal probability comparisons
+```{r}
+ggplot(data=dist_by_4afc_full, aes(x=wordPairing, y=clip_prob_multi, col=wordPairing)) +
+  geom_point(alpha=.8) +
+  geom_line(aes(group=targetWord), color='grey') +
+  xlab('Word pairing categories') +
+  ylab('Multimodal similarity from CLIP simulation (image-text probs)') + 
+  theme_few(base_size=8) +
+  theme(legend.position='right', aspect.ratio=1)  
+
+
+```
+
+
+```{r}
+ggplot(data=dist_by_4afc_full, aes(x=visual_cor, y=clip_cor, col=wordPairing)) +
+  geom_point(alpha=.8) +
+  # geom_line(aes(group=targetWord), color='grey') +
+  ylab('Language sim (r-values, language embeddings)') +
+  xlab('Visual sim(r-values, vision embeddings)') + 
+  theme_few(base_size=8) +
+  theme(legend.position='right', aspect.ratio=1)   +
+  # facet_wrap(~wordPairing) +
+  geom_smooth(span=20, method='lm') +
+  stat_cor()
+
+```
+
+```{r}
+ggplot(data=dist_by_4afc_full, aes(x=wordPairing, y=clip_cor, col=wordPairing)) +
+  geom_point(alpha=.8) +
+  geom_line(aes(group=targetWord), color='grey') +
+  ylab('Language sim (r-values, language embeddings)') +
+  xlab('Word Pairing categories') + 
+  theme_few(base_size=8) +
+  theme(legend.position='right', aspect.ratio=1)  
+
+```
+
+
+```{r}
+ggplot(data=dist_by_4afc_full, aes(x=visual_cor, y=clip_logit_multi, col=wordPairing)) +
+  geom_point(alpha=.8) +
+  # geom_line(aes(group=targetWord), color='grey') +
+  ylab('Language sim (r-values, language embeddings)') +
+  xlab('Visual sim(r-values, vision embeddings)') + 
+  theme_few(base_size=8) +
+  theme(legend.position='right', aspect.ratio=1)   +
+  # facet_wrap(~wordPairing) +
+  geom_smooth(span=20, method='lm') +
+  stat_cor()
+
+```
+
+# Clip - behavior -- Weighted correlations
+
+# Redone
+```{r}
+df.4AFC.distractor.summary.byAge.forcor <- df.4AFC.distractor.summary.byAge.clean %>%
+  filter(wordPairing != 'target') %>%
+  filter(numAFC==4) %>%
+  left_join(multimodal_clip_all) %>%
+  mutate(perc = replace_na(perc,0)) 
+```
+
+
+```{r}
+adult_performance <- df.4AFC.distractor.summary.byAge.forcor %>%
+  filter(age_group==25) %>%
+  mutate(adult_perc = perc) %>%
+  select(targetWord, answerWord, adult_perc)
+
+perc_cor_by_age <- df.4AFC.distractor.summary.byAge.forcor %>%
+  group_by(age_group) %>%
+  left_join(adult_performance) %>%
+  summarize(vision_cor = cor(visual_cor, perc), lang_cor = cor(clip_cor, perc), multi_cor = cor(clip_logit_multi, perc),  adult_cor = cor(perc, adult_perc), num_responses = sum(totalAttempts, na.rm=TRUE)) %>%
+  pivot_longer(cols=ends_with('cor'), values_to='cor',names_to='modality')
+```
+
+```{r}
+perc_cor_by_age_by_aoa <- df.4AFC.distractor.summary.byAge.forcor %>%
+  left_join(adult_performance) %>%
+  group_by(age_group, AoA_Bin_Name) %>%
+  summarize(vision_cor = cor(visual_cor, perc), lang_cor = cor(clip_cor, perc), multi_cor = cor(clip_logit_multi, perc),adult_cor = cor(perc, adult_perc), num_responses = sum(totalAttempts, na.rm=TRUE)) %>%
+  pivot_longer(cols=ends_with('cor'), values_to='cor',names_to='modality')
+```
+
+
+Display language correlations by age
+```{r}
+ggplot(data=df.4AFC.distractor.summary.byAge.forcor %>% filter(), aes(x=clip_cor, y=perc, size=totalAttempts)) +
+  geom_point(alpha=.2) +
+  facet_wrap(~age_group) +
+  stat_cor()
+```
+
+
+```{r}
+ggplot(data=perc_cor_by_age, aes(x=as.numeric(age_group), y=cor, color=modality, size=num_responses)) +
+  geom_point(alpha=.8, width=.2) +
+  theme_few() +
+  ylab('Correlation between CLIP embeddings \n & error patterns') +
+  xlab('Age of participants') +
+  scale_color_viridis(discrete=TRUE, option='G', begin=.2, end=.8) +
+  theme(legend.position='right') +
+  geom_smooth(alpha=.1, span=10, method='lm') +
+  stat_cor()  +
+  ylim(0,1)
+  # ylim(0,.4)
+
+```
+
+```{r}
+
+ggplot(data=perc_cor_by_age_by_aoa, aes(x=age_group, y=cor, color=modality, weight=num_responses, size=num_responses)) +
+  geom_point(alpha=.8) +
+  geom_smooth(method='lm', alpha=.2, aes(group=modality)) +
+  theme_few() +
+  ylab('Correlation between CLIP corrleations \n & distractor choice on error patterns') +
+  xlab('Age of participants') +
+  theme(legend.position='right')  +
+  scale_color_viridis(discrete=TRUE, option='G', begin=.2, end=.8) +
+  facet_wrap(~AoA_Bin_Name) 
+  # stat_cor()
+
+```
+
+
+
+```{r}
+baseline = lmer(data=df.4AFC.distractor.summary.byAge.forcor, perc ~ age_group + AoA_Est_Word1  +  (1 | targetWord) )
+```
+
+
+```{r}
+vision_only = lmer(data=df.4AFC.distractor.summary.byAge.forcor, perc ~ scale(visual_cor)*scale(age_group) + scale(AoA_Est_Word1) + scale(totalAttempts)  +  (scale(totalAttempts) | targetWord))
+```
+
+```{r}
+lang_only = lmer(data=df.4AFC.distractor.summary.byAge.forcor , perc ~ scale(clip_cor)*scale(age_group) + scale(AoA_Est_Word1) + scale(totalAttempts) +  (scale(totalAttempts) | targetWord))
+```
+
+```{r}
+vision_and_lang = lmer(data=df.4AFC.distractor.summary.byAge.forcor, perc ~ scale(clip_cor)*scale(age_group) + scale(AoA_Est_Word1) + scale(totalAttempts) + scale(visual_cor) +  (scale(totalAttempts) | targetWord))
+```
+
+```{r}
+multimodal_only = lmer(data=df.4AFC.distractor.summary.byAge.forcor, perc ~ scale(clip_logit_multi)*scale(age_group) + scale(AoA_Est_Word1) + scale(totalAttempts) +  (scale(totalAttempts) | targetWord))
+```
+
+```{r}
+all_predictors = lmer(data=df.4AFC.distractor.summary.byAge.forcor, perc ~ scale(clip_cor)*scale(age_group) + scale(AoA_Est_Word1) + scale(totalAttempts) + scale(clip_logit_multi) + scale(visual_cor) + (scale(totalAttempts) | targetWord))
+```
+
+
+```{r}
+library(MuMIn)
+baseline_r2 <- r.squaredGLMM(baseline)
+vision_r2 <- r.squaredGLMM(vision_only)
+lang_r2 <- r.squaredGLMM(lang_only)
+both_r2 <- r.squaredGLMM(vision_and_lang)
+multi_only =  r.squaredGLMM(multimodal_only)
+all_r2 <- r.squaredGLMM(all_predictors)
+
+predictors = c(baseline_r2[2], vision_r2[2], lang_r2[2], multi_only[2], both_r2[2], all_r2[2])
+models = c('Baseline model','Vision only','Language only', 'Multimodal only', 'Vision + language only', 'Vision, Language, Multimodal')
+```
+
+```{r}
+model_comparison <- predictors %>%
+  as_tibble() %>%
+  rename(Conditional_R2 = value) %>%
+  add_column(models) %>%
+  mutate(models = fct_reorder(models, -Conditional_R2))
+
+# unique_variance_explained <- r2_full$R2c - r2_reduced$R2
+```
+
+```{r}
+ggplot(data=model_comparison, aes(x=models, y=Conditional_R2, color=models)) +
+  geom_point() +
+  xlab('') +
+  theme_few() +
+  ylab('Conditional R-squared in LMER')  +
+  coord_flip()  +
+  theme(legend.position='none')
+  
+  
+```
+
+
+```{r}
+dist_by_4afc_full <- dist_by_4afc_full %>%
+  mutate(num_responses = num_participants)
+
+ggplot(data=dist_by_4afc_full %>% filter(age_group<25), aes(x=clip_cor, y=prop, col=age_group, size=num_responses)) +
+  geom_point(alpha=.1) +
+  geom_point(data=dist_by_4afc_full %>% filter(age_group==25),alpha=.1, color='grey') +
+  ylab('Proportion errors') +
+  xlab('CLIP Target-Distractor similarity') +
+  theme_few(base_size=8) +
+  geom_smooth(method='lm', aes(weight=num_participants, group=age_group, color=age_group), alpha=.5, se=FALSE) +
+  geom_smooth(data=dist_by_4afc_full %>% filter(age_group==25),method='lm', aes(weight=num_participants, group=age_group), color='grey',alpha=.5, se=FALSE) +
+  facet_wrap(~age_group) +
+  scale_color_viridis_c() +
+  theme(legend.position='right', aspect.ratio=1) 
+  
+```
+
+```{r}
+# cor_by_pid <- df.4AFC.distractor.summary.byPid %>%
+#   left_join(clip_cor_by_model, by("Word1" = "targetWord", "Word2" = "answerWord")) %>%
+#   group_by(pid) %>%
+#   summarize(cor = cor.test(clip_cor, ))
+
+```
+
+
+```{r}
+# ggplot(data=cor_by_group, aes(x=age_group, y=clip_prob_multi, size=total_num_errors, col=wordPairing)) +
+#   geom_point(alpha=.8) +
+#   geom_smooth(method='lm', aes(group=age_group)) +
+#   # facet_grid(~age_group) +
+#   # scale_color_viridis_c() +
+#   xlab('Age') +
+#   ylab('CLIP Target-Distractor similarity') +
+#   stat_cor(method = "pearson", aes(label = ..r.label..), size=2) +
+#   theme_few(base_size=8) +
+#   geom_smooth(alpha=.1, method='lm') +
+#   # ylim(0, 1) +
+#   theme(legend.position='right', aspect.ratio=1) 
+  
+# ggsave('error_rates_by_clip.pdf', width=8, height=3, units='in')
+```
+
+
+```{r}
+
+ggplot(data=dist_by_4afc, aes(x=clip_prob_multi, y=prop, size=total_num_errors, col=age_group)) +
+  geom_point(alpha=.1) +
+  geom_smooth(method='lm', aes(group=age_group)) +
+  facet_grid(~age_group) +
+  # scale_color_viridis_c() +
+  ylab('Proportion errors') +
+  xlab('CLIP Target-Distractor similarity') +
+  stat_cor(method = "pearson", aes(label = ..r.label..), size=2) +
+  theme_few(base_size=8) +
+  ylim(0, 1) +
+  theme(legend.position='none', aspect.ratio=1) 
+  
+# ggsave('error_rates_by_clip.pdf', width=8, height=3, units='in')
+```
+
+```{r}
+
+ggplot(data=dist_by_4afc, aes(x=clip_cor, y=prop, size=total_num_errors, col=aoa_bin)) +
+  geom_point(alpha=.1) +
+  geom_smooth(method='lm') +
+  facet_grid(aoa_bin~age_group) +
+  stat_cor(method = "pearson", aes(label = ..r.label..), size=2) 
+
+  
+```
+
+
+# graveyard model comparison
+
+
+```{r}
+ggplot(data=dist_by_4afc_full, aes(x=wordPairing, y=prop, color=as.factor(wordPairing), size=total_num_errors)) +
+  geom_point(alpha=.1) +
+  geom_line(aes(group=targetWord), alpha=.2, size=.1, color='grey') +
+  facet_wrap(~age_group)  +
+  # coord_flip() +
+  theme(aspect.ratio=1) +
+  theme_few()
+
+```
+```{r}
+ggplot(data=dist_by_4afc_full, aes(y=prop, color=as.factor(wordPairing))) +
+  geom_histogram(alpha=.1) +
+  # geom_line(aes(group=targetWord), alpha=.2, size=.1, color='grey') +
+  facet_wrap(~age_group)  +
+  coord_flip() +
+  theme(aspect.ratio=1) +
+  theme_few()
+
+
+```
+```{r}
+weighted_cor <- function(x, y, weights) {
+  weighted.cov <- sum((x - weighted.mean(x, weights)) * (y - weighted.mean(y, weights)) * weights) / sum(weights)
+  sqrt_w_var_x <- sqrt(sum(weights * (x - weighted.mean(x, weights))^2) / sum(weights))
+  sqrt_w_var_y <- sqrt(sum(weights * (y - weighted.mean(y, weights))^2) / sum(weights))
+  weighted.cov / (sqrt_w_var_x * sqrt_w_var_y)
+}
+
+```
+```{R}
+thres=20
+cor_by_age <- dist_by_4afc_full %>%
+  filter(num_participants>20) %>%
+  group_by(age_group) %>%
+  summarize(vision_cor = weighted_cor(visual_cor, prop, num_participants), unweighted_lang_cor = cor(clip_cor, prop), lang_cor = weighted_cor(clip_cor, prop, num_participants), multi_cor = weighted_cor(clip_logit_multi, prop, num_participants)) %>%
+  pivot_longer(cols=ends_with('cor'), values_to='cor',names_to='modality')
+
+responses_by_age <- dist_by_4afc_full %>%
+  filter(num_participants>20) %>%
+  distinct(age_group, targetWord, num_participants, total_num_errors) %>%
+  group_by(age_group) %>%
+  summarize(num_responses = sum(num_participants), num_errors = sum(total_num_errors), num_items = length(unique(targetWord)))
+
+cor_by_age <- cor_by_age %>%
+  left_join(responses_by_age)
+```
+```{r}
+responses_by_age_by_aoa <- dist_by_4afc_full %>%
+  distinct(age_group, targetWord, num_participants, total_num_errors, aoa_bin) %>%
+  group_by(age_group) %>%
+  summarize(num_participants = sum(num_participants), num_errors = sum(total_num_errors), num_items = length(unique(targetWord)))
+
+
+```
+
+
+```{R}
+cor_by_age_by_aoa <- dist_by_4afc_full %>%
+  group_by(age_group, aoa_bin) %>%
+  summarize(vision_cor = weighted_cor(visual_cor, prop, total_num_errors), lang_cor = weighted_cor(clip_cor, prop, total_num_errors), unweighted_lang_cor = cor(clip_cor, prop), multi_cor = weighted_cor(clip_logit_multi, prop, total_num_errors)) %>%
+  pivot_longer(cols=ends_with('cor'), values_to='cor',names_to='modality') %>%
+  left_join(responses_by_age_by_aoa)
+```
+
+
+
+#  Item effects
+## By overall accuracy
+First in order over all kids -- looking at accuracy vs. proportion errors right now
+```{r}
+df.multiAFC.distractor.summary.word <- df.multiAFC.distractor.summary %>% 
+  group_by(numAFC, wordPairing, targetWord) %>% 
+  summarise(percentile = mean(perc)) %>%  # averaging across age
+  arrange(targetWord, numAFC) %>%
+  ungroup() %>%
+  mutate(targetWord = fct_reorder(targetWord, percentile))
+```
+
+We have a big range of item effects here -- some near ceiling, some near floor, and we span the whole range
+```{r}
+
+ggplot(data = df.multiAFC.distractor.summary.word, aes(x=targetWord, y=percentile, color=wordPairing)) +
+  geom_point(alpha=.8, size=2) +
+  theme_few(base_size=12) + 
+  theme(axis.text.x = element_text(size = 4, angle = 90, hjust = 1)) +
+  facet_wrap(~numAFC, nrow=3) +
+  theme(legend.position = 'bottom')
+
+ggsave(filename = 'figures/item_effects.pdf', width=5, height=5, units='in')
+```
+
+Plotting individual item effects for the younger age groups is tricky...just not enough data from the youngest/oldest kids.
+
+
+
+Plot which items do vs. don't follow the expected gradient, from Anya's prior analysis
+```{r}
+df.flag.pair <- df.multiAFC.distractor.summary.word %>% 
+  pivot_wider(names_from = wordPairing, values_from = percentile) %>%
+  filter((hard > target) | (easy > hard) | (easy > target)) %>% 
+  add_column(flag = 1) %>% 
+  select(numAFC, targetWord, flag)
+
+df.multiAFC.distractor.summary.word.updated <- df.multiAFC.distractor.summary.word %>% 
+  left_join(df.flag.pair) %>% 
+  mutate(flag = ifelse(is.na(flag), "expected", "flag"))
+```
+
+Lets look also at which items were hardest
+```{r}
+hardest_items <- df.multiAFC.distractor.summary.word %>%
+  group_by(targetWord) %>%
+  filter(wordPairing=='target') %>%
+  filter(numAFC==4) %>%
+  arrange(percentile) %>%
+  ungroup() %>%
+  slice_max(order_by=-percentile, n=20)
+```
+
+
+
+Red items are the ones that don't follow the gradient -- note that the axes is reversed here
+```{r}
+ggplot(data=df.multiAFC.distractor.summary.word.updated , aes(x=wordPairing, y=percentile)) +
+  geom_point(size = 1, alpha = 0.6) + 
+  geom_line(aes(group = targetWord, color = flag), alpha=.4) +
+  facet_wrap(~numAFC) + 
+  scale_color_manual(values=c( "#8F993E", "#E05A1D")) + 
+  labs(x = "item distractor type",
+       y = "percentage of responses") 
+```
+
+Let's manually inspect these items that are off the gradient 
+
+Make wide data structure for 4afc only
+```{r}
+df.multiAFC.distractor.summary.wide <- df.multiAFC.distractor.summary %>%
+  ungroup() %>% 
+  filter(numAFC == 4) %>% 
+  select(-c(n, answerWord, clip_cor,AoA_Est_Word1, AoA_Est_Word2)) %>% 
+  pivot_wider(names_from = wordPairing, values_from = perc)
+```
+
+Look at specific items that are off (hard chosen less often than easy distractor)
+
+```{r}
+df.multiAFC.distractor.summary.wide %>% 
+  filter((hard + 0.1)< easy)
+```
+
+Look at specific items that are off for 3afc (hard chosen less often than easy distractor)
+
+```{r}
+df.multiAFC.distractor.summary %>%
+  ungroup() %>% 
+  filter(numAFC == 3) %>% 
+  select(-c(n, answerWord, clip_cor,AoA_Est_Word1, AoA_Est_Word2)) %>% 
+  pivot_wider(names_from = wordPairing, values_from = perc) %>%
+  filter((hard + 0.1)< easy)
+```
+
+Look at specific items that are off for 2afc (hard chosen less often than easy distractor)
+
+```{r}
+df.multiAFC.distractor.summary %>%
+  ungroup() %>% 
+  filter(numAFC == 2) %>% 
+  select(-c(n, answerWord, clip_cor,AoA_Est_Word1, AoA_Est_Word2)) %>% 
+  pivot_wider(names_from = wordPairing, values_from = perc) %>%
+  arrange(target)
+```
+## By proportion of errors
+
+
+# Correlate CLIP
+## with distractor error patterns within each age group/nafc
+
+Can clearly see some of the data sparsity issues here at the younger ages
+```{r}
+ggplot(data=df.multiAFC.distractor.summary.byAge %>% filter(wordPairing != 'target'), aes(x=clip_cor, y=perc)) +
+  geom_point(alpha=.05) +
+  geom_smooth(method='lm') +
+  theme_few() +
+  ylab('Prop distractor chosen') +
+  xlab('Similarity in CLIP space') +
+  facet_grid(~age_group) +
+  theme(axis.text.x = element_text(size=6)) +
+  scale_x_continuous(breaks = c(.5, .7, .9)) +
+  stat_cor(method = "pearson", aes(label = ..r.label..), size=2) +
+  ylim(0,1)
+```
+
+
+
+
+
+
+Correlation between adults/kids oddly isn't that high, maybe some data sparisty here
+```{r}
+# this is 962 possibilities across all 108 items x 234afc combinations
+
+adult_patterns <- df.multiAFC.distractor.summary.byAge %>%
+  filter(age_group==25)
+```
+Just doing within all afc because grouping is tricky but oddly not that high relative to clip correlations, adult data does correlate with itself at r=1 within the pipe suggesting no indexing issues
+
+
+
+
+
+# Inferential stats 
+
+Modeling image choice data for a given trial - what we're modeling is the proportion of times an image was chosen on a trial by children in a certain age group, as a function of the 
+(1) clip correlation between the target word and the distractor word, (clip_cor)
+(2) the age in years of the children/adults participating (age_group)
+(3) the number of other distrators on that trial (numAFC)
+
+With random effects for
+(1) Random slopes of the clip_correlation on each targetWord,
+(2) the number of times this trial was seen by kids in this age group, which varies a lot given the different recruitment strategies and we want to account for this
+
+We're looking for way to test for that gradient items children choose as a function of CLIP simialrity
+
+Add numafc as a covariate and random effects for the clip | target_word
+```{r}
+summary(lmer(data = df.multiAFC.distractor.summary.byAge, perc ~ clip_cor*age_group + numAFC + (clip_cor|targetWord) + (1|totalAttempts)))
+```
+
+
+Add in estimated aoa of word1/2 as covariates, same results -- still see interaction
+```{r}
+summary(lmer(data = df.multiAFC.distractor.summary.byAge, perc ~ clip_cor*age_group + numAFC + AoA_Est_Word2 + AoA_Est_Word1 + (clip_cor|targetWord) + (1|totalAttempts)))
+```
+
+But this goes away if we exclude kids choosing the target word -- only looking at errors
+
+We still see many effects of age and clip similarity, but no interaction
+```{r}
+summary(lmer(data = df.multiAFC.distractor.summary.byAge %>% filter(wordPairing != 'target'), perc ~ clip_cor*age_group + numAFC  + (clip_cor|targetWord) + (1|totalAttempts)))
+```
+
+
+Only within 4AFC
+```{r}
+summary(lmer(data = df.multiAFC.distractor.summary.byAge %>% filter(wordPairing!='target' & numAFC>2), perc ~ clip_cor*age_group + numAFC  + (clip_cor|targetWord) + (1|totalAttempts)))
+```

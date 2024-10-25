@@ -1,0 +1,329 @@
+---
+title: "Wrangle_datasets"
+author: "Bria Long"
+date: "2024-05-08"
+output: html_document
+---
+
+
+# Setup
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, cache=FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(ggthemes)
+library(assertthat)
+library(langcog) # for CIs
+library(mirt)
+library(ggpubr)
+library(knitr)
+library(dplyr)
+library(here)
+library(lme4)
+library(lmerTest)
+library(digest)
+library(viridis)
+```
+
+
+## Load data from multiafc task
+First load all metadata we'll need for the items
+```{r}
+test_corpus <- read_csv(here::here("data/item_metadata/new_test.csv")) %>%
+  filter(!Word1 %in% c('honey','scrabble')) # manually excluded
+```
+
+# New merged data post preprcoessing
+```{r}
+multiafc_combined <- read_csv(here::here("data/raw/multiAFC_4AFC_clean_combined_data_20240909.csv"))
+```
+
+# Load metadata
+## examine items across aoa bins
+```{r}
+clip_cor_by_model <- read_csv(here::here("data/item_metadata/exp1_all_trials2023-04-11.csv")) %>%
+  select(Word1, Word2, trial_type, cor, AoA_Est_Word2, AoA_Est_Word1) %>%
+  rename(wordPairing = trial_type) %>%
+  rename(clip_cor = cor) %>%
+  filter(Word1 %in% unique(test_corpus$Word1))  %>%
+  filter(!Word1 %in% c('honey','scrabble')) %>% # manually excluded for symmetry across blocks
+  ungroup() %>%
+  mutate(AoA_Bin = ntile(AoA_Est_Word1,3)) %>%
+  mutate(AoA_Bin_Name = factor(AoA_Bin,  levels = c('1','2','3'), labels = c("Early AoA", "Med AoA", "Late AOA"))) 
+```
+
+```{r}
+sanity <- clip_cor_by_model %>%
+  group_by(AoA_Bin_Name) %>%
+  summarize(num_words = length(unique(Word1)), meanAoA = mean(AoA_Est_Word1))
+```
+
+
+# Load data
+Load data and restrict to clip words (no dutch)
+```{r}
+test_clip_cor <- read_csv(here::here("data/item_metadata/exp1_all_trials2023-04-11.csv")) %>%
+  select(Word1, Word2, trial_type, cor, AoA_Est_Word2, AoA_Est_Word1) %>%
+  rename(wordPairing = trial_type) %>%
+  rename(clip_cor = cor) %>%
+  filter(Word1 %in% unique(test_corpus$Word1)) %>%
+  filter(!Word1 %in% c('honey','scrabble')) # manually excluded for symmetry across blocks
+```
+
+Create data structure and merge that has clip cor==1 for target selection
+```{r}
+test_clip_cor_identity <- test_clip_cor %>%
+  select(Word1, AoA_Est_Word1) %>%
+  distinct(Word1, AoA_Est_Word1) %>%
+  mutate(Word2 = Word1) %>%
+  mutate(AoA_Est_Word2 = AoA_Est_Word1) %>%
+  mutate(clip_cor = 1) %>%
+  mutate(wordPairing = 'target')
+
+test_clip_cor <- test_clip_cor %>%
+  full_join(test_clip_cor_identity) %>%
+  arrange(Word1)
+
+```
+
+Rename meta data structures so that they merge correctly with trial data
+```{R}
+clip_to_join <- test_clip_cor %>%
+  rename(targetWord = Word1) %>%
+  rename(answerWord = Word2)
+```
+
+```{r}
+test_corpus <- test_corpus %>%
+  left_join(test_clip_cor)
+
+sum(is.na(test_corpus$clip_cor))
+```
+
+## Read in bing & garden data
+```{r}
+bing = read_csv(here::here('data/raw/all_bing_data_for_item_info.csv'))  %>%
+  mutate(age_group = as.numeric(floor(age_in_months/12))) %>%
+  select(-block)
+```
+
+
+```{r}
+garden = read_csv(here::here('data/raw/all_garden_roar_data_with_age.csv'))   %>%
+  mutate(start_time = as.character(start_time)) %>%
+  filter(assessment_stage=='test_response')  %>%
+  select(-assessment_stage) %>%
+  mutate(age_group = floor(age_in_years))  %>%
+  select(pid, targetWord, answerWord, correct, rt, numAFC, age_in_years, age_group) 
+
+```
+
+## Read in multi-afc adult data
+Set age to "25" so we can plot it together
+```{r}
+adults <- read_csv(here::here("data/raw/multi-afc-april28.csv"))  %>%
+  mutate(age_group = as.numeric(25)) %>% # set 
+  filter(task == 'test_response') %>%
+  select(pid, targetWord, answerWord, correct, rt, numAFC, age_group) 
+```
+
+
+
+## Make trial-levels data structure across all ages
+```{R}
+trial_data <- multiafc_combined %>%
+  mutate(age_group = floor(ageMonths/12)) %>%
+  filter(age_group<15) %>%
+  filter(group!='B') %>%
+  full_join(garden) %>% # manually merge garden instead for age/pid difficulties
+  full_join(adults)  %>%
+  filter(targetWord %in% clip_to_join$targetWord) %>% 
+  left_join(clip_to_join) 
+  
+```
+
+
+
+## Parse out item-level responses 
+Join together and clean datastructures
+```{r}
+df.multiAFC.trials <- trial_data %>% 
+  left_join(test_corpus %>% rename(targetWord = "Word1", answerWord = "Word2")) %>%
+  filter(is.na(itemGroup) | (itemGroup == "test")) %>% 
+  mutate(wordPairing = ifelse(is.na(wordPairing), "target", wordPairing)) %>%
+  filter(!targetWord %in%  c("ant","ball","bear","scrabble","honey")) %>% 
+  select(pid, answerWord, targetWord, numAFC, correct, rt, wordPairing, age_group, clip_cor) 
+
+df.4AFC.trials <- df.multiAFC.trials %>% 
+  filter(numAFC==4)
+
+rm(df.multiAFC.trials) # force 4afc from now on
+```
+
+# Now get rid of weird participants
+# Get rid of people who are at chance
+```{r}
+at_chance <- df.4AFC.trials %>%
+  group_by(age_group, pid) %>%
+  summarize(pc = mean(correct), num_trials = length(unique(targetWord)))  %>%
+  filter(age_group>6) %>%
+  filter(pc<.3)
+```
+
+```{r}
+df.4AFC.trials.clean <- df.4AFC.trials %>%
+  filter(!pid %in% at_chance$pid)
+```
+
+
+Create age/group and number of participants for filtering for plots / age-based analyses
+```{r}
+age_group_pid <- df.4AFC.trials.clean %>%
+  group_by(age_group) %>%
+  summarize(num_pids = length(unique(pid))) 
+```
+
+We have `r sum(age_group_pid$num_pids)-205` children aged 3-11 years, and 205 adults.
+
+
+
+
+
+## Create intermediate data structures
+Now write code to fill out response pattern for all possible target/distractor responses on each age for each age...for use later.
+
+```{r}
+full_item_structure_4AFC <- clip_to_join %>%
+  mutate(numAFC = 4)
+```
+
+Now fill this out by all ages in the dataset, oof this was annoying
+```{r}
+full_item_structure_by_age_4afc = map_df(age_group_pid$age_group, ~full_item_structure_4AFC %>% mutate(age_group = .x)) 
+```
+
+
+## Calculate proportion of times participants chose an image
+First do this across all age groups -- for basic item plots.
+```{r}
+df.4AFC.totalAttempts <- df.4AFC.trials.clean %>% 
+  group_by(targetWord, numAFC) %>% 
+  tally() %>% 
+  dplyr::rename(totalAttempts = n)
+
+# this includes target word selection
+df.4AFC.distractor.summary <- df.4AFC.trials.clean %>% 
+  group_by(targetWord,  answerWord, wordPairing) %>% 
+  tally() %>%
+  left_join(df.4AFC.totalAttempts) %>% 
+  mutate(perc = n/totalAttempts) %>%
+  full_join(full_item_structure_4AFC) %>% # need to fill out item structure (but not by age)
+  mutate(perc = replace_na(perc, replace=0))
+```
+
+Look at histogram of how often an item was attempted overal
+```{r}
+hist(df.4AFC.totalAttempts$totalAttempts)
+```
+
+Look at histograms of how often the target was chosen
+```{r}
+target_pc <- df.4AFC.distractor.summary %>%
+  filter(wordPairing=='target') %>%
+  arrange(perc)
+
+# hist(target_pc$perc)
+```
+
+
+
+# Construct response dataframe now by age group 
+```{r}
+df.4AFC.totalAttempts.byAge <- df.4AFC.trials.clean %>% 
+  group_by(targetWord, age_group) %>% 
+  tally() %>% 
+  dplyr::rename(totalAttempts = n)
+
+df.4AFC.distractor.summary.byAge <- df.4AFC.trials.clean %>% 
+  group_by(targetWord,  answerWord, wordPairing, age_group) %>%
+  summarise(n = n(), medianRT = median(rt)) %>% 
+  left_join(df.4AFC.totalAttempts.byAge) %>% 
+  mutate(perc = n/totalAttempts) %>%
+  full_join(full_item_structure_by_age_4afc)
+
+```
+
+```{r}
+what <- df.4AFC.distractor.summary.byAge %>%
+  filter(is.na(perc))
+```
+
+
+There are some missing observations because these items were never even SEEN  -- these are true NAs and mostly concentrated in the youngest kids
+
+```{r}
+unseen_target_items_by_age_group <- df.4AFC.totalAttempts.byAge %>%
+  full_join(full_item_structure_by_age_4afc %>% distinct(targetWord, age_group)) %>%
+  filter(is.na(totalAttempts))
+```
+
+couple of sanity checks for missing values that shuold be zero
+```{r}
+assert_that(sum(is.na(df.4AFC.distractor.summary.byAge$age_group))==0)
+assert_that(sum(is.na(df.4AFC.distractor.summary.byAge$clip_cor))==0)
+  
+```
+
+
+
+There are some missing observations because these items were never chosen on a given trial/age group -- need to fill those out
+
+But we also have some target/distractor/age group pairings that are VERY sparsely populated -- that makes sense especially as kids get more accurate and don't choose distal items. We also have relatively few younger kids.
+
+```{r}
+hist(df.4AFC.distractor.summary.byAge$totalAttempts)
+```
+
+## These are true NAs because never seen
+```{r}
+unseen_items <- df.4AFC.distractor.summary.byAge  %>%
+  right_join(unseen_target_items_by_age_group)
+```
+
+
+But we n ow need to populate "0" value in the percent chosen category for distractor items that were never chosen and so not in the data structure 
+
+
+OK, put it back all together
+```{r}
+df.4AFC.distractor.summary.byAge.clean <- df.4AFC.distractor.summary.byAge %>%
+  anti_join(unseen_items) %>% # get rid of unseen items
+  mutate(perc = replace_na(perc, replace=0)) %>% # now replace non-chosen with 0
+  full_join(unseen_items) %>% # rejoin these  true NAs
+  ungroup() %>%
+  mutate(AoA_Bin = ntile(AoA_Est_Word1,3)) %>%
+  mutate(AoA_Bin_Name = factor(AoA_Bin,  levels = c('1','2','3'), labels = c("Early AoA", "Med AoA", "Late AOA"))) 
+```
+
+Make sure we have it all filled out correctly
+```{r}
+sanity_check <- df.4AFC.distractor.summary.byAge.clean %>%
+  filter(numAFC==4) %>%
+  group_by(age_group, targetWord) %>%
+  summarize(count = n()) 
+
+assert_that(sum(sanity_check$count!=4)==0) # 
+```
+
+
+```{r}
+save(df.4AFC.distractor.summary.byAge.clean, file=here::here('data/preprocessed/summary_by_distractor.Rdata'))
+
+save(df.4AFC.trials.clean, file=here::here('data/preprocessed/all_trial_data.Rdata'))
+```
+
+
+
