@@ -38,7 +38,8 @@ test_corpus <- read_csv(here::here("data/item_metadata/new_test.csv")) %>%
 
 # New merged data post preprcoessing
 ```{r}
-multiafc_combined <- read_csv(here::here("data/raw/multiAFC_4AFC_clean_combined_data_20240909.csv"))
+multiafc_combined <- read_csv(here::here("data/raw/multiAFC_4AFC_clean_combined_data_20240909.csv")) %>%
+  mutate(cohort='schools')
 ```
 
 # Load metadata
@@ -107,7 +108,8 @@ sum(is.na(test_corpus$clip_cor))
 ```{r}
 bing = read_csv(here::here('data/raw/all_bing_data_for_item_info.csv'))  %>%
   mutate(age_group = as.numeric(floor(age_in_months/12))) %>%
-  select(-block)
+  select(-block) %>%
+  mutate(cohort='bing')
 ```
 
 
@@ -117,7 +119,8 @@ garden = read_csv(here::here('data/raw/all_garden_roar_data_with_age.csv'))   %>
   filter(assessment_stage=='test_response')  %>%
   select(-assessment_stage) %>%
   mutate(age_group = floor(age_in_years))  %>%
-  select(pid, targetWord, answerWord, correct, rt, numAFC, age_in_years, age_group) 
+  select(pid, targetWord, answerWord, correct, rt, numAFC, age_in_years, age_group) %>%
+  mutate(cohort='garden')
 
 ```
 
@@ -127,7 +130,9 @@ Set age to "25" so we can plot it together
 adults <- read_csv(here::here("data/raw/multi-afc-april28.csv"))  %>%
   mutate(age_group = as.numeric(25)) %>% # set 
   filter(task == 'test_response') %>%
-  select(pid, targetWord, answerWord, correct, rt, numAFC, age_group) 
+  select(pid, targetWord, answerWord, correct, rt, numAFC, age_group) %>%
+    mutate(cohort='adults') 
+
 ```
 
 
@@ -140,6 +145,7 @@ trial_data <- multiafc_combined %>%
   filter(group!='B') %>%
   full_join(garden) %>% # manually merge garden instead for age/pid difficulties
   full_join(adults)  %>%
+  full_join(bing) %>%
   filter(targetWord %in% clip_to_join$targetWord) %>% 
   left_join(clip_to_join) 
   
@@ -155,7 +161,7 @@ df.multiAFC.trials <- trial_data %>%
   filter(is.na(itemGroup) | (itemGroup == "test")) %>% 
   mutate(wordPairing = ifelse(is.na(wordPairing), "target", wordPairing)) %>%
   filter(!targetWord %in%  c("ant","ball","bear","scrabble","honey")) %>% 
-  select(pid, answerWord, targetWord, numAFC, correct, rt, wordPairing, age_group, clip_cor) 
+  select(pid, answerWord, targetWord, numAFC, correct, rt, wordPairing, age_group, clip_cor,cohort) 
 
 df.4AFC.trials <- df.multiAFC.trials %>% 
   filter(numAFC==4)
@@ -173,6 +179,8 @@ at_chance <- df.4AFC.trials %>%
   filter(pc<.3)
 ```
 
+We removed `r length(at_chance$pid)` participants who were older than 6 years of age and at chance on this assessment and completed `r mean(at_chance$num_trials)`
+
 ```{r}
 df.4AFC.trials.clean <- df.4AFC.trials %>%
   filter(!pid %in% at_chance$pid)
@@ -187,7 +195,6 @@ age_group_pid <- df.4AFC.trials.clean %>%
 ```
 
 We have `r sum(age_group_pid$num_pids)-205` children aged 3-11 years, and 205 adults.
-
 
 
 
@@ -277,8 +284,6 @@ assert_that(sum(is.na(df.4AFC.distractor.summary.byAge$clip_cor))==0)
   
 ```
 
-
-
 There are some missing observations because these items were never chosen on a given trial/age group -- need to fill those out
 
 But we also have some target/distractor/age group pairings that are VERY sparsely populated -- that makes sense especially as kids get more accurate and don't choose distal items. We also have relatively few younger kids.
@@ -294,7 +299,7 @@ unseen_items <- df.4AFC.distractor.summary.byAge  %>%
 ```
 
 
-But we n ow need to populate "0" value in the percent chosen category for distractor items that were never chosen and so not in the data structure 
+But we now need to populate "0" value in the percent chosen category for distractor items that were never chosen and so not in the data structure 
 
 
 OK, put it back all together
