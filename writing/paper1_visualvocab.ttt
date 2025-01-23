@@ -1,0 +1,11 @@
+\begin{longtable}[t]{lrrrrl}
+\caption{\label{tab:unnamed-chunk-21}\label{tab:unnamed-chunk-21}Fixed Effects from Generalized Linear Mixed Effects Model}\\
+\toprule
+effect & Predictor & *b* & *SE* & *z* & *p*\\
+\midrule
+fixed & Intercept & -0.56 & 0.01 & -42.29 & < .001\\
+fixed & Age (scaled) & 0.09 & 0.01 & 7.31 & < .001\\
+\bottomrule
+\multicolumn{6}{l}{\rule{0pt}{1em}\textit{Note.}}\\
+\multicolumn{6}{l}{\rule{0pt}{1em}Analysis conducted using a generalized linear mixed effects model with a binomial distribution. The model included random intercepts for participants. Age was standardized prior to analysis.}\\
+\end{longtable}
