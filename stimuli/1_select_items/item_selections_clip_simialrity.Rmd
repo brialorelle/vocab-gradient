@@ -1,0 +1,499 @@
+---
+title: "item_selection"
+author: "Bria Long"
+date: '2022-06-27'
+output: html_document
+---
+
+# Setup
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(here)
+
+library(tidyverse)
+library(readxl)
+library(ggthemes)
+library(corrr)
+
+# image manipulation library
+library(magick)
+library(assertthat)
+
+set.seed(123) # for getting reproducible items
+```
+
+
+# Import data from prior studies with 30/40K words
+## AoA estimated via retrospective report
+```{r}
+aoa_items <- read_excel(here::here('stimuli/existing_datasets/concreteness_aoa_norms/13428_2013_348_MOESM1_ESM.xlsx')) %>%
+  select(Word, Rating.Mean) %>%
+  rename(AoA_Est = Rating.Mean)
+```
+
+```{R}
+things_meta <- read_tsv(here::here('stimuli/existing_datasets/THINGS/clip_similarity/things_concepts.tsv'))
+```
+
+### Load mald metadata
+```{r}
+load(here::here('stimuli/existing_datasets/MALD/mald_metadata/MALD1_1_ItemData.rda'))
+mald_items <- items %>%
+  filter(IsWord==TRUE) %>%
+  select(Item, WAV) %>%
+  rename(Word = Item) %>%
+  mutate(audio_path = here::here('data/MALD1_rw', WAV))
+
+rm(items)
+```
+
+# Join datasets
+
+```{r}
+things <- things_meta %>%
+  left_join(aoa_items)
+```
+
+
+### Manually remove some weird items
+```{r}
+#manually remove some items
+
+exclude_items = c('rifle','gun','urinal','dildo','graveyard','missile', 'condom','machine gun','marijuana','altar','ashtray','axe','beer','wine','boomerang','bullet','bulletproof_vest','bedpan','catapult','torso','pill','pickax','marijuana','rosary','underwear','blowgun','bomb','blowtorch','bra','cleaver','breathalyzer','cocktail','coffin','flask','holster','brass_knuckles','guillotine','hookah','torpedo','bazooka','baton2', 'barbed_wire','bow2','baton2','cannon','cannonball', 'chainsaw','champagne','chest1','cigarette_butt','cigarette_holder','cigarette','cleaver','cross','crossbow','crowbar','crucifix','dagger','detonator','electric_chair','fishnet_stockings','flamethrower','gallows','garter','gas_mask', 'grenade','gun','handcuff','hatchet','holster','landmine',
+'leg', 'torso','navel','tube_top','stomach','lingerie', 'loincloth','machete','machine_gun','margarita','noose','panties','pantyhose','pipe1','pocketknife','razor_blade','revolver','rifle','rosary','sheath','straightjacket','underwear', 'whip','wineglass','sword','tank1','spear','trap','bank','toast')
+
+#bank and toast are not the best exemplars IMHO
+```
+
+
+
+```{r}
+bad_visual = read_csv(file = here::here('stimuli/selected_stimuli/eliminated_items/bad_visual.txt'))
+```
+
+```{r}
+things_raw <- things %>%
+  filter(!Word %in% exclude_items) %>%
+  filter(!Word %in% bad_visual$Word1)
+```
+
+We don't have AoA estimates for `sum(is.na(things_raw$AoA_Est))` words from the things database
+
+
+# Import category data 
+```{r}
+category_info <- read_csv(here::here('stimuli/existing_datasets/THINGS/meta_data/category53_wideFormat.tsv'), col_names = TRUE) %>%
+  as_tibble() %>%
+  select(Word, uniqueID, animal, weapon)
+```
+
+```{r}
+category_info_expanded <- read_csv(here::here('stimuli/existing_datasets/THINGS/meta_data/category53_wideFormat.tsv'), col_names = TRUE) %>%
+  as_tibble() %>%
+  select(Word, uniqueID, animal, weapon)
+```
+
+
+# Import nameability data
+```{r}
+nameability <- read_csv(here::here('stimuli/existing_datasets/THINGS/meta_data/imageLabeling_objectwise.csv'), col_names = TRUE) %>%
+  as_tibble()  %>%
+  select(Word, uniqueID, nameability_mean)
+```
+
+
+## Merge with other meta data
+```{r}
+things_joined <- things_raw %>%
+  rename(Concreteness = `Concreteness (M)`) %>%
+  rename(BNC_Freq = `BNC freq`) %>%
+  mutate(AoA_Est = as.numeric(AoA_Est)) %>%
+  left_join(nameability)
+```
+
+
+
+### Join with category data
+```{r}
+candidate_items <- things_joined %>%
+  distinct(Word, uniqueID, AoA_Est, nameability_mean) %>%
+  left_join(category_info)  %>%
+  filter(weapon == 0) %>%
+  filter(nameability_mean>.3) %>%
+  filter(!is.na(AoA_Est))
+
+assert_that(length(unique(candidate_items$Word)) <= length(unique(things_meta$Word)))
+
+```
+
+### filter by items in mald database
+```{r}
+candidate_items_mald <- candidate_items %>%
+  left_join(mald_items, by=c('Word')) %>%
+  filter(!is.na(audio_path)) 
+
+candidate_items_mald  <- candidate_items_mald %>%
+  filter(Word==uniqueID)
+
+```
+
+We are working with a total of `r length(unique(candidate_items_mald$Word))` words after filtering.
+
+## Import clip correlations
+```{r}
+clip_correlations_all = read_csv(here::here('data/things_dataset/things_test_all_item_embeddings.csv')) %>%
+  rename(Word1 = `...1`) %>%
+  pivot_longer(cols = aardvark:zucchini, names_to = 'Word2', values_to = 'cor')
+
+## this outputs lots of extra column names for homonyms
+```
+
+## Look at clip correlations
+```{r}
+max_clip_corr <- clip_correlations_all %>%
+  filter(!Word1 == Word2) %>%
+  group_by(Word1) %>%
+  slice_max(n=3, order_by=cor) 
+```
+
+
+# Pop out AoAs for each word for item selection
+```{r}
+candidate_items <- candidate_items_mald
+```
+
+```{r}
+aoa_word_1 <- candidate_items %>%
+  select(AoA_Est, Word, animal, audio_path, WAV) %>%
+  rename(AoA_Est_Word1 = AoA_Est, Word1 = Word, Animacy_Word_1 = animal, Audio_Path_Word1 = audio_path, Audio_File_Word_1 = WAV) %>%
+  distinct(AoA_Est_Word1, Word1, Animacy_Word_1,Audio_File_Word_1,  Audio_Path_Word1)
+
+aoa_word_2 <- candidate_items %>%
+  select(AoA_Est, Word, animal, audio_path, WAV) %>%
+  rename(AoA_Est_Word2 = AoA_Est, Word2 = Word, Animacy_Word_2 = animal, Audio_Path_Word2 = audio_path, Audio_File_Word_2 = WAV) %>%
+    distinct(AoA_Est_Word2, Word2, Animacy_Word_2, Audio_Path_Word2, Audio_File_Word_2)
+
+
+assert_that(sum(aoa_word_2$Word2 != aoa_word_1$Word1)==0)
+
+```
+
+# Use CLIP similarities to select items with item correlations 
+```{r}
+item_corr_with_aoa <- clip_correlations_all %>%
+  right_join(aoa_word_1) %>%
+  right_join(aoa_word_2) %>%
+  filter(Word1 != Word2) %>%
+  mutate(diff_aoa = AoA_Est_Word1 - AoA_Est_Word2)
+```
+
+
+```{r}
+candidate_pairs <- item_corr_with_aoa %>%
+  filter(abs(diff_aoa)<=3) %>%
+  filter(Animacy_Word_1 == Animacy_Word_2) %>%
+  filter(!Word1 == Word2)
+
+## 989 potential words
+length(unique(candidate_pairs$Word1))
+```
+
+## For each word, choose word with highest correlation
+```{r}
+hard_distractor <- candidate_pairs %>%
+  group_by(Word1) %>%
+  slice_max(order_by = cor, n=1) %>%
+  mutate(trial_type = 'hard') %>%
+  group_by(Word2)  %>%
+  distinct(Word1, Word2, cor, AoA_Est_Word1, AoA_Est_Word2, trial_type, Audio_Path_Word1, Audio_File_Word_1)
+
+length(unique(hard_distractor$Word1))
+length(unique(hard_distractor$Word2))
+
+```
+ 
+## Get unique pairs -- choose hardest pairs for each of the distractors when it was used twice
+```{r}
+hard_distractor <- hard_distractor %>%
+  group_by(Word2) %>%
+  slice_max(order_by = cor, n=1) %>%
+  ungroup() %>%
+  filter(!Word2 %in% Word1)
+```
+
+## Now get corresponding medium pairs for those trials
+```{r}
+set.seed(234)
+easy_distractor <- candidate_pairs %>% # these only have same-animacy pairings
+  filter(Word1 %in% hard_distractor$Word1) %>% # get easy pairs for best hard pairs
+  filter(!Word2 %in% hard_distractor$Word1) %>% # don't get duplicate distractors
+  filter(!Word2 %in% hard_distractor$Word2) %>% # don't get duplicate distractors
+  group_by(Word1) %>%
+  slice_sample(n=1) %>%  # sample a random item weighted by clip correlation
+  mutate(trial_type = 'easy') %>% # call this an easy trial type
+  arrange(Word1)  %>%
+  distinct(Word1, Word2, cor, AoA_Est_Word1, AoA_Est_Word2, trial_type, Audio_Path_Word1, Audio_File_Word_1) # make
+```
+
+```{r}
+length(unique(easy_distractor$Word1))
+length(unique(easy_distractor$Word2)) # somehow we're still getting so many of the same distractors even with random sampling...just not that many items.
+```
+
+
+## now join easy and hard together
+```{r}
+hard_and_easy <-  easy_distractor %>% 
+  full_join(hard_distractor) %>% # join together
+  ungroup() %>% # across entire set, ungroup 
+  filter(!Word2 %in% Word1) %>% # filter any trials where dist was in word1.
+  group_by(Word2) %>%
+  mutate(dist_count = n()) %>% # get rid of items where the same distrator was selected
+  filter(dist_count == 1) %>% 
+  group_by(Word1) %>%
+  mutate(both_types = n()) %>% # retain only items with both trial types
+  filter(both_types == 2) %>%
+  arrange(Word1)
+```
+
+```{r}
+### should be empty
+duplications <- hard_and_easy %>%
+  group_by(Word2) %>%
+  mutate(duplicate = n()) %>%
+  filter(duplicate == 2)
+
+
+# Unique set per participant
+# hard_and_easy_first_set <- hard_and_easy %>%
+#   group_by(Word1) %>%
+#   sample_n(1) 
+```
+
+```{r}
+## these are trials we need the opposite one of
+# hard_and_easy_to_resample <- hard_and_easy_first_set %>%
+#   ungroup() %>%
+#   filter(Word2 %in% Word1) 
+# 
+# hard_and_easy_ok <- hard_and_easy_first_set %>%
+#   ungroup() %>%
+#   filter(!Word2 %in% Word1) 
+```
+
+```{r}
+# go back to original dataframe, and get opposite trial for those words
+# resampled_trials <- hard_and_easy %>%
+#   filter(Word1 %in% hard_and_easy_resampled$Word1) %>%
+#   group_by(Word1, Word2) %>%
+#   filter(!Word2 %in% hard_and_easy_resampled$Word2) %>%
+#   arrange(Word1)
+```
+
+```{r}
+# all_ok_trials <- hard_and_easy_ok %>%
+#   full_join(resampled_trials)
+# 
+# should_be_empty <- all_ok_trials %>%
+#   filter(Word2 %in% Word1)
+```
+
+
+
+
+## Group by distractor words that were chosen, select closest matched pairs so we have the best pairs
+
+
+
+## Generatr unique items for catch trials
+```{r}
+all_words_tested  = c(hard_and_easy$Word1, hard_and_easy$Word2)
+assert_that(length(unique(hard_and_easy$Word1))*2 == length(unique(hard_and_easy$Word2)))
+```
+
+```{R}
+catch_trials <- item_corr_with_aoa %>%
+  filter(abs(diff_aoa)<=3) %>%
+  filter(AoA_Est_Word1<5) %>%
+  filter(!Word1 %in% all_words_tested) %>%
+  filter(!Word2 %in% all_words_tested) %>%
+  group_by(Word1) %>%
+  slice_max(order_by = -cor, n=1) %>%
+  mutate(trial_type = 'catch') %>%
+  ungroup() %>%
+  slice_sample(n = 15) %>%
+  arrange(Word1) %>%
+  distinct(Word1, Word2, cor, AoA_Est_Word1, AoA_Est_Word2, trial_type, Audio_Path_Word1, Audio_File_Word_1)
+```
+
+```{r}
+# get three very easy catch trials
+catch_trials_subset <- catch_trials %>%
+  group_by(Word2) %>%
+  slice_max(order_by = -cor, n=1) %>%
+  ungroup() %>%
+  arrange(Word2) %>%
+  slice_max(order_by = -cor, n=3)
+```
+
+# get other trials for practice
+```{r}
+prac_trials <- item_corr_with_aoa %>%
+  filter(abs(diff_aoa)<=3) %>%
+  filter(AoA_Est_Word1<4) %>%
+  filter(AoA_Est_Word2<4) %>%
+  filter(!Word1 %in% all_words_tested) %>%
+  filter(!Word2 %in% all_words_tested) %>%
+  filter(!Word1 %in% catch_trials_subset$Word1) %>%
+  filter(!Word2 %in% catch_trials_subset$Word2) %>%
+  group_by(Word1) %>%
+  slice_max(order_by = -cor, n=3) %>%
+  mutate(trial_type = 'practice') %>%
+  ungroup() %>%
+  slice_sample(n = 20) %>%
+  arrange(Word1) %>%
+  distinct(Word1, Word2, cor, AoA_Est_Word1, AoA_Est_Word2, trial_type, Audio_Path_Word1, Audio_File_Word_1) %>%
+  group_by(Word2) %>%
+  slice_max(order_by = -cor, n=1) %>%
+  ungroup() %>%
+  filter(!Word2 %in% Word1) %>%
+  filter(!Word1 %in% Word2) %>%
+  sample_n(5)
+```
+
+## Grab example images for each category (things plus)
+```{r}
+all_trials = hard_and_easy %>%
+  full_join(catch_trials_subset)
+
+today = Sys.Date()
+image_out_dir = paste0("data/pilot_images_",today,'/')
+audio_out_dir = paste0("data/pilot_audio_",today,'/')
+trials_out_dir = paste0("data/pilot_trials_",today,'/')
+
+dir.create(here::here(image_out_dir))
+dir.create(here::here(trials_out_dir))
+dir.create(here::here(audio_out_dir))
+
+all_trials <- all_trials %>%
+  mutate(Word_1_path=here::here(paste0('data/all_images/',Word1,'.jpg'))) %>%
+  mutate(Word_2_path=here::here(paste0('data/all_images/',Word2,'.jpg')))  %>%
+  mutate(Word_1_new_path = here::here(paste0(image_out_dir, Word1,'.jpg'))) %>%
+  mutate(Word_2_new_path = here::here(paste0(image_out_dir,Word2,'.jpg')))  %>%
+  mutate(example_path = here::here(paste0(trials_out_dir,Word1,'_', trial_type, '.jpg'))) %>%
+  mutate(audio_new_path = here::here(paste0(audio_out_dir,Audio_File_Word_1)))  %>%
+  filter(file.exists(Word_1_path)) %>%
+  filter(file.exists(Word_2_path))
+``` 
+
+
+
+### check no missing paths besdies synonyms
+```{r}
+missing_1 <- all_trials %>%
+  filter(!file.exists(Word_1_path))
+
+missing_2 <- all_trials %>%
+  filter(!file.exists(Word_2_path))
+
+
+assert_that(length(missing_1$Word1)==0)
+assert_that(length(missing_2$Word2)==0)
+```
+
+
+# Check some properties of this set
+
+```{r}
+
+ggplot(all_trials %>% filter(trial_type!='catch'), aes(x=AoA_Est_Word1, y=AoA_Est_Word2, col=cor))+
+  geom_point(alpha=.5) +
+  theme_few(base_size=14) +
+  facet_grid(~trial_type) +
+  scale_color_viridis_c(name = 'CLIP correlation') +
+  ylim(2,16) +
+  xlim(2,16) +
+  theme(aspect.ratio=1)
+
+```
+
+```{r}
+
+```
+
+
+### load, resize, and copy these images to a new folder
+```{r}
+for (trial in seq.int(1,length(all_trials$Word1))) {
+  print(trial)
+  img = magick::image_scale(image_read(all_trials$Word_1_path[trial]), "300x300")
+  image_write(img, path = all_trials$Word_1_new_path[trial])
+  
+  img2 = magick::image_scale(image_read(all_trials$Word_2_path[trial]), "300x300")
+  image_write(img2, path = all_trials$Word_2_new_path[trial])
+  
+  example = image_append(c(img,img2))
+  image_write(example, path = all_trials$example_path[trial])
+  
+  fs::file_copy(all_trials$Audio_Path_Word1[trial], all_trials$audio_new_path[trial], overwrite=TRUE)
+}
+
+
+```
+
+# Practice trials separately
+### Copy a csv and subset images for use in a pilot
+
+## Grab example images for each category (things plus)
+```{r}
+
+prac_trials <- prac_trials %>%
+  filter(!is.na(Word1)) %>%
+  ungroup() %>%
+  mutate(Word_1_path=here::here(paste0('data/all_images/',Word1,'.jpg'))) %>%
+  mutate(Word_2_path=here::here(paste0('data/all_images/',Word2,'.jpg')))  %>%
+  mutate(Word_1_new_path = here::here(paste0(image_out_dir, Word1,'.jpg'))) %>%
+  mutate(Word_2_new_path = here::here(paste0(image_out_dir,Word2,'.jpg')))  %>%
+  mutate(example_path = here::here(paste0(trials_out_dir,Word1,'.jpg'))) %>%
+  mutate(audio_new_path = here::here(paste0(audio_out_dir,Audio_File_Word_1))) 
+
+```
+
+
+```{r}
+for (trial in seq.int(1,length(prac_trials$Word1))) {
+  print(trial)
+  img = magick::image_scale(image_read(prac_trials$Word_1_path[trial]), "300x300")
+  image_write(img, path = prac_trials$Word_1_new_path[trial])
+  
+  img2 = magick::image_scale(image_read(prac_trials$Word_2_path[trial]), "300x300")
+  image_write(img2, path = prac_trials$Word_2_new_path[trial])
+  
+   fs::file_copy(prac_trials$Audio_Path_Word1[trial], prac_trials$audio_new_path[trial], overwrite=TRUE)
+  
+  example = image_append(c(img,img2))
+  image_write(example, path = prac_trials$example_path[trial])
+}
+
+
+```
+
+
+
+# Write out csvs
+
+```{r}
+write_csv(prac_trials, here::here(paste0('data/pilot_image_pairings/prac_trials.csv')))
+```
+
+
+```{r}
+write_csv(all_trials %>% filter(!trial_type=='catch'), here::here('data/pilot_image_pairings/all_trials.csv'))
+```
+
+```{r}
+write_csv(all_trials %>% filter(trial_type=='catch'), here::here('data/pilot_image_pairings/catch_trials.csv'))
+```

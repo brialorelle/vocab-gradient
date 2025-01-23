@@ -1,0 +1,341 @@
+---
+title: "select_for_garden"
+author: "Bria Long"
+date: "2023-10-24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(Hmisc)
+library(magick)
+```
+
+# Read in previous files
+```{r}
+multiafc_exp = read_csv('exp1_all_trials2023-04-11.csv') 
+```
+
+## Eliminate items we didn't use
+```{r}
+multiafc_exp_actual <- multiafc_exp %>%
+  filter(!Word1 %in% c('scrabble','honey')) 
+  # filter(trial_type %in% c('hard','easy','distal')) # no practice in this script
+```
+
+## Eliminate items from IRT model (2pl model on mutliafc data)
+```{R}
+items_to_elim <- read_csv('suggested_removed_items.csv') 
+```
+
+## Filter these
+```{r}
+exp2_clip_items <- multiafc_exp_actual %>%
+  filter(!Word1 %in% items_to_elim$item)
+```
+
+## Read in csv with target/distractors we're using on PPVT
+Download csvs, need to do some wrangling here
+
+```{R}
+age5 <- read_csv(here::here('stimuli/manual_curation/item_csvs/age5.csv'))  %>%
+  filter(!is.na(`Uploaded to drive?`)) %>%
+  filter(`Image found` =='y') %>%
+  select(Target, Distractor) %>%
+  rename(Word1 = Target, Word2 = Distractor) %>%
+  mutate(Word1 = capitalize(Word1), Word2 = capitalize(Word2))  %>%
+  mutate(Folder = Word1)  %>%
+  mutate(item_num = '_1')
+
+
+age6 <- read_csv(here::here('stimuli/manual_curation/item_csvs/age6.csv'))  %>%
+  filter(!is.na(`Uploaded to Drive`)) %>%
+  filter(`image found` == 'y') %>%
+  select(Taget, Distractor) %>%
+  rename(Word1 = Taget, Word2 = Distractor) %>%
+  mutate(Word1 = capitalize(Word1), Word2 = capitalize(Word2))  %>%
+  mutate(Folder = paste0(Word1,'/','Squared')) %>%
+  mutate(item_num = '')
+
+
+age7 <- read_csv(here::here('stimuli/manual_curation/item_csvs/age7.csv'))  %>%
+  filter(`Image found` == 'y') %>%
+  select(Target, Distractor)  %>%
+  rename(Word1 = Target, Word2 = Distractor) %>%
+  mutate(Word1 = capitalize(Word1), Word2 = capitalize(Word2))  %>%
+  mutate(Folder = Word1)  %>%
+  mutate(item_num = '')
+```
+
+# Get all manual items
+
+```{r}
+
+
+culled_items <- c('Elbow','Feather','Dancing','Shoulder','Target','Buckle', 'Floating')
+# don't have mald audio for feather
+# elbow/shoulder too much skin
+# target no images
+# dancing wasn't a great image
+# buckle not enough images
+# floating was a weird target image, too sexual
+```
+
+```{r}
+clip_overlap <- unique(exp2_clip_items$Word1)
+clip_dist_overlap <- unique(exp2_clip_items$Word2)
+clip_items_all <- c(clip_overlap, clip_dist_overlap)
+# 
+# # no target words overlap
+# overlap <- all_manual %>%
+#   filter(str_to_lower(Word1) %in% clip_overlap)
+# 
+# # some targte words in manual are distractors for clip
+# overlap <- all_manual %>%
+#   filter(str_to_lower(Word1) %in% clip_dist_overlap)
+```
+
+# filter overlaps between sets
+```{R}
+all_manual <- age5 %>%
+  full_join(age6)  %>%
+  full_join(age7)  %>%
+  group_by(Word1) %>%
+  filter(!Word1 %in% culled_items) %>%
+  filter(Word1 != Word2)   %>%
+  filter(!str_to_lower(Word1) %in% clip_items_all) %>%
+  filter(!str_to_lower(Word2) %in% clip_items_all)
+  
+```
+
+
+Look in the MALD database and filter to items that have recording (most of them)
+```{r}
+load(here::here('stimuli/existing_datasets/MALD/mald_metadata/MALD1_1_ItemData.rda'))
+
+mald_items <- capitalize(items$Item)
+```
+
+Filter and creat path to audio file
+```{r}
+all_manual <- all_manual %>%
+  filter(Word1 %in% mald_items) %>%
+  mutate(Audio_File_Word_1 = paste0(here::here('stimuli/existing_datasets/MALD/MALD1_rw/'), Word1, '.wav')) 
+  
+```
+
+
+
+# Write out images and audio into new folders
+Here are our new paths
+```{r}
+today = Sys.Date()
+image_out_dir = paste0("stimuli/selected_stimuli/exp3_garden/images_final",today,'/')
+audio_out_dir = paste0("stimuli/selected_stimuli/exp3_garden/audio_final",today,'/')
+
+dir.create(here::here(image_out_dir))
+dir.create(here::here(audio_out_dir))
+```
+
+Create paths to old and new copies of the images and aduio files
+```{r}
+
+
+all_trials <- all_manual %>%
+  mutate(Word_1_path_jpg=here::here(paste0('stimuli/manual_curation/items/',Folder,'/', Word1,item_num,'.jpg')))  %>%
+  mutate(Word_1_path=here::here(paste0('stimuli/manual_curation/items/',Folder,'/', Word1, item_num,'.png')))  %>%
+  mutate(Word_2_path=here::here(paste0('stimuli/manual_curation/items/',Folder,'/', Word2, item_num,'.png')))  %>%
+  mutate(Word_2_path_jpg=here::here(paste0('stimuli/manual_curation/items/',Folder,'/', Word2, item_num,'.jpg')))  %>%
+  mutate(Word_1_new_path = here::here(paste0(image_out_dir, str_to_lower(Word1),'.jpg'))) %>%
+  mutate(Word_2_new_path = here::here(paste0(image_out_dir,str_to_lower(Word2),'.jpg')))  %>%
+  mutate(audio_new_path = here::here(paste0(audio_out_dir,str_to_upper(Word1),'.wav')))   
+
+```
+
+These are the trials where we can find the png and it's square and that we want
+```{r}
+trials_ok_png <- all_trials %>%
+  filter(file.exists(Word_1_path)) %>%
+  filter(file.exists(Word_2_path)) 
+
+```
+
+These are distractors I manually eliminated.
+```{r}
+missing <- all_trials %>%
+  filter(!file.exists(Word_2_path))  # these 
+```
+
+These should all be empty
+
+```{r}
+need_jpg <- all_trials %>%
+  filter(file.exists(Word_1_path_jpg)) %>%
+  filter(file.exists(Word_2_path_jpg))
+```
+
+```{R}
+cant_find <- all_trials %>%
+  filter(!file.exists(Word_1_path))  %>%
+  filter(!file.exists(Word_1_path_jpg))
+```
+
+```{r}
+num_dist <- trials_ok_png %>%
+  group_by(Word1) %>%
+  dplyr::summarize(dist = length(unique(Word2))) %>%
+  filter(dist <3)
+
+to_check <- trials_ok_png %>%
+  filter(Word1 %in% num_dist$Word1)
+
+```
+
+# Did a bunch of manual rejiggering of items/distractors to ensure no duplicates
+```{r}
+# manual_items  = c(all_manual$Word1, all_manual$Word2)
+```
+
+```{r}
+# this_word = 'sundial'
+# all_manual %>% filter(Word2 == 'Watch')
+# # 
+# this_word %in% str_to_lower(manual_items)
+# this_word %in% clip_items_all
+```
+
+# Load, resize, and copy these images/audio to a new folder
+
+## For png files
+```{r}
+
+for (trial in seq.int(1,length(trials_ok_png$Word1))) {
+  print(trial)
+  
+  img = magick::image_scale(image_read(trials_ok_png$Word_1_path[trial]), "300x300")
+  image_write(img, path = trials_ok_png$Word_1_new_path[trial], quality=80)
+  
+  img2 = magick::image_scale(image_read(trials_ok_png$Word_2_path[trial]), "300x300")
+  image_write(img2, path = trials_ok_png$Word_2_new_path[trial], quality=80)
+  
+  fs::file_copy(trials_ok_png$Audio_File_Word_1[trial], trials_ok_png$audio_new_path[trial], overwrite=TRUE)
+  
+}
+```
+
+
+
+
+## Now recopy all the clip items and audio
+```{r}
+exp2_clip_items_clean <- exp2_clip_items %>%
+  select(Word1, Word2, trial_type) %>%
+  mutate(Audio_File_Word_1 = paste0(here::here('stimuli/existing_datasets/MALD/MALD1_rw/'), Word1, '.wav')) %>%
+  mutate(Word_1_path=here::here(paste0('stimuli/selected_stimuli/exp2_multiafc/exp1_images_2023-04-11/',Word1, '.jpg')))  %>%
+  mutate(Word_2_path=here::here(paste0('stimuli/selected_stimuli/exp2_multiafc/exp1_images_2023-04-11/',Word2, '.jpg')))  %>%
+  mutate(Word_1_new_path = here::here(paste0(image_out_dir, str_to_lower(Word1),'.jpg'))) %>%
+  mutate(Word_2_new_path = here::here(paste0(image_out_dir,str_to_lower(Word2),'.jpg')))  %>%
+  mutate(audio_new_path = here::here(paste0(audio_out_dir,str_to_upper(Word1),'.wav')))  
+
+```
+
+
+```{r}
+for (trial in seq.int(1,length(exp2_clip_items_clean$Word1))) {
+  print(trial)
+  img = magick::image_scale(image_read(exp2_clip_items_clean$Word_1_path[trial]), "300x300")
+  image_write(img, path = exp2_clip_items_clean$Word_1_new_path[trial])
+  
+  img2 = magick::image_scale(image_read(exp2_clip_items_clean$Word_2_path[trial]), "300x300")
+  image_write(img2, path = exp2_clip_items_clean$Word_2_new_path[trial])
+  
+  fs::file_copy(exp2_clip_items_clean$Audio_File_Word_1[trial], exp2_clip_items_clean$audio_new_path[trial], overwrite=TRUE)
+  
+  fs::file_copy(exp2_clip_items_clean$Audio_File_Word_1[trial], exp2_clip_items_clean$audio_new_path[trial], overwrite=TRUE)
+}
+```
+
+
+
+
+# Merge together clip and manual datasets into a single csv
+```{r}
+manual_items <- trials_ok_png %>%
+  select(Word1, Word2) %>%
+  mutate(wordPairing = 'hard', source = 'manual', itemGroup = 'test') %>%
+  group_by(Word1) %>%
+  mutate(distractorId = row_number())  
+   
+```
+```{r}
+all_trials_garden <- exp2_clip_items_clean %>%
+  mutate(wordPairing = trial_type) %>%
+  select(Word1, Word2, wordPairing) %>%
+  mutate(source = 'clip', itemGroup = 'test') %>%
+  mutate(distractorId = case_when(wordPairing == 'hard' ~ 1, 
+                                  wordPairing == 'easy' ~ 2, 
+                                  wordPairing == 'distal' ~ 3)) %>%
+  full_join(manual_items)
+  
+```
+should be empty
+```{R}
+check <- all_trials_garden %>%
+  group_by(Word1) %>%
+  dplyr::summarize(num_dist = length(unique(Word2))) %>%
+  filter(num_dist != 3)
+  
+```
+
+
+```{r}
+check <- all_trials_garden %>%
+  mutate(Word1_filename = paste0(here::here(image_out_dir), capitalize(Word1),'.png')) %>%
+  mutate(Word2_filename = paste0(here::here(image_out_dir), capitalize(Word2),'.png')) %>%
+  filter(file.exists(Word1_filename))  %>%
+  filter(file.exists(Word2_filename)) 
+```
+
+```{R}
+item_summary <- all_trials_garden %>%
+  group_by(source, wordPairing) %>%
+  dplyr::summarize(num_items = length(unique(Word1)))
+  
+```
+
+Check that this worked
+```{r}
+image_files <- list.files(path = here::here(image_out_dir), pattern = ".png", ignore.case = TRUE)
+print(image_files)
+
+
+any_missing <- all_trials_garden %>%
+  mutate(image_name = paste0(capitalize(Word1),'.png')) %>%
+  filter(!image_name %in% image_files)
+
+any_missing_dist <- all_trials_garden %>%
+  mutate(image_name = paste0(capitalize(Word2),'.png')) %>%
+  filter(image_name %in% image_files)
+
+uh_what <- all_trials_garden %>%
+  ungroup() %>%
+  filter(Word2 %in% unique(all_trials_garden$Word1))
+```
+
+
+# Save out CSV file
+```{r}
+all_trials_garden <- all_trials_garden %>%
+  mutate(Word1 = str_to_lower(Word1)) %>%
+  mutate(Word2 = str_to_lower(Word2))  %>%
+  mutate(itemGroup = case_when(
+              !wordPairing %in% c('hard','easy','distal') ~ "practice_or_catch", 
+               wordPairing %in% c('hard','easy','distal') ~ "test" ))
+
+
+write_csv(all_trials_garden, file=paste0(here::here('stimuli/selected_stimuli/exp3_garden/'),'all_trials_garden_final', today(), '.csv'))
+```
