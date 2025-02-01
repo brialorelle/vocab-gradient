@@ -84,6 +84,9 @@ library(viridis)
 library(broom.mixed)
 library(kableExtra)
 library(dplyr)
+
+# mixed effect models cross validation
+library(MuMIn)
 ```
 
 # Introduction
@@ -114,16 +117,22 @@ test_corpus <- read_csv(here::here("data/item_metadata/new_test.csv")) %>%
 
 ```{r}
 # Load clip correlations
-clip_cor_by_model <- read_csv(here::here("data/item_metadata/exp1_all_trials2023-04-11.csv")) %>%
-  select(Word1, Word2, trial_type, cor, AoA_Est_Word2, AoA_Est_Word1) %>%
-  rename(wordPairing = trial_type) %>%
-  rename(clip_cor = cor) %>%
-  filter(Word1 %in% unique(test_corpus$Word1))  %>%
+item_meta_data <- read_csv(here::here("data/item_metadata/exp1_all_trials2023-04-11.csv")) %>%
+  select(Word1, Word2, trial_type, AoA_Est_Word2, AoA_Est_Word1) %>%
+  rename(wordPairing = trial_type, targetWord = Word1, answerWord = Word2) %>%
+  filter(targetWord %in% unique(test_corpus$Word1))  %>%
   ungroup() %>%
   mutate(AoA_Bin = ntile(AoA_Est_Word1,3)) %>%
   mutate(AoA_Bin_Name = factor(AoA_Bin,  levels = c('1','2','3'), labels = c("Easy Words", "Harder Words", "Difficult Words"))) 
 ```
 
+
+```{r}
+item_meta_and_model_sim = read_csv(file=here::here('data/item_metadata/vv_clip_similarities.csv')) %>%
+  rename(targetWord = target, answerWord = image)  %>%
+  filter(answerWord != targetWord)  %>%
+  right_join(item_meta_data)
+```
 
 
 ## Procedure
@@ -141,12 +150,14 @@ trials_by_participant <- df.4AFC.trials.clean %>%
   summarize(mean_pc = mean(correct), num_trials = length(unique(targetWord)))
 
 ```
+
 ```{r}
 by_cohort = df.4AFC.trials.clean %>%
   group_by(cohort) %>%
-  summarize(num_participants = length(unique(pid)))
+  summarize(num_participants = length(unique(pid))) %>%
+  mutate(cohort = replace_na(cohort,'adults'))
 ```
-To obtain a large sample, we collected data from children in several different testing contexts. We collected data from children in an in-person preschools ($N$ = 65, 3-5 year-olds), from the Children Helping Science Platform, ($N$=243, 3-7 year-olds), 6 elementary schools, and 9 charter schools across multiple states ($N$=3332, 5-14 year-olds) and adults online ($N$=211 adults, recruited via Prolific; half of the adults spoke English as a second language). Most participants responded via a touch-screen tablet, except those recruited online: however, children's parents responded via clicking on the image on Children Helping Science,  and adults responded via clicking on the images.
+To obtain a large sample, we collected data from children in several different testing contexts. We collected data from children in an in-person preschools ($N$ = `r by_cohort$num_participants[by_cohort$cohort=='bing']`, 3-5 year-olds), from the Children Helping Science Platform, ($N$=`r by_cohort$num_participants[by_cohort$cohort=='garden']`, 3-7 year-olds), 6 elementary schools, and 9 charter schools across multiple states ($N$=`r by_cohort$num_participants[by_cohort$cohort=='schools']`, 5-14 year-olds) and adults online ($N$=`r by_cohort$num_participants[by_cohort$cohort=='adults']` adults, recruited via Prolific; half of the adults spoke English as a second language). Most participants responded via a touch-screen tablet, except those recruited online: however, children's parents responded via clicking on the image on Children Helping Science,  and adults responded via clicking on the images.
 
 After pre-processing, we included for a total of from `r length(unique(df.4AFC.trials.clean$pid))`  participants from preschools, schools, and online testing contexts around the country (range `r min(n_by_age_group$num_participants)` to `r max(n_by_age_group$num_participants)`), who completed, on average, `r mean(trials_by_participant$num_trials)` 4AFC trials that were sampled randomly from the stimuli set (max=86; different maximum numbers of trials were included in different testing contexts). We tested an additional 84 participants who scored near chance on 4AFC trials (chance=25%, threshold=30%) and were school-aged (>6 years of age) and who we excluded from analyses; these participants completed an average of 17.72 trials.
 
@@ -178,14 +189,39 @@ df.4AFC.distractor.summary.byAge.perc.byaoa <- df.4AFC.distractor.summary.byAge.
   multi_boot_standard(col = 'perc', na.rm=TRUE)  
 
 ```
-# Results
-
-## Growth in visual concept knowledge across age
-## Partial knowledge in young children
-## Changes in precision of visual concepts
-### Modeling analyses
 
 ```{r}
+aoa_by_bin <- df.4AFC.distractor.summary.byAge.clean %>%
+  group_by(AoA_Bin) %>%
+  distinct(targetWord, AoA_Est_Word1) %>%
+  summarize(avg_aoa = mean(AoA_Est_Word1), sd_aoa = sd(AoA_Est_Word1))
+```
+# Results
+## A protracted developmental trajectory
+We found a gradual increase in children's ability to correctly identify the target word across our entire age range, extending into early adolescence; Figure \ref{accuracy-fig} shows the proportion of time that children identified the target word, highlighting a protracted developmental trajectory.  We found this developmental trend for both relatively "easy" words, with an average estimated age-of-acquisition (AoA) of `r round(aoa_by_bin$avg_aoa[aoa_by_bin$AoA_Bin==1],2)` years (SD = `r round(aoa_by_bin$sd_aoa[aoa_by_bin$AoA_Bin==1],2)`),  more difficult words  (Average AoA =`r round(aoa_by_bin$avg_aoa[aoa_by_bin$AoA_Bin==2],2)` years, $SD$ = `r round(aoa_by_bin$sd_aoa[aoa_by_bin$AoA_Bin==2],2)` years), and challenging words (Average AoA =`r round(aoa_by_bin$avg_aoa[aoa_by_bin$AoA_Bin==3],2)` years, $SD$ = `r round(aoa_by_bin$sd_aoa[aoa_by_bin$AoA_Bin==3],2)`)). 
+
+
+
+```{r}
+item_effects <- df.4AFC.distractor.summary.byAge.clean %>%
+  mutate(perc = replace_na(perc,0)) %>%
+  group_by(targetWord, wordPairing, age_group) %>%
+  summarize(perc = mean(perc))  %>%
+  filter(wordPairing=='hard')
+
+slope <- item_effects %>%
+  group_by(targetWord) %>%
+  summarize(age_cor = cor(age_group, perc)) %>%
+  arrange(age_cor) %>%
+  slice_max(n=25, order_by=-age_cor)
+
+# examples in above text come from this analysis -- slope$targetWord
+```
+At an item level, the words that showed the greatest change across age included some animals (e.g., "swordfish") as well as inanimate objects ("prism","antenna","gutter","sandbag", "turbine") but also parts of larger buildings ("scaffolding","gutter"). However, some of our developmental trends likely also stem from differences in executive control: for some words that had very semantically similar distractors but were relatively easy (e.g., cheese and butter), we still saw steep developmental changes, highlighting that this "simple" picture vocabulary matching tasks still assess many different cognitive abilities beyond the fidelity of children's visual representations.
+
+
+```{r accuracy-fig, fig.width=6, fig.height=4, fig.cap="Visual vocabulary task performance as a function of the age of the child completing the task, plotted separately for relatively easy, harder, or difficult words; words are binned into terciles based on the estimated AoA from Kuperman et al., 2012. Lines refer to the proportion of words that children chose the target (red), high-similarity (green), medium similarity (turqouise), or low similarity (purple) distractor  at each age; error bars represent boostrapped confidence intervals.", fig.align='center'}
+
 ggplot(data = df.4AFC.distractor.summary.byAge.perc.byaoa %>% 
        mutate(age_label = ifelse(age_group == 25, "Adults", as.character(age_group)),
               age_label = factor(age_label, levels = c(as.character(3:14), "Adults")), # Added empty level for spacing
@@ -211,7 +247,8 @@ ggplot(data = df.4AFC.distractor.summary.byAge.perc.byaoa %>%
         plot.margin = unit(c(5.5, 5.5, 5.5, 5.5), "points"),
         aspect.ratio = 1.3) # Makes plot wider relative to height
 ```
-### Older children are more likely to choose related distractors
+
+## Changes in the precision of visual concepts
 ```{r}
 df.4AFC.distractor.summary.byPid <- df.4AFC.trials.clean %>%
   group_by(targetWord,  answerWord, numAFC, wordPairing, pid, age_group) %>%
@@ -219,8 +256,6 @@ df.4AFC.distractor.summary.byPid <- df.4AFC.trials.clean %>%
   filter(wordPairing != 'target') # only incorrect trials
 ```
  
-
-
 ```{r}
 # Make data structure that calculate RELATIVE error rates by each trial type by age
 # Important to replace NAs with 0s here
@@ -239,19 +274,20 @@ dist_by_pid_4afc <- df.4AFC.distractor.summary.byPid %>%
 
 ```
 
-construct CIs by age and make individual data structures for plotting
 ```{r}
-dist_by_pid_by_age <- dist_by_pid_4afc %>%
+dist_by_cond_by_age_count <- dist_by_pid_4afc  %>%
   group_by(age_group, wordPairing) %>%
-  multi_boot_standard(col= 'prop', na.rm=TRUE)
+  summarize(num_errors = sum(total_num_errors))
 
-dist_by_pid_by_age_raw <- dist_by_pid_4afc 
-
+dist_by_cond_by_age <- dist_by_pid_4afc %>%
+  group_by(age_group, wordPairing) %>%
+  multi_boot_standard(col= 'prop', na.rm=TRUE) %>%
+  right_join(dist_by_cond_by_age_count)
 ```
 
 ```{R}
 dist_by_pid_4afc_by_aoa <- df.4AFC.distractor.summary.byPid %>%
-  left_join(clip_cor_by_model %>% distinct(Word1, AoA_Est_Word1, AoA_Bin_Name), by=c('targetWord'='Word1')) %>%
+  left_join(item_meta_and_model_sim %>% distinct(targetWord, answerWord, AoA_Est_Word1, AoA_Bin_Name)) %>%
   ungroup() %>%
   group_by(pid, wordPairing, AoA_Bin_Name,  age_group) %>%
   summarize(num_errors = n()) %>%
@@ -267,7 +303,6 @@ dist_by_pid_4afc_by_aoa <- df.4AFC.distractor.summary.byPid %>%
 
 
 ```{r}
-
 dist_by_pid_by_age_by_aoa_n <- dist_by_pid_4afc_by_aoa %>%
   group_by(age_group, wordPairing,AoA_Bin_Name) %>%
   summarize(n = length(unique(pid)), num_errors = sum(total_num_errors))
@@ -281,6 +316,8 @@ dist_by_pid_by_age_by_aoa <- dist_by_pid_4afc_by_aoa %>%
 
 
 ```{r, fig.width=8, fig.height=3, fig.caption = 'Proportion of different errors chosen by age of the child participating; the sizes of the dots represnet the total number of errors in each age group.'}
+
+# could facet by AoA
 #factor(dist_by_pid_by_age_by_aoa$wordPairing)
 #Levels: prop_distal prop_easy prop_hard
 
@@ -329,59 +366,79 @@ dist_by_pid_by_age_by_aoa <- dist_by_pid_4afc_by_aoa %>%
 ```
 
 
-```{r}
-ggplot(data = dist_by_pid_by_age, aes(x=age_group, y=mean, col=wordPairing, fill=wordPairing)) +
-  geom_linerange(data = dist_by_pid_by_age, aes(y=mean, ymin=ci_lower, ymax = ci_upper), position=position_dodge(width=.4)) +
-  geom_point(data = dist_by_pid_by_age, aes(y=mean), position=position_dodge(width=.4)) +
-  geom_smooth(data = dist_by_pid_by_age, aes(group=age_group)) +
+```{r error_by_age, fig.width=6, fig.height=4, fig.cap="Changes in the proportion of errors chosen as a function of childrens age" }
+ggplot(data = dist_by_cond_by_age, aes(x=age_group, y=mean, col=wordPairing, fill=wordPairing)) +
+  geom_linerange(data = dist_by_cond_by_age, aes(y=mean, ymin=ci_lower, ymax = ci_upper), position=position_dodge(width=.4)) +
+  geom_point(data = dist_by_cond_by_age, aes(y=mean,  size=num_errors), alpha=.8, position=position_dodge(width=.4)) +
+  geom_smooth(data = dist_by_cond_by_age, aes(group=age_group, weight=num_errors)) +
   ylab('Proportion of errors') +
   xlab('Age (in years)') +
   papaja::theme_apa() +
-    scale_color_manual(values = c( '#C265FF', '#31BAC0','#70BF41'))  +
+  scale_color_manual(values = c( '#C265FF', '#31BAC0','#70BF41'))  +
   scale_fill_manual(values = c( '#C265FF', '#31BAC0','#70BF41'))+
+  scale_x_continuous(breaks = c(seq(3, 14, 2), 25),  # Show ages every 2 years plus adults
+                    labels = function(x) ifelse(x == 25, "Adults", as.character(x)))  +
   geom_smooth(span=20) 
 ```
-
+Next, we thus aimed to understand whether we were observing real changes in the precision of children's visual concepts, or perhaps simply changes in task performance as children become more accurate at ignoring relevant distractors. To examine this, we focused on changes in error patterns across age, shown in Figure \ref{fig:error_by_age}. If children's visaul concepts are changing——proceeding from a coarse representations that is overly broad, or starting from no representation at all——then we should observe changes in how children choose distractors when they make errors. Specficially, we would expect younger children to be more likely to choose distractors of all types, whereas we would expect older children to almost exclusively choose related distractors. Consistent with this hypothesis, we found that children increasingly choose relatd distractors throughout development, with adults being still more likely to choose the related distractors relative to the olderst children (14-year-olds) in our sample. 
 
 
 ```{r}
 # Make data structure so we can model the proportion of errors by age as a function of the total number of errors rather than just proportion -- nice because we could have very different rates across participants (adults make few errors, kids might make a lot but do fewer trials, etc)
 
+trials_by_participant <- df.4AFC.trials.clean %>%
+  group_by(pid) %>%
+  summarize(num_trials  = length(unique(targetWord)))
+
 error_by4afc_for_glmer <- df.4AFC.distractor.summary.byPid %>%
-  filter(numAFC==4) %>%
-  group_by(pid,numAFC, wordPairing, age_group) %>%
+  group_by(pid, wordPairing, age_group) %>%
   summarize(num_errors = n()) %>%
   pivot_wider(values_from = "num_errors", names_from = "wordPairing") %>%
   mutate(hard = replace_na(hard, replace=0)) %>%
   mutate(easy = replace_na(easy, replace=0)) %>%
   mutate(distal = replace_na(distal, replace=0)) %>%
+  mutate(total_num_errors = sum(c(hard,easy,distal))) %>%
+  right_join(trials_by_participant) 
+
+
+
+error_by4afc_by_item_for_glmer <- df.4AFC.distractor.summary.byPid %>%
+  group_by(targetWord, wordPairing, age_group) %>%
+  summarize(num_errors = n()) %>%
+  pivot_wider(values_from = "num_errors", names_from = "wordPairing") %>%
+  mutate(hard = replace_na(hard, replace=0)) %>%
+  mutate(easy = replace_na(easy, replace=0)) %>%
+  mutate(distal = replace_na(distal, replace=0)) %>%
+  group_by(targetWord, age_group) %>%
   mutate(total_num_errors = sum(c(hard,easy,distal))) 
-
-
 ```
 
 
 ```{r}
-# stats for 4afc
-summary(glmer(cbind(hard,total_num_errors) ~  scale(age_group) +
-(1 | pid), error_by4afc_for_glmer, family = "binomial", control=glmerControl(optCtrl=list(maxfun=20000),optimizer=c("bobyqa"))))
+# this is a singular fit, but significant
+# summary(glmer(cbind(hard,total_num_errors) ~  scale(age_group) + scale(num_trials) + 
+# (1 | pid), error_by4afc_for_glmer, family = "binomial", control=glmerControl(optCtrl=list(maxfun=20000),optimizer=c("bobyqa"))))
+
+
+# this is conceptually similar, same results
+model = lmer(prop_hard ~ scale(age_group) + scale(num_trials) + (1|pid), data = error_by4afc_for_glmer %>% mutate(prop_hard = hard/total_num_errors))
+```
+
+```{R}
+model_on_items = lmer(prop_hard ~ scale(age_group) + scale(total_num_errors) + (1|targetWord), data = error_by4afc_by_item_for_glmer %>% mutate(prop_hard = hard/total_num_errors))
+
 ```
 
 ```{r}
-# Run the model and save it
-model <- glmer(cbind(hard,total_num_errors) ~ scale(age_group) + (1 | pid), 
-              data = error_by4afc_for_glmer, 
-              family = "binomial", 
-              control = glmerControl(optCtrl = list(maxfun=20000), optimizer = c("bobyqa")))
-
-
 # Extract and format fixed effects
 table_data <- tidy(model, effects = "fixed") %>%
   mutate(
+    p.value = 2 * (1 - pnorm(abs(statistic))),  # Calculate p-values for lmer
     p.value = ifelse(p.value < .001, "< .001", sprintf("%.3f", p.value)),
     term = case_when(
       term == "(Intercept)" ~ "Intercept",
       term == "scale(age_group)" ~ "Age (scaled)",
+      term == "scale(num_trials)" ~ "Number of trials (scaled)",
       TRUE ~ term
     )
   ) %>%
@@ -389,20 +446,127 @@ table_data <- tidy(model, effects = "fixed") %>%
     Predictor = term,
     "*b*" = estimate,
     "*SE*" = std.error,
-    "*z*" = statistic,
+    "*t*" = statistic,  # Note: changed from z to t for lmer
     "*p*" = p.value
   ) %>%
-  mutate(across(c("*b*", "*SE*", "*z*"), ~round(., 2)))
+  mutate(across(c("*b*", "*SE*", "*t*"), ~round(., 2)))
 
 # Create kable table
 kable(table_data, 
       format = "pipe",
-      caption = "Fixed Effects from Generalized Linear Mixed Effects Model",
+      caption = "Fixed Effects from Linear Mixed Effects Model",
       align = c("l", "r", "r", "r", "r")) %>%
   kable_styling(full_width = FALSE) %>%
-  footnote(general = "Analysis conducted using a generalized linear mixed effects model with a binomial distribution. The model included random intercepts for participants. Age was standardized prior to analysis.",
+  footnote(general = "Analysis conducted using a linear mixed effects model. The model included random intercepts for participants. Age and number of trials were standardized prior to analysis.",
           general_title = "Note.")
 ```
+
+We confirmed this result via a linear regression, modeling the proportion of errors where children chose the related distractor as our dependent variable as a function of children's age (in years), finding a fixed effect of age (see Table 1): older children were more likely to choose related distractors relative to unrelated distractors. For robustness, we also modeled these effects at the item level in a linear mixed-effect model, with random intercepts for each item, finding the same pattern of effects. Children become more likely to choose related distractors across development, suggesting a progression where children gradually build detailed knowledge about the visual referents of many challenging words.
+
+
+## Modeling changes in children's error patterns
+```{R}
+dist_by_4afc_by_item_by_age <- df.4AFC.distractor.summary.byPid %>%
+  left_join(item_meta_and_model_sim %>% distinct(targetWord, answerWord, AoA_Est_Word1, AoA_Bin_Name)) %>%
+  ungroup() %>%
+  group_by(targetWord, wordPairing, AoA_Est_Word1, age_group) %>%
+  summarize(num_errors = n()) %>%
+  pivot_wider(values_from = "num_errors", names_from = "wordPairing") %>%
+  mutate(total_num_errors = sum(c(hard,easy,distal), na.rm=TRUE)) %>%
+  mutate(prop_hard = (hard / total_num_errors)) %>%
+  mutate(prop_easy = (easy / total_num_errors)) %>%
+  mutate(prop_distal = (distal / total_num_errors)) %>%
+  pivot_longer(cols = starts_with('prop'), names_to = "wordPairing", values_to = "prop") %>%
+  select(targetWord, wordPairing, prop, total_num_errors, age_group, AoA_Est_Word1) %>%
+  mutate(prop = replace_na(prop, replace=0)) %>%
+  mutate(wordPairing = str_split_fixed(wordPairing,'_',2)[,2]) %>%
+  left_join(item_meta_and_model_sim %>% distinct(targetWord, wordPairing, sim_img_img, sim_img_txt, sim_txt_txt)) 
+
+```
+
+
+```{r}
+# cross validation of lmer models 
+all_cor = tibble(lang = double(),
+  vision = double(), multi = double(), all=double())
+  dataset = dist_by_4afc_by_item_by_age 
+
+all_model_r2 = tibble(lang = double(),
+  vision = double(), multi = double(), all=double())
+dataset = dist_by_4afc_by_item_by_age 
+
+for (iter in 1:50){
+
+  sampled =  dataset %>%
+    group_by(targetWord) %>%
+    sample_frac(.8)
+  
+  held_out = dataset %>%
+  anti_join(sampled)
+  
+  lang_model_fit = lmer(data=sampled, prop ~ scale(sim_txt_txt)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+  
+  vision_model_fit = lmer(data=sampled, prop ~ scale(sim_img_img)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+    
+    multi_model_fit = lmer(data=sampled, prop ~ scale(sim_img_txt)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+    
+    all_model_fit = lmer(data=sampled, prop ~ scale(sim_img_txt)*scale(age_group) + scale(sim_img_img) + scale(sim_txt_txt) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+  
+  # get predicted values
+  predicted_lang = predict(lang_model_fit, newdata = held_out) 
+  predicted_vision = predict(vision_model_fit, newdata = held_out) 
+  predicted_mutli = predict(multi_model_fit, newdata = held_out) 
+  predicted_all = predict(all_model_fit, newdata = held_out) 
+  
+
+   all_cor = all_cor %>%
+     add_row(lang = cor(predicted_lang, held_out$prop), vision = cor(predicted_vision, held_out$prop), multi = cor(predicted_mutli, held_out$prop), all = cor(predicted_all, held_out$prop))
+   
+  vision_r2 <- r.squaredGLMM(vision_model_fit)
+  lang_r2 <- r.squaredGLMM(lang_model_fit)
+  multi_r2 <- r.squaredGLMM(multi_model_fit)
+  all_r2 =  r.squaredGLMM(all_model_fit)
+  
+  all_model_r2 = all_model_r2 %>%
+     add_row(vision = vision_r2[2], lang = lang_r2[2], multi = multi_r2[2],all = all_r2[2])
+  
+   
+}
+```
+
+
+```{r}
+# plot of model r^2 for 50 samples of 80% of the dataset
+all_model_r2_long <- all_model_r2 %>%
+  rename('all predictors' = all, 'multimodal' = multi, 'language' = lang) %>%
+  pivot_longer(cols=everything(), values_to="cor", names_to = "model") 
+
+all_model_r2_cis <- all_model_r2_long %>%
+  group_by(model) %>%
+  multi_boot_standard(col='cor') 
+```
+
+
+```{r model-figure, fig.width = 3, fig.height=3, caption = "Average explained variance in children's error patterns (conditional R^2 in linear mixed effect models) by linguistic, visual, multimodal, or combined predictors in cross-validated mixed efffect models. Error bars represent bootstrapped 95 percent confidence intervals." }
+ggplot(data=all_model_r2_cis, aes(x=model, y=mean, color=model)) +
+  geom_linerange(aes(ymin=ci_lower, ymax=ci_upper)) +
+  geom_point(size=2, alpha=.8) +
+  geom_point(data=all_model_r2_long, aes(x=model, y=cor), alpha=.2) +
+  xlab('') +
+  theme_few(base_size=14) +
+  papaja::theme_apa() +
+  ylab('Average conditional R^2 \n in mixed-effect models')  +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(legend.position='none') +
+    scale_color_viridis(discrete=TRUE, option="C", end=.8) +
+theme(aspect.ratio=4/3) 
+  # y
+  
+```
+
+In a final analyses, we aimed to understand the source of these changes in children's error patterns by leveraging high-dimensional embeddings of our linguistic and visual stimuli in a large, multimodal language model (CLIP, Radford et al., 2021). We chose a set of stimuli where visual similarity was colinear with semantic similarity to a large degree, as it often is in the real-world for most visaul concepts. Thus, our stimuli were not necessarily designed to pull apart the contributions of changes in semantic vs. visual similarity. Nonetheless, our stimuli were generated by using similarity in a linguistic embedding space, and so some stimuli on certain trials were nonetheless related to the target concept semantically but not necessarily visually (e.g, gardening gloves were a distractor for "rose"). We thus sought to understand the degree to which children's error patterns in this task reflected changes in how they processed the visual similarity of the targets and distractors, their semantic similarity, or--perhaps most likely--some combination.
+
+To do so, our approach used a series of cross-validated linear mixed effect mdoels, where we examined the degree to which visaul, linguistic, multimodal, and a combination of similarity metrics derived by large lanuage model embeddigns could predict the errors that children made. Overall, we found that....
 
 # Discussion
 
@@ -411,6 +575,9 @@ How precise is children’s visual concept knowledge, and how does this change a
 Overall, these analyses suggest a transition from coarse to finer-grained visual representations over early and middle childhood. 
 
 Children’s visual concept knowledge gradually becomes more refined as children learn what distinguishes similar visual concepts from one another. Broadly, these findings demonstrate the utility of combining gamified experiments and similarity estimates from computational models to probe the content of children’s evolving visual representations.
+
+
+
 
 
 Implications:
