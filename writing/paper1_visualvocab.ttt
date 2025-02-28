@@ -2,15 +2,15 @@
 \ifnextchar[{\eatarg}{}
 
 \centering
-\caption{\label{tab:unnamed-chunk-21}Fixed effect coefficients a linear mixed effects model assessing changes in the proportion of related distractors chosen over defvelopment. The model included random intercepts for participants. Age and number of trials were standardized prior to analysis.}
+\caption{\label{tab:unnamed-chunk-21}Coefficients a linear regression  assessing changes in the proportion of related distractors chosen over development. Age and number of trials were standardized prior to analysis.}
 \centering
-\begin{tabular}[t]{lrrrrlr}
+\begin{tabular}[t]{lrrrr}
 \toprule
-effect & Predictor & b & SE & t & df & p\\
+Predictor & b & SE & t & p\\
 \midrule
-fixed & Intercept & 0.62 & 0.01 & 122.41 & 3407.593 & < .001\\
-fixed & Age (scaled) & 0.06 & 0.01 & 11.26 & 3419.562 & < .001\\
-fixed & Number of trials (sxcaled) & 0.00 & 0.00 & -0.42 & 3404.545 & 0.671\\
+Intercept & 0.62 & 0.01 & 123.63 & < .001\\
+Age (scaled) & 0.04 & 0.01 & 7.45 & < .001\\
+Number of errors (scaled) & -0.05 & 0.01 & -8.23 & < .001\\
 \bottomrule
 \end{tabular}
 \end{table*}
