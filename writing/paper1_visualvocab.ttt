@@ -1,11 +1,16 @@
-\begin{longtable}[t]{lrrrrl}
-\caption{\label{tab:unnamed-chunk-21}\label{tab:unnamed-chunk-21}Fixed Effects from Generalized Linear Mixed Effects Model}\\
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\caption{\label{tab:unnamed-chunk-21}Fixed effect coefficients a linear mixed effects model assessing changes in the proportion of related distractors chosen over defvelopment. The model included random intercepts for participants. Age and number of trials were standardized prior to analysis.}
+\centering
+\begin{tabular}[t]{lrrrrlr}
 \toprule
-effect & Predictor & *b* & *SE* & *z* & *p*\\
+effect & Predictor & b & SE & t & df & p\\
 \midrule
-fixed & Intercept & -0.56 & 0.01 & -42.29 & < .001\\
-fixed & Age (scaled) & 0.09 & 0.01 & 7.31 & < .001\\
+fixed & Intercept & 0.62 & 0.01 & 122.41 & 3407.593 & < .001\\
+fixed & Age (scaled) & 0.06 & 0.01 & 11.26 & 3419.562 & < .001\\
+fixed & Number of trials (sxcaled) & 0.00 & 0.00 & -0.42 & 3404.545 & 0.671\\
 \bottomrule
-\multicolumn{6}{l}{\rule{0pt}{1em}\textit{Note.}}\\
-\multicolumn{6}{l}{\rule{0pt}{1em}Analysis conducted using a generalized linear mixed effects model with a binomial distribution. The model included random intercepts for participants. Age was standardized prior to analysis.}\\
-\end{longtable}
+\end{tabular}
+\end{table*}

@@ -1,0 +1,466 @@
+---
+title: "Select items for 234afc experiment"
+author: "Bria Long"
+date: '2023-03-28'
+output: html_document
+---
+
+# Setup
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, cache=FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(here)
+library(lubridate)
+library(ggthemes)
+library(langcog)
+library(mirt)
+library(knitr)
+library(magick)
+library(assertthat)
+##
+set.seed(134) # for reproducibility
+
+```
+
+# Read in data
+```{r}
+pilot_data_filtered <- read_csv(file = here::here('data/preprocessed_data/all_preprocessed_data.csv')) %>%
+  mutate(word1 = str_replace(word1, ' ', '.')) %>%
+  mutate(word2 = str_replace(word2, ' ', '.')) %>%
+  mutate(item_pair = paste0(word1,'_',word2))
+ 
+```
+separate out clip only items
+```{r}
+clip_items <- pilot_data_filtered %>%
+  filter(cohort=='prolific') %>%
+  distinct(word1, word2, item_pair, wordPairing) %>%
+  mutate(item_type = 'clip')
+```
+
+all others are daivt right now
+```{r}
+daivt_items <- pilot_data_filtered %>%
+  anti_join(clip_items %>% select(word1, word2, item_pair)) 
+
+dist_per_daivt = daivt_items %>% 
+  group_by(word1) %>% 
+  summarize(num_dist = length(unique(word2)))
+```
+
+# Get rid of problematic items before running 
+```{r}
+problems = read_csv(here::here('data/eliminated_items/problematic_items_0329.csv')) %>%
+filter(Eliminate=='yes')
+```
+items we're eliminating
+```{r}
+clip_items %>%
+  filter(word1 %in% problems$`Picture Name`) %>%
+  arrange(word1)
+```
+
+items with problematic distractors
+```{r}
+clip_items %>%
+  filter(word2 %in% problems$`Picture Name`) %>%
+  arrange(word2)
+```
+
+yellow flag items that are kept in
+```{r}
+kept = read_csv(here::here('data/eliminated_items/problematic_items_0329.csv')) %>%
+filter(Eliminate=='no') %>%
+  rename(word1 = `Picture Name`) %>%
+  left_join(clip_items)
+```
+
+```{r}
+items_left <- clip_items %>%
+  filter(!word1 %in% problems$`Picture Name`) %>%
+  filter(!word2 %in% problems$`Picture Name`) %>%
+  group_by(word1) %>%
+  mutate(both_items = length(unique(word2))) %>%
+  filter(both_items==2) %>%
+  arrange(word1)
+```
+
+# Select data to model 
+clip items from all participants
+```{r}
+data_to_model <-  pilot_data_filtered %>%
+  right_join(items_left %>% select(word1, word2, item_pair))  
+```
+
+2439 participants
+```{r}
+length(unique(data_to_model$pid))
+```
+115 word pairings
+
+```{r}
+length(unique(data_to_model$word1))
+```
+
+```{r}
+d_wide_all<- data_to_model %>%
+  ungroup() %>%
+  select(sub_id, item_pair, correct) %>% # pid  = sub_id
+  arrange(item_pair) %>%
+  ungroup() %>%
+  pivot_wider(names_from=item_pair, values_from=correct, values_fn = ~mean(.x)) %>%
+  ungroup()
+
+d_mat_all <- d_wide_all %>%
+  select(-sub_id) %>%
+  data.frame %>%
+  data.matrix 
+
+rownames(d_mat_all) <- d_wide_all$sub_id
+```
+
+# Just fit one  2PL model with some priors
+
+```{R}
+start.dim <- dim(d_mat_all)[2]-1
+  mm = (
+  'F = 1-%d,
+  PRIOR = (1-%d, a1, norm, .2, 1),
+  PRIOR = (1-%d, d, norm, 0, 2)'
+  )
+  mm = mirt.model(sprintf(mm,start.dim,start.dim,start.dim))
+```
+
+```{r}
+m <- mirt(d_mat_all, model = mm,itemtype = '2PL',guess=0.5) 
+```
+```{r}
+co <- coef(m,simplify=TRUE, IRTpars = FALSE) # Get coeeficients
+co <- tibble::rownames_to_column(as.data.frame(co$items),'item_pair')
+```
+
+```{r}
+coefs_trimmed <- co %>%
+  rename(slope = a1) %>%
+  filter(slope>.2) %>% # make sure all items have positive slopes
+  left_join(clip_items) %>%
+  group_by(word1) %>%
+  mutate(average_slope = mean(slope), both_items = length(unique(word2))) %>%
+  filter(both_items==2)
+
+```
+We have `r length(unique(coefs_trimmed$word1))` word pairs left after getting rid of the worst performing items (slope < .2). 
+
+Here are the items that performed badly
+```{r}
+eliminated <- co %>%
+  filter(!item_pair %in% coefs_trimmed$item_pair) 
+```
+
+make sure no odd items left out
+```{r} 
+coefs_trimmed %>%
+  group_by(word1) %>%
+  mutate(both_pairs = length(unique(word2))) %>%
+  filter(both_pairs<2)
+```
+
+Save out coefficients for future use
+```{r}
+save=TRUE
+coefs_trimmed_final = coefs_trimmed
+if (save==TRUE){
+write_csv(coefs_trimmed_final, file = here::here(paste0('data/preprocessed_data/trimmed_clip_items', today(), '.csv')))
+}
+```
+
+
+# Get distal distractors
+
+Join back full set of potential items 
+```{r}
+load(file = here::here('data/preprocessed_data/item_corr_with_aoa.RData'))
+```
+
+Candidate distal pairs -- not problematic and not duplicates and same aoa range between target and distractors
+
+```{r}
+candidate_distal_pairs <- item_corr_with_aoa %>%
+  filter(!Word1 %in% problems$`Picture Name`) %>%
+  filter(!Word2 %in% problems$`Picture Name`) %>%
+  mutate(word1 = str_replace(Word1, ' ', '.')) %>%
+  mutate(word2 = str_replace(Word2, ' ', '.')) %>%
+  mutate(item_pair = paste0(word1,'_',word2)) %>%
+  filter(abs(diff_aoa)<=3) %>% # keep estimated aoa same
+  filter(word1 %in% coefs_trimmed_final$word1) %>% # for items in set
+  filter(!word2 %in% coefs_trimmed_final$word2) %>%
+  filter(!word2 %in% coefs_trimmed_final$word1) %>% 
+  filter(!word1 == word2) # can't be duplicates
+
+# should match output of 2pl
+length(unique(candidate_distal_pairs$Word1))
+```
+
+Can't actually sample cross-animacy for every distractor because not enough animals...
+```{r}
+possibilities_per_item <- candidate_distal_pairs %>%
+group_by(Word1) %>%
+summarize(num_items = length(unique(Word2)))
+
+hist(possibilities_per_item$num_items)
+```
+
+## Iteratively sample distal items based on minimum clip correlation
+```{r results='hide'}
+
+candidate_distal_pairs_iter = candidate_distal_pairs
+count_word = 0
+
+for (word in unique(candidate_distal_pairs$Word1)){
+  print(word)
+  count_word = count_word +1
+  
+  get_pair <- function(word,candidate_distal_pairs_iter) {
+    this_word <- candidate_distal_pairs_iter %>%
+    filter(Word1==word) %>%
+    slice_min(n=1, order_by=cor) # by minimm clip correlation
+  }
+  
+  this_word  = try(get_pair(word, candidate_distal_pairs_iter))
+  
+  candidate_distal_pairs_iter <- candidate_distal_pairs_iter %>%
+    filter(Word2 != this_word$Word2)
+  
+  if (count_word==1){
+  kept_words = this_word 
+  }
+  else {
+    kept_words <- kept_words %>%
+    full_join(this_word)
+  }
+}
+```
+
+
+Check we did this right
+```{r}
+distal_pairs_to_keep = kept_words
+```
+Should be empty
+```{r}
+distal_pairs_to_keep %>%
+  filter(Word2 %in% coefs_trimmed_final$word2)
+```
+Should be 111
+```{r}
+distal_pairs_to_keep %>%
+  filter(Word1 %in% coefs_trimmed_final$word1)
+```
+
+Clean up dataframes
+```{r}
+distal_pairs_to_keep <- distal_pairs_to_keep %>%
+  select(Word1, Word2, cor) %>%
+  rename(word1 = Word1, word2 = Word2) %>%
+  mutate(item_pair = paste0(word1, '_', word2)) %>%
+  arrange(-cor) 
+```
+
+```{R}
+distal_pairs_to_keep <- distal_pairs_to_keep %>%
+  select(-cor) %>%
+  mutate(wordPairing = 'distal')
+```
+
+
+# Merge and write out to csv
+Join data
+```{r}
+out_data <-  coefs_trimmed_final %>%
+  select(word1, word2, item_pair, wordPairing) %>%
+  full_join(distal_pairs_to_keep)  %>%
+  arrange(word1)
+```
+
+
+Get back item cor and aoa estimates and file paths
+```{r}
+out_data_with_cor <- out_data %>%
+  left_join(item_corr_with_aoa, by=c('word1' = 'Word1','word2' = 'Word2'))
+```
+
+Sanity check, should be empty, it is
+```{r}
+check <- out_data %>%
+  filter(word1 %in% problems$`Picture Name`) %>%
+  filter(word2 %in% problems$`Picture Name`)
+```
+
+Check that number of distractors = number of trials
+```{R}
+assert_that(length(out_data_with_cor$item_pair) == length(unique(out_data_with_cor$word2)))
+```
+
+Plot out the clip correlations by item type
+```{r}
+ggplot(data = out_data_with_cor, aes(x=wordPairing, y=cor, color=wordPairing)) +
+  geom_point() +
+  geom_line(aes(group=word1)) +
+  theme_few() +
+  facet_wrap(~as.factor(round(AoA_Est_Word1)), nrow=3) +
+  ylab('clip correlation') +
+  xlab('pairing category') +
+  ggtitle('Target-Distractor CLIP correlations by (rounded) estimated AoA')
+```
+
+# Write out the data
+```{r}
+write_csv(out_data, file = here::here(paste0('data/preprocessed_data/clip_items_with_distal', today(), '.csv')))
+```
+
+# Get practice / catch items
+```{r}
+all_tested_items = c(out_data_with_cor$word1, out_data_with_cor$word2)
+
+practice_or_catch  <- item_corr_with_aoa %>%
+  filter(!Word1 %in% problems$`Picture Name`) %>%
+  filter(!Word2 %in% problems$`Picture Name`) %>%
+  mutate(word1 = str_replace(Word1, ' ', '.')) %>%
+  mutate(word2 = str_replace(Word2, ' ', '.')) %>%
+  mutate(item_pair = paste0(word1,'_',word2)) %>%
+  filter(!word1 %in% all_tested_items) %>% # for items in set
+  filter(!word2 %in% all_tested_items) %>% # for items in set
+  filter(!word1 == word2) # can't be duplicates
+
+
+```
+```{r}
+thres=6
+practice_or_catch_trials <- practice_or_catch %>%
+  filter(AoA_Est_Word1<5) %>%
+  filter(AoA_Est_Word2<thres) %>%
+  group_by(Word1) %>%
+  slice_sample(n=3) %>%
+  group_by(Word1) %>%
+  filter(!Word2 %in% Word1) %>%
+  filter(!Word1 %in% Word2) %>%
+  mutate(all_dists = length(unique(Word2))) %>%
+  filter(all_dists == 3) %>%
+  mutate(trial_type = 'practice_or_catch') 
+
+
+assert_that(sum(practice_or_catch_trials$Word2 %in% all_tested_items)==0)
+
+assert_that(sum(practice_or_catch_trials$Word1 %in% all_tested_items)==0)
+  
+```
+
+```{r}
+test_words = unique(practice_or_catch_trials$Word1)
+```
+
+
+```{r}
+sampled_test_words = sample(test_words, 20)
+
+sampled <- practice_or_catch_trials %>%
+  filter(Word1 %in% sampled_test_words) %>%
+  group_by(Word2) %>%
+  mutate(duplicate = length(unique(Word1)))  %>%
+  filter(duplicate==1) %>%
+  group_by(Word1) %>%
+  mutate(all_three = length(unique(Word2))) %>%
+  filter(all_three==3)
+```
+check we did this right
+```{r}
+length(unique(sampled$Word1))
+length(unique(sampled$Word2))
+
+assert_that(length(unique(sampled$Word2)) == length(unique(sampled$Word1))*3)
+```
+
+
+
+
+# Write out images and audio into new folders
+```{r}
+today = Sys.Date()
+image_out_dir = paste0("data/exp1_images_",today,'/')
+audio_out_dir = paste0("data/exp1_audio_",today,'/')
+trials_out_dir = paste0("data/exp1_trials_",today,'/')
+
+dir.create(here::here(image_out_dir))
+dir.create(here::here(trials_out_dir))
+dir.create(here::here(audio_out_dir))
+```
+
+```{r}
+
+to_join_prac_trials <- sampled %>% 
+  ungroup()%>%
+  select(-all_dists, -all_three, -duplicate, -Word1, -Word2) %>%
+  group_by(word1) %>% 
+  group_modify(~ mutate(.x, dist_number = row_number())) %>%
+  mutate(wordPairing = paste0(trial_type, '_', dist_number)) %>%
+  select(-trial_type)
+
+all_trials <- out_data_with_cor %>%
+  full_join(to_join_prac_trials) %>%
+  rename(Word1 = word1, Word2 = word2, trial_type = wordPairing) %>%
+  mutate(Word_1_path=here::here(paste0('data/all_images/',Word1,'.jpg'))) %>%
+  mutate(Word_2_path=here::here(paste0('data/all_images/',Word2,'.jpg')))  %>%
+  mutate(Word_1_new_path = here::here(paste0(image_out_dir, Word1,'.jpg'))) %>%
+  mutate(Word_2_new_path = here::here(paste0(image_out_dir,Word2,'.jpg')))  %>%
+  mutate(example_path = here::here(paste0(trials_out_dir,Word1,'_', trial_type, '.jpg'))) %>%
+  mutate(audio_new_path = here::here(paste0(audio_out_dir,Audio_File_Word_1)))  %>%
+  filter(file.exists(Word_1_path)) %>%
+  filter(file.exists(Word_2_path))
+``` 
+
+
+
+check no missing paths besdies synonyms
+```{r}
+missing_1 <- all_trials %>%
+  filter(!file.exists(Word_1_path))
+
+missing_2 <- all_trials %>%
+  filter(!file.exists(Word_2_path))
+
+
+library(assertthat)
+assert_that(length(missing_1$Word1)==0)
+assert_that(length(missing_2$Word2)==0)
+```
+
+
+
+load, resize, and copy these images to a new folder
+```{r}
+
+for (trial in seq.int(1,length(all_trials$Word1))) {
+  print(trial)
+  img = magick::image_scale(image_read(all_trials$Word_1_path[trial]), "300x300")
+  image_write(img, path = all_trials$Word_1_new_path[trial])
+  
+  img2 = magick::image_scale(image_read(all_trials$Word_2_path[trial]), "300x300")
+  image_write(img2, path = all_trials$Word_2_new_path[trial])
+  
+  example = image_append(c(img,img2))
+  image_write(example, path = all_trials$example_path[trial])
+  
+  fs::file_copy(all_trials$Audio_Path_Word1[trial], all_trials$audio_new_path[trial], overwrite=TRUE)
+}
+```
+
+
+# Write out final csv
+```{r}
+write_csv(all_trials, file = here::here('data/preprocessed_data/', paste0('exp1_all_trials', today(),'.csv')))
+```
+
