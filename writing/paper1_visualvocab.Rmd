@@ -454,6 +454,7 @@ dist_by_4afc_by_item_by_age <- df.4AFC.distractor.summary.byPid %>%
   group_by(targetWord, wordPairing, AoA_Est_Word1, age_group) %>%
   summarize(num_errors = n()) %>%
   pivot_wider(values_from = "num_errors", names_from = "wordPairing") %>%
+  group_by(age_group, targetWord, AoA_Est_Word1) %>%
   mutate(total_num_errors = sum(c(hard,easy,distal), na.rm=TRUE)) %>%
   mutate(prop_hard = (hard / total_num_errors)) %>%
   mutate(prop_easy = (easy / total_num_errors)) %>%
@@ -463,6 +464,10 @@ dist_by_4afc_by_item_by_age <- df.4AFC.distractor.summary.byPid %>%
   mutate(prop = replace_na(prop, replace=0)) %>%
   mutate(wordPairing = str_split_fixed(wordPairing,'_',2)[,2]) %>%
   left_join(item_meta_and_model_sim %>% distinct(targetWord, wordPairing, sim_img_img, sim_img_txt, sim_txt_txt)) 
+
+```
+
+```{r}
 
 ```
 
@@ -486,13 +491,15 @@ for (iter in 1:50){
   held_out = dataset %>%
   anti_join(sampled)
   
-  lang_model_fit = lmer(data=sampled, prop ~ scale(sim_txt_txt) + scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+  lang_model_fit = lmer(data=sampled, prop ~ scale(sim_txt_txt)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
   
-  vision_model_fit = lmer(data=sampled, prop ~ scale(sim_img_img) + scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+  vision_model_fit = lmer(data=sampled, prop ~ scale(sim_img_img)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
     
-    multi_model_fit = lmer(data=sampled, prop ~ scale(sim_img_txt) + scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+    multi_model_fit = lmer(data=sampled, prop ~ scale(sim_img_txt)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
     
-    all_model_fit = lmer(data=sampled, prop ~ scale(sim_img_txt) + scale(age_group) + scale(sim_img_img) + scale(sim_txt_txt) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+    vision_plus_lang_model_fit = lmer(data=sampled, prop ~ scale(sim_img_img) + scale(sim_txt_txt)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+    
+    all_model_fit = lmer(data=sampled, prop ~ scale(sim_img_txt)*scale(age_group) + scale(sim_img_img) + scale(sim_txt_txt) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
   
   # get predicted values
   predicted_lang = predict(lang_model_fit, newdata = held_out) 
@@ -516,13 +523,17 @@ for (iter in 1:50){
 }
 ```
 
+```{R}
+qplot(predicted_all, held_out$prop)
+```
+
 
 ```{r output=FALSE}
 # plot of model r^2 for 50 samples of 80% of the dataset
 all_model_r2_long <- all_model_r2 %>%
-  rename('all predictors' = all, 'multimodal' = multi, 'language' = lang) %>%
+  rename('all predictors' = all, 'multimodal embeddings' = multi, 'language embeddings' = lang, 'vision embeddings' = vision) %>%
   pivot_longer(cols=everything(), values_to="cor", names_to = "model")  %>%
-  mutate(model = fct_relevel(model,  'all predictors','multimodal','language','vision'))
+  mutate(model = fct_relevel(model,  'all predictors','multimodal embeddings','language embeddings','vision embeddings'))
   # mutate(model = fct_relevel(model, 'language','vision', 'multimodal','all predictors')) 
 
 all_model_r2_cis <- all_model_r2_long %>%
@@ -544,7 +555,7 @@ To do so, we used a series of cross-validated linear mixed effect models, where 
 ```{r modelfigure, out.width='50%', fig.align='center', fig.cap = "Average explained variance in children's error patterns (conditional R-squared in linear mixed effect models) by linguistic, visual, multimodal, or combined predictors in cross-validated mixed efffect models. Error bars represent bootstrapped 95 percent confidence intervals across 50 iterations." }
 ggplot(data=all_model_r2_cis, aes(x=model, y=mean, color=model)) +
   geom_linerange(aes(ymin=ci_lower, ymax=ci_upper)) +
-  geom_point(size=2, alpha=.8) +
+  geom_point(size=3, alpha=.8) +
   geom_point(data=all_model_r2_long, aes(x=model, y=cor), alpha=.2) +
   xlab('') +
   theme_few(base_size=14) +
@@ -552,14 +563,25 @@ ggplot(data=all_model_r2_cis, aes(x=model, y=mean, color=model)) +
   ylab('Average conditional R^2 \n in mixed-effect models')  +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
   theme(legend.position='none') +
+  coord_flip() +
     scale_color_viridis(discrete=TRUE, option="C", end=.8) +
-theme(aspect.ratio=4/3) +
-  ylim(0,.2)
+theme(aspect.ratio=3/4
+      ) 
+  ylim(.15,.3) 
+  
+ggsave('model_comparison.pdf', height=3, width=4, units='in')
   
   
 ```
 
 
+
+```{r}
+# could include this is a table, maybe in SI?
+# all_model_fit_full_dataset = lmer(data=dataset, prop ~ scale(sim_img_txt)*scale(age_group) + scale(sim_img_img) + scale(sim_txt_txt) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+
+# summary(all_model_fit_full_dataset)
+```
 In a final analyses, we aimed to understand the source of these changes in children's error patterns by leveraging high-dimensional embeddings of our linguistic and visual stimuli in a large, multimodal language model [@radford_learning_2021]. We chose a set of stimuli where visual similarity was colinear with semantic similarity to a large degree, as it often is in the real-world for most visaul concepts. Thus, our stimuli were not necessarily designed to pull apart the contributions of changes in semantic vs. visual similarity. Nonetheless, our stimuli were generated by using similarity in a linguistic embedding space, and so some stimuli on certain trials were nonetheless related to the target concept semantically but not necessarily visually (e.g, gardening gloves were a distractor for "rose"). We thus sought to understand the degree to which children's error patterns in this task reflected changes in how they processed the visual similarity of the targets and distractors, their semantic similarity, or -- perhaps most likely -- some combination.
 
 
