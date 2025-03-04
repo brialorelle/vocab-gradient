@@ -243,8 +243,8 @@ ggplot(data = df.4AFC.distractor.summary.byAge.perc.byaoa %>%
   guides(color = guide_legend(title = NULL)) +
   scale_fill_discrete(guide = "none") + # Works for categorical (discrete) fills
   theme(legend.position="bottom",
-        text = element_text(size = 12),
-        strip.text = element_text(size = 12),
+        text = element_text(size = 10),
+        strip.text = element_text(size = 10),
         axis.title = element_text(""),
         plot.margin = unit(c(5.5, 5.5, 5.5, 5.5), "points"),
         aspect.ratio = 1.3) # Makes plot wider relative to height
@@ -442,7 +442,7 @@ ggplot(data = dist_by_cond_by_age, aes(x=age_group, y=mean, col=wordPairing, fil
   scale_fill_manual(values = c( '#C265FF', '#31BAC0','#70BF41'))+
   scale_x_continuous(breaks = c(seq(3, 14, 2), 25),  # Show ages every 2 years plus adults
                     labels = function(x) ifelse(x == 25, "Adults", as.character(x)))  +
-  theme(legend.position='right') +
+  # theme(legend.position='right') +
   geom_smooth(span=20) 
 ```
 
@@ -467,9 +467,7 @@ dist_by_4afc_by_item_by_age <- df.4AFC.distractor.summary.byPid %>%
 
 ```
 
-```{r}
 
-```
 
 
 ```{r output=FALSE}
@@ -523,9 +521,6 @@ for (iter in 1:50){
 }
 ```
 
-```{R}
-qplot(predicted_all, held_out$prop)
-```
 
 
 ```{r output=FALSE}
@@ -565,11 +560,9 @@ ggplot(data=all_model_r2_cis, aes(x=model, y=mean, color=model)) +
   theme(legend.position='none') +
   coord_flip() +
     scale_color_viridis(discrete=TRUE, option="C", end=.8) +
-theme(aspect.ratio=3/4
-      ) 
-  ylim(.15,.3) 
+theme(aspect.ratio=3/4)
   
-ggsave('model_comparison.pdf', height=3, width=4, units='in')
+# ggsave('model_comparison.pdf', height=3, width=4, units='in')
   
   
 ```
