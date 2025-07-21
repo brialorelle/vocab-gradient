@@ -217,9 +217,11 @@ ggplot(data = df.4AFC.distractor.summary.rt %>% filter(age_group<25), aes(x=word
 Third way of visaulizing this data -- which kinds of items were chosen as a function of age in each NAFC
 
 
-
 # VSS PLOTS 
 ## Proportion chosen by AoA
+
+
+
 ```{r}
 ggplot(data = df.4AFC.distractor.summary.byAge.perc.byaoa, aes(x=age_group, y=mean, col=wordPairing, fill=wordPairing)) +
   geom_point() +
@@ -235,7 +237,7 @@ ggplot(data = df.4AFC.distractor.summary.byAge.perc.byaoa, aes(x=age_group, y=me
 ```
 
 ```{r}
-
+aspect.ratio = 0.5) # Makes plot wider relative to height
 ggplot(data = df.4AFC.distractor.summary.byAge.perc.byaoa, aes(x=age_group, y=mean, col=wordPairing, fill=wordPairing)) +
   geom_point() +
   geom_linerange(aes(y=mean, ymax = ci_upper, ymin = ci_lower), alpha=.8) +
@@ -329,22 +331,6 @@ Plot the main effect here by aoa
 #Levels: prop_distal prop_easy prop_hard
 
 ggplot(data = dist_by_pid_by_age_by_aoa, aes(x=age_group, y=mean, col=wordPairing, fill=wordPairing)) +
-  geom_linerange(data = dist_by_pid_by_age_by_aoa, aes(y=mean, ymin=ci_lower, ymax = ci_upper), position=position_dodge(width=.4)) +
-  geom_point(data = dist_by_pid_by_age_by_aoa, aes(y=mean), position=position_dodge(width=.4)) +
-  geom_smooth(data = dist_by_pid_by_age_by_aoa, aes(group=wordPairing), span=20) +
-  ylab('Proportion of errors') +
-  xlab('Age (in years)') +
-  theme_few() +
-  facet_wrap(~AoA_Bin_Name) +
-  scale_color_manual(values = c( '#C265FF', '#31BAC0','#70BF41'))  +
-  scale_fill_manual(values = c( '#C265FF', '#31BAC0','#70BF41'))+
-  geom_smooth(aes(group=wordPairing), span=20, alpha=.2)  +
-  theme(legend.position='none')
-
-```
-
-```{r}
-ggplot(data = dist_by_pid_by_age_by_aoa, aes(x=age_group, y=mean, col=wordPairing, fill=wordPairing)) +
   geom_linerange(data = dist_by_pid_by_age_by_aoa, 
                  aes(y=mean, ymin=ci_lower, ymax = ci_upper), 
                  position=position_dodge(width=.4)) +
@@ -373,8 +359,8 @@ ggplot(data = dist_by_pid_by_age_by_aoa, aes(x=age_group, y=mean, col=wordPairin
              span=20, 
              alpha=.1,
              se = FALSE)
-```
 
+```
 ```{r}
 ggplot(data = dist_by_pid_by_age_by_aoa %>% filter(wordPairing=='prop_hard'), aes(x=age_group, y=mean, col=AoA_Bin_Name, fill=AoA_Bin_Name)) +
   geom_linerange(data = dist_by_pid_by_age_by_aoa %>% filter(wordPairing=='prop_hard'), aes(y=mean, ymin=ci_lower, ymax = ci_upper), position=position_dodge(width=.4)) +
