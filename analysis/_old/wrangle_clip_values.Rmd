@@ -1,0 +1,94 @@
+---
+title: "merge_clip_similarity"
+author: "Bria Long"
+date: "2025-01-23"
+output: html_document
+---
+
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+getItemName <- function(filepath) {
+  # Split the filepath by '/' and get the last part (filename with extension)
+  short_filepath <- tail(strsplit(filepath, '/')[[1]], 1)
+  
+  # Remove the '.jpg' extension from the filename to get just the name
+  shorter_filepath <- sub('\\.jpg$', '', short_filepath)
+  return(shorter_filepath)
+}
+```
+
+```{r}
+multimodal_sim = read_csv(here::here('data/item_metadata/clip_sim.csv')) %>%
+  mutate(targetWord = text1) %>%
+  group_by(targetWord) %>%
+  mutate(short_image1 = getItemName(image1), 
+         short_image2 = getItemName(image2),
+         short_image3 = getItemName(image3),
+         short_image4 = getItemName(image4)) 
+
+image_structure <- multimodal_sim %>%
+  select(-starts_with('image')) %>%
+  pivot_longer(cols=starts_with('short'), values_to='answerWord', names_to = 'distractorNum') %>%
+  mutate(distractorNum = str_split_fixed(distractorNum,'_',2)[,2]) %>%
+  select(-text1)
+
+longer_values_logits <- multimodal_sim %>%
+  pivot_longer(cols=ends_with('logit'), values_to='logits', names_to = 'distractorNum')  %>%
+  select(targetWord, distractorNum, logits) %>%
+  mutate(distractorNum = str_split_fixed(distractorNum,'_',2)[,1])
+
+longer_values_probs <- multimodal_sim %>%
+  pivot_longer(cols=ends_with('prob'), values_to='probs', names_to = 'distractorNum')  %>%
+  select(targetWord, distractorNum, probs) %>%
+  mutate(distractorNum = str_split_fixed(distractorNum,'_',2)[,1])
+
+```
+
+
+
+
+Join them all together, that was annoying
+```{R}
+multimodal_clip <- image_structure %>%
+  left_join(longer_values_probs) %>%
+  left_join(longer_values_logits) %>%
+  rename(Word2 = answerWord, clip_logit_multi = logits, clip_prob_multi = probs) %>%
+  left_join(multimodal_sim %>% distinct(trial, targetWord))
+```
+
+
+### Import visual only clip values
+```{R}
+visual_only_sim = read_csv(here::here('data/item_metadata/vv-image-cors-clip.csv')) %>%
+  pivot_longer(cols=starts_with('image'), values_to='visual_cor', names_to='distractorNum') %>%
+  left_join(image_structure)
+```
+
+```{r}
+language_only_sim <- read_csv(here::here("data/item_metadata/exp1_all_trials2023-04-11.csv")) %>%
+  select(Word1, Word2, cor) %>%
+  rename(language_cor = cor, targetWord = Word1)
+```
+
+```{R}
+multimodal_clip_all <- multimodal_clip %>%
+  left_join(visual_only_sim) %>%
+  left_join(language_only_sim) %>%
+  mutate(language_cor  = replace_na(language_cor, 1))
+
+what <- multimodal_clip_all %>%
+  filter(is.na(language_cor))
+```
+
+
+
+```{r}
+save(multimodal_clip_all, file=here::here('data/item_metadata/preprocessed_model_outputs.RData'))
+write_csv(multimodal_clip_all, file=here::here('data/item_metadata/preprocessed_model_outputs.csv'))
+
+```
