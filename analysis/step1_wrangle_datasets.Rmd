@@ -39,6 +39,8 @@ test_corpus <- read_csv(here::here("data/item_metadata/new_test.csv")) %>%
 # New merged data post preprcoessing
 ```{r}
 multiafc_combined <- read_csv(here::here("data/raw/multiAFC_4AFC_clean_combined_data_20240909.csv")) %>%
+  mutate(bing = str_detect(pid, 'bing')) %>%
+  filter(bing==FALSE) %>% # will merge in later manually
   mutate(cohort='schools')
 ```
 
@@ -142,7 +144,7 @@ adults <- read_csv(here::here("data/raw/multi-afc-april28.csv"))  %>%
 trial_data <- multiafc_combined %>%
   mutate(age_group = floor(ageMonths/12)) %>%
   filter(age_group<15) %>%
-  filter(group!='B') %>%
+  filter(group!='B') %>% # garden participants, will merge manually
   full_join(garden) %>% # manually merge garden instead for age/pid difficulties
   full_join(adults)  %>%
   full_join(bing) %>%
