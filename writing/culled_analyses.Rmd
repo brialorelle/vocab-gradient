@@ -1,0 +1,325 @@
+---
+title: "additional_analyses"
+author: "Bria Long"
+date: "2025-07-21"
+output: html_document
+---
+
+
+```{r}
+item_effects <- df.4AFC.distractor.summary.byAge.clean %>%
+  group_by(age_group, targetWord) %>%
+  mutate(totalAttempsbyAgeBin = sum(totalAttempts, na.rm=TRUE)) %>%
+  filter(totalAttempsbyAgeBin>=10) %>%
+  filter(wordPairing=='target')  
+
+slopes <- item_effects %>%
+  group_by(targetWord, AoA_Est_Word1) %>%
+  summarize(age_cor = cor(age_group, perc)) %>%
+  ungroup() %>%
+  mutate(slope_bin = ntile(age_cor, 3))  %>%
+  mutate(AoA_Bin = ntile(AoA_Est_Word1,3)) 
+
+cor.test(slopes$age_cor, slopes$AoA_Est_Word1)
+```
+
+```{r}
+item_effects_with_slopes <- item_effects %>%
+  left_join(slopes)
+
+ggplot(data=item_effects_with_slopes, aes(x=age_group, y=perc, col=AoA_Est_Word1)) +
+  theme_few() +
+  geom_point(alpha=.5) +
+  geom_smooth(method='lm', alpha=.1, aes(group=targetWord)) +
+  theme(legend.position='none') +
+  ylim(0,1) +
+  facet_wrap(~slope_bin) +
+  ggrepel::geom_label_repel(data=item_effects %>% filter(age_group==3), aes(label=targetWord))
+```
+
+
+```{R}
+ to_plot_items = item_effects %>% filter(targetWord %in% c('carrot','barrel','scaffolding'))
+
+ggplot(to_plot_items, aes(x=age_group, y=perc)) +
+  geom_smooth(method='lm', se=TRUE, alpha=.08, aes(group=targetWord, color=AoA_Bin, fill=AoA_Bin)) +
+  geom_point(aes(color=AoA_Bin,  size=n, alpha=.6)) +
+  geom_hline(yintercept=.25, color='grey',linetype='dashed') +
+  theme_few(base_size=8) +
+  ylab('Proportion correct') +
+  xlab('Age group (years old)') +
+  theme(legend.position='none')  +
+  ggrepel::geom_label_repel(data=to_plot_items %>% filter(age_group==3), aes(label=targetWord, color=AoA_Bin), alpha=1, size=2, label.size=.1, label.padding=.2, min.segment.length=.2,segment.alpha = .1) +
+  ylim(0,1.1)
+ # theme(aspect.ratio=1.33)
+
+# ggsave('figures/figure3a_age_correlations.png', width=2, height=3.5, units='in')
+
+```
+
+
+
+```{R}
+slopes_by_age = ggplot(data=slopes, aes(x=age_cor, y=AoA_Est_Word1, color=AoA_Bin)) +
+  geom_point() +
+  geom_smooth(span=20, se=TRUE, alpha=.2, color='grey') +
+  ggrepel::geom_label_repel(aes(label=targetWord), label.size=.1, size=2, label.padding=.2, min.segment.length=.2, segment.alpha = .1) +
+  theme_few(base_size=8) +
+  ylab('Estimated age of word acquisition (years old)') +
+  xlab('Change in accuracy across age (r-value)') +
+  theme(legend.position='none')
+  
+ggsave(plot=slopes_by_age, 'figures/3b_slopes_by_aoa.png', width=3.5, height=3.5, units='in') 
+
+```
+
+
+```{r}
+count_by_age <- item_effects %>%
+  group_by(age_group, targetWord) %>%
+  summarize(num_attempts = sum(n))
+
+ggplot(data=count_by_age, aes(x=age_group, y=num_attempts)) +
+  geom_point(alpha=.5)
+
+low_item_data <- count_by_age %>%
+  filter(num_attempts<10)
+```
+
+
+
+
+```{r}
+# real_aoa <- item_effects %>%
+#   filter(perc>.3) %>%
+#   group_by(targetWord, AoA_Est_Word1) %>%
+#   summarize(real_aoa = mean(age_group))
+# 
+# qplot(real_aoa$AoA_Est_Word1, real_aoa$real_aoa)
+# cor(real_aoa$AoA_Est_Word1, real_aoa$real_aoa)
+```
+
+
+
+
+```{r}
+# ggplot(item_effects %>% filter(age_group<25) , aes(x=AoA_Est_Word1, y=perc, col=age_group)) +
+#     geom_point(alpha=.8, size=1.5) +
+#     # geom_point(data=item_effects %>% filter(age_group==25),  aes(x=targetWord, y=perc, col=age_group), color='black', alpha=.6, size=1.5, shape=17) +
+#     # geom_line(aes(group=targetWord)) +
+#   geom_smooth() +
+#     theme_apa() +
+#   ylab('Proportion correct target chosen') +
+#   scale_color_viridis_c(name='Age group (in years)') +
+#   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+#   coord_flip() +
+#   theme(legend.position='right') +
+#   # scale_x_continuous(breaks=c(3,4,5,6,7,8,9,10,25)) +
+#   # ggrepel::geom_label_repel(data=labels, aes(label=targetWord), box.padding = 0.1, max.overlaps=30, label.size=.25) +
+#   facet_wrap(~age_group) +
+#   
+#   xlab('Target word') 
+```
+
+
+```{r}
+
+# high_slopes_by_age_plot = ggplot(high_slopes, aes(col=AoA_Est_Word1, x=age_group, y=perc, size=scale(totalAttempts))) +
+#     geom_point(alpha=.1) +
+#     geom_point(data=high_slopes %>% filter(age_group==25),  aes(y=perc, x=age_group), color='black', alpha=.6, size=1.5, shape=17) +
+#     theme_apa(base_size=10) +
+#   ylab('Proportion correct') +
+#   scale_color_viridis(name='Estimated AoA') +
+#   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+#   # coord_flip() +
+#   geom_smooth(method='lm', aes(alpha=.1, group=targetWord), alpha=0) +
+#   theme(legend.position='none') +
+#   # scale_x_continuous(breaks=c(3,4,5,6,7,8,9,10,25)) +
+#   # ggrepel::geom_label_repel(data=labels, aes(label=targetWord), box.padding = 0.1, max.overlaps=30, label.size=.25) +
+#   xlab('Age in years') + 
+#   ylim(0,1)
+
+```
+
+
+
+```{r slopes, out.width='100%', fig.align='center', fig.cap = "Visualization of the items that showed the greatest changes in distractor choice across age groups. Colors represent the age of the child participating in the task; triangles represent data from adults."}
+
+patchwork(slopes_by_age)
+```
+
+```{r slopes, out.width='50%', fig.align='center', fig.cap = "Visualization of the items that showed the greatest changes in distractor choice across age groups. Colors represent the age of the child participating in the task; triangles represent data from adults."}
+
+ggplot(low_slopes, aes(x=age_group, y=perc, col=AoA_Bin)) +
+    geom_point(alpha=.8, size=1.5) +
+    geom_smooth(aes(group=targetWord, col=AoA_Bin), alpha=.2, method='lm') + 
+    theme_apa(base_size=10) +
+  ylab('Proportion correct') +
+  theme(legend.position='none') +
+  scale_x_continuous(breaks=c(3,4,5,6,7,8,9,10,25)) +
+  ggrepel::geom_label_repel(data=low_slopes %>% filter(age_group==3), aes(label=targetWord), box.padding = 0.1, max.overlaps=30, label.size=.25) +
+  xlab('Age group') +
+  ylim(0,1)
+
+```
+
+
+##
+
+
+```{r}
+higher_semantic <- target_item_visualize  %>%
+  filter(wordPairing=='hard') %>%
+  ungroup() %>%
+  filter(higher_semantic_sim > quantile(higher_semantic_sim,.5))
+
+
+lower_semantic <- target_item_visualize  %>%
+  filter(wordPairing=='hard') %>%
+  ungroup() %>%
+  filter(higher_semantic_sim < quantile(higher_semantic_sim,.2))
+```
+
+```{r}
+
+ggplot(target_item_visualize, aes(x=higher_semantic_sim, y=mean_prop, col=wordPairing)) +
+  geom_point() +
+  geom_smooth(method='lm') +
+  theme_few() +
+  xlab('Text - Visual similarity difference') +
+  ylab('Proportion distractor chosen')
+```
+
+
+
+```{R}
+
+choice_by_item_sim <- dist_by_4afc_by_item_by_age %>%
+  ungroup() %>%
+  mutate(AoA_Bin = ntile(AoA_Est_Word1,3)) %>%
+  pivot_longer(cols = c('sim_img_img', 'sim_txt_txt'), values_to='similarity', names_to='sim_type')  %>%
+  group_by(sim_type) %>%
+  mutate(sim_bin = ntile(similarity,50)) %>%
+  group_by(sim_type) %>%
+  mutate(sim_normed = scale(similarity)) %>%
+  group_by(sim_bin, sim_type) %>%
+  summarize(mean_prop = mean(prop), mean_sim = mean(similarity))
+
+
+item_choice_by_sim <- dist_by_4afc_by_item_by_age %>%
+  ungroup() %>%
+  pivot_longer(cols = c('sim_img_img', 'sim_txt_txt'), values_to='similarity', names_to='sim_type')  %>%
+  group_by(targetWord, wordPairing, sim_type, age_group) %>%
+  summarize(mean_prop = mean(prop), mean_sim = mean(similarity))
+
+```
+
+```{r}
+
+ggplot(item_choice_by_sim, aes(x=mean_sim, y=mean_prop, col=sim_type)) +
+  geom_point(alpha=.1) +
+  # geom_linerange(aes(ymin = ci_lower, y max=ci_upper), alpha=.2) +
+  geom_smooth(span=20, size=1, alpha=.1) +
+  theme_few() +
+  xlab('Similarity scores (cosine sim)') +
+  ylab('Proportion distractors chosen')  +
+  facet_wrap(~age_group)
+  # geom_line(aes(group=targetWord), alpha=.2)
+  
+```
+
+
+
+```{R}
+ggplot(data = target_item_visualize %>% filter(wordPairing=='distal'), aes(x=fct_reorder(item_pair, higher_semantic_sim, .desc=FALSE), y=higher_semantic_sim, col=wordPairing)) +
+  geom_point() +
+  theme(legend.position='none') +
+  ylab('Difference in linguistic - visual similarity')  +
+  xlab('') +
+  coord_flip() +
+  theme_few(base_size=4) + 
+  scale_color_manual(values = c( '#C265FF'), name="")  +
+  scale_fill_manual(values = c( '#C265FF'), name="") +
+  # geom_line(aes(group=targetWord), alpha=.2) +
+  # facet_wrap(~wordPairing, nrow=3) +
+  geom_smooth() +
+  geom_hline(yintercept=0) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(aspect.ratio=1.3) +
+  theme(legend.position='none')
+```
+
+```{r}
+ggplot(data = target_item_visualize, aes(x=fct_reorder(item_pair, higher_semantic_sim, .desc=FALSE), y=higher_semantic_sim, col=wordPairing)) +
+  geom_point() +
+  theme(legend.position='none') +
+  xlab('Ling - visual similarity')  +
+  coord_flip() +
+  theme_few(base_size=4) + 
+  scale_color_manual(values = c( '#C265FF', '#31BAC0','#70BF41'), name="")  +
+  scale_fill_manual(values = c( '#C265FF', '#31BAC0','#70BF41'), name="") +
+  # geom_line(aes(group=targetWord), alpha=.2) +
+  facet_wrap(~wordPairing, nrow=1) +
+  geom_hline(yintercept=0) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+```
+
+
+
+
+```{r}
+ggplot(data=item_meta_and_model_sim, aes(x=sim_txt_txt, y=sim_img_txt, col=wordPairing)) +
+  geom_point(alpha=.8) +
+  ylab('Multimodal cosine sim') +
+  xlab('Language cosine sim)') + 
+  theme_few(base_size=8) +
+  theme(legend.position='right', aspect.ratio=1)   +
+  geom_smooth(span=20, method='lm')
+
+ggplot(data=item_meta_and_model_sim, aes(x=sim_img_img, y=sim_img_txt, col=wordPairing)) +
+  geom_point(alpha=.8) +
+  ylab('Multimodal cosine sim') +
+  xlab('Language cosine sim)') + 
+  theme_few(base_size=8) +
+  theme(legend.position='right', aspect.ratio=1)   +
+  geom_smooth(span=20, method='lm')
+
+```
+
+
+```{r}
+
+```
+
+```{r}
+cor_by_age <- dist_by_4afc_by_item_by_age %>%
+  group_by(age_group) %>%
+  filter(total_num_errors>10) %>%
+  summarize(vision_cor = cor(sim_img_img, prop), lang_cor = cor(sim_txt_txt, prop), multi_cor = cor(sim_img_txt, prop)) %>%
+  pivot_longer(cols=ends_with('cor'), values_to='cor',names_to='modality')
+
+
+responses_by_age <- df.4AFC.distractor.summary.byPid %>%
+  distinct(age_group, targetWord, pid) %>%
+  group_by(age_group) %>%
+  summarize(num_errors = n(), num_items = length(unique(targetWord)), num_participants = length(unique(pid)))
+
+cor_by_age <- cor_by_age %>%
+  left_join(responses_by_age)
+```
+
+
+```{r}
+ggplot(data=cor_by_age, aes(x=age_group, y=cor, color=modality, weight=num_errors, size=num_errors, fill=modality)) +
+  geom_jitter(alpha=.8, width=.1) +
+  geom_smooth(method='lm', alpha=.2, aes(group=modality), se=FALSE) +
+  theme_few(base_size=10) +
+  scale_color_viridis(discrete=TRUE, option="C", end=.8) +
+  ylab('Human - model correlation \n on proportion errors') +
+  xlab('Age of participants') +
+  scale_x_continuous(breaks=c(3,4,5,6,7,8,9,10,11,12,13,14,25)) +
+  theme(legend.position='right') +
+  ylim(0,.75)
+
+ 
+```
