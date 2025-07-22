@@ -2,6 +2,8 @@
 title             : "Developmental changes in the precision of visual concept knowledge"
 shorttitle        : "Precision of visual concepts"
 
+
+
 authornote: |
   .
 
@@ -65,7 +67,7 @@ library(MuMIn)
 ```
 
 ```{r}
-RAW_DATA=TRUE # if within the research team
+# RAW_DATA=TRUE # if within the research team
 RAW_DATA=FALSE # if exterior to the research team
 ```
 
@@ -590,10 +592,12 @@ dist_by_4afc_by_item_by_age <- df.4AFC.distractor.summary.byPid %>%
   mutate(prop = replace_na(prop, replace=0)) %>%
   mutate(wordPairing = str_split_fixed(wordPairing,'_',2)[,2]) %>%
   left_join(item_meta_and_model_sim %>% distinct(targetWord, wordPairing, sim_img_img, sim_img_txt, sim_txt_txt)) 
+
+save(dist_by_4afc_by_item_by_age, file=here::here('data/preprocessed/dist_by_4afc_by_item_by_age.RData'))
 }
 
 if (RAW_DATA==FALSE){
-load(dist_by_4afc_by_item_by_age, file=here::here('data/preprocessed/dist_by_4afc_by_item_by_age.RData'))
+load(file=here::here('data/preprocessed/dist_by_4afc_by_item_by_age.RData'))
 }
 
 ```
