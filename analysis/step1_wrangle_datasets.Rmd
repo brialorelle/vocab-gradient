@@ -32,7 +32,7 @@ library(viridis)
 ## Load data from multiafc task
 First load all metadata we'll need for the items
 ```{r}
-test_corpus <- read_csv(here::here("data/item_metadata/new_test.csv")) %>%
+test_corpus <- read_csv(here::here("data/item_metadata/test_items.csv")) %>%
   filter(!Word1 %in% c('honey','scrabble')) # manually excluded
 ```
 
@@ -47,7 +47,7 @@ multiafc_combined <- read_csv(here::here("data/raw/multiAFC_4AFC_clean_combined_
 # Load metadata
 ## examine items across aoa bins
 ```{r}
-clip_cor_by_model <- read_csv(here::here("data/item_metadata/exp1_all_trials2023-04-11.csv")) %>%
+clip_cor_by_model <- read_csv(here::here("data/raw/exp1_all_trials2023-04-11.csv")) %>%
   select(Word1, Word2, trial_type, cor, AoA_Est_Word2, AoA_Est_Word1) %>%
   rename(wordPairing = trial_type) %>%
   rename(clip_cor = cor) %>%
@@ -68,7 +68,7 @@ sanity <- clip_cor_by_model %>%
 # Load data
 Load data and restrict to clip words (no dutch)
 ```{r}
-test_clip_cor <- read_csv(here::here("data/item_metadata/exp1_all_trials2023-04-11.csv")) %>%
+test_clip_cor <- read_csv(here::here("data/raw/exp1_all_trials2023-04-11.csv")) %>%
   select(Word1, Word2, trial_type, cor, AoA_Est_Word2, AoA_Est_Word1) %>%
   rename(wordPairing = trial_type) %>%
   rename(clip_cor = cor) %>%

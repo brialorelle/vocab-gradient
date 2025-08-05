@@ -97,7 +97,7 @@ With these data, we investigated three main questions. First, we examined whethe
 
 if (RAW_DATA==TRUE) 
 {
-load(file=here::here('data/preprocessed/all_trial_data.Rdata'))
+load(file=here::here('data/raw/all_trial_data.Rdata'))
 }
 ```
 
