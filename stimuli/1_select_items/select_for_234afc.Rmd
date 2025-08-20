@@ -1,6 +1,6 @@
 ---
 title: "Select items for 234afc experiment"
-author: "Bria Long"
+author: ""
 date: '2023-03-28'
 output: html_document
 ---

@@ -1,5 +1,5 @@
  
-# bll 7.7.22 bria@stanford.edu
+# 
 # followed instructions using https://github.com/jina-ai/clip-as-service/tree/main/server
 
 # before starting, run
@@ -12,10 +12,9 @@ import pandas as pd
 import numpy as np
 # has category items
 
-# from ecoset
-# items = pd.read_csv('/Users/brialong/Documents/GitHub/online-vocab-assessment/data/ecoset/candidate_items_from_ecoset.csv')
+
 # from things
-items = pd.read_csv('/Users/brialong/Documents/GitHub/online-vocab-assessment/stimuli/selected_stimuli/things_dataset/things_concepts.tsv', sep='\t')
+items = pd.read_csv('things_concepts.tsv', sep='\t')
 all_items = list(items['Word'])
 all_items =  all_items
 
@@ -31,6 +30,6 @@ item_correlations_df = pd.DataFrame(item_correlations)
 item_correlations_df.columns = all_items
 item_correlations_df_transposed = item_correlations_df.transpose()
 item_correlations_df_transposed.columns = all_items
-item_correlations_df_transposed.to_csv('/Users/brialong/Documents/GitHub/online-vocab-assessment/stimuli/selected_stimuli/things_dataset/things_test_all_item_embeddings.csv')
+item_correlations_df_transposed.to_csv('things_test_all_item_embeddings.csv')
 
 

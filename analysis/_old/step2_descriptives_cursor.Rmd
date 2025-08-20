@@ -1,6 +1,6 @@
 ---
 title: "step2_descriptives"
-author: "Bria Long"
+author: ""
 date: "2024-10-03"
 output: html_document
 ---

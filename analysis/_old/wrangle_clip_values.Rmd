@@ -1,6 +1,6 @@
 ---
 title: "merge_clip_similarity"
-author: "Bria Long"
+author: ""
 date: "2025-01-23"
 output: html_document
 ---
