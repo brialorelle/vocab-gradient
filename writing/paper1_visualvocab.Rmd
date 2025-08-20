@@ -108,11 +108,11 @@ load(file=here::here('data/preprocessed/summary_by_distractor.Rdata'))
 
 ```{R}
 # load item data
-item_meta_and_model = read_csv(file=here::here('data/item_metadata/item_meta_and_model_sim.csv'))
+item_meta_and_model_sim = read_csv(file=here::here('data/item_metadata/item_meta_and_model_sim.csv'))
 ```
 
 
-```{r procedure-figure, echo=FALSE, fig.cap="Example trials that depicted easy, intermediate, and difficult words, as operationalized via estimated age-of-acquisition (Kuperman et al., 2013); each target word image is taken from shown alongside the three distractors that varied in similarity to the target word; distractors were chosen via the similarity of the target and distractor words in the language encoder of CLIP (Radford et al., 2021). ", out.width="100%", fig.align='center'}
+```{r procedure-figure, echo=FALSE, fig.cap="Example trials that depicted easy, intermediate, and difficult words, as operationalized via estimated age-of-acquisition (Kuperman et al., 2012); each target word image is taken from shown alongside the three distractors that varied in similarity to the target word; distractors were chosen via the similarity of the target and distractor words in the language encoder of CLIP (Radford et al., 2021). ", out.width="100%", fig.align='center'}
 knitr::include_graphics("figures/fig1_stimuli.png")
 ```
 
@@ -155,7 +155,7 @@ All participants who contributed data and scored above chance (chance = 25%, thr
 We excluded an additional 84 participants who scored near chance on 4AFC trials (< 30% accurate) and were school-aged (>6 years of age); these participants completed an average of 17.72 trials.  
 
 ## Materials
-We capitalized on publicly available existing image and audio databases to generate trials. Visual concepts were taken from the THINGS+ dataset (Stoinski et al., 2023), after filtering out non-child safe images (e.g., weapons, cigarettes) and images with low-nameability (<.3), as per Stoinski et al., 2023. We used the copyright-free, high-quality image released for each visual concept. We subset to visual concepts that had available age-of-acquisition (AoA) ratings from a previous existing dataset (Kuperman, 2012) where adults were asked to retrospect on the age that they learned a word in development; these estimated AoAs were used as a proxy for item difficulty. Audio for each target word was taken from the MALD database (Tucker et al., 2019). 
+We capitalized on publicly available existing image and audio databases to generate trials. Visual concepts were taken from the THINGS+ dataset (Stoinski et al., 2023), after filtering out non-child safe images (e.g., weapons, cigarettes) and images with low-nameability (<.3), as per Stoinski et al., 2023. We used the copyright-free, high-quality image released for each visual concept. We subset to visual concepts that had available age-of-acquisition (AoA) ratings from a previous existing dataset (Kuperman et al., 2012) where adults were asked to retrospect on the age that they learned a word in development; these estimated AoAs were used as a proxy for item difficulty. Audio for each target word was taken from the MALD database (Tucker et al., 2019). 
 
 We used these stimuli to create trials that contained a target image paired with distractor images of similar difficulty (estimated using AoA) and varying similarity (estimated using a computational model). To do so, we sampled distractors with high, medium, and low similarity to the target word as operationalized via the embedding similarity of the words in the language encoder of a multimodal large language model (Radford et al., 2021).We determined high-, medium-, and low-similarity values relative to the distribution of all possible target-distractor similarity values for each word in the THINGS+ dataset. Stimuli were selected to optimize for having a maximum number of trials with unique target and distractors; in addition, we constrained the sampling such that target-distractor pairs had estimated AoA within 3 years of each other. For each target word, we first selected a high-similarity distractor that had the highest cosine similarity to the target (and was itself not one of the target words). For low-similarity words, we sampled a unique distractor word that had the lowest cosine similarity among the remaining distractors. For medium-similarity distractors, we then randomly sampled a distractor word that was the same animacy as the target word, and unique to the dataset. In our final set, we had 108 items with a range of different estimated age-of-acquisitions (e.g., hedgehog, mandolin, mulch, swordfish, waterwheel, bobsled) with all unique targets and distractors.  All stimuli and their metadata are available on the public repository for this project (BLINDED). 
 	
@@ -273,7 +273,8 @@ l_slope <- slopes %>%
   arrange(age_cor) %>%
   slice_max(n=40, order_by=-age_cor)
 ```
-```{r}
+
+```{r, results='hide'}
 # example words
 easiest_words <- item_effects %>% 
   filter(AoA_Bin==1) %>%
@@ -519,7 +520,7 @@ table_data <- tidy(model, effects = "fixed") %>%
 kable(table_data, 
       format = "latex",
       booktabs = TRUE,
-      caption = "Coefficients a linear regression assessing changes in the proportion of related distractors chosen over development. Age and number of trials were standardized prior to analysis.",
+      caption = "Coefficients of a linear regression assessing changes in the proportion of related distractors chosen over development. Age and number of trials were standardized prior to analysis.",
       align = c("l", "r", "r", "r", "r")) %>%
   kable_styling(full_width = FALSE) 
 ```
