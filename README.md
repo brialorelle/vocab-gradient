@@ -29,15 +29,19 @@ The repository includes:
   - `ggplot2`
   - `magrittr`
 
-Install required packages:
 
-```r
-install.packages(c("tidyverse", "knitr", "ggplot2", "magrittr"))
+## Preferred method: Run from command line using `renv` and notebook
+
+All necessary packages will be loaded using the `renv` environment lockfile.
+
+```bash
+R -q -e "install.packages('renv'); renv::restore(prompt=FALSE)"
+Rscript -e "rmarkdown::render('writing/paper1_visualvocab.Rmd')"
 ````
 
----
 
-## Reproducing key analyses
+
+## Option 2: Reproducing key analyses from original files
 
 1. Open the RStudio project: `vocab-gradient.Rproj` and ensure that you have the required libraries
 2. Start with `analysis/step1_wrangle_datasets.Rmd` to clean and format the datasets (not required)
