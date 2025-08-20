@@ -1,11 +1,10 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+%
 \documentclass[
   man,mask]{apa6}
-\usepackage{xcolor}
 \usepackage{amsmath,amssymb}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -36,6 +35,24 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
+\usepackage{xcolor}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 % Make \paragraph and \subparagraph free-standing
 \makeatletter
 \ifx\paragraph\undefined\else
@@ -58,21 +75,6 @@
   \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
   \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
-\makeatother
-\usepackage{graphicx}
-\makeatletter
-\newsavebox\pandoc@box
-\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
-  \sbox\pandoc@box{#1}%
-  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
-  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
-  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
-  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
-  \else\usebox{\pandoc@box}%
-  \fi%
-}
-% Set default figure placement to htbp
-\def\fps@figure{htbp}
 \makeatother
 % definitions for citeproc citations
 \NewDocumentCommand\citeproctext{}{}
@@ -116,12 +118,6 @@
 % get rid of language-specific shorthands (see #6817):
 \let\LanguageShortHands\languageshorthands
 \def\languageshorthands#1{}
-\ifLuaTeX
-  \usepackage[english]{selnolig} % disable illegal ligatures
-\fi
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 % Manuscript styling
 \usepackage{upgreek}
 \captionsetup{font=singlespacing,justification=justified}
@@ -182,10 +178,11 @@
 \makeatletter
 \xapptocmd\appendix
   {\xapptocmd\section
-    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
+    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi: #1}}
     {}{\InnerPatchFailed}%
   }
 {}{\PatchFailed}
+\makeatother
 \keywords{visual concepts, receptive vocabulary, large language models, object recognition\newline\indent Word count: 1999 excluding Method/Results}
 \DeclareDelayedFloatFlavor{ThreePartTable}{table}
 \DeclareDelayedFloatFlavor{lltable}{table}
@@ -204,6 +201,9 @@
 \setlength{\cftfigindent}{0pt}
 \setlength{\cftafterloftitleskip}{0pt}
 \settowidth{\cftfignumwidth}{Figure 10.\qquad}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -264,7 +264,7 @@ With these data, we investigated three main questions. First, we examined whethe
 
 }
 
-\caption{Example trials that depicted easy, intermediate, and difficult words, as operationalized via estimated age-of-acquisition (Kuperman et al., 2013); each target word image is taken from shown alongside the three distractors that varied in similarity to the target word; distractors were chosen via the similarity of the target and distractor words in the language encoder of CLIP (Radford et al., 2021). }\label{fig:procedure-figure}
+\caption{Example trials that depicted easy, intermediate, and difficult words, as operationalized via estimated age-of-acquisition (Kuperman et al., 2012); each target word image is taken from shown alongside the three distractors that varied in similarity to the target word; distractors were chosen via the similarity of the target and distractor words in the language encoder of CLIP (Radford et al., 2021). }\label{fig:procedure-figure}
 \end{figure}
 
 .
@@ -279,7 +279,7 @@ We excluded an additional 84 participants who scored near chance on 4AFC trials 
 
 \subsection{Materials}\label{materials}
 
-We capitalized on publicly available existing image and audio databases to generate trials. Visual concepts were taken from the THINGS+ dataset (Stoinski et al., 2023), after filtering out non-child safe images (e.g., weapons, cigarettes) and images with low-nameability (\textless.3), as per Stoinski et al., 2023. We used the copyright-free, high-quality image released for each visual concept. We subset to visual concepts that had available age-of-acquisition (AoA) ratings from a previous existing dataset (Kuperman, 2012) where adults were asked to retrospect on the age that they learned a word in development; these estimated AoAs were used as a proxy for item difficulty. Audio for each target word was taken from the MALD database (Tucker et al., 2019).
+We capitalized on publicly available existing image and audio databases to generate trials. Visual concepts were taken from the THINGS+ dataset (Stoinski et al., 2023), after filtering out non-child safe images (e.g., weapons, cigarettes) and images with low-nameability (\textless.3), as per Stoinski et al., 2023. We used the copyright-free, high-quality image released for each visual concept. We subset to visual concepts that had available age-of-acquisition (AoA) ratings from a previous existing dataset (Kuperman et al., 2012) where adults were asked to retrospect on the age that they learned a word in development; these estimated AoAs were used as a proxy for item difficulty. Audio for each target word was taken from the MALD database (Tucker et al., 2019).
 
 We used these stimuli to create trials that contained a target image paired with distractor images of similar difficulty (estimated using AoA) and varying similarity (estimated using a computational model). To do so, we sampled distractors with high, medium, and low similarity to the target word as operationalized via the embedding similarity of the words in the language encoder of a multimodal large language model (Radford et al., 2021).We determined high-, medium-, and low-similarity values relative to the distribution of all possible target-distractor similarity values for each word in the THINGS+ dataset. Stimuli were selected to optimize for having a maximum number of trials with unique target and distractors; in addition, we constrained the sampling such that target-distractor pairs had estimated AoA within 3 years of each other. For each target word, we first selected a high-similarity distractor that had the highest cosine similarity to the target (and was itself not one of the target words). For low-similarity words, we sampled a unique distractor word that had the lowest cosine similarity among the remaining distractors. For medium-similarity distractors, we then randomly sampled a distractor word that was the same animacy as the target word, and unique to the dataset. In our final set, we had 108 items with a range of different estimated age-of-acquisitions (e.g., hedgehog, mandolin, mulch, swordfish, waterwheel, bobsled) with all unique targets and distractors. All stimuli and their metadata are available on the public repository for this project (BLINDED).
 
@@ -309,26 +309,6 @@ These data were collected with the secondary goal of creating an open-source mea
 
 Do children gradually acquire visual vocabulary knowledge, or are precise representations for most nouns acquired by middle childhood? We found a gradual increase in children's ability to correctly identify the target picture across our entire age range; Figure 2 shows the proportion of time that children identified the target, highlighting a protracted developmental trajectory and little evidence for a plateau in the elementary years. Children became increasingly accurate over development at identifying the correct referent that a word referred to, with the oldest children in our sample (13- and 14-year-olds) still performing less accurately than adults.
 
-\begin{verbatim}
-## # A tibble: 3 x 4
-## # Groups:   age_group, targetWord [3]
-##   age_group targetWord  perc AoA_Est_Word1
-##       <dbl> <chr>      <dbl>         <dbl>
-## 1         3 lollipop   0.945          3.89
-## 2         3 turtle     0.929          4.17
-## 3         3 watermelon 0.929          4.22
-\end{verbatim}
-
-\begin{verbatim}
-## # A tibble: 3 x 4
-## # Groups:   age_group, targetWord [3]
-##   age_group targetWord  perc AoA_Est_Word1
-##       <dbl> <chr>      <dbl>         <dbl>
-## 1         3 hamster    0.722          4.37
-## 2         3 map        0.731          5.6 
-## 3         3 squirrel   0.782          4.44
-\end{verbatim}
-
 We found a slight developmental trend for relatively easy words that had an average estimated age-of-acquisition (Kuperman et al., 2012) (AoA) of 4.81 years (SD = 0.87; acorn, bulldozer, scoop, puddle, sprinkler), but change over development was much more pronounced for more difficult words (barrel, buffet, coaster, stump, carousel; average AoA = 6.95 years, SD = 0.65) and challenging words (e.g., tapestry, scaffolding, mandolin, aloe; average AoA = 9.60 years, SD = 1.21) (see Figure 2). At an item level, 3-year-olds' performance on the easiest words (watermelon, M = .93; turtle, M = .93, lollipop, M = .95) suggests that they understood the task. However, other items with relatively low AoAs (squirrel, M = .78, hamster, M = .72; map, M = .73) were more difficult for young children. Over development, the words that showed the greatest change across age (see Figure 3a), included some animals (e.g., swordfish), as well as inanimate objects (prism, antenna, sandbag, turbine) but also other kinds of objects, including parts of buildings (scaffolding, gutter). Some items, however, showed relatively little change across age: these tended to be easy words that children across all ages identified correctly (sunflower, rice, potato, hedgehog). Overall, these results highlight variability across individual items and suggest that children gradually build knowledge of many visual concepts throughout childhood.
 
 \begin{figure}[H]
@@ -346,7 +326,7 @@ Do children begin with high-fidelity representations of what word referents look
 
 \begin{table}
 \centering
-\caption{\label{tab:unnamed-chunk-22}Coefficients a linear regression assessing changes in the proportion of related distractors chosen over development. Age and number of trials were standardized prior to analysis.}
+\caption{\label{tab:unnamed-chunk-20}Coefficients of a linear regression assessing changes in the proportion of related distractors chosen over development. Age and number of trials were standardized prior to analysis.}
 \centering
 \begin{tabular}[t]{lrrrr}
 \toprule
@@ -372,7 +352,7 @@ We examined whether there are systematic changes in how children made errors acr
 
 \subsection{Modeling changes in children's error patterns}\label{modeling-changes-in-childrens-error-patterns}
 
-\pandocbounded{\includegraphics[keepaspectratio]{paper1_visualvocab_files/figure-latex/unnamed-chunk-25-1.pdf}}
+\includegraphics{paper1_visualvocab_files/figure-latex/unnamed-chunk-23-1.pdf}
 
 \begin{figure}[H]
 
