@@ -2,7 +2,7 @@
 \ifnextchar[{\eatarg}{}
 
 \centering
-\caption{\label{tab:unnamed-chunk-22}Coefficients a linear regression assessing changes in the proportion of related distractors chosen over development. Age and number of trials were standardized prior to analysis.}
+\caption{\label{tab:unnamed-chunk-20}Coefficients a linear regression assessing changes in the proportion of related distractors chosen over development. Age and number of trials were standardized prior to analysis.}
 \centering
 \begin{tabular}[t]{lrrrr}
 \toprule
