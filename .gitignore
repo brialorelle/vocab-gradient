@@ -80,3 +80,12 @@ writing/paper1_visualvocab.tex
 writing/paper1_visualvocab.ttt
 writing/paper1_visualvocab.tex
 writing/authors.R
+
+# all blinded documents
+writing/_blinded/
+writing/_blinded/*
+writing/_blinded/submission_docs/Long et al 2025 VisualVocab Preprint.pdf
+writing/_blinded/submission_docs/manuscript_blinded.pdf
+writing/_blinded/submission_docs/~$nuscript_blinded.docx
+writing/_blinded/submission_docs/~$nuscript_blinded.docx
+writing/_blinded/
