@@ -1,0 +1,477 @@
+target,image,word,ipa_word,ipa_target,lev_dist,max_len,phon_sim
+acorn,image1,acorn,eɪkɔɹn,eɪkɔɹn,0,6,1
+acorn,image2,coconut,koʊkənʌt,eɪkɔɹn,7,8,0.125
+acorn,image3,key,ki,eɪkɔɹn,5,6,0.16666666666666663
+acorn,image4,clothesline,kloʊðslaɪn,eɪkɔɹn,9,10,0.09999999999999998
+aloe,image1,aloe,æloʊ,æloʊ,0,4,1
+aloe,image2,cactus,kæktəs,æloʊ,5,6,0.16666666666666663
+aloe,image3,bracket,bɹækɪt,æloʊ,5,6,0.16666666666666663
+aloe,image4,banner,bænəɹ,æloʊ,4,5,0.19999999999999996
+antenna,image1,antenna,æntɛnə,æntɛnə,0,6,1
+antenna,image2,stem,stɛm,æntɛnə,4,6,0.33333333333333337
+antenna,image3,pinecone,paɪŋkoʊn,æntɛnə,8,8,0
+antenna,image4,backgammon,bækɡæmən,æntɛnə,6,8,0.25
+artichoke,image1,artichoke,ɑɹɾɪtʃoʊk,ɑɹɾɪtʃoʊk,0,9,1
+artichoke,image2,leek,lik,ɑɹɾɪtʃoʊk,8,9,0.11111111111111116
+artichoke,image3,sunroof,sʌnɹuf,ɑɹɾɪtʃoʊk,9,9,0
+artichoke,image4,cello,tʃɛloʊ,ɑɹɾɪtʃoʊk,7,9,0.2222222222222222
+bamboo,image1,bamboo,bæmbu,bæmbu,0,5,1
+bamboo,image2,lumber,lʌmbəɹ,bæmbu,4,6,0.33333333333333337
+bamboo,image3,yacht,jɑt,bæmbu,5,5,0
+bamboo,image4,apron,eɪpɹən,bæmbu,6,6,0
+barrel,image1,barrel,bæɹəl,bæɹəl,0,5,1
+barrel,image2,bucket,bʌkɪt,bæɹəl,4,5,0.19999999999999996
+barrel,image3,shelf,ʃɛlf,bæɹəl,5,5,0
+barrel,image4,anteater,æntiɾəɹ,bæɹəl,6,7,0.1428571428571429
+blender,image1,blender,blɛndəɹ,blɛndəɹ,0,7,1
+blender,image2,blind,blaɪnd,blɛndəɹ,4,7,0.4285714285714286
+blender,image3,mailbox,meɪlbɑks,blɛndəɹ,8,8,0
+blender,image4,trampoline,tɹæmpəlin,blɛndəɹ,8,9,0.11111111111111116
+blower,image1,blower,bloʊəɹ,bloʊəɹ,0,6,1
+blower,image2,burner,bɜnəɹ,bloʊəɹ,3,6,0.5
+blower,image3,buggy,bʌɡi,bloʊəɹ,5,6,0.16666666666666663
+blower,image4,papaya,pɐpaɪə,bloʊəɹ,6,6,0
+bobsled,image1,bobsled,bɑbslɛd,bɑbslɛd,0,7,1
+bobsled,image2,sidecar,saɪdkɑɹ,bɑbslɛd,7,7,0
+bobsled,image3,dip,dɪp,bɑbslɛd,7,7,0
+bobsled,image4,cilantro,sɪlæntɹoʊ,bɑbslɛd,9,9,0
+bouquet,image1,bouquet,bukeɪ,bukeɪ,0,5,1
+bouquet,image2,centerpiece,sɛntəɹpis,bukeɪ,9,9,0
+bouquet,image3,bandanna,bændænə,bukeɪ,6,7,0.1428571428571429
+bouquet,image4,submarine,sʌbməɹɹin,bukeɪ,8,9,0.11111111111111116
+buffet,image1,buffet,bʌfɪt,bʌfɪt,0,5,1
+buffet,image2,counter,kaʊntəɹ,bʌfɪt,6,7,0.1428571428571429
+buffet,image3,crib,kɹɪb,bʌfɪt,4,5,0.19999999999999996
+buffet,image4,rhubarb,ɹubɑɹb,bʌfɪt,6,6,0
+bulldozer,image1,bulldozer,bʊldoʊzəɹ,bʊldoʊzəɹ,0,9,1
+bulldozer,image2,tractor,tɹæktəɹ,bʊldoʊzəɹ,7,9,0.2222222222222222
+bulldozer,image3,orange,ɔɹɪndʒ,bʊldoʊzəɹ,9,9,0
+bulldozer,image4,eggplant,ɛɡplənt,bʊldoʊzəɹ,9,9,0
+cake,image1,cake,keɪk,keɪk,0,4,1
+cake,image2,dessert,dɪzɜt,keɪk,5,5,0
+cake,image3,refrigerator,ɹᵻfɹɪdʒəɹɹeɪɾɚ,keɪk,12,14,0.1428571428571429
+cake,image4,battery,bæɾəɹɹi,keɪk,7,7,0
+candlestick,image1,candlestick,kændəlstɪk,kændəlstɪk,0,10,1
+candlestick,image2,candle,kændəl,kændəlstɪk,4,10,0.6
+candlestick,image3,egg,ɛɡ,kændəlstɪk,10,10,0
+candlestick,image4,orangutan,ɔɹæŋɡətæn,kændəlstɪk,8,10,0.19999999999999996
+caramel,image1,caramel,kæɹəməl,kæɹəməl,0,7,1
+caramel,image2,amber,æmbəɹ,kæɹəməl,5,7,0.2857142857142857
+caramel,image3,olive,ɑlɪv,kæɹəməl,7,7,0
+caramel,image4,warthog,wɔɹthɑɡ,kæɹəməl,6,7,0.1428571428571429
+carousel,image1,carousel,kæɹəsɛl,kæɹəsɛl,0,7,1
+carousel,image2,carriage,kæɹɪdʒ,kæɹəsɛl,4,7,0.4285714285714286
+carousel,image3,dish,dɪʃ,kæɹəsɛl,7,7,0
+carousel,image4,melon,mɛlən,kæɹəsɛl,6,7,0.1428571428571429
+carrot,image1,carrot,kæɹət,kæɹət,0,5,1
+carrot,image2,vegetable,vɛdʒɪɾəbəl,kæɹət,9,10,0.09999999999999998
+carrot,image3,phone,foʊn,kæɹət,5,5,0
+carrot,image4,bathtub,bæθtʌb,kæɹət,5,6,0.16666666666666663
+cassette,image1,cassette,kɐsɛt,kɐsɛt,0,5,1
+cassette,image2,tape,teɪp,kɐsɛt,5,5,0
+cassette,image3,book,bʊk,kɐsɛt,5,5,0
+cassette,image4,hammock,hæmək,kɐsɛt,5,5,0
+cheese,image1,cheese,tʃiz,tʃiz,0,4,1
+cheese,image2,butter,bʌɾəɹ,tʃiz,5,5,0
+cheese,image3,mud,mʌd,tʃiz,4,4,0
+cheese,image4,hippopotamus,hɪpəpɑɾæməs,tʃiz,11,11,0
+cloak,image1,cloak,kloʊk,kloʊk,0,5,1
+cloak,image2,hood,hʊd,kloʊk,4,5,0.19999999999999996
+cloak,image3,cinnamon,sɪnəmən,kloʊk,7,7,0
+cloak,image4,jellyfish,dʒɛlɪfɪʃ,kloʊk,7,8,0.125
+clothespin,image1,clothespin,kloʊðspɪn,kloʊðspɪn,0,9,1
+clothespin,image2,toothpick,tuθpɪk,kloʊðspɪn,7,9,0.2222222222222222
+clothespin,image3,volleyball,vɑlɪbɔl,kloʊðspɪn,9,9,0
+clothespin,image4,fondue,fɑndu,kloʊðspɪn,9,9,0
+coaster,image1,coaster,koʊstəɹ,koʊstəɹ,0,7,1
+coaster,image2,card,kɑɹd,koʊstəɹ,6,7,0.1428571428571429
+coaster,image3,painting,peɪntɪŋ,koʊstəɹ,6,7,0.1428571428571429
+coaster,image4,hummingbird,hʌmɪŋbɜd,koʊstəɹ,8,8,0
+cork,image1,cork,kɔɹk,kɔɹk,0,4,1
+cork,image2,jersey,dʒɜsi,kɔɹk,5,5,0
+cork,image3,skateboard,skeɪtboɹd,kɔɹk,7,9,0.2222222222222222
+cork,image4,mascara,mæskɑɹɹə,kɔɹk,6,8,0.25
+cornbread,image1,cornbread,kɔɹnbɹɛd,kɔɹnbɹɛd,0,8,1
+cornbread,image2,corn,kɔɹn,kɔɹnbɹɛd,4,8,0.5
+cornbread,image3,wreath,ɹiθ,kɔɹnbɹɛd,7,8,0.125
+cornbread,image4,organ,ɔɹɡən,kɔɹnbɹɛd,6,8,0.25
+corset,image1,corset,kɔɹsɛt,kɔɹsɛt,0,6,1
+corset,image2,harness,hɑɹnɪs,kɔɹsɛt,5,6,0.16666666666666663
+corset,image3,mantle,mæntəl,kɔɹsɛt,6,6,0
+corset,image4,bonsai,bɑnsaɪ,kɔɹsɛt,5,6,0.16666666666666663
+cymbal,image1,cymbal,sɪmbəl,sɪmbəl,0,6,1
+cymbal,image2,mallet,mælɪt,sɪmbəl,6,6,0
+cymbal,image3,kaleidoscope,kəlaɪdəskoʊp,sɪmbəl,11,12,0.08333333333333337
+cymbal,image4,ferry,fɛɹi,sɪmbəl,6,6,0
+dumpling,image1,dumpling,dʌmplɪŋ,dʌmplɪŋ,0,7,1
+dumpling,image2,meatball,mitbɔl,dʌmplɪŋ,7,7,0
+dumpling,image3,rocket,ɹɑkɪt,dʌmplɪŋ,6,7,0.1428571428571429
+dumpling,image4,coyote,kaɪoʊɾi,dʌmplɪŋ,7,7,0
+elbow,image1,elbow,ɛlboʊ,ɛlboʊ,0,5,1
+elbow,image2,arm,ɑɹm,ɛlboʊ,5,5,0
+elbow,image3,bed,bɛd,ɛlboʊ,4,5,0.19999999999999996
+elbow,image4,gorilla,ɡəɹɹɪlə,ɛlboʊ,7,7,0
+fan,image1,fan,fæn,fæn,0,3,1
+fan,image2,album,ælbəm,fæn,5,5,0
+fan,image3,boulder,boʊldəɹ,fæn,7,7,0
+fan,image4,chipmunk,tʃɪpmʌŋk,fæn,8,8,0
+flan,image1,flan,flæn,flæn,0,4,1
+flan,image2,fuse,fjuz,flæn,3,4,0.25
+flan,image3,amplifier,æmplɪfaɪəɹ,flæn,9,10,0.09999999999999998
+flan,image4,turnstile,tɜnstaɪl,flæn,8,8,0
+foam,image1,foam,foʊm,foʊm,0,4,1
+foam,image2,float,floʊt,foʊm,2,5,0.6
+foam,image3,quilt,kwɪlt,foʊm,5,5,0
+foam,image4,asparagus,ɐspæɹəɡəs,foʊm,9,9,0
+footbath,image1,footbath,fʊtbæθ,fʊtbæθ,0,6,1
+footbath,image2,trough,tɹɔf,fʊtbæθ,5,6,0.16666666666666663
+footbath,image3,vest,vɛst,fʊtbæθ,6,6,0
+footbath,image4,rhinoceros,ɹaɪnɑsəɹɹəs,fʊtbæθ,11,11,0
+fox,image1,fox,fɑks,fɑks,0,4,1
+fox,image2,wolf,wʊlf,fɑks,4,4,0
+fox,image3,reindeer,ɹeɪndɪɹ,fɑks,7,7,0
+fox,image4,harmonica,hɑɹmɑnɪkə,fɑks,7,9,0.2222222222222222
+freezer,image1,freezer,fɹizəɹ,fɹizəɹ,0,6,1
+freezer,image2,cooler,kuləɹ,fɹizəɹ,4,6,0.33333333333333337
+freezer,image3,nest,nɛst,fɹizəɹ,6,6,0
+freezer,image4,binoculars,bᵻnɑkjʊləɹz,fɹizəɹ,9,11,0.18181818181818177
+fruitcake,image1,fruitcake,fɹutkeɪk,fɹutkeɪk,0,8,1
+fruitcake,image2,fudge,fʌdʒ,fɹutkeɪk,7,8,0.125
+fruitcake,image3,dough,doʊ,fɹutkeɪk,8,8,0
+fruitcake,image4,anvil,ænvəl,fɹutkeɪk,8,8,0
+gondola,image1,gondola,ɡəndoʊlə,ɡəndoʊlə,0,8,1
+gondola,image2,trolley,tɹɑli,ɡəndoʊlə,7,8,0.125
+gondola,image3,clipboard,klɪpboɹd,ɡəndoʊlə,8,8,0
+gondola,image4,charger,tʃɑɹdʒəɹ,ɡəndoʊlə,8,8,0
+grate,image1,grate,ɡɹeɪt,ɡɹeɪt,0,5,1
+grate,image2,crate,kɹeɪt,ɡɹeɪt,1,5,0.8
+grate,image3,reel,ɹil,ɡɹeɪt,4,5,0.19999999999999996
+grate,image4,tuba,tubə,ɡɹeɪt,5,5,0
+gutter,image1,gutter,ɡʌɾəɹ,ɡʌɾəɹ,0,5,1
+gutter,image2,filter,fɪltəɹ,ɡʌɾəɹ,4,6,0.33333333333333337
+gutter,image3,almond,ɔlmənd,ɡʌɾəɹ,5,6,0.16666666666666663
+gutter,image4,porthole,poɹthoʊl,ɡʌɾəɹ,8,8,0
+hamster,image1,hamster,hæmstəɹ,hæmstəɹ,0,7,1
+hamster,image2,rabbit,ɹæbɪt,hæmstəɹ,5,7,0.2857142857142857
+hamster,image3,tadpole,tædpoʊl,hæmstəɹ,6,7,0.1428571428571429
+hamster,image4,skirt,skɜt,hæmstəɹ,6,7,0.1428571428571429
+headdress,image1,headdress,hɛddɹɛs,hɛddɹɛs,0,7,1
+headdress,image2,crown,kɹaʊn,hɛddɹɛs,7,7,0
+headdress,image3,poster,poʊstəɹ,hɛddɹɛs,7,7,0
+headdress,image4,mango,mæŋɡoʊ,hɛddɹɛs,7,7,0
+hedgehog,image1,hedgehog,hɛdʒhɑɡ,hɛdʒhɑɡ,0,7,1
+hedgehog,image2,owl,aʊl,hɛdʒhɑɡ,7,7,0
+hedgehog,image3,iguana,ɪɡjuɑnə,hɛdʒhɑɡ,7,7,0
+hedgehog,image4,dumbwaiter,dʌmweɪɾəɹ,hɛdʒhɑɡ,9,9,0
+hoe,image1,hoe,hoʊ,hoʊ,0,3,1
+hoe,image2,peg,pɛɡ,hoʊ,3,3,0
+hoe,image3,dustpan,dʌstpæn,hoʊ,7,7,0
+hoe,image4,beaker,bikəɹ,hoʊ,5,5,0
+hopscotch,image1,hopscotch,hɑpskɑtʃ,hɑpskɑtʃ,0,8,1
+hopscotch,image2,chalk,tʃɔk,hɑpskɑtʃ,7,8,0.125
+hopscotch,image3,funnel,fʌnəl,hɑpskɑtʃ,8,8,0
+hopscotch,image4,jug,dʒʌɡ,hɑpskɑtʃ,8,8,0
+horn,image1,horn,hɔɹn,hɔɹn,0,4,1
+horn,image2,bone,boʊn,hɔɹn,3,4,0.25
+horn,image3,chin,tʃɪn,hɔɹn,3,4,0.25
+horn,image4,ladybug,leɪdɪbʌɡ,hɔɹn,8,8,0
+kimono,image1,kimono,kɪmoʊnoʊ,kɪmoʊnoʊ,0,8,1
+kimono,image2,cardigan,kɑɹdɪɡən,kɪmoʊnoʊ,7,8,0.125
+kimono,image3,turntable,tɜnteɪbəl,kɪmoʊnoʊ,9,9,0
+kimono,image4,cable,keɪbəl,kɪmoʊnoʊ,7,8,0.125
+koala,image1,koala,koʊɑlə,koʊɑlə,0,6,1
+koala,image2,panda,pændə,koʊɑlə,5,6,0.16666666666666663
+koala,image3,bee,bi,koʊɑlə,6,6,0
+koala,image4,backscratcher,bækskɹætʃəɹ,koʊɑlə,9,11,0.18181818181818177
+latch,image1,latch,lætʃ,lætʃ,0,4,1
+latch,image2,lock,lɑk,lætʃ,3,4,0.25
+latch,image3,microwave,maɪkɹoʊweɪv,lætʃ,11,11,0
+latch,image4,umbrella,ʌmbɹɛlə,lætʃ,7,7,0
+locker,image1,locker,lɑkəɹ,lɑkəɹ,0,5,1
+locker,image2,cabinet,kæbᵻnət,lɑkəɹ,6,7,0.1428571428571429
+locker,image3,basket,bæskɪt,lɑkəɹ,5,6,0.16666666666666663
+locker,image4,gargoyle,ɡɑɹɡɔɪl,lɑkəɹ,6,7,0.1428571428571429
+lollipop,image1,lollipop,lɑlɪpɑp,lɑlɪpɑp,0,7,1
+lollipop,image2,candy,kændi,lɑlɪpɑp,7,7,0
+lollipop,image3,doorbell,doɹbɛl,lɑlɪpɑp,7,7,0
+lollipop,image4,crumb,kɹʌm,lɑlɪpɑp,7,7,0
+mandolin,image1,mandolin,mændəlɪn,mændəlɪn,0,8,1
+mandolin,image2,gourd,ɡʊɹd,mændəlɪn,7,8,0.125
+mandolin,image3,mast,mæst,mændəlɪn,6,8,0.25
+mandolin,image4,seismograph,saɪzməɡɹæf,mændəlɪn,9,10,0.09999999999999998
+map,image1,map,mæp,mæp,0,3,1
+map,image2,marker,mɑɹkəɹ,mæp,5,6,0.16666666666666663
+map,image3,ruby,ɹubi,mæp,4,4,0
+map,image4,dishwasher,dɪʃwɑʃəɹ,mæp,8,8,0
+marshmallow,image1,marshmallow,mɑɹʃmɐloʊ,mɑɹʃmɐloʊ,0,9,1
+marshmallow,image2,snowball,snoʊbɔl,mɑɹʃmɐloʊ,8,9,0.11111111111111116
+marshmallow,image3,dryer,dɹaɪəɹ,mɑɹʃmɐloʊ,8,9,0.11111111111111116
+marshmallow,image4,rooster,ɹustəɹ,mɑɹʃmɐloʊ,8,9,0.11111111111111116
+mulch,image1,mulch,mʌltʃ,mʌltʃ,0,5,1
+mulch,image2,compost,kɑmpoʊst,mʌltʃ,7,8,0.125
+mulch,image3,clarinet,klæɹənɛt,mʌltʃ,8,8,0
+mulch,image4,lantern,læntəɹn,mʌltʃ,6,7,0.1428571428571429
+net,image1,net,nɛt,nɛt,0,3,1
+net,image2,tee,ti,nɛt,3,3,0
+net,image3,domino,dɑmɪnoʊ,nɛt,6,7,0.1428571428571429
+net,image4,hydrant,haɪdɹənt,nɛt,7,8,0.125
+oatmeal,image1,oatmeal,oʊtmiəl,oʊtmiəl,0,7,1
+oatmeal,image2,cereal,siəɹɪəl,oʊtmiəl,5,7,0.2857142857142857
+oatmeal,image3,collar,kɑləɹ,oʊtmiəl,6,7,0.1428571428571429
+oatmeal,image4,aquarium,ɐkwɛɹiəm,oʊtmiəl,6,8,0.25
+oil,image1,oil,ɔɪl,ɔɪl,0,3,1
+oil,image2,gel,dʒɛl,ɔɪl,3,4,0.25
+oil,image3,grain,ɡɹeɪn,ɔɪl,4,5,0.19999999999999996
+oil,image4,bassinet,bæsɪnɛt,ɔɪl,6,7,0.1428571428571429
+omelet,image1,omelet,ɑmlət,ɑmlət,0,5,1
+omelet,image2,pancake,pæŋkeɪk,ɑmlət,7,7,0
+omelet,image3,clay,kleɪ,ɑmlət,4,5,0.19999999999999996
+omelet,image4,trunk,tɹʌŋk,ɑmlət,5,5,0
+otter,image1,otter,ɑɾəɹ,ɑɾəɹ,0,4,1
+otter,image2,beaver,bivəɹ,ɑɾəɹ,3,5,0.4
+otter,image3,goose,ɡus,ɑɾəɹ,4,4,0
+otter,image4,tablecloth,teɪbəlklɔθ,ɑɾəɹ,9,10,0.09999999999999998
+pajamas,image1,pajamas,pɐdʒɑməz,pɐdʒɑməz,0,8,1
+pajamas,image2,pants,pænts,pɐdʒɑməz,7,8,0.125
+pajamas,image3,cage,keɪdʒ,pɐdʒɑməz,7,8,0.125
+pajamas,image4,groundhog,ɡɹaʊndhɑɡ,pɐdʒɑməz,9,9,0
+parsley,image1,parsley,pɑɹsli,pɑɹsli,0,6,1
+parsley,image2,basil,beɪzəl,pɑɹsli,6,6,0
+parsley,image3,tiara,tiɑɹə,pɑɹsli,5,6,0.16666666666666663
+parsley,image4,kayak,kaɪæk,pɑɹsli,6,6,0
+pie,image1,pie,paɪ,paɪ,0,3,1
+pie,image2,pizza,pitsə,paɪ,4,5,0.19999999999999996
+pie,image3,flashlight,flæʃlaɪt,paɪ,6,8,0.25
+pie,image4,sweater,swɛɾəɹ,paɪ,6,6,0
+pistachio,image1,pistachio,pɪstæʃɪoʊ,pɪstæʃɪoʊ,0,9,1
+pistachio,image2,avocado,ævəkɑdoʊ,pɪstæʃɪoʊ,7,9,0.2222222222222222
+pistachio,image3,taco,tɑkoʊ,pɪstæʃɪoʊ,6,9,0.33333333333333337
+pistachio,image4,bagpipe,bæɡpaɪp,pɪstæʃɪoʊ,8,9,0.11111111111111116
+pitcher,image1,pitcher,pɪtʃəɹ,pɪtʃəɹ,0,6,1
+pitcher,image2,batter,bæɾəɹ,pɪtʃəɹ,4,6,0.33333333333333337
+pitcher,image3,tumbleweed,tʌmbəlwid,pɪtʃəɹ,8,9,0.11111111111111116
+pitcher,image4,medal,mɛdəl,pɪtʃəɹ,5,6,0.16666666666666663
+potato,image1,potato,pəteɪɾoʊ,pəteɪɾoʊ,0,8,1
+potato,image2,pot,pɑt,pəteɪɾoʊ,6,8,0.25
+potato,image3,glasses,ɡlæsᵻz,pəteɪɾoʊ,8,8,0
+potato,image4,dragonfly,dɹæɡənflaɪ,pəteɪɾoʊ,10,10,0
+prism,image1,prism,pɹɪzəm,pɹɪzəm,0,6,1
+prism,image2,radar,ɹeɪdɑɹ,pɹɪzəm,5,6,0.16666666666666663
+prism,image3,subway,sʌbweɪ,pɹɪzəm,6,6,0
+prism,image4,chinchilla,tʃɪntʃɪlə,pɹɪzəm,8,9,0.11111111111111116
+prune,image1,prune,pɹun,pɹun,0,4,1
+prune,image2,raisin,ɹeɪzən,pɹun,5,6,0.16666666666666663
+prune,image3,headrest,hɛdɹɛst,pɹun,6,7,0.1428571428571429
+prune,image4,jukebox,dʒukbɑks,pɹun,7,8,0.125
+puddle,image1,puddle,pʌdəl,pʌdəl,0,5,1
+puddle,image2,bubble,bʌbəl,pʌdəl,2,5,0.6
+puddle,image3,baseball,beɪsbɔl,pʌdəl,6,7,0.1428571428571429
+puddle,image4,salami,sɐlɑmi,pʌdəl,6,6,0
+pump,image1,pump,pʌmp,pʌmp,0,4,1
+pump,image2,plug,plʌɡ,pʌmp,3,4,0.25
+pump,image3,coat,koʊt,pʌmp,4,4,0
+pump,image4,scarf,skɑɹf,pʌmp,5,5,0
+rice,image1,rice,ɹaɪs,ɹaɪs,0,4,1
+rice,image2,dice,daɪs,ɹaɪs,1,4,0.75
+rice,image3,box,bɑks,ɹaɪs,3,4,0.25
+rice,image4,bedpost,bɛdpoʊst,ɹaɪs,7,8,0.125
+saddle,image1,saddle,sædəl,sædəl,0,5,1
+saddle,image2,handle,hændəl,sædəl,2,6,0.6666666666666667
+saddle,image3,figurine,fɪɡjʊɹɹin,sædəl,9,9,0
+saddle,image4,broccoli,bɹɑkəli,sædəl,5,7,0.2857142857142857
+sandbag,image1,sandbag,sændbæɡ,sændbæɡ,0,7,1
+sandbag,image2,sandpaper,sændpeɪpəɹ,sændbæɡ,6,10,0.4
+sandbag,image3,valve,vælv,sændbæɡ,6,7,0.1428571428571429
+sandbag,image4,octopus,ɑktəpəs,sændbæɡ,7,7,0
+sauerkraut,image1,sauerkraut,saʊəɹkɹaʊt,saʊəɹkɹaʊt,0,10,1
+sauerkraut,image2,potpourri,pɑtpoɹi,saʊəɹkɹaʊt,9,10,0.09999999999999998
+sauerkraut,image3,dashboard,dæʃboɹd,saʊəɹkɹaʊt,9,10,0.09999999999999998
+sauerkraut,image4,clove,kloʊv,saʊəɹkɹaʊt,8,10,0.19999999999999996
+scaffolding,image1,scaffolding,skæfoʊldɪŋ,skæfoʊldɪŋ,0,10,1
+scaffolding,image2,satellite,sæɾəlaɪt,skæfoʊldɪŋ,6,10,0.4
+scaffolding,image3,veil,veɪl,skæfoʊldɪŋ,9,10,0.09999999999999998
+scaffolding,image4,antelope,æntɪloʊp,skæfoʊldɪŋ,8,10,0.19999999999999996
+scoop,image1,scoop,skup,skup,0,4,1
+scoop,image2,sauce,sɔs,skup,3,4,0.25
+scoop,image3,statue,stætʃu,skup,5,6,0.16666666666666663
+scoop,image4,cauliflower,kɑlɪflaʊəɹ,skup,10,10,0
+seagull,image1,seagull,siɡʌl,siɡʌl,0,5,1
+seagull,image2,pigeon,pɪdʒən,siɡʌl,6,6,0
+seagull,image3,lobster,lɑbstəɹ,siɡʌl,7,7,0
+seagull,image4,perfume,pɜfjum,siɡʌl,6,6,0
+ship,image1,ship,ʃɪp,ʃɪp,0,3,1
+ship,image2,boat,boʊt,ʃɪp,4,4,0
+ship,image3,nose,noʊz,ʃɪp,4,4,0
+ship,image4,zucchini,zʌkini,ʃɪp,6,6,0
+shower,image1,shower,ʃaʊəɹ,ʃaʊəɹ,0,5,1
+shower,image2,soap,soʊp,ʃaʊəɹ,4,5,0.19999999999999996
+shower,image3,toe,toʊ,ʃaʊəɹ,4,5,0.19999999999999996
+shower,image4,cantaloupe,kæntəloʊp,ʃaʊəɹ,8,9,0.11111111111111116
+silverware,image1,silverware,sɪlvəɹwɛɹ,sɪlvəɹwɛɹ,0,9,1
+silverware,image2,trophy,tɹoʊfi,sɪlvəɹwɛɹ,9,9,0
+silverware,image3,garlic,ɡɑɹlɪk,sɪlvəɹwɛɹ,8,9,0.11111111111111116
+silverware,image4,eggnog,ɛɡnɑɡ,sɪlvəɹwɛɹ,9,9,0
+sink,image1,sink,sɪŋk,sɪŋk,0,4,1
+sink,image2,toilet,tɔɪlɪt,sɪŋk,5,6,0.16666666666666663
+sink,image3,stair,stɛɹ,sɪŋk,3,4,0.25
+sink,image4,knitting,nɪɾɪŋ,sɪŋk,4,5,0.19999999999999996
+ski,image1,ski,ski,ski,0,3,1
+ski,image2,ice,aɪs,ski,3,3,0
+ski,image3,suitcase,sutkeɪs,ski,5,7,0.2857142857142857
+ski,image4,pincushion,pɪŋkʊʃən,ski,7,8,0.125
+sloth,image1,sloth,slɑθ,slɑθ,0,4,1
+sloth,image2,donkey,dɔŋki,slɑθ,5,5,0
+sloth,image3,clam,klæm,slɑθ,3,4,0.25
+sloth,image4,incense,ɪnsɛns,slɑθ,5,6,0.16666666666666663
+snail,image1,snail,sneɪl,sneɪl,0,5,1
+snail,image2,worm,wɜm,sneɪl,5,5,0
+snail,image3,cow,kaʊ,sneɪl,5,5,0
+snail,image4,visor,vaɪzəɹ,sneɪl,6,6,0
+sorbet,image1,sorbet,sɔɹbeɪ,sɔɹbeɪ,0,6,1
+sorbet,image2,palette,pælət,sɔɹbeɪ,6,6,0
+sorbet,image3,tamale,tɐmɑli,sɔɹbeɪ,6,6,0
+sorbet,image4,chive,tʃaɪv,sɔɹbeɪ,6,6,0
+spatula,image1,spatula,spætʃələ,spætʃələ,0,8,1
+spatula,image2,paddle,pædəl,spætʃələ,4,8,0.5
+spatula,image3,lava,lɑvə,spætʃələ,7,8,0.125
+spatula,image4,pheasant,fɛzənt,spætʃələ,7,8,0.125
+sprinkler,image1,sprinkler,spɹɪŋkləɹ,spɹɪŋkləɹ,0,9,1
+sprinkler,image2,sparkler,spɑɹkləɹ,spɹɪŋkləɹ,3,9,0.6666666666666667
+sprinkler,image3,flower,flaʊəɹ,spɹɪŋkləɹ,7,9,0.2222222222222222
+sprinkler,image4,charcoal,tʃɑɹkoʊl,spɹɪŋkləɹ,8,9,0.11111111111111116
+squash,image1,squash,skwɑʃ,skwɑʃ,0,5,1
+squash,image2,pumpkin,pʌmpkɪn,skwɑʃ,7,7,0
+squash,image3,branch,bɹæntʃ,skwɑʃ,5,6,0.16666666666666663
+squash,image4,gazelle,ɡəzɛl,skwɑʃ,5,5,0
+squirrel,image1,squirrel,skwɜl,skwɜl,0,5,1
+squirrel,image2,monkey,mʌŋki,skwɜl,5,5,0
+squirrel,image3,eagle,iɡəl,skwɜl,4,5,0.19999999999999996
+squirrel,image4,shorts,ʃɔɹts,skwɜl,5,5,0
+stew,image1,stew,stu,stu,0,3,1
+stew,image2,soup,sup,stu,2,3,0.33333333333333337
+stew,image3,mixer,mɪksəɹ,stu,5,6,0.16666666666666663
+stew,image4,orchid,ɔɹkɪd,stu,5,5,0
+stretcher,image1,stretcher,stɹɛtʃəɹ,stɹɛtʃəɹ,0,8,1
+stretcher,image2,drill,dɹɪl,stɹɛtʃəɹ,7,8,0.125
+stretcher,image3,thermostat,θɜməstæt,stɹɛtʃəɹ,8,8,0
+stretcher,image4,vase,veɪs,stɹɛtʃəɹ,8,8,0
+stump,image1,stump,stʌmp,stʌmp,0,5,1
+stump,image2,log,lɔɡ,stʌmp,5,5,0
+stump,image3,bookshelf,bʊkʃɛlf,stʌmp,7,7,0
+stump,image4,showerhead,ʃaʊəɹhɛd,stʌmp,8,8,0
+sunflower,image1,sunflower,sʌnflaʊəɹ,sʌnflaʊəɹ,0,9,1
+sunflower,image2,pineapple,paɪnæpəl,sʌnflaʊəɹ,8,9,0.11111111111111116
+sunflower,image3,rim,ɹɪm,sʌnflaʊəɹ,9,9,0
+sunflower,image4,pinball,pɪnbɔl,sʌnflaʊəɹ,8,9,0.11111111111111116
+swordfish,image1,swordfish,soɹdfɪʃ,soɹdfɪʃ,0,7,1
+swordfish,image2,catfish,kætfɪʃ,soɹdfɪʃ,4,7,0.4285714285714286
+swordfish,image3,leopard,lɛpəɹd,soɹdfɪʃ,7,7,0
+swordfish,image4,graffiti,ɡɹɐfiɾi,soɹdfɪʃ,6,7,0.1428571428571429
+taillight,image1,taillight,teɪlaɪt,teɪlaɪt,0,7,1
+taillight,image2,bumper,bʌmpəɹ,teɪlaɪt,7,7,0
+taillight,image3,luggage,lʌɡɪdʒ,teɪlaɪt,7,7,0
+taillight,image4,sushi,suʃi,teɪlaɪt,7,7,0
+tapestry,image1,tapestry,tæpᵻstɹi,tæpᵻstɹi,0,8,1
+tapestry,image2,backdrop,bækdɹɑp,tæpᵻstɹi,7,8,0.125
+tapestry,image3,leggings,lɛɡɪŋz,tæpᵻstɹi,8,8,0
+tapestry,image4,forklift,fɔɹklɪft,tæpᵻstɹi,8,8,0
+teabag,image1,teabag,tibæɡ,tibæɡ,0,5,1
+teabag,image2,tea,ti,tibæɡ,3,5,0.4
+teabag,image3,fingerprint,fɪŋɡəɹpɹɪnt,tibæɡ,11,11,0
+teabag,image4,braid,bɹeɪd,tibæɡ,5,5,0
+teapot,image1,teapot,tipɑt,tipɑt,0,5,1
+teapot,image2,teacup,tikʌp,tipɑt,3,5,0.4
+teapot,image3,brake,bɹeɪk,tipɑt,5,5,0
+teapot,image4,bookmark,bʊkmɑɹk,tipɑt,6,7,0.1428571428571429
+telescope,image1,telescope,tɛlᵻskoʊp,tɛlᵻskoʊp,0,9,1
+telescope,image2,tripod,tɹaɪpɑd,tɛlᵻskoʊp,8,9,0.11111111111111116
+telescope,image3,windshield,wɪndʃild,tɛlᵻskoʊp,9,9,0
+telescope,image4,anklet,æŋklɪt,tɛlᵻskoʊp,8,9,0.11111111111111116
+thermos,image1,thermos,θɜməs,θɜməs,0,5,1
+thermos,image2,oilcan,ɔɪlkæn,θɜməs,6,6,0
+thermos,image3,firewood,faɪəɹwʊd,θɜməs,7,8,0.125
+thermos,image4,coral,kɔɹəl,θɜməs,4,5,0.19999999999999996
+treasure,image1,treasure,tɹɛʒəɹ,tɹɛʒəɹ,0,6,1
+treasure,image2,gift,ɡɪft,tɹɛʒəɹ,6,6,0
+treasure,image3,rope,ɹoʊp,tɹɛʒəɹ,5,6,0.16666666666666663
+treasure,image4,lamp,læmp,tɹɛʒəɹ,6,6,0
+trumpet,image1,trumpet,tɹʌmpɪt,tɹʌmpɪt,0,7,1
+trumpet,image2,flute,flut,tɹʌmpɪt,6,7,0.1428571428571429
+trumpet,image3,violin,vaɪəlɪn,tɹʌmpɪt,6,7,0.1428571428571429
+trumpet,image4,coleslaw,koʊlslɔ,tɹʌmpɪt,7,7,0
+tulip,image1,tulip,tjulɪp,tjulɪp,0,6,1
+tulip,image2,rose,ɹoʊz,tjulɪp,6,6,0
+tulip,image3,glove,ɡlʌv,tjulɪp,5,6,0.16666666666666663
+tulip,image4,hubcap,hʌbkæp,tjulɪp,5,6,0.16666666666666663
+turbine,image1,turbine,tɜbaɪn,tɜbaɪn,0,6,1
+turbine,image2,generator,dʒɛnəɹɹeɪɾɚ,tɜbaɪn,10,11,0.09090909090909094
+turbine,image3,tab,tæb,tɜbaɪn,4,6,0.33333333333333337
+turbine,image4,pesto,pɛstoʊ,tɜbaɪn,6,6,0
+turkey,image1,turkey,tɜki,tɜki,0,4,1
+turkey,image2,goat,ɡoʊt,tɜki,4,4,0
+turkey,image3,swan,swɑn,tɜki,4,4,0
+turkey,image4,pencil,pɛnsəl,tɜki,6,6,0
+turtle,image1,turtle,tɜɾəl,tɜɾəl,0,5,1
+turtle,image2,frog,fɹɑɡ,tɜɾəl,5,5,0
+turtle,image3,horse,hɔɹs,tɜɾəl,5,5,0
+turtle,image4,railing,ɹeɪlɪŋ,tɜɾəl,6,6,0
+tuxedo,image1,tuxedo,tʌksidoʊ,tʌksidoʊ,0,8,1
+tuxedo,image2,suit,sut,tʌksidoʊ,7,8,0.125
+tuxedo,image3,stroller,stɹoʊləɹ,tʌksidoʊ,8,8,0
+tuxedo,image4,moccasin,mɑkəsɪn,tʌksidoʊ,7,8,0.125
+typewriter,image1,typewriter,taɪpɹaɪɾəɹ,taɪpɹaɪɾəɹ,0,10,1
+typewriter,image2,printer,pɹɪntəɹ,taɪpɹaɪɾəɹ,6,10,0.4
+typewriter,image3,sunglasses,sʌŋɡlæsᵻz,taɪpɹaɪɾəɹ,10,10,0
+typewriter,image4,drumstick,dɹʌmstɪk,taɪpɹaɪɾəɹ,9,10,0.09999999999999998
+watermelon,image1,watermelon,wɔɾəɹmɛlən,wɔɾəɹmɛlən,0,10,1
+watermelon,image2,strawberry,stɹɔbɛɹi,wɔɾəɹmɛlən,9,10,0.09999999999999998
+watermelon,image3,screwdriver,skɹudɹaɪvəɹ,wɔɾəɹmɛlən,9,11,0.18181818181818177
+watermelon,image4,crane,kɹeɪn,wɔɾəɹmɛlən,8,10,0.19999999999999996
+waterwheel,image1,waterwheel,wɔɾəɹwil,wɔɾəɹwil,0,8,1
+waterwheel,image2,pinwheel,pɪnwil,wɔɾəɹwil,5,8,0.375
+waterwheel,image3,target,tɑɹɡɪt,wɔɾəɹwil,7,8,0.125
+waterwheel,image4,boa,boʊə,wɔɾəɹwil,7,8,0.125
+ant,image1,ant,ænt,ænt,0,3,1
+ant,image2,muffin,mʌfɪn,ænt,5,5,0
+ant,image3,raspberry,ɹæsbɛɹi,ænt,6,7,0.1428571428571429
+ant,image4,mint,mɪnt,ænt,2,4,0.5
+ball,image1,ball,bɔl,bɔl,0,3,1
+ball,image2,pen,pɛn,bɔl,3,3,0
+ball,image3,peach,pitʃ,bɔl,4,4,0
+ball,image4,snack,snæk,bɔl,4,4,0
+bear,image1,bear,bɛɹ,bɛɹ,0,3,1
+bear,image2,mirror,mɪɹəɹ,bɛɹ,4,5,0.19999999999999996
+bear,image3,saw,sɔ,bɛɹ,3,3,0
+bear,image4,bell,bɛl,bɛɹ,1,3,0.6666666666666667
+duck,image1,duck,dʌk,dʌk,0,3,1
+duck,image2,tongue,tʌŋ,dʌk,2,3,0.33333333333333337
+duck,image3,ladder,lædəɹ,dʌk,4,5,0.19999999999999996
+duck,image4,snake,sneɪk,dʌk,4,5,0.19999999999999996
+fork,image1,fork,fɔɹk,fɔɹk,0,4,1
+fork,image2,crow,kɹoʊ,fɔɹk,4,4,0
+fork,image3,wagon,wæɡən,fɔɹk,5,5,0
+fork,image4,bead,bid,fɔɹk,4,4,0
+kitten,image1,kitten,kɪʔn,kɪʔn,0,4,1
+kitten,image2,wrist,ɹɪst,kɪʔn,3,4,0.25
+kitten,image3,pillow,pɪloʊ,kɪʔn,4,5,0.19999999999999996
+kitten,image4,mattress,mætɹəs,kɪʔn,6,6,0
+knee,image1,knee,ni,ni,0,2,1
+knee,image2,face,feɪs,ni,4,4,0
+knee,image3,leash,liʃ,ni,2,3,0.33333333333333337
+knee,image4,sock,sɑk,ni,3,3,0
+milkshake,image1,milkshake,mɪlkʃeɪk,mɪlkʃeɪk,0,8,1
+milkshake,image2,pan,pæn,mɪlkʃeɪk,8,8,0
+milkshake,image3,needle,nidəl,mɪlkʃeɪk,8,8,0
+milkshake,image4,gate,ɡeɪt,mɪlkʃeɪk,6,8,0.25
+skin,image1,skin,skɪn,skɪn,0,4,1
+skin,image2,cardboard,kɑɹdboɹd,skɪn,8,8,0
+skin,image3,drum,dɹʌm,skɪn,4,4,0
+skin,image4,clock,klɑk,skɪn,4,4,0
+wall,image1,wall,wɔl,wɔl,0,3,1
+wall,image2,knob,nɑb,wɔl,3,3,0
+wall,image3,sponge,spʌndʒ,wɔl,6,6,0
+wall,image4,robot,ɹoʊbɑt,wɔl,6,6,0
+wheel,image1,wheel,wil,wil,0,3,1
+wheel,image2,fish,fɪʃ,wil,3,3,0
+wheel,image3,bowl,boʊl,wil,3,4,0.25
+wheel,image4,meat,mit,wil,2,3,0.33333333333333337

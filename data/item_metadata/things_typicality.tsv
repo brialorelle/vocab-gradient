@@ -1,0 +1,2356 @@
+Word	uniqueID	work_time_mean	category	member	typicality_score	N_ratings
+pug	pug	79181.81817999999	mammal	pug	0.490665584	44
+piglet	piglet	65857.14285999999	mammal	piglet	0.455357143	42
+chipmunk	chipmunk	73500.0	mammal	chipmunk	0.400595238	42
+manatee	manatee	67431.81817999999	mammal	manatee	0.178977273	44
+antelope	antelope	68586.95652	mammal	antelope	0.304347826	46
+yak	yak	82744.18604999999	mammal	yak	0.145348837	43
+warthog	warthog	75567.56757	mammal	warthog	0.14527027	37
+rat	rat	73097.56098	mammal	rat	0.402439024	41
+raccoon	raccoon	58468.08511	mammal	raccoon	0.536094225	47
+hamster	hamster	64928.57143	mammal	hamster	0.517857143	42
+orangutan	orangutan	77891.30435	mammal	orangutan	0.434782609	46
+reindeer	reindeer	91295.45455	mammal	reindeer	0.344967532	44
+panther	panther	79090.90909	mammal	panther	0.444128788	44
+panda	panda	92066.66667	mammal	panda	0.51547619	45
+chinchilla	chinchilla	61073.17073	mammal	chinchilla	0.12804878	41
+aardvark	aardvark	65142.85714000001	mammal	aardvark	0.053571429	42
+kangaroo	kangaroo	74945.94595	mammal	kangaroo	0.341216216	37
+rabbit	rabbit	88065.21739	mammal	rabbit	0.663043478	46
+elephant	elephant	82204.54544999999	mammal	elephant	0.604545455	44
+camel	camel	81222.22222000001	mammal	camel	0.392460317	45
+beaver	beaver	72395.34883999999	mammal	beaver	0.412790698	43
+meerkat	meerkat	80523.80952	mammal	meerkat	0.133928571	42
+hedgehog	hedgehog	64933.33333	mammal	hedgehog	0.274206349	45
+gopher	gopher	68547.61905	mammal	gopher	0.291666667	42
+mouse	mouse1	65088.88889000001	mammal	mouse (animal)	0.513888889	45
+possum	possum	62813.95349	mammal	possum	0.372093023	43
+anteater	anteater	61000.0	mammal	anteater	0.140625	40
+mole	mole	78666.66666999999	mammal	mole	0.183730159	45
+cat	cat	65604.65116000001	mammal	cat	0.800387597	43
+puppy	puppy	70617.02128	mammal	puppy	0.779255319	47
+tiger	tiger	61170.73171	mammal	tiger	0.643292683	41
+koala	koala	78111.11111	mammal	koala	0.335555556	45
+rhinoceros	rhinoceros	68270.83333000001	mammal	rhinoceros	0.294890873	48
+alpaca	alpaca	57348.83721	mammal	alpaca	0.242109635	43
+dog	dog	68837.2093	mammal	dog	0.839147287	43
+moose	moose	67833.33333000001	mammal	moose	0.45	42
+groundhog	groundhog	67478.26087	mammal	groundhog	0.33136646	46
+chihuahua	chihuahua	63250.0	mammal	chihuahua	0.511363636	44
+deer	deer	60536.58537	mammal	deer	0.683362369	41
+leopard	leopard	66232.55814	mammal	leopard	0.472591362	43
+zebra	zebra	81886.36364	mammal	zebra	0.563068182	44
+boar	boar	65095.2381	mammal	boar	0.251984127	42
+hippopotamus	hippopotamus	97613.63636	mammal	hippopotamus	0.375	44
+platypus	platypus	75181.81817999999	mammal	platypus	0.142045455	44
+dalmatian	dalmatian	89659.09091	mammal	dalmatian	0.450568182	44
+pig	pig	82142.85714000001	mammal	pig	0.698554422	42
+bear	bear	65410.25641	mammal	bear	0.737179487	39
+coyote	coyote	69866.66667	mammal	coyote	0.517857143	45
+otter	otter	95500.0	mammal	otter	0.286458333	48
+cougar	cougar	75727.27273	mammal	cougar	0.358766234	44
+donkey	donkey	74051.28205	mammal	donkey	0.547619048	39
+bull	bull	104695.6522	mammal	bull	0.461024845	46
+sloth	sloth	77355.55556	mammal	sloth	0.223412698	45
+poodle	poodle	76166.66666999999	mammal	poodle	0.577380952	42
+lion	lion	61065.21739	mammal	lion	0.705978261	46
+gorilla	gorilla	72913.04348	mammal	gorilla	0.637681159	46
+fox	fox	87850.0	mammal	fox	0.6075	40
+badger	badger	64219.5122	mammal	badger	0.234756098	41
+seal	seal	80952.38095	mammal	seal	0.330413832	42
+pony	pony	64723.40426	mammal	pony	0.587765957	47
+giraffe	giraffe	67222.22222000001	mammal	giraffe	0.59484127	45
+ram	ram	59422.22222	mammal	ram	0.319444444	45
+ferret	ferret	91125.0	mammal	ferret	0.322619048	40
+bat	bat1	73500.0	mammal	bat (animal)	0.25212585	42
+wolf	wolf	88022.22222	mammal	wolf	0.632142857	45
+monkey	monkey	76704.54544999999	mammal	monkey	0.713068182	44
+horse	horse	85577.77778	mammal	horse	0.75	45
+polar bear	polar_bear	62767.44186	mammal	polar bear	0.541943522	43
+walrus	walrus	72000.0	mammal	walrus	0.236572536	43
+goat	goat	71222.22222000001	mammal	goat	0.608333333	45
+llama	llama	66439.02439	mammal	llama	0.345818815	41
+squirrel	squirrel	57952.38095	mammal	squirrel	0.56505102	42
+cheetah	cheetah	64777.77778	mammal	cheetah	0.508597884	45
+mongoose	mongoose	63195.12195	mammal	mongoose	0.1228223	41
+bison	bison	68404.7619	mammal	bison	0.31335034	42
+calf	calf1	66186.04651	mammal	calf (cattle)	0.58679402	43
+kitten	kitten	57142.85714	mammal	kitten	0.7125	42
+weasel	weasel	65818.18182000001	mammal	weasel	0.239448052	44
+dolphin	dolphin	60133.33333	mammal	dolphin	0.438492063	45
+hyena	hyena	88534.88372	mammal	hyena	0.227906977	43
+lamb	lamb	57266.66667	mammal	lamb	0.560925926	45
+whale	whale	75239.13043	mammal	whale	0.486413043	46
+porcupine	porcupine	88256.41025999999	mammal	porcupine	0.233974359	39
+sheep	sheep	61731.70732	mammal	sheep	0.601916376	41
+cow	cow	73847.82609	mammal	cow	0.779503106	46
+gazelle	gazelle	66543.47826	mammal	gazelle	0.288043478	46
+guinea pig	guinea_pig	77921.05263	mammal	guinea pig	0.434210526	38
+skunk	skunk	66622.22222	mammal	skunk	0.38468254	45
+breadstick	breadstick	82452.38095	food	breadstick	0.556122449	42
+batter	batter	71229.16666999999	food	batter	0.171130952	48
+pita	pita	66825.0	food	pita	0.408928571	40
+vegetable	vegetable	69104.16666999999	food	vegetable	0.668526786	48
+sprouts	sprouts	80704.54544999999	food	sprouts	0.255681818	44
+strawberry	strawberry	71297.87234	food	strawberry	0.672492401	47
+avocado	avocado	83553.19149	food	avocado	0.556610942	47
+granola	granola	89340.42553000001	food	granola	0.502152989	47
+butter	butter	62733.33333	food	butter	0.443968254	45
+green beans	green_beans	102409.0909	food	green beans	0.578409091	44
+walnut	walnut	87418.60465000001	food	walnut	0.387873754	43
+mango	mango	78177.77778	food	mango	0.473412698	45
+kale	kale	72275.0	food	kale	0.35	40
+soy sauce	soy_sauce	63795.45455	food	soy sauce	0.118371212	44
+rabbit	rabbit	73270.83333000001	food	rabbit	0.059895833	48
+toast	toast	64159.090910000006	food	toast	0.708928571	44
+lettuce	lettuce	70181.81817999999	food	lettuce	0.575	44
+sundae	sundae	80844.44444	food	sundae	0.422222222	45
+coconut	coconut	76840.90909	food	coconut	0.435876623	44
+scallion	scallion	67243.90244	food	scallion	0.228658537	41
+mustard	mustard	66930.23255999999	food	mustard	0.294435216	43
+peppermint	peppermint	75000.0	food	peppermint	0.128246753	44
+breakfast	breakfast	73466.66666999999	food	breakfast	0.556666667	45
+jam	jam	76069.76744000001	food	jam	0.293604651	43
+spareribs	spareribs	72355.55556	food	spareribs	0.506746032	45
+tortellini	tortellini	67933.33333	food	tortellini	0.452777778	45
+string cheese	string_cheese	70909.09091	food	string cheese	0.537012987	44
+kiwi	kiwi	57704.54545	food	kiwi	0.414366883	44
+hash	hash	67700.0	food	hash	0.275714286	40
+goat	goat	61413.04348	food	goat	0.116459627	46
+pizza	pizza	75744.18604999999	food	pizza	0.810215947	43
+french fries	french_fries	85418.60465000001	food	french fries	0.777131783	43
+catfish	catfish	74818.18182000001	food	catfish	0.346590909	44
+licorice	licorice	73613.63636	food	licorice	0.268262987	44
+grits	grits	76142.85714000001	food	grits	0.373809524	42
+asparagus	asparagus	65826.08696	food	asparagus	0.461956522	46
+sugar cube	sugar_cube	79326.08696	food	sugar cube	0.100931677	46
+egg	egg	87133.33333	food	egg	0.744444444	45
+cheese	cheese	66428.57143000001	food	cheese	0.702380952	42
+cracker	cracker	76347.82609	food	cracker	0.651785714	46
+macaroni	macaroni	83047.61905	food	macaroni	0.70989229	42
+cucumber	cucumber	64622.22222	food	cucumber	0.549074074	45
+eclair	eclair	97450.0	food	eclair	0.251339286	40
+basil	basil	107139.5349	food	basil	0.157115172	43
+casserole	casserole	84333.33333000001	food	casserole	0.602777778	45
+meatball	meatball	69888.88889	food	meatball	0.708333333	45
+stew	stew	92695.65217	food	stew	0.575698758	46
+pear	pear	71644.44444	food	pear	0.527777778	45
+wedding cake	wedding_cake	79808.51064	food	wedding cake	0.263677812	47
+papaya	papaya	62975.60976	food	papaya	0.269337979	41
+fruitcake	fruitcake	79386.36364	food	fruitcake	0.233522727	44
+turkey	turkey	79977.77778	food	turkey	0.715079365	45
+pancake	pancake	73666.66666999999	food	pancake	0.738715278	48
+roll	roll	68558.13953	food	roll	0.555232558	43
+guacamole	guacamole	61613.63636	food	guacamole	0.488230519	44
+onion	onion	73536.58537	food	onion	0.461236934	41
+cordon bleu	cordon_bleu	70190.47619	food	cordon bleu	0.229166667	42
+scrambled egg	scrambled_egg	93295.45455	food	scrambled egg	0.721103896	44
+lamb chop	lamb_chop	60595.74468	food	lamb chop	0.558890578	47
+pastry	pastry	75808.51064	food	pastry	0.526595745	47
+peanut	peanut	64543.47826	food	peanut	0.51242236	46
+okra	okra	82577.77778	food	okra	0.24021164	45
+sauce	sauce	94777.77778	food	sauce	0.286507937	45
+gum	gum	88933.33333	food	gum	0.120767196	45
+cupcake	cupcake	73930.23255999999	food	cupcake	0.60166113	43
+cake	cake	77170.21277000001	food	cake	0.718693009	47
+blueberry	blueberry	92071.42857	food	blueberry	0.539285714	42
+almond	almond	79227.27273	food	almond	0.480844156	44
+pumpkin	pumpkin	68958.33333000001	food	pumpkin	0.315600198	48
+pepper	pepper1	103750.0	food	pepper (seasoning)	0.224431818	44
+fruit	fruit	62200.0	food	fruit	0.713125	40
+muffin	muffin	65695.65217	food	muffin	0.61878882	46
+meatloaf	meatloaf	78239.13043	food	meatloaf	0.659549689	46
+pie	pie	79909.09091	food	pie	0.597808442	44
+banana split	banana_split	64673.91304	food	banana split	0.366071429	46
+buffet	buffet	76083.33333000001	food	buffet	0.291071429	48
+apple	apple	81446.80851	food	apple	0.752279635	47
+pepperoni	pepperoni	110270.8333	food	pepperoni	0.553943452	48
+applesauce	applesauce	86478.26087	food	applesauce	0.61568323	46
+jelly bean	jelly_bean	66000.0	food	jelly bean	0.281746032	45
+cornbread	cornbread	91909.09091	food	cornbread	0.554383117	44
+caviar	caviar	92772.72727	food	caviar	0.252840909	44
+cheeseburger	cheeseburger	86844.44444	food	cheeseburger	0.83531746	45
+sushi	sushi	88644.44444	food	sushi	0.582142857	45
+nacho	nacho	85173.91304	food	nacho	0.550465839	46
+crepe	crepe	67608.69565	food	crepe	0.401397516	46
+popcorn	popcorn	71866.66667	food	popcorn	0.559047619	45
+goose	goose	83431.81817999999	food	goose	0.125405844	44
+bacon	bacon	73500.0	food	bacon	0.766304348	46
+chickpea	chickpea	109255.814	food	chickpea	0.309108527	43
+mushroom	mushroom	91191.48936	food	mushroom	0.508738602	47
+crab	crab	78869.56522	food	crab	0.466485507	46
+fudge	fudge	79956.52174	food	fudge	0.386413043	46
+bologna	bologna	84372.09302	food	bologna	0.551356589	43
+pretzel	pretzel	75130.43478	food	pretzel	0.568322981	46
+quesadilla	quesadilla	64175.0	food	quesadilla	0.627529762	40
+banana	banana	72000.0	food	banana	0.691326531	42
+dumpling	dumpling	66065.21739	food	dumpling	0.486024845	46
+shrimp	shrimp	72733.33333	food	shrimp	0.484074074	45
+peach	peach	73068.18182000001	food	peach	0.569399351	44
+cream cheese	cream_cheese	78395.34883999999	food	cream cheese	0.441860465	43
+pesto	pesto	76826.08696	food	pesto	0.243012422	46
+spinach	spinach	80659.09091	food	spinach	0.580357143	44
+raisin	raisin	82767.44186	food	raisin	0.375	43
+ketchup	ketchup	66133.33333	food	ketchup	0.285582011	45
+wafer	wafer	67952.38095	food	wafer	0.181547619	42
+lime	lime	76595.74467999999	food	lime	0.331914894	47
+blackberry	blackberry	80069.76744000001	food	blackberry	0.359634551	43
+squid	squid	65380.95238	food	squid	0.145833333	42
+pistachio	pistachio	67045.45455000001	food	pistachio	0.301948052	44
+popsicle	popsicle	80116.27907	food	popsicle	0.358388704	43
+bread	bread	76200.0	food	bread	0.789285714	45
+hamburger	hamburger	63088.88889	food	hamburger	0.823677249	45
+chocolate	chocolate	76260.86957	food	chocolate	0.598990683	46
+seafood	seafood	71652.17391	food	seafood	0.583152174	46
+pea	pea	90304.34783	food	pea	0.497670807	46
+egg roll	egg_roll	69738.09524000001	food	egg roll	0.527380952	42
+pickle	pickle	55804.34783	food	pickle	0.497282609	46
+gumball	gumball	90857.14286	food	gumball	0.160714286	42
+mashed potato	mashed_potato	103212.766	food	mashed potato	0.741134752	47
+grapefruit	grapefruit	60045.45455	food	grapefruit	0.44375	44
+radish	radish	67978.7234	food	radish	0.28837386	47
+seaweed	seaweed	87232.55814	food	seaweed	0.095930233	43
+spam	spam	74911.11111	food	spam	0.266666667	45
+fast food	fast_food	72162.7907	food	fast food	0.682724252	43
+pineapple	pineapple	71063.82979	food	pineapple	0.560334347	47
+mulberry	mulberry	84450.0	food	mulberry	0.134821429	40
+rhubarb	rhubarb	72902.43902	food	rhubarb	0.233449477	41
+cabbage	cabbage	72065.21739	food	cabbage	0.513586957	46
+sorbet	sorbet	66326.08696	food	sorbet	0.288043478	46
+lollipop	lollipop	77181.81817999999	food	lollipop	0.303571429	44
+wheat	wheat	77000.0	food	wheat	0.281746032	42
+crayfish	crayfish	68062.5	food	crayfish	0.211681548	48
+birthday cake	birthday_cake	50105.26316	food	birthday cake	0.487938596	38
+cashew	cashew	98400.0	food	cashew	0.388492063	45
+artichoke	artichoke	87510.63829999999	food	artichoke	0.333586626	47
+garlic	garlic	63734.69388	food	garlic	0.349125364	49
+tamale	tamale	101571.4286	food	tamale	0.461309524	42
+calamari	calamari	66820.51282	food	calamari	0.319230769	39
+sardine	sardine	96659.09091	food	sardine	0.226461039	44
+pasta	pasta	86065.21739	food	pasta	0.78113354	46
+honey	honey	71934.78261	food	honey	0.305512422	46
+macadamia	macadamia	79974.35897	food	macadamia	0.184065934	39
+creme brulee	creme_brulee	63837.2093	food	creme brulee	0.230481728	43
+patty	patty	82066.66667	food	patty	0.41521164	45
+snack	snack	65617.02128	food	snack	0.468085106	47
+croissant	croissant	63466.66667	food	croissant	0.532936508	45
+gumdrop	gumdrop	75224.4898	food	gumdrop	0.137755102	49
+yolk	yolk	86318.18182000001	food	yolk	0.195616883	44
+ham	ham	69761.90475999999	food	ham	0.7111678	42
+wrap	wrap	68957.44681	food	wrap	0.501139818	47
+ready meal	ready_meal	69523.80952	food	ready meal	0.3125	42
+broccoli	broccoli	74000.0	food	broccoli	0.653769841	42
+candy	candy	86954.54544999999	food	candy	0.399621212	44
+chicken	chicken1	72588.23529	food	chicken (food)	0.832107843	34
+sandwich	sandwich	62244.89796	food	sandwich	0.802113703	49
+taco	taco	77568.18182000001	food	taco	0.760795455	44
+waffle	waffle	68065.21739	food	waffle	0.650621118	46
+ice cream	ice_cream	65214.28571	food	ice cream	0.571825397	42
+bagel	bagel	96300.0	food	bagel	0.662410714	40
+eggplant	eggplant	80525.0	food	eggplant	0.397321429	40
+clove	clove	82386.36364	food	clove	0.094155844	44
+taffy	taffy	93755.55556	food	taffy	0.181746032	45
+spaghetti	spaghetti	82386.36364	food	spaghetti	0.765692641	44
+lemon	lemon	70608.69565	food	lemon	0.379528986	46
+mint	mint	64625.0	food	mint	0.164434524	48
+gyro	gyro	109690.4762	food	gyro	0.401785714	42
+tomato sauce	tomato_sauce	70162.7907	food	tomato sauce	0.332641196	43
+pudding	pudding	90468.08511	food	pudding	0.441869301	47
+orange	orange	74934.78261	food	orange	0.642468944	46
+swordfish	swordfish	80510.63829999999	food	swordfish	0.225430598	47
+crumb	crumb	60682.92683	food	crumb	0.152874564	41
+ravioli	ravioli	70022.72727	food	ravioli	0.638392857	44
+easter egg	easter_egg	80520.83333000001	food	easter egg	0.114583333	48
+cookie	cookie	67595.74467999999	food	cookie	0.696048632	47
+corn	corn	71066.66667	food	corn	0.643650794	45
+tiramisu	tiramisu	82452.38095	food	tiramisu	0.242346939	42
+lasagna	lasagna	66073.17073	food	lasagna	0.707491289	41
+lobster	lobster	86872.34043	food	lobster	0.563703141	47
+whipped cream	whipped_cream	70162.7907	food	whipped cream	0.263704319	43
+donut	donut	69727.27273	food	donut	0.659090909	44
+chive	chive	95558.13953	food	chive	0.203903654	43
+cake mix	cake_mix	73173.91304	food	cake mix	0.276785714	46
+bun	bun	84404.7619	food	bun	0.51547619	42
+salad	salad	80000.0	food	salad	0.760481366	46
+olive	olive	85434.78261	food	olive	0.363483437	46
+leek	leek	72186.04651	food	leek	0.245016611	43
+sausage	sausage	66465.11628	food	sausage	0.694767442	43
+plum	plum	105829.7872	food	plum	0.391843972	47
+prune	prune	66857.14285999999	food	prune	0.257653061	42
+eel	eel	70250.0	food	eel	0.128472222	36
+spring roll	spring_roll	79086.95652	food	spring roll	0.438224638	46
+gingerbread man	gingerbread_man	79913.04348	food	gingerbread man	0.198369565	46
+lamb	lamb	93333.33333	food	lamb	0.427083333	48
+fig	fig	68510.63829999999	food	fig	0.221884498	47
+celery	celery	68085.10638	food	celery	0.499113475	47
+chips	chips	103181.8182	food	chips	0.661931818	44
+cheesecake	cheesecake	85434.78261	food	cheesecake	0.565864389	46
+dip	dip	82348.83721	food	dip	0.321566999	43
+rice	rice	75652.17391	food	rice	0.733307453	46
+carrot	carrot	63844.44444	food	carrot	0.652910053	45
+cornmeal	cornmeal	76642.85714000001	food	cornmeal	0.25	42
+candy bar	candy_bar	74720.93023	food	candy bar	0.51486711	43
+fish	fish	102302.3256	food	fish	0.66486711	43
+tostada	tostada	70400.0	food	tostada	0.393253968	45
+marmalade	marmalade	76222.22222000001	food	marmalade	0.175	45
+stuffing	stuffing	71136.36364	food	stuffing	0.508252165	44
+quiche	quiche	71743.58974000001	food	quiche	0.387362637	39
+sauerkraut	sauerkraut	74255.31915000001	food	sauerkraut	0.269756839	47
+enchilada	enchilada	62195.65217	food	enchilada	0.552018634	46
+nut	nut	63808.51064	food	nut	0.448328267	47
+soup	soup	77953.48837	food	soup	0.723006645	43
+syrup	syrup	60977.27273	food	syrup	0.207386364	44
+star fruit	star_fruit	61222.22222	food	star fruit	0.118253968	45
+squash	squash	78777.77777999999	food	squash	0.439417989	45
+cotton candy	cotton_candy	93622.22222	food	cotton candy	0.317698413	45
+potato	potato	74302.32558	food	potato	0.73654485	43
+bell pepper	bell_pepper	89130.43478	food	bell pepper	0.492494824	46
+appetizer	appetizer	93454.54545	food	appetizer	0.459821429	44
+omelet	omelet	68382.97872	food	omelet	0.696808511	47
+cherry	cherry	102204.5455	food	cherry	0.481737013	44
+flan	flan	80418.60465000001	food	flan	0.218023256	43
+maple syrup	maple_syrup	64000.0	food	maple syrup	0.258042328	45
+bok choy	bok_choy	69720.93023	food	bok choy	0.160299003	43
+cantaloupe	cantaloupe	79340.90909	food	cantaloupe	0.446969697	44
+oyster	oyster	74068.18182000001	food	oyster	0.355384199	44
+oatmeal	oatmeal	61152.173910000005	food	oatmeal	0.63134058	46
+curry	curry	62155.55556	food	curry	0.350396825	45
+coleslaw	coleslaw	72533.33333000001	food	coleslaw	0.484259259	45
+octopus	octopus	62844.44444	food	octopus	0.113888889	45
+caramel	caramel	62674.418600000005	food	caramel	0.282392027	43
+cereal	cereal	70653.06122	food	cereal	0.736880466	49
+stir fry	stir_fry	67268.29268	food	stir fry	0.481707317	41
+cauliflower	cauliflower	71391.30435	food	cauliflower	0.463509317	46
+cilantro	cilantro	59769.23077	food	cilantro	0.181471306	39
+shortbread	shortbread	61642.85714	food	shortbread	0.425170068	42
+pepper	pepper2	68936.17021	food	pepper (vegetable)	0.475683891	47
+grape	grape	84021.73913	food	grape	0.583462733	46
+peanut butter	peanut_butter	55409.090910000006	food	peanut butter	0.619128788	44
+ginger	ginger	69765.95745	food	ginger	0.145390071	47
+berry	berry	67187.5	food	berry	0.515625	48
+melon	melon	62347.82609	food	melon	0.555383023	46
+pecan	pecan	78190.47619	food	pecan	0.326530612	42
+flour	flour	78272.72727	food	flour	0.232007576	44
+grain	grain	83260.86957	food	grain	0.317028986	46
+marshmallow	marshmallow	91760.86957	food	marshmallow	0.392468944	46
+mousse	mousse	92790.69767	food	mousse	0.189922481	43
+kebab	kebab	69239.13043	food	kebab	0.388586957	46
+parsley	parsley	75765.95745	food	parsley	0.141337386	47
+hummus	hummus	86195.65217	food	hummus	0.380693582	46
+bean	bean	60627.90698	food	bean	0.579734219	43
+souffle	souffle	67711.11111	food	souffle	0.291666667	45
+burrito	burrito	67090.90909	food	burrito	0.701704545	44
+tomato	tomato	67024.39024000001	food	tomato	0.604355401	41
+scallop	scallop	66155.55556	food	scallop	0.355555556	45
+dessert	dessert	83047.61905	food	dessert	0.529620181	42
+tortilla	tortilla	69809.52381	food	tortilla	0.503968254	42
+piecrust	piecrust	80395.34883999999	food	piecrust	0.219269103	43
+brussels sprouts	brussels_sprouts	72688.88889	food	brussels sprouts	0.435582011	45
+pomegranate	pomegranate	97488.88889	food	pomegranate	0.265740741	45
+poppy	poppy	75133.33333	food	poppy	0.037037037	45
+fondue	fondue	77157.89474	food	fondue	0.259868421	38
+baklava	baklava	73325.0	food	baklava	0.171875	40
+coffee bean	coffee_bean	64695.65217	food	coffee bean	0.10002588	46
+zucchini	zucchini	58155.55556	food	zucchini	0.466666667	45
+yogurt	yogurt	83785.71429	food	yogurt	0.583333333	42
+cinnamon	cinnamon	60391.30435	food	cinnamon	0.205615942	46
+sweet potato	sweet_potato	85938.77550999999	food	sweet potato	0.565597668	49
+calzone	calzone	76978.26087	food	calzone	0.523162526	46
+steak	steak	71250.0	food	steak	0.791666667	40
+salami	salami	67844.44444	food	salami	0.578703704	45
+parfait	parfait	59428.57143	food	parfait	0.357142857	42
+cranberry	cranberry	65066.666670000006	food	cranberry	0.393650794	45
+raspberry	raspberry	74214.28571	food	raspberry	0.482142857	42
+gravy	gravy	71863.63636	food	gravy	0.338068182	44
+crouton	crouton	88444.44443999999	food	crouton	0.297619048	45
+candy cane	candy_cane	82682.92683	food	candy cane	0.241434379	41
+watermelon	watermelon	78928.57143000001	food	watermelon	0.598214286	42
+noodle	noodle	63357.14286	food	noodle	0.593112245	42
+saffron	saffron	105736.8421	food	saffron	0.076597744	38
+biscuit	biscuit	77190.47619	food	biscuit	0.612670068	42
+pig	pig	79390.2439	food	pig	0.207317073	41
+beet	beet	90933.33333	food	beet	0.28968254	45
+brownie	brownie	61244.44444	food	brownie	0.542857143	45
+potpie	potpie	60733.33333	food	potpie	0.611904762	45
+meat	meat	69933.33333	food	meat	0.770899471	45
+hotdog	hotdog	70217.3913	food	hotdog	0.812111801	46
+arugula	arugula	69216.21622	food	arugula	0.236969112	37
+scone	scone	68931.81817999999	food	scone	0.397727273	44
+clam	clam	79568.18182000001	food	clam	0.258522727	44
+ice-cream cone	ice-cream_cone	78260.86957	food	ice-cream cone	0.465838509	46
+dough	dough	85860.46512	food	dough	0.274916944	43
+mussel	mussel	87422.22222	food	mussel	0.230555556	45
+chili	chili	94809.52381	food	chili	0.633928571	42
+jalapeno	jalapeno	66645.83333000001	food	jalapeno	0.324776786	48
+apron	apron	77347.82609	clothing	apron	0.414208075	46
+uniform	uniform	66813.95349	clothing	uniform	0.58845515	43
+bow	bow1	77342.10526	clothing	bow (knot)	0.272086466	38
+bowtie	bowtie	79022.72727	clothing	bowtie	0.428165584	44
+top hat	top_hat	69650.0	clothing	top hat	0.330803571	40
+suit	suit	61326.08696	clothing	suit	0.701733954	46
+snowsuit	snowsuit	69326.08696	clothing	snowsuit	0.359730849	46
+snowshoe	snowshoe	68227.27273	clothing	snowshoe	0.112554113	44
+shirt	shirt	76731.70732	clothing	shirt	0.835075494	41
+boxer shorts	boxer_shorts	68869.56522	clothing	boxer shorts	0.587085921	46
+bracelet	bracelet1	65914.89362	clothing	bracelet (watch)	0.291413374	47
+turtleneck	turtleneck	67288.88889	clothing	turtleneck	0.587724868	45
+cummerbund	cummerbund	62153.84615	clothing	cummerbund	0.198717949	39
+wetsuit	wetsuit	66255.31915000001	clothing	wetsuit	0.18943769	47
+life jacket	life_jacket	71000.0	clothing	life jacket	0.16486711	43
+sweater	sweater	62425.53191	clothing	sweater	0.783941236	47
+underwear	underwear	66791.66666999999	clothing	underwear	0.729464286	48
+leotard	leotard	64227.27273	clothing	leotard	0.366477273	44
+tuxedo	tuxedo	71659.09091	clothing	tuxedo	0.482954545	44
+headband	headband	107095.2381	clothing	headband	0.403061224	42
+glove	glove	75976.74419000001	clothing	glove	0.464784053	43
+bathrobe	bathrobe	72829.78722999999	clothing	bathrobe	0.504685917	47
+tiara	tiara	77142.85714000001	clothing	tiara	0.1055839	42
+dress	dress	62955.55556	clothing	dress	0.78505291	45
+polo shirt	polo_shirt	90895.83333	clothing	polo shirt	0.684275794	48
+turban	turban	89695.65217	clothing	turban	0.229684265	46
+costume	costume	80456.52174	clothing	costume	0.392986542	46
+bulletproof vest	bulletproof_vest	66608.69565	clothing	bulletproof vest	0.080357143	46
+hoodie	hoodie	80651.16279	clothing	hoodie	0.784246955	43
+sweatsuit	sweatsuit	72266.66667	clothing	sweatsuit	0.668253968	45
+pantsuit	pantsuit	64048.78049	clothing	pantsuit	0.613675958	41
+hat	hat	101045.4545	clothing	hat	0.526650433	44
+fur coat	fur_coat	76977.27273	clothing	fur coat	0.45211039	44
+diaper	diaper	78558.13953	clothing	diaper	0.165143965	43
+clothes	clothes	78333.33333000001	clothing	clothes	0.73452381	45
+coverall	coverall	105906.9767	clothing	coverall	0.492801772	43
+vest	vest	74976.74419000001	clothing	vest	0.612126246	43
+slipper	slipper	90212.76596	clothing	slipper	0.376519757	47
+bonnet	bonnet	73652.17391	clothing	bonnet	0.235507246	46
+boa	boa	76025.0	clothing	boa	0.156696429	40
+spacesuit	spacesuit	72795.45455000001	clothing	spacesuit	0.068587662	44
+armor	armor	71177.77778	clothing	armor	0.089444444	45
+jersey	jersey	93750.0	clothing	jersey	0.602430556	48
+panties	panties	87933.33333	clothing	panties	0.567460317	45
+pantyhose	pantyhose	70309.52381	clothing	pantyhose	0.424036281	42
+bowler hat	bowler_hat	79600.0	clothing	bowler hat	0.230357143	40
+shoe	shoe	62933.33333	clothing	shoe	0.521164021	45
+stiletto	stiletto	71772.72727	clothing	stiletto	0.192099567	44
+fishnet stockings	fishnet_stockings	75631.57895000001	clothing	fishnet stockings	0.27443609	38
+coat	coat	65173.91304	clothing	coat	0.736801242	46
+ski boots	ski_boots	75238.09524000001	clothing	ski boots	0.215986395	42
+mitten	mitten	72931.81817999999	clothing	mitten	0.418695887	44
+muff	muff	67419.35484	clothing	muff	0.14516129	31
+blouse	blouse	73365.85366	clothing	blouse	0.719512195	41
+leggings	leggings	68121.95122	clothing	leggings	0.680749129	41
+beanie	beanie	92765.95745	clothing	beanie	0.38449848	47
+sock	sock	75413.04348	clothing	sock	0.647127329	46
+stockings	stockings	67478.26087	clothing	stockings	0.458850932	46
+eye patch	eye_patch	72227.27273	clothing	eye patch	0.093344156	44
+scarf	scarf	95302.32558	clothing	scarf	0.576910299	43
+jacket	jacket	85977.27273	clothing	jacket	0.737824675	44
+bra	bra	97906.97674	clothing	bra	0.606727575	43
+headscarf	headscarf	76066.66667	clothing	headscarf	0.342063492	45
+garter	garter	82325.0	clothing	garter	0.191964286	40
+pajamas	pajamas	83146.34146	clothing	pajamas	0.668118467	41
+skirt	skirt	70125.0	clothing	skirt	0.709697421	48
+suspenders	suspenders	68085.10638	clothing	suspenders	0.32674772	47
+straightjacket	straightjacket	96046.51163	clothing	straightjacket	0.053156146	43
+kimono	kimono	66704.54544999999	clothing	kimono	0.280519481	44
+overalls	overalls	88130.43478	clothing	overalls	0.536102484	46
+headdress	headdress	67925.0	clothing	headdress	0.16875	40
+sombrero	sombrero	80933.33333	clothing	sombrero	0.247751323	45
+outfit	outfit	81906.97674	clothing	outfit	0.669296788	43
+jumpsuit	jumpsuit	98319.14894	clothing	jumpsuit	0.471757852	47
+sandal	sandal	68212.76596	clothing	sandal	0.432497467	47
+moccasin	moccasin	58736.84211	clothing	moccasin	0.231672932	38
+cloak	cloak	69688.88889	clothing	cloak	0.275132275	45
+toga	toga	81261.90475999999	clothing	toga	0.18877551	42
+nightshirt	nightshirt	67777.77777999999	clothing	nightshirt	0.540873016	45
+raincoat	raincoat	71093.02326	clothing	raincoat	0.478266888	43
+bandanna	bandanna	78152.17391	clothing	bandanna	0.363354037	46
+tube top	tube_top	90800.0	clothing	tube top	0.530803571	40
+cape	cape	78625.0	clothing	cape	0.276165675	48
+pants	pants	66326.08696	clothing	pants	0.814932712	46
+veil	veil	74209.30233	clothing	veil	0.212209302	43
+lingerie	lingerie	80589.74359	clothing	lingerie	0.515567766	39
+shawl	shawl	72454.54544999999	clothing	shawl	0.39258658	44
+belt	belt	69674.41859999999	clothing	belt	0.519795127	43
+bolo tie	bolo_tie	72441.86047	clothing	bolo tie	0.203488372	43
+cardigan	cardigan	67525.0	clothing	cardigan	0.637946429	40
+swimsuit	swimsuit	85523.80952	clothing	swimsuit	0.478316327	42
+undershirt	undershirt	69260.86957	clothing	undershirt	0.626423395	46
+boot	boot	67191.48936	clothing	boot	0.514817629	47
+flip-flop	flip_flop	65239.130430000005	clothing	flip-flop	0.422489648	46
+loincloth	loincloth	67756.75676	clothing	loincloth	0.175032175	37
+visor	visor	64775.00000000001	clothing	visor	0.28452381	40
+lab coat	lab_coat	76844.44444	clothing	lab coat	0.356349206	45
+corset	corset	64526.31579	clothing	corset	0.259241855	38
+bikini	bikini	80833.33333000001	clothing	bikini	0.427295918	42
+blazer	blazer	87615.38462	clothing	blazer	0.549297924	39
+chaps	chaps	89097.56098	clothing	chaps	0.240853659	41
+crown	crown	78478.26087	clothing	crown	0.088121118	46
+shorts	shorts	77340.42553000001	clothing	shorts	0.746605876	47
+t-shirt	t-shirt	70638.29787000001	clothing	t-shirt	0.816919959	47
+jeans	jeans	83818.18182000001	clothing	jeans	0.838176407	44
+tie	tie	71857.14285999999	clothing	tie	0.529761905	42
+robe	robe	65173.91304	clothing	robe	0.512163561	46
+kilt	kilt	76487.17949000001	clothing	kilt	0.244047619	39
+radio	radio	85652.17391	electronic device	radio	0.664984472	46
+screen	screen1	106204.5455	electronic device	screen (projection)	0.455492424	44
+camcorder	camcorder	96681.81818	electronic device	camcorder	0.581574675	44
+remote control	remote_control	79909.09091	electronic device	remote control	0.573863636	44
+router	router	78121.95122	electronic device	router	0.538617886	41
+vending machine	vending_machine	78804.34783	electronic device	vending machine	0.306677019	46
+pinball	pinball	65880.95238	electronic device	pinball	0.199404762	42
+blower	blower	108333.3333	electronic device	blower	0.211538462	39
+computer screen	computer_screen	86608.69565	electronic device	computer screen	0.735248447	46
+joystick	joystick	84162.7907	electronic device	joystick	0.391472868	43
+drill	drill	92116.27907	electronic device	drill	0.361710963	43
+slot machine	slot_machine	91255.31915	electronic device	slot machine	0.29787234	47
+icemaker	icemaker	96127.65957	electronic device	icemaker	0.227963526	47
+blender	blender	75066.66667	electronic device	blender	0.450793651	45
+toaster	toaster	85589.74359	electronic device	toaster	0.492216117	39
+slicer	slicer	84421.05263	electronic device	slicer	0.101973684	38
+laptop	laptop	82636.36364	electronic device	laptop	0.838068182	44
+modem	modem	81760.86957	electronic device	modem	0.591614907	46
+dryer	dryer	83604.65116000001	electronic device	dryer	0.447674419	43
+chainsaw	chainsaw	77222.22222000001	electronic device	chainsaw	0.153703704	45
+centrifuge	centrifuge	138216.2162	electronic device	centrifuge	0.113738739	37
+music box	music_box	91250.0	electronic device	music box	0.21875	40
+cellphone	cellphone	91177.77778	electronic device	cellphone	0.835714286	45
+stereo	stereo	83866.66667	electronic device	stereo	0.675396825	45
+toaster oven	toaster_oven	74086.95652	electronic device	toaster oven	0.471661491	46
+curling iron	curling_iron	87085.10638	electronic device	curling iron	0.337006079	47
+lamp	lamp	82909.09091	electronic device	lamp	0.5	44
+iron	iron	66050.0	electronic device	iron	0.290625	40
+freezer	freezer	84543.47826	electronic device	freezer	0.371506211	46
+vacuum	vacuum	72166.66666999999	electronic device	vacuum	0.524234694	42
+defibrillator	defibrillator	73358.97436000001	electronic device	defibrillator	0.322802198	39
+jackhammer	jackhammer	118674.4186	electronic device	jackhammer	0.114202658	43
+copier	copier	67219.5122	electronic device	copier	0.618902439	41
+metal detector	metal_detector	87933.33333	electronic device	metal detector	0.302777778	45
+generator	generator	83377.77778	electronic device	generator	0.359259259	45
+tape recorder	tape_recorder	65181.81818	electronic device	tape recorder	0.421266234	44
+sewing machine	sewing_machine	73044.44444	electronic device	sewing machine	0.288095238	45
+electric chair	electric_chair	63088.88889	electronic device	electric chair	0.153968254	45
+cash machine	cash_machine	83744.18604999999	electronic device	cash machine	0.322259136	43
+tablet	tablet	105272.7273	electronic device	tablet	0.807359307	44
+food processor	food_processor	81555.55556000001	electronic device	food processor	0.389285714	45
+jukebox	jukebox	119065.2174	electronic device	jukebox	0.293478261	46
+amplifier	amplifier	78585.36585	electronic device	amplifier	0.414198606	41
+treadmill	treadmill	116063.8298	electronic device	treadmill	0.352203647	47
+scanner	scanner	80212.76596	electronic device	scanner	0.534954407	47
+microwave	microwave	111680.8511	electronic device	microwave	0.658181358	47
+printer	printer	67354.16666999999	electronic device	printer	0.707093254	48
+microphone	microphone	92173.91304	electronic device	microphone	0.457298137	46
+webcam	webcam	105777.7778	electronic device	webcam	0.688095238	45
+smoke alarm	smoke_alarm	100395.3488	electronic device	smoke alarm	0.259966777	43
+projector	projector	69750.0	electronic device	projector	0.498139881	48
+cd player	cd_player	94244.44444	electronic device	cd player	0.625396825	45
+polygraph	polygraph	100659.0909	electronic device	polygraph	0.187905844	44
+camera	camera2	87585.36585	electronic device	camera (film)	0.488240418	41
+record player	record_player	90341.46341	electronic device	record player	0.411585366	41
+hairdryer	hairdryer	111777.7778	electronic device	hairdryer	0.468253968	45
+dishwasher	dishwasher	91909.09091	electronic device	dishwasher	0.488636364	44
+mouse	mouse2	80600.0	electronic device	mouse (computer)	0.641964286	40
+water heater	water_heater	87931.81817999999	electronic device	water heater	0.23336039	44
+shredder	shredder	70911.11111	electronic device	shredder	0.378571429	45
+coffeemaker	coffeemaker	68209.30233	electronic device	coffeemaker	0.507475083	43
+fan	fan	83404.25532000001	electronic device	fan	0.482902736	47
+washing machine	washing_machine	100772.7273	electronic device	washing machine	0.525568182	44
+waffle iron	waffle_iron	94536.58537	electronic device	waffle iron	0.274390244	41
+turntable	turntable	104743.5897	electronic device	turntable	0.250915751	39
+refrigerator	refrigerator	78666.66666999999	electronic device	refrigerator	0.490740741	45
+mixer	mixer	76731.70732	electronic device	mixer	0.412020906	41
+incubator	incubator	109525.0	electronic device	incubator	0.165625	40
+computer	computer	70159.09091	electronic device	computer	0.82913961	44
+television	television	82612.24489999999	electronic device	television	0.79154519	49
+juicer	juicer2	80666.66666999999	electronic device	juicer (electrical)	0.37755102	42
+air conditioner	air_conditioner	64951.21951	electronic device	air conditioner	0.422038328	41
+cooker	cooker	82088.88889	electronic device	cooker	0.366666667	45
+hotplate	hotplate	111875.0	electronic device	hotplate	0.29375	40
+shovel	shovel	93386.36364	tool	shovel	0.667207792	44
+wire cutters	wire_cutters	97488.37209	tool	wire cutters	0.596345515	43
+pencil sharpener	pencil_sharpener	72170.21277000001	tool	pencil sharpener	0.352330294	47
+nail clippers	nail_clippers	71272.72727	tool	nail clippers	0.306818182	44
+bottle opener	bottle_opener	80319.14894	tool	bottle opener	0.479863222	47
+needle	needle	67952.38095	tool	needle	0.340136054	42
+fountain pen	fountain_pen	71348.83721	tool	fountain pen	0.121345515	43
+trident	trident	87880.95238	tool	trident	0.110119048	42
+blowtorch	blowtorch	76547.61905	tool	blowtorch	0.569557823	42
+axe	axe	65217.3913	tool	axe	0.670419255	46
+rolling pin	rolling_pin	84000.0	tool	rolling pin	0.364795918	42
+duster	duster	67214.28571	tool	duster	0.267431973	42
+dustpan	dustpan	81369.56522	tool	dustpan	0.35300207	46
+rope	rope	87574.46809	tool	rope	0.319402229	47
+knife	knife	68829.78722999999	tool	knife	0.647163121	47
+can opener	can_opener	77390.2439	tool	can opener	0.50029036	41
+paintbrush	paintbrush	99680.85106	tool	paintbrush	0.457826748	47
+air pump	air_pump	76119.04762	tool	air pump	0.447534014	42
+pickax	pickax	77700.0	tool	pickax	0.574107143	40
+sickle	sickle	73894.73684	tool	sickle	0.379699248	38
+trowel	trowel	66925.0	tool	trowel	0.508928571	40
+wrench	wrench	76309.52381	tool	wrench	0.787414966	42
+crank	crank	70777.77777999999	tool	crank	0.376190476	45
+cleaver	cleaver	95650.0	tool	cleaver	0.35952381	40
+tongs	tongs	71488.88889	tool	tongs	0.446031746	45
+funnel	funnel	63977.77778	tool	funnel	0.340079365	45
+stamp	stamp2	84217.3913	tool	stamp (mark)	0.164596273	46
+lighter	lighter	88170.21277000001	tool	lighter	0.289387031	47
+scissors	scissors	92863.63636	tool	scissors	0.577380952	44
+sweeper	sweeper	88574.46809	tool	sweeper	0.349037487	47
+plunger	plunger	97644.44444	tool	plunger	0.516534392	45
+clipper	clipper1	88333.33333000001	tool	clipper (for hedges)	0.568386243	45
+corkscrew	corkscrew	94404.25532	tool	corkscrew	0.411854103	47
+marker	marker	94255.81395	tool	marker	0.291666667	43
+grater	grater	82069.76744000001	tool	grater	0.328903654	43
+tool	tool	91311.11111	tool	tool	0.726984127	45
+jack	jack	86476.19048	tool	jack	0.540391156	42
+brush	brush	77232.55814	tool	brush	0.414451827	43
+pen	pen	63659.57447	tool	pen	0.313323202	47
+spatula	spatula	67608.69565	tool	spatula	0.300465839	46
+scalpel	scalpel	68590.90909	tool	scalpel	0.41896645	44
+poker	poker	64214.28571	tool	poker	0.306972789	42
+peeler	peeler	80777.77777999999	tool	peeler	0.38968254	45
+mop	mop	85545.45455000001	tool	mop	0.367694805	44
+backscratcher	backscratcher	70414.63415	tool	backscratcher	0.165069686	41
+ladder	ladder	75150.0	tool	ladder	0.573303571	40
+curling iron	curling_iron	68478.26087	tool	curling iron	0.233048654	46
+saw	saw	79583.33333000001	tool	saw	0.746279762	48
+eggbeater	eggbeater	78095.2381	tool	eggbeater	0.299603175	42
+tweezers	tweezers	73454.54544999999	tool	tweezers	0.444805195	44
+file	file1	85261.90475999999	tool	file (tool)	0.476190476	42
+nail file	nail_file	80113.63636	tool	nail file	0.325892857	44
+icepick	icepick	59638.29787	tool	icepick	0.348784195	47
+chainsaw	chainsaw	76260.86957	tool	chainsaw	0.669409938	46
+chain	chain	74477.27273	tool	chain	0.404220779	44
+wedge	wedge	77617.02128	tool	wedge	0.316869301	47
+hoe	hoe	71325.0	tool	hoe	0.584077381	40
+crowbar	crowbar	72948.71795	tool	crowbar	0.679334554	39
+penlight	penlight	86050.0	tool	penlight	0.266964286	40
+flyswatter	flyswatter	80697.67442	tool	flyswatter	0.246816168	43
+ratchet	ratchet	84153.84615000001	tool	ratchet	0.656593407	39
+polisher	polisher	74136.36364	tool	polisher	0.331574675	44
+fork	fork	74026.31579	tool	fork	0.366541353	38
+chopsticks	chopsticks	66418.60465000001	tool	chopsticks	0.155730897	43
+screwdriver	screwdriver	65675.0	tool	screwdriver	0.832321429	40
+jackhammer	jackhammer	100302.3256	tool	jackhammer	0.728183832	43
+chisel	chisel	73418.60465000001	tool	chisel	0.665282392	43
+pin	pin	78243.90244	tool	pin	0.221689895	41
+hammer	hammer	69652.17391	tool	hammer	0.836827122	46
+scraper	scraper	73978.7234	tool	scraper	0.575987842	47
+quill	quill	76450.0	tool	quill	0.09375	40
+razor	razor	66422.22222	tool	razor	0.374206349	45
+broom	broom	68048.78049	tool	broom	0.399825784	41
+ruler	ruler	69521.73913	tool	ruler	0.497153209	46
+letter opener	letter_opener	76928.57143000001	tool	letter opener	0.31420068	42
+mallet	mallet	67534.88372	tool	mallet	0.63372093	43
+pencil	pencil	73409.09091	tool	pencil	0.314529221	44
+gavel	gavel	62510.6383	tool	gavel	0.166160081	47
+pocketknife	pocketknife	79437.5	tool	pocketknife	0.636284722	48
+pliers	pliers	92534.88372	tool	pliers	0.753045404	43
+soldering iron	soldering_iron	75295.45455000001	tool	soldering iron	0.486471861	44
+nutcracker	nutcracker	73794.87179	tool	nutcracker	0.214438339	39
+spoon	spoon	72585.36585	tool	spoon	0.277439024	41
+grinder	grinder	88872.34043	tool	grinder	0.540906788	47
+metal detector	metal_detector	112382.9787	tool	metal detector	0.26899696	47
+match	match	87777.77777999999	tool	match	0.241137566	45
+magnifying glass	magnifying_glass	76088.88889	tool	magnifying glass	0.329232804	45
+sandpaper	sandpaper	83380.95238	tool	sandpaper	0.432568027	42
+vacuum	vacuum	77021.73913	tool	vacuum	0.406961698	46
+drill	drill	77200.0	tool	drill	0.807142857	45
+pitchfork	pitchfork	84021.73913	tool	pitchfork	0.44694617	46
+squeegee	squeegee	79232.55814	tool	squeegee	0.329401993	43
+vise	vise	70774.19355000001	tool	vise	0.513632873	31
+watering can	watering_can	65361.70213	tool	watering can	0.278495441	47
+sawhorse	sawhorse	62380.95238	tool	sawhorse	0.447704082	42
+ladle	ladle	76913.04348	tool	ladle	0.243012422	46
+hose	hose	78209.30233	tool	hose	0.412126246	43
+staple gun	staple_gun	82536.58537	tool	staple gun	0.565766551	41
+blower	blower	91044.44444	tool	blower	0.463359788	45
+anvil	anvil	81589.74359	tool	anvil	0.347374847	39
+shears	shears	76571.42856999999	tool	shears	0.572704082	42
+tape measure	tape_measure	71225.0	tool	tape measure	0.742321429	40
+rake	rake	76000.0	tool	rake	0.64047619	45
+punch	punch2	71868.42104999999	tool	punch (tool)	0.511278195	38
+scoop	scoop	85526.31579	tool	scoop	0.273496241	38
+sledgehammer	sledgehammer	97146.34146	tool	sledgehammer	0.682055749	41
+magnifier	magnifier	66813.95349	tool	magnifier	0.302325581	43
+cow	cow	74829.78722999999	animal	cow	0.802051672	47
+seahorse	seahorse	91690.47619	animal	seahorse	0.254676871	42
+dolphin	dolphin	69489.36170000001	animal	dolphin	0.549468085	47
+lion	lion	72170.73171	animal	lion	0.788327526	41
+orangutan	orangutan	109937.5	animal	orangutan	0.461805556	48
+platypus	platypus	74622.22222	animal	platypus	0.265555556	45
+chinchilla	chinchilla	92260.86957	animal	chinchilla	0.309782609	46
+bat	bat1	90891.30435	animal	bat (animal)	0.461180124	46
+mongoose	mongoose	80276.59574	animal	mongoose	0.305471125	47
+llama	llama	74166.66666999999	animal	llama	0.511054422	42
+panda	panda	71825.0	animal	panda	0.633333333	40
+duckling	duckling	96568.18182	animal	duckling	0.433116883	44
+stingray	stingray	66311.11111	animal	stingray	0.236904762	45
+ferret	ferret	89348.83721	animal	ferret	0.416112957	43
+chick	chick	79326.08696	animal	chick	0.535326087	46
+squirrel	squirrel	71906.97674	animal	squirrel	0.672757475	43
+pigeon	pigeon	73914.89362	animal	pigeon	0.518237082	47
+giraffe	giraffe	82106.38298000001	animal	giraffe	0.662234043	47
+swordfish	swordfish	71723.40426	animal	swordfish	0.254559271	47
+toucan	toucan	81422.22222	animal	toucan	0.286111111	45
+frog	frog	65108.69565	animal	frog	0.57492236	46
+calf	calf1	98173.91304	animal	calf (cattle)	0.658850932	46
+cheetah	cheetah	67536.58537	animal	cheetah	0.588414634	41
+walrus	walrus	63731.70732	animal	walrus	0.347560976	41
+otter	otter	78065.21739	animal	otter	0.447593168	46
+gopher	gopher	71785.71429	animal	gopher	0.397222222	42
+grasshopper	grasshopper	91642.85714	animal	grasshopper	0.261904762	42
+leech	leech	80044.44444	animal	leech	0.06468254	45
+panther	panther	81181.81817999999	animal	panther	0.565665584	44
+lizard	lizard	62380.95238	animal	lizard	0.473214286	42
+ram	ram	89391.30435	animal	ram	0.388586957	46
+tarantula	tarantula	90459.45946	animal	tarantula	0.262065637	37
+moth	moth	70613.63636	animal	moth	0.150162338	44
+scallop	scallop	83232.55814	animal	scallop	0.060631229	43
+goose	goose	60238.09524	animal	goose	0.512755102	42
+shark	shark	70162.7907	animal	shark	0.530730897	43
+rat	rat	68702.12766	animal	rat	0.612006079	47
+anteater	anteater	57400.0	animal	anteater	0.372222222	45
+praying mantis	praying_mantis	72787.23404	animal	praying mantis	0.166337386	47
+worm	worm	74583.33333000001	animal	worm	0.2265625	48
+rooster	rooster	87893.61701999999	animal	rooster	0.609042553	47
+octopus	octopus	62977.77778	animal	octopus	0.363888889	45
+ostrich	ostrich	69340.90909	animal	ostrich	0.432765152	44
+toad	toad	106204.5455	animal	toad	0.380411255	44
+cobra	cobra	78000.0	animal	cobra	0.304591837	42
+coral	coral	85146.34146	animal	coral	0.021341463	41
+moose	moose	108533.3333	animal	moose	0.643253968	45
+flamingo	flamingo	76586.95652	animal	flamingo	0.422748447	46
+boar	boar	69454.54544999999	animal	boar	0.395454545	44
+earwig	earwig	79925.0	animal	earwig	0.06875	40
+dog	dog	59666.66667	animal	dog	0.851955782	42
+rhinoceros	rhinoceros	72777.77777999999	animal	rhinoceros	0.533835979	45
+turtle	turtle	62422.22222	animal	turtle	0.626137566	45
+hawk	hawk	65897.43590000001	animal	hawk	0.458424908	39
+cardinal	cardinal	73825.0	animal	cardinal	0.390178571	40
+whale	whale	96166.66667	animal	whale	0.519345238	48
+bug	bug	81148.93617	animal	bug	0.343085106	47
+crayfish	crayfish	69977.27273	animal	crayfish	0.167613636	44
+mussel	mussel	82928.57143000001	animal	mussel	0.074404762	42
+maggot	maggot	89700.0	animal	maggot	0.1	40
+fox	fox	72261.90475999999	animal	fox	0.703571429	42
+piglet	piglet	96695.65217	animal	piglet	0.583462733	46
+rattlesnake	rattlesnake	57304.34783	animal	rattlesnake	0.391925466	46
+oyster	oyster	60931.81818	animal	oyster	0.156655844	44
+starfish	starfish	59756.75676	animal	starfish	0.231981982	37
+butterfly	butterfly	93804.87805	animal	butterfly	0.277439024	41
+bear	bear	74425.53191	animal	bear	0.763297872	47
+leopard	leopard	82888.88889	animal	leopard	0.60542328	45
+caterpillar	caterpillar	63916.66667	animal	caterpillar	0.266369048	48
+groundhog	groundhog	64717.3913	animal	groundhog	0.435170807	46
+chihuahua	chihuahua	56044.44444	animal	chihuahua	0.476851852	45
+tadpole	tadpole	63795.45455	animal	tadpole	0.162337662	44
+meerkat	meerkat	82466.66666999999	animal	meerkat	0.33531746	45
+owl	owl	65022.72727	animal	owl	0.565340909	44
+sloth	sloth	105909.0909	animal	sloth	0.414772727	44
+lobster	lobster	99767.44186	animal	lobster	0.30620155	43
+aardvark	aardvark	73357.14285999999	animal	aardvark	0.208333333	42
+bird	bird	56086.95652	animal	bird	0.720108696	46
+mouse	mouse1	67422.22222	animal	mouse (animal)	0.702513228	45
+poodle	poodle	86333.33333000001	animal	poodle	0.63994709	45
+crow	crow	66108.69565	animal	crow	0.476397516	46
+manatee	manatee	90476.19048	animal	manatee	0.261904762	42
+puppy	puppy	66217.3913	animal	puppy	0.794772257	46
+coyote	coyote	58319.14894	animal	coyote	0.551291793	47
+crab	crab	78782.6087	animal	crab	0.363354037	46
+blowfish	blowfish	63931.81818	animal	blowfish	0.157061688	44
+cat	cat	72951.21951	animal	cat	0.81097561	41
+pig	pig	69673.46939	animal	pig	0.744533528	49
+vulture	vulture	63733.33333	animal	vulture	0.267460317	45
+seagull	seagull	69638.29787000001	animal	seagull	0.390197568	47
+scorpion	scorpion	74000.0	animal	scorpion	0.24484127	45
+clam	clam	72444.44443999999	animal	clam	0.133333333	45
+chipmunk	chipmunk	78046.51163	animal	chipmunk	0.603266888	43
+turkey	turkey	62909.090910000006	animal	turkey	0.569318182	44
+dragonfly	dragonfly	92812.5	animal	dragonfly	0.175347222	48
+gorilla	gorilla	81022.72727	animal	gorilla	0.609172078	44
+hyena	hyena	69608.69565	animal	hyena	0.401785714	46
+kitten	kitten	80361.70212999999	animal	kitten	0.781155015	47
+ant	ant	79066.66667	animal	ant	0.331216931	45
+bull	bull	73673.91304	animal	bull	0.607142857	46
+weasel	weasel	70818.18182000001	animal	weasel	0.43262987	44
+reindeer	reindeer	86095.2381	animal	reindeer	0.426587302	42
+warthog	warthog	70761.90475999999	animal	warthog	0.281037415	42
+donkey	donkey	59695.65217	animal	donkey	0.649456522	46
+camel	camel	66608.69565	animal	camel	0.554347826	46
+badger	badger	78181.81817999999	animal	badger	0.446428571	44
+barnacle	barnacle	97641.02564	animal	barnacle	0.054487179	39
+snake	snake	63069.76744	animal	snake	0.479651163	43
+possum	possum	76974.35897	animal	possum	0.544413919	39
+shrimp	shrimp	70622.22222	animal	shrimp	0.217460317	45
+sea urchin	sea_urchin	91409.09091	animal	sea urchin	0.07711039	44
+wolf	wolf	94377.77778	animal	wolf	0.749206349	45
+peacock	peacock	87204.54544999999	animal	peacock	0.450081169	44
+swan	swan	90125.0	animal	swan	0.457291667	40
+snail	snail	94232.55814	animal	snail	0.299418605	43
+sheep	sheep	88583.33333000001	animal	sheep	0.703125	48
+koala	koala	77234.04255	animal	koala	0.513297872	47
+iguana	iguana	72630.43478	animal	iguana	0.376811594	46
+bee	bee	76978.26087	animal	bee	0.348990683	46
+elephant	elephant	68577.77778	animal	elephant	0.738888889	45
+cockatoo	cockatoo	104113.6364	animal	cockatoo	0.264204545	44
+mole	mole	75450.0	animal	mole	0.352678571	40
+cockroach	cockroach	70177.77778	animal	cockroach	0.201190476	45
+deer	deer	81545.45455000001	animal	deer	0.727272727	44
+raccoon	raccoon	100525.0	animal	raccoon	0.678511905	40
+goldfish	goldfish	69340.90909	animal	goldfish	0.505925325	44
+eel	eel	52000.0	animal	eel	0.18015873	42
+eagle	eagle	70000.0	animal	eagle	0.598860182	47
+hummingbird	hummingbird	62568.18182	animal	hummingbird	0.379058442	44
+fly	fly	76621.62162	animal	fly	0.267857143	37
+chicken	chicken2	79195.65217	animal	chicken (animal)	0.736024845	46
+kangaroo	kangaroo	86521.73913	animal	kangaroo	0.602096273	46
+squid	squid	80279.06977	animal	squid	0.24127907	43
+pelican	pelican	74250.0	animal	pelican	0.323863636	44
+hippopotamus	hippopotamus	91428.57143	animal	hippopotamus	0.517857143	42
+lightning bug	lightning_bug	65106.38298000001	animal	lightning bug	0.136018237	47
+monkey	monkey	76088.88889	animal	monkey	0.703703704	45
+guinea pig	guinea_pig	88024.39024000001	animal	guinea pig	0.551829268	41
+spider	spider	68477.27273	animal	spider	0.333712121	44
+alligator	alligator	72914.89362	animal	alligator	0.45949848	47
+goat	goat	81085.10638	animal	goat	0.70174772	47
+antelope	antelope	57644.44444	animal	antelope	0.449206349	45
+penguin	penguin	113128.2051	animal	penguin	0.580128205	39
+beetle	beetle	108930.2326	animal	beetle	0.204318937	43
+pheasant	pheasant	61642.85714	animal	pheasant	0.226190476	42
+zebra	zebra	76565.21739	animal	zebra	0.648421325	46
+jellyfish	jellyfish	65340.90909	animal	jellyfish	0.204410173	44
+catfish	catfish	81418.60465000001	animal	catfish	0.312292359	43
+bison	bison	96510.6383	animal	bison	0.424012158	47
+seal	seal	69818.18182000001	animal	seal	0.443181818	44
+fish	fish	63441.86047	animal	fish	0.552325581	43
+hedgehog	hedgehog	68500.0	animal	hedgehog	0.410714286	44
+pug	pug	61787.23404	animal	pug	0.602203647	47
+tiger	tiger	82652.17391	animal	tiger	0.741977226	46
+pony	pony	74413.04348	animal	pony	0.723369565	46
+slug	slug	76813.95349	animal	slug	0.122093023	43
+horse	horse	73414.63415	animal	horse	0.797735192	41
+sardine	sardine	61875.0	animal	sardine	0.132589286	40
+mosquito	mosquito	66121.95122	animal	mosquito	0.113240418	41
+parrot	parrot	68659.57446999999	animal	parrot	0.530775076	47
+beaver	beaver	65045.45455	animal	beaver	0.572646104	44
+skunk	skunk	84000.0	animal	skunk	0.547745694	47
+porcupine	porcupine	62720.93023	animal	porcupine	0.465503876	43
+rabbit	rabbit	73369.56522	animal	rabbit	0.722049689	46
+tick	tick	87638.29787000001	animal	tick	0.071808511	47
+alpaca	alpaca	76840.90909	animal	alpaca	0.373106061	44
+polar bear	polar_bear	93380.95238	animal	polar bear	0.616071429	42
+gazelle	gazelle	84173.91304	animal	gazelle	0.418478261	46
+dalmatian	dalmatian	60250.0	animal	dalmatian	0.519074675	44
+wasp	wasp	66595.2381	animal	wasp	0.235119048	42
+puffin	puffin	68177.77778	animal	puffin	0.183333333	45
+lamb	lamb	53926.82927	animal	lamb	0.567944251	41
+ladybug	ladybug	71093.02326	animal	ladybug	0.182807309	43
+hamster	hamster	73891.89189	animal	hamster	0.587837838	37
+yak	yak	87609.7561	animal	yak	0.215156794	41
+duck	duck	60325.0	animal	duck	0.70625	40
+cougar	cougar	66088.88889	animal	cougar	0.517063492	45
+paint	paint	75372.09302	arts and crafts supply	paint	0.775747508	43
+paintbrush	paintbrush	81302.32558	arts and crafts supply	paintbrush	0.769767442	43
+marker	marker	82166.66666999999	arts and crafts supply	marker	0.651360544	42
+palette	palette	82307.69231	arts and crafts supply	palette	0.451923077	39
+stamp	stamp2	62340.42553	arts and crafts supply	stamp (mark)	0.354483283	47
+cardboard	cardboard	78714.28571	arts and crafts supply	cardboard	0.429506803	42
+wire cutters	wire_cutters	94368.42105	arts and crafts supply	wire cutters	0.244078947	38
+thimble	thimble	87222.22222000001	arts and crafts supply	thimble	0.151587302	45
+easel	easel	93761.90476	arts and crafts supply	easel	0.568452381	42
+glue	glue	70204.54544999999	arts and crafts supply	glue	0.728760823	44
+fountain pen	fountain_pen	86869.56522	arts and crafts supply	fountain pen	0.264492754	46
+eraser	eraser	79681.81817999999	arts and crafts supply	eraser	0.44724026	44
+patch	patch	65933.33333	arts and crafts supply	patch	0.221031746	45
+pincushion	pincushion	78139.53488	arts and crafts supply	pincushion	0.247093023	43
+clay	clay	63025.641030000006	arts and crafts supply	clay	0.563339438	39
+pom-pom	pom-pom	74441.86047	arts and crafts supply	pom-pom	0.30730897	43
+loom	loom	61761.90476	arts and crafts supply	loom	0.25297619	42
+marble	marble	80744.18604999999	arts and crafts supply	marble	0.14244186	43
+knitting needle	knitting_needle	74700.0	arts and crafts supply	knitting needle	0.395535714	40
+pin	pin	86069.76744000001	arts and crafts supply	pin	0.365448505	43
+sewing kit	sewing_kit	85581.39534999999	arts and crafts supply	sewing kit	0.437707641	43
+pen	pen	77869.56522	arts and crafts supply	pen	0.472696687	46
+thread	thread	95837.2093	arts and crafts supply	thread	0.445598007	43
+ribbon	ribbon	69977.27273	arts and crafts supply	ribbon	0.534090909	44
+scissors	scissors	73488.88889	arts and crafts supply	scissors	0.705687831	45
+sewing machine	sewing_machine	90456.52174	arts and crafts supply	sewing machine	0.396273292	46
+wrapping paper	wrapping_paper	75155.55556	arts and crafts supply	wrapping paper	0.244444444	45
+pencil	pencil	73108.69565	arts and crafts supply	pencil	0.64363354	46
+wire	wire	82422.22222	arts and crafts supply	wire	0.349206349	45
+mold	mold1	82086.95652	arts and crafts supply	mold (container)	0.234083851	46
+chisel	chisel	67704.54544999999	arts and crafts supply	chisel	0.183712121	44
+canvas	canvas	89021.73913	arts and crafts supply	canvas	0.648809524	46
+paper	paper	90400.0	arts and crafts supply	paper	0.662053571	40
+yarn	yarn	63522.72727	arts and crafts supply	yarn	0.567911255	44
+ink	ink	82127.65957	arts and crafts supply	ink	0.459219858	47
+charcoal	charcoal	64613.63636	arts and crafts supply	charcoal	0.25974026	44
+chalk	chalk	79090.90909	arts and crafts supply	chalk	0.455492424	44
+bead	bead	74581.39534999999	arts and crafts supply	bead	0.566860465	43
+needle	needle	90232.55814	arts and crafts supply	needle	0.363372093	43
+button	button1	67295.45455000001	arts and crafts supply	button (textiles)	0.332251082	44
+tape	tape	60166.66667	arts and crafts supply	tape	0.487599206	36
+pencil sharpener	pencil_sharpener	71500.0	arts and crafts supply	pencil sharpener	0.341815476	40
+sequin	sequin	77239.13043	arts and crafts supply	sequin	0.430124224	46
+crayon	crayon	64170.73171	arts and crafts supply	crayon	0.720818815	41
+skin	skin	86647.05881999999	body part	skin	0.296218487	34
+neck	neck	71813.95349	body part	neck	0.579318937	43
+nose	nose	71750.0	body part	nose	0.621347403	44
+leg	leg	59447.36842	body part	leg	0.76268797	38
+navel	navel	64756.75676	body part	navel	0.226351351	37
+skull	skull	85911.11111	body part	skull	0.244444444	45
+skeleton	skeleton	66707.31707	body part	skeleton	0.118902439	41
+beard	beard	78613.63636	body part	beard	0.040178571	44
+face	face	92615.38462	body part	face	0.539835165	39
+mouth	mouth	88195.65217	body part	mouth	0.564440994	46
+shoulder	shoulder	70891.30435	body part	shoulder	0.517468944	46
+toe	toe	69697.67442	body part	toe	0.462209302	43
+finger	finger	63872.34043	body part	finger	0.656534954	47
+ankle	ankle	83119.04762	body part	ankle	0.404336735	42
+torso	torso	66484.84848	body part	torso	0.262445887	33
+knee	knee	68487.80488	body part	knee	0.542682927	41
+elbow	elbow	73076.92308	body part	elbow	0.467948718	39
+calf	calf2	80380.95238	body part	calf (leg)	0.431972789	42
+mustache	mustache	77631.57895000001	body part	mustache	0.046052632	38
+ear	ear	68071.42856999999	body part	ear	0.573979592	42
+tongue	tongue	69800.0	body part	tongue	0.338392857	40
+hip	hip	77238.09524000001	body part	hip	0.453656463	42
+wrist	wrist	98380.95238	body part	wrist	0.415391156	42
+tooth	tooth	77051.28205	body part	tooth	0.205128205	39
+hair	hair	70531.91489	body part	hair	0.242021277	47
+bone	bone	76295.45455000001	body part	bone	0.248376623	44
+arm	arm	71418.60465000001	body part	arm	0.796511628	43
+foot	foot	56357.14286	body part	foot	0.617772109	42
+chest	chest1	82444.44443999999	body part	chest (body)	0.525396825	45
+hand	hand	69214.28571	body part	hand	0.755952381	42
+stomach	stomach	75069.76744000001	body part	stomach	0.386627907	43
+eye	eye	85487.17949000001	body part	eye	0.573717949	39
+chin	chin	66026.31579	body part	chin	0.375	38
+thumb	thumb	84333.33333000001	body part	thumb	0.459608844	42
+toaster	toaster	69022.72727	kitchen appliance	toaster	0.588068182	44
+blender	blender	102363.6364	kitchen appliance	blender	0.536931818	44
+toaster oven	toaster_oven	69590.90909	kitchen appliance	toaster oven	0.486877706	44
+mixer	mixer	70581.39534999999	kitchen appliance	mixer	0.408637874	43
+food processor	food_processor	80130.43478	kitchen appliance	food processor	0.37797619	46
+cooker	cooker	78744.18604999999	kitchen appliance	cooker	0.270348837	43
+slicer	slicer	65974.35897	kitchen appliance	slicer	0.141025641	39
+water filter	water_filter	71000.0	kitchen appliance	water filter	0.150568182	44
+stove	stove2	71311.11111	kitchen appliance	stove (heating)	0.65	45
+dishwasher	dishwasher	62190.47619	kitchen appliance	dishwasher	0.646825397	42
+freezer	freezer	88777.77777999999	kitchen appliance	freezer	0.509259259	45
+coffeemaker	coffeemaker	90755.55556	kitchen appliance	coffeemaker	0.546296296	45
+waffle iron	waffle_iron	83545.45455000001	kitchen appliance	waffle iron	0.230925325	44
+microwave	microwave	69466.66666999999	kitchen appliance	microwave	0.70515873	45
+juicer	juicer2	86609.7561	kitchen appliance	juicer (electrical)	0.219947735	41
+hotplate	hotplate	103068.1818	kitchen appliance	hotplate	0.1875	44
+oven	oven	76955.55556	kitchen appliance	oven	0.727777778	45
+burner	burner	86790.69767	kitchen appliance	burner	0.273255814	43
+icemaker	icemaker	70487.17949000001	kitchen appliance	icemaker	0.246794872	39
+refrigerator	refrigerator	85238.09524000001	kitchen appliance	refrigerator	0.765873016	42
+bee	bee	73761.90475999999	insect	bee	0.619897959	42
+mosquito	mosquito	63775.0	insect	mosquito	0.670535714	40
+wasp	wasp	67916.66666999999	insect	wasp	0.375744048	48
+butterfly	butterfly	78630.43478	insect	butterfly	0.435947205	46
+moth	moth	70065.21739	insect	moth	0.346273292	46
+ladybug	ladybug	69695.65217	insect	ladybug	0.467779503	46
+praying mantis	praying_mantis	67468.75	insect	praying mantis	0.1328125	32
+earwig	earwig	69868.42104999999	insect	earwig	0.095394737	38
+grasshopper	grasshopper	78276.59574	insect	grasshopper	0.429331307	47
+beetle	beetle	70840.90909	insect	beetle	0.436417749	44
+ant	ant	80044.44444	insect	ant	0.686640212	45
+fly	fly	69111.11111	insect	fly	0.738359788	45
+dragonfly	dragonfly	66627.90698	insect	dragonfly	0.319352159	43
+caterpillar	caterpillar	76444.44443999999	insect	caterpillar	0.346296296	45
+lightning bug	lightning_bug	77945.94595	insect	lightning bug	0.203185328	37
+cockroach	cockroach	69673.91304	insect	cockroach	0.402173913	46
+bug	bug	78347.82609	insect	bug	0.562888199	46
+lightbulb	lightbulb	76891.89189	hardware	lightbulb	0.405405405	37
+shovel	shovel	90725.0	hardware	shovel	0.543005952	40
+cord	cord	105295.4545	hardware	cord	0.443181818	44
+drill	drill	114093.0233	hardware	drill	0.677325581	43
+nail	nail	106022.2222	hardware	nail	0.670634921	45
+wire	wire	83093.02326	hardware	wire	0.474418605	43
+soldering iron	soldering_iron	72790.69767	hardware	soldering iron	0.321843854	43
+hook	hook1	86022.22222	hardware	hook (door catch)	0.428015873	45
+switch	switch	79586.95652	hardware	switch	0.468400621	46
+hook	hook2	101886.3636	hardware	hook (hanging)	0.495941558	44
+handle	handle	96291.66667	hardware	handle	0.502480159	48
+peg	peg	82926.82927	hardware	peg	0.339866434	41
+chainsaw	chainsaw	101413.0435	hardware	chainsaw	0.533669772	46
+tack	tack	73641.02563999999	hardware	tack	0.260531136	39
+bracket	bracket	71044.44444	hardware	bracket	0.498412698	45
+faucet	faucet	79555.55556000001	hardware	faucet	0.463888889	45
+screwdriver	screwdriver	79177.77778	hardware	screwdriver	0.718121693	45
+lock	lock	100622.2222	hardware	lock	0.547354497	45
+plug	plug	106444.4444	hardware	plug	0.405555556	45
+charger	charger	71488.88889	hardware	charger	0.278571429	45
+button	button2	106279.0698	hardware	button (electrics)	0.279069767	43
+can opener	can_opener	65926.82927	hardware	can opener	0.245209059	41
+ladder	ladder	80346.93878	hardware	ladder	0.537050534	49
+cable	cable	84723.40426	hardware	cable	0.446048632	47
+wire cutters	wire_cutters	106021.7391	hardware	wire cutters	0.520936853	46
+corkscrew	corkscrew	86666.66666999999	hardware	corkscrew	0.255668934	42
+clasp	clasp	76930.23255999999	hardware	clasp	0.401162791	43
+doorknocker	doorknocker	87883.72093	hardware	doorknocker	0.299418605	43
+crowbar	crowbar	69326.08696	hardware	crowbar	0.550465839	46
+padlock	padlock	78608.69565	hardware	padlock	0.485170807	46
+duct	duct	70093.02326	hardware	duct	0.339285714	43
+staple gun	staple_gun	77318.18182000001	hardware	staple gun	0.435064935	44
+hinge	hinge	92186.04651	hardware	hinge	0.573643411	43
+file	file1	70454.54544999999	hardware	file (tool)	0.485957792	44
+key	key	83886.36364	hardware	key	0.443912338	44
+chain	chain	100804.3478	hardware	chain	0.466614907	46
+ratchet	ratchet	63465.11628	hardware	ratchet	0.49183278	43
+cleaver	cleaver	66133.33333	hardware	cleaver	0.175	45
+spark plug	spark_plug	76857.14285999999	hardware	spark plug	0.353316327	42
+rake	rake	95116.27907	hardware	rake	0.467607973	43
+gear	gear	100204.5455	hardware	gear	0.447402597	44
+axe	axe	90704.54545	hardware	axe	0.440746753	44
+tweezers	tweezers	80454.54544999999	hardware	tweezers	0.223484848	44
+blowtorch	blowtorch	80454.54544999999	hardware	blowtorch	0.345454545	44
+crank	crank	69500.0	hardware	crank	0.301339286	40
+shears	shears	90000.0	hardware	shears	0.544767442	43
+plunger	plunger	101119.0476	hardware	plunger	0.369047619	42
+combination lock	combination_lock	98511.62791	hardware	combination lock	0.413621262	43
+bolt	bolt	91674.4186	hardware	bolt	0.719518272	43
+mallet	mallet	69723.40426	hardware	mallet	0.481382979	47
+hammer	hammer	107523.8095	hardware	hammer	0.706519274	42
+tank	tank2	70731.70732	hardware	tank (storage)	0.213850174	41
+valve	valve	93276.59574	hardware	valve	0.383991895	47
+chisel	chisel	79454.54544999999	hardware	chisel	0.512445887	44
+hose	hose	91911.11111	hardware	hose	0.323015873	45
+chicken wire	chicken_wire	66418.60465000001	hardware	chicken wire	0.194767442	43
+doorhandle	doorhandle	90119.04762	hardware	doorhandle	0.522534014	42
+latch	latch	83204.54544999999	hardware	latch	0.470292208	44
+pickax	pickax	88000.0	hardware	pickax	0.329355401	41
+jackhammer	jackhammer	69190.47619	hardware	jackhammer	0.442176871	42
+screw	screw	90644.44444	hardware	screw	0.707936508	45
+saw	saw	77558.13953	hardware	saw	0.638704319	43
+light switch	light_switch	79204.54544999999	hardware	light switch	0.403814935	44
+trowel	trowel	102325.5814	hardware	trowel	0.276937984	43
+knob	knob	60675.0	hardware	knob	0.400535714	40
+scraper	scraper	74300.0	hardware	scraper	0.320535714	40
+doorknob	doorknob	81428.57143000001	hardware	doorknob	0.523688047	49
+vise	vise	88384.61538	hardware	vise	0.430708181	39
+wedge	wedge	80390.2439	hardware	wedge	0.280487805	41
+pipe	pipe2	86512.19512	hardware	pipe (tube)	0.427555168	41
+tool	tool	110765.9574	hardware	tool	0.704407295	47
+wrench	wrench	102688.8889	hardware	wrench	0.621481481	45
+coil	coil	89404.7619	hardware	coil	0.28100907	42
+clipper	clipper1	67111.11111	hardware	clipper (for hedges)	0.461640212	45
+sledgehammer	sledgehammer	63875.0	hardware	sledgehammer	0.475	40
+pliers	pliers	85270.83333000001	hardware	pliers	0.613095238	48
+thermometer	thermometer	72304.34783	hardware	thermometer	0.199534161	46
+strainer	strainer	80822.22222	hardware	strainer	0.148888889	45
+sawhorse	sawhorse	93500.0	hardware	sawhorse	0.279891304	46
+tupperware	tupperware	77872.34043	container	tupperware	0.756838906	47
+jar	jar	81717.3913	container	jar	0.812888199	46
+oilcan	oilcan	77318.18182000001	container	oilcan	0.372159091	44
+hot-water bottle	hot-water_bottle	85891.30435	container	hot-water bottle	0.446040373	46
+jug	jug	68288.88889	container	jug	0.674603175	45
+shopping cart	shopping_cart	67977.77778	container	shopping cart	0.364285714	45
+sandbag	sandbag	77979.59184	container	sandbag	0.221938776	49
+birdbath	birdbath	79500.0	container	birdbath	0.142361111	48
+urn	urn	72510.63829999999	container	urn	0.40881459	47
+suitcase	suitcase	74906.97674	container	suitcase	0.552740864	43
+duffel bag	duffel_bag	84652.17391	container	duffel bag	0.444875776	46
+test tube	test_tube	78883.72093	container	test tube	0.318106312	43
+water heater	water_heater	79152.17391	container	water heater	0.192158385	46
+teacup	teacup	87000.0	container	teacup	0.407275132	45
+footbath	footbath	104692.3077	container	footbath	0.131410256	39
+doghouse	doghouse	82704.54544999999	container	doghouse	0.14163961	44
+beaker	beaker	72069.76744000001	container	beaker	0.454734219	43
+cooker	cooker	61636.36364	container	cooker	0.258522727	44
+aquarium	aquarium	82688.88889	container	aquarium	0.350793651	45
+shaker	shaker	67673.91304	container	shaker	0.289208075	46
+cabinet	cabinet	89652.17391	container	cabinet	0.424560041	46
+drawer	drawer	73000.0	container	drawer	0.510957792	44
+ashtray	ashtray	70543.47826	container	ashtray	0.225931677	46
+bowl	bowl	74700.0	container	bowl	0.693214286	50
+can	can	70020.83333000001	container	can	0.677901786	48
+chest	chest2	76617.02128	container	chest (box)	0.647796353	47
+basket	basket	62000.0	container	basket	0.685492802	43
+pot	pot	71604.65116000001	container	pot	0.627491694	43
+piggy bank	piggy_bank	71930.23255999999	container	piggy bank	0.418604651	43
+saltshaker	saltshaker	102911.1111	container	saltshaker	0.368650794	45
+briefcase	briefcase	81543.47826	container	briefcase	0.470626294	46
+bag	bag	69666.66666999999	container	bag	0.696269841	45
+wineglass	wineglass	65818.18182000001	container	wineglass	0.404356061	44
+syringe	syringe	66638.29787000001	container	syringe	0.178951368	47
+pan	pan	73666.66666999999	container	pan	0.437698413	45
+coffee pot	coffee_pot	70976.74419000001	container	coffee pot	0.482973422	43
+crate	crate	66733.33333	container	crate	0.695634921	45
+locker	locker	70916.66666999999	container	locker	0.444072421	48
+thermos	thermos	70000.0	container	thermos	0.631666667	45
+dustpan	dustpan	77954.54544999999	container	dustpan	0.174918831	44
+fishbowl	fishbowl	74782.6087	container	fishbowl	0.336180124	46
+mold	mold1	89906.97674	container	mold (container)	0.386212625	43
+vial	vial	68318.18182000001	container	vial	0.497294372	44
+dumpster	dumpster	76525.0	container	dumpster	0.452678571	40
+coffin	coffin	105395.3488	container	coffin	0.226328904	43
+terrarium	terrarium	71902.43902	container	terrarium	0.253484321	41
+goblet	goblet	64804.34783	container	goblet	0.223602484	46
+cup	cup	80829.78722999999	container	cup	0.722644377	47
+wheelbarrow	wheelbarrow	88434.78261	container	wheelbarrow	0.296195652	46
+backpack	backpack	73133.33333	container	backpack	0.525396825	45
+pocket	pocket	76487.80488	container	pocket	0.381097561	41
+swimming pool	swimming_pool	77717.3913	container	swimming pool	0.143245342	46
+box	box	69632.65306	container	box	0.830174927	49
+bin	bin	70608.69565	container	bin	0.748447205	46
+purse	purse	69744.68084999999	container	purse	0.534194529	47
+teapot	teapot	63000.0	container	teapot	0.40137987	44
+glass	glass	74645.83333000001	container	glass	0.658482143	48
+honeypot	honeypot	75418.60465000001	container	honeypot	0.273671096	43
+wallet	wallet	95829.26829	container	wallet	0.277439024	41
+birdcage	birdcage	80500.0	container	birdcage	0.283279221	44
+hatbox	hatbox	123127.6596	container	hatbox	0.36301925	47
+container	container	68673.46939	container	container	0.768464529	49
+pitcher	pitcher	69886.36364	container	pitcher	0.601136364	44
+canister	canister	71543.47826	container	canister	0.723214286	46
+bucket	bucket	67695.65217	container	bucket	0.720108696	46
+dresser	dresser	77304.34783	container	dresser	0.44992236	46
+vase	vase	78152.17391	container	vase	0.576086957	46
+trunk	trunk	67163.26531	container	trunk	0.47947036	49
+wok	wok	93902.43902	container	wok	0.18510453	41
+wine bottle	wine_bottle	97888.88889	container	wine bottle	0.485185185	45
+cage	cage	84200.0	container	cage	0.442063492	45
+flask	flask	75312.5	container	flask	0.487723214	48
+measuring cup	measuring_cup	70086.95652	container	measuring cup	0.558229814	46
+petri dish	petri_dish	69513.51350999999	container	petri dish	0.174227799	37
+mug	mug	80902.43902	container	mug	0.503919861	41
+bank	bank	81148.93617	container	bank	0.164893617	47
+ballot box	ballot_box	66040.81633	container	ballot box	0.253279883	49
+tent	tent	92547.61905	container	tent	0.103316327	42
+water bottle	water_bottle	82061.22449000001	container	water bottle	0.648177843	49
+lunchbox	lunchbox	85232.55814	container	lunchbox	0.652574751	43
+bedpan	bedpan	66840.90909	container	bedpan	0.186688312	44
+filing cabinet	filing_cabinet	79347.82609	container	filing cabinet	0.451086957	46
+paper bag	paper_bag	84790.69767	container	paper bag	0.545404208	43
+closet	closet	77739.13043	container	closet	0.279891304	46
+sarcophagus	sarcophagus	98578.94737	container	sarcophagus	0.167763158	38
+inkwell	inkwell	71650.0	container	inkwell	0.19375	40
+shopping basket	shopping_basket	76208.33333000001	container	shopping basket	0.558035714	48
+matchbox	matchbox	69571.42856999999	container	matchbox	0.31335034	42
+hot tub	hot_tub	89363.63636	container	hot tub	0.115665584	44
+luggage	luggage	76840.90909	container	luggage	0.465232684	44
+bottle	bottle	61612.2449	container	bottle	0.7303207	49
+coop	coop	84761.90475999999	container	coop	0.145833333	42
+trashcan	trashcan	81272.72727	container	trashcan	0.70900974	44
+nightstand	nightstand	80711.11111	container	nightstand	0.18968254	45
+wine cooler	wine_cooler	94446.80851	container	wine cooler	0.314969605	47
+watering can	watering_can	81244.44443999999	container	watering can	0.487301587	45
+keg	keg	71083.33333000001	container	keg	0.39546131	48
+mailbox	mailbox	74913.04348	container	mailbox	0.439440994	46
+bathtub	bathtub	67500.0	container	bathtub	0.25297619	48
+kettle	kettle	64295.45455	container	kettle	0.470779221	44
+pillbox	pillbox	66232.55814	container	pillbox	0.519518272	43
+barrel	barrel	84733.33333	container	barrel	0.615079365	45
+tank	tank2	67674.41859999999	container	tank (storage)	0.588178295	43
+breadbox	breadbox	77456.52174	container	breadbox	0.385222567	46
+toolbox	toolbox	78926.82927	container	toolbox	0.538066202	41
+marijuana	marijuana	77113.63636	plant	marijuana	0.423295455	44
+ivy	ivy	99478.26087	plant	ivy	0.567028986	46
+palm tree	palm_tree	67750.0	plant	palm tree	0.48538961	44
+grapevine	grapevine	79044.44444	plant	grapevine	0.358333333	45
+bamboo	bamboo	80127.65957	plant	bamboo	0.385385005	47
+asparagus	asparagus	73295.45455000001	plant	asparagus	0.251623377	44
+clover	clover	86466.66666999999	plant	clover	0.428174603	45
+aloe	aloe	79755.55556000001	plant	aloe	0.423015873	45
+rose	rose	90953.48837	plant	rose	0.740033223	43
+tulip	tulip	96200.0	plant	tulip	0.646296296	45
+arugula	arugula	82421.05263	plant	arugula	0.212406015	38
+tumbleweed	tumbleweed	85239.13043	plant	tumbleweed	0.157608696	46
+poinsettia	poinsettia	112142.8571	plant	poinsettia	0.488095238	42
+seaweed	seaweed	76613.63636	plant	seaweed	0.199134199	44
+parsley	parsley	72090.90909	plant	parsley	0.309253247	44
+plant	plant	78585.36585	plant	plant	0.761759582	41
+grass	grass	73069.76744000001	plant	grass	0.706810631	43
+pine tree	pine_tree	61187.5	plant	pine tree	0.486235119	48
+artichoke	artichoke	74073.17073	plant	artichoke	0.222996516	41
+bonsai	bonsai	107365.8537	plant	bonsai	0.392421603	41
+hedge	hedge	81390.2439	plant	hedge	0.459494774	41
+sunflower	sunflower	71642.85714000001	plant	sunflower	0.675170068	42
+apple tree	apple_tree	88829.26829	plant	apple tree	0.445557491	41
+cabbage	cabbage	97285.71429	plant	cabbage	0.343537415	42
+flower	flower	84976.19048	plant	flower	0.771400227	42
+cilantro	cilantro	92977.77778	plant	cilantro	0.280555556	45
+mint	mint	83466.66666999999	plant	mint	0.281349206	45
+spinach	spinach	101604.6512	plant	spinach	0.302325581	43
+tree	tree	83521.73913	plant	tree	0.714932712	46
+broccoli	broccoli	92272.72727	plant	broccoli	0.262581169	44
+leek	leek	64409.090910000006	plant	leek	0.135957792	44
+poppy	poppy	73850.0	plant	poppy	0.395089286	40
+kale	kale	66190.47619	plant	kale	0.31292517	42
+moss	moss	73409.09091	plant	moss	0.314123377	44
+bush	bush	88173.91304	plant	bush	0.651526915	46
+orchid	orchid	79340.90909	plant	orchid	0.595373377	44
+corn	corn	78724.13793	plant	corn	0.501847291	29
+cactus	cactus	102538.4615	plant	cactus	0.551739927	39
+fern	fern	89309.52381	plant	fern	0.604591837	42
+lettuce	lettuce	82659.09091	plant	lettuce	0.409361472	44
+chive	chive	67866.66667	plant	chive	0.25515873	45
+bok choy	bok_choy	70575.0	plant	bok choy	0.157142857	40
+weed	weed	77229.16666999999	plant	weed	0.453869048	48
+daisy	daisy	74837.2093	plant	daisy	0.620016611	43
+dandelion	dandelion	94000.0	plant	dandelion	0.541798942	45
+lavender	lavender	74162.16215999999	plant	lavender	0.4753861	37
+basil	basil	67404.7619	plant	basil	0.379393424	42
+bird	bird	84886.36364	bird	bird	0.663825758	44
+hawk	hawk	85302.32558	bird	hawk	0.56154485	43
+seagull	seagull	59135.135140000006	bird	seagull	0.627702703	37
+owl	owl	79127.65957	bird	owl	0.497593718	47
+chick	chick	81886.36364	bird	chick	0.380681818	44
+goose	goose	65487.80488	bird	goose	0.482578397	41
+penguin	penguin	79630.43478	bird	penguin	0.263586957	46
+duckling	duckling	96195.65217	bird	duckling	0.352613872	46
+eagle	eagle	66697.67442	bird	eagle	0.700166113	43
+turkey	turkey	79755.55556000001	bird	turkey	0.466269841	45
+pelican	pelican	62604.65116	bird	pelican	0.287790698	43
+ostrich	ostrich	86431.81817999999	bird	ostrich	0.285308442	44
+swan	swan	66974.35897	bird	swan	0.404304029	39
+parrot	parrot	96361.70213	bird	parrot	0.590805471	47
+cardinal	cardinal	76414.63415	bird	cardinal	0.448170732	41
+rooster	rooster	68227.27273	bird	rooster	0.514204545	44
+vulture	vulture	78553.19149	bird	vulture	0.304559271	47
+cockatoo	cockatoo	90574.46809	bird	cockatoo	0.252659574	47
+puffin	puffin	83146.34146	bird	puffin	0.108972125	41
+hummingbird	hummingbird	69869.56522	bird	hummingbird	0.572981366	46
+pigeon	pigeon	69860.46512	bird	pigeon	0.669767442	43
+duck	duck	75857.14285999999	bird	duck	0.630102041	42
+peacock	peacock	72954.54544999999	bird	peacock	0.416477273	44
+pheasant	pheasant	77744.18604999999	bird	pheasant	0.23255814	43
+flamingo	flamingo	60533.33333	bird	flamingo	0.323412698	45
+crow	crow	68000.0	bird	crow	0.586742424	44
+toucan	toucan	69727.27273	bird	toucan	0.207386364	44
+bracelet	bracelet1	87333.33333000001	clothing accessory	bracelet (watch)	0.616587302	45
+tie	tie	80085.10638	clothing accessory	tie	0.719275583	47
+belt buckle	belt_buckle	77311.11111	clothing accessory	belt buckle	0.507910053	45
+bow	bow1	80727.27273	clothing accessory	bow (knot)	0.383522727	44
+glove	glove	76604.16666999999	clothing accessory	glove	0.535962302	48
+shawl	shawl	74847.82609	clothing accessory	shawl	0.53429089	46
+lanyard	lanyard	74146.34146	clothing accessory	lanyard	0.215882695	41
+muff	muff	88648.64865	clothing accessory	muff	0.152509653	37
+belt	belt	70409.09091	clothing accessory	belt	0.775054113	44
+suspenders	suspenders	88617.02128	clothing accessory	suspenders	0.432117528	47
+mitten	mitten	64531.91488999999	clothing accessory	mitten	0.342527862	47
+patch	patch	82090.90909	clothing accessory	patch	0.189123377	44
+eye patch	eye_patch	88291.66666999999	clothing accessory	eye patch	0.078993056	48
+bracelet	bracelet2	76636.36364	clothing accessory	bracelet (jewelry)	0.673430736	44
+earring	earring	80042.55319	clothing accessory	earring	0.636094225	47
+watch	watch	69488.37209	clothing accessory	watch	0.674612403	43
+boa	boa	66054.05405	clothing accessory	boa	0.269787645	37
+buckle	buckle	89377.77778	clothing accessory	buckle	0.468650794	45
+bowtie	bowtie	69270.83333000001	clothing accessory	bowtie	0.577480159	48
+corsage	corsage	85409.09091	clothing accessory	corsage	0.217126623	44
+visor	visor	77200.0	clothing accessory	visor	0.29978836	45
+handkerchief	handkerchief	91404.25532	clothing accessory	handkerchief	0.402988855	47
+purse	purse	79804.87805	clothing accessory	purse	0.660743322	41
+cummerbund	cummerbund	73194.44443999999	clothing accessory	cummerbund	0.232473545	36
+button	button1	94891.30435	clothing accessory	button (textiles)	0.372774327	46
+cufflink	cufflink	72166.66666999999	clothing accessory	cufflink	0.343501984	48
+bandanna	bandanna	67895.83333000001	clothing accessory	bandanna	0.545758929	48
+hat	hat	76847.82609	clothing accessory	hat	0.722696687	46
+bonnet	bonnet	71209.30233	clothing accessory	bonnet	0.245155039	43
+bolo tie	bolo_tie	70500.0	clothing accessory	bolo tie	0.357142857	36
+brooch	brooch	94476.19048	clothing accessory	brooch	0.332908163	42
+insole	insole	83230.76923	clothing accessory	insole	0.131105006	39
+scarf	scarf	68595.74467999999	clothing accessory	scarf	0.731205674	47
+headdress	headdress	74978.7234	clothing accessory	headdress	0.332320162	47
+headband	headband	72288.88889	clothing accessory	headband	0.529365079	45
+top hat	top_hat	68434.78261	clothing accessory	top hat	0.395056936	46
+sombrero	sombrero	83066.66667	clothing accessory	sombrero	0.256587302	45
+glasses	glasses	70255.81395000001	clothing accessory	glasses	0.440199336	43
+pie	pie	75454.54544999999	dessert	pie	0.691287879	44
+shortbread	shortbread	74533.33333000001	dessert	shortbread	0.302380952	45
+ice-cream cone	ice-cream_cone	102731.7073	dessert	ice-cream cone	0.589721254	41
+banana split	banana_split	85568.18182000001	dessert	banana split	0.543290043	44
+fudge	fudge	69941.17647	dessert	fudge	0.414390756	34
+crepe	crepe	69809.52381	dessert	crepe	0.226190476	42
+caramel	caramel	63162.790700000005	dessert	caramel	0.243355482	43
+cheese	cheese	78581.39534999999	dessert	cheese	0.023671096	43
+sundae	sundae	86000.0	dessert	sundae	0.609292328	36
+pastry	pastry	88083.33333000001	dessert	pastry	0.483630952	48
+whipped cream	whipped_cream	77159.09091	dessert	whipped cream	0.29978355	44
+wedding cake	wedding_cake	71272.72727	dessert	wedding cake	0.29099026	44
+eclair	eclair	78139.53488	dessert	eclair	0.323089701	43
+flan	flan	73023.80952	dessert	flan	0.192176871	42
+chocolate	chocolate	52130.43478	dessert	chocolate	0.600543478	46
+cake	cake	81581.39534999999	dessert	cake	0.805924695	43
+cake mix	cake_mix	72146.34146	dessert	cake mix	0.222560976	41
+cheesecake	cheesecake	58697.67442	dessert	cheesecake	0.647563677	43
+souffle	souffle	96297.2973	dessert	souffle	0.260135135	37
+fruitcake	fruitcake	80488.37209	dessert	fruitcake	0.23089701	43
+cookie	cookie	87450.0	dessert	cookie	0.726785714	40
+pudding	pudding	90761.90476	dessert	pudding	0.510629252	42
+milkshake	milkshake	65200.0	dessert	milkshake	0.489285714	35
+muffin	muffin	75243.24324	dessert	muffin	0.280405405	37
+sorbet	sorbet	71902.43902	dessert	sorbet	0.307926829	41
+mousse	mousse	71461.53846	dessert	mousse	0.391025641	39
+ice cream	ice_cream	79116.27907	dessert	ice cream	0.72162237	43
+popsicle	popsicle	92953.48837	dessert	popsicle	0.395625692	43
+parfait	parfait	81205.12821	dessert	parfait	0.278846154	39
+creme brulee	creme_brulee	64666.66667	dessert	creme brulee	0.376623377	33
+donut	donut	62604.65116	dessert	donut	0.448089701	43
+birthday cake	birthday_cake	93243.90244	dessert	birthday cake	0.547909408	41
+dessert	dessert	77904.7619	dessert	dessert	0.656037415	42
+brownie	brownie	63755.55556	dessert	brownie	0.692460317	45
+cupcake	cupcake	68441.86047	dessert	cupcake	0.671511628	43
+tiramisu	tiramisu	62780.4878	dessert	tiramisu	0.341898955	41
+baklava	baklava	89285.71429	dessert	baklava	0.223809524	35
+stapler	stapler	76869.56522	office supply	stapler	0.639673913	46
+folder	folder	84934.78261	office supply	folder	0.513431677	46
+paperclip	paperclip	84854.16666999999	office supply	paperclip	0.6046875	48
+clipboard	clipboard	67413.04348	office supply	clipboard	0.318400621	46
+highlighter	highlighter	90543.47826	office supply	highlighter	0.453804348	46
+staple	staple	70727.27273	office supply	staple	0.575081169	44
+notepad	notepad	61227.27273	office supply	notepad	0.545454545	44
+envelope	envelope	98391.30435	office supply	envelope	0.5	46
+binder	binder	58097.56098	office supply	binder	0.323170732	41
+punch	punch2	86720.93023	office supply	punch (tool)	0.119186047	43
+tack	tack	66958.33333000001	office supply	tack	0.138020833	48
+glue	glue	66697.67442	office supply	glue	0.186461794	43
+file	file2	66574.46809	office supply	file (folder)	0.617021277	47
+thumbtack	thumbtack	66512.19512	office supply	thumbtack	0.237804878	41
+pencil sharpener	pencil_sharpener	83895.83333000001	office supply	pencil sharpener	0.3046875	48
+eraser	eraser	72911.11111	office supply	eraser	0.327777778	45
+fountain pen	fountain_pen	72868.42104999999	office supply	fountain pen	0.317669173	38
+pencil	pencil	69136.36364	office supply	pencil	0.581980519	44
+tape	tape	88333.33333000001	office supply	tape	0.46468254	45
+notebook	notebook	71288.88889	office supply	notebook	0.465873016	45
+scissors	scissors	76822.22222	office supply	scissors	0.43968254	45
+paper	paper	69450.0	office supply	paper	0.690625	40
+pen	pen	80020.83333000001	office supply	pen	0.793154762	48
+rubber band	rubber_band	70931.81817999999	office supply	rubber band	0.332386364	44
+ink	ink	79613.63636	office supply	ink	0.381899351	44
+ketchup	ketchup	64727.27273	condiment	ketchup	0.853733766	44
+cream cheese	cream_cheese	82720.93023	condiment	cream cheese	0.282807309	43
+jam	jam	62822.22222	condiment	jam	0.546111111	45
+sauce	sauce	74282.05128	condiment	sauce	0.516178266	39
+maple syrup	maple_syrup	72954.54544999999	condiment	maple syrup	0.433035714	44
+marmalade	marmalade	65852.94118000001	condiment	marmalade	0.328676471	34
+pesto	pesto	76116.27907	condiment	pesto	0.262624585	43
+soy sauce	soy_sauce	70186.04651	condiment	soy sauce	0.536821705	43
+peanut butter	peanut_butter	73605.26316	condiment	peanut butter	0.380169173	38
+gravy	gravy	74475.0	condiment	gravy	0.3625	40
+ginger	ginger	73404.7619	condiment	ginger	0.12202381	42
+syrup	syrup	74923.07692	condiment	syrup	0.442765568	39
+butter	butter	69250.0	condiment	butter	0.49512987	44
+applesauce	applesauce	69219.5122	condiment	applesauce	0.110046458	41
+mustard	mustard	64195.65217	condiment	mustard	0.789725673	46
+melon	melon	73021.2766	fruit	melon	0.49050152	47
+cherry	cherry	86979.16666999999	fruit	cherry	0.572172619	48
+berry	berry	108891.3043	fruit	berry	0.460791925	46
+raspberry	raspberry	77543.47826	fruit	raspberry	0.530020704	46
+pineapple	pineapple	84842.10526	fruit	pineapple	0.592105263	38
+fig	fig	88891.30435	fruit	fig	0.140398551	46
+mulberry	mulberry	87571.42856999999	fruit	mulberry	0.071428571	42
+star fruit	star_fruit	95391.30435	fruit	star fruit	0.145833333	46
+banana	banana	91723.40426	fruit	banana	0.734929078	47
+apple	apple	77755.55556000001	fruit	apple	0.836111111	45
+plum	plum	92023.80952	fruit	plum	0.391865079	42
+coconut	coconut	96644.44444	fruit	coconut	0.215740741	45
+lemon	lemon	114404.2553	fruit	lemon	0.448708207	47
+watermelon	watermelon	100160.0	fruit	watermelon	0.594285714	50
+avocado	avocado	105595.7447	fruit	avocado	0.199848024	47
+strawberry	strawberry	78622.22222	fruit	strawberry	0.737698413	45
+peach	peach	91444.44444	fruit	peach	0.592592593	45
+cantaloupe	cantaloupe	99200.0	fruit	cantaloupe	0.413888889	45
+kiwi	kiwi	62122.44898	fruit	kiwi	0.35058309	49
+grapefruit	grapefruit	87085.10638	fruit	grapefruit	0.432370821	47
+orange	orange	93760.86957	fruit	orange	0.819487578	46
+papaya	papaya	107341.4634	fruit	papaya	0.281358885	41
+pear	pear	91265.30612	fruit	pear	0.479348882	49
+cranberry	cranberry	93875.0	fruit	cranberry	0.290302579	48
+lime	lime	66159.09091	fruit	lime	0.394886364	44
+grape	grape	83934.78261	fruit	grape	0.670289855	46
+blackberry	blackberry	66909.09091	fruit	blackberry	0.462121212	44
+fruit	fruit	112355.5556	fruit	fruit	0.500925926	45
+prune	prune	71840.0	fruit	prune	0.145	50
+pomegranate	pomegranate	76466.66666999999	fruit	pomegranate	0.280555556	45
+raisin	raisin	72347.82609	fruit	raisin	0.207298137	46
+mango	mango	90270.83333	fruit	mango	0.531374008	48
+tomato	tomato	92630.43478	fruit	tomato	0.214285714	46
+blueberry	blueberry	56142.85714	fruit	blueberry	0.606292517	49
+saxophone	saxophone	65674.41859999999	musical instrument	saxophone	0.63538206	43
+trombone	trombone	73642.85714000001	musical instrument	trombone	0.544954649	42
+xylophone	xylophone	78644.44444	musical instrument	xylophone	0.298280423	45
+gong	gong	82488.88889	musical instrument	gong	0.164285714	45
+chime	chime	86711.11111	musical instrument	chime	0.10952381	45
+bagpipe	bagpipe	74787.23404	musical instrument	bagpipe	0.276342452	47
+kazoo	kazoo	65285.71429	musical instrument	kazoo	0.153486395	42
+cymbal	cymbal	91975.0	musical instrument	cymbal	0.330714286	40
+drum	drum	73590.90909	musical instrument	drum	0.707521645	44
+clarinet	clarinet	78627.90698	musical instrument	clarinet	0.598006645	43
+recorder	recorder	75260.86957	musical instrument	recorder	0.316459627	46
+triangle	triangle	57179.48718	musical instrument	triangle	0.202838828	39
+mandolin	mandolin	60425.53191	musical instrument	mandolin	0.20212766	47
+flute	flute	86170.21277000001	musical instrument	flute	0.706712259	47
+keyboard	keyboard	76217.3913	musical instrument	keyboard	0.637034161	46
+ukulele	ukulele	59916.66667	musical instrument	ukulele	0.372519841	48
+horn	horn	62600.0	musical instrument	horn	0.437698413	45
+guitar	guitar	63022.72727	musical instrument	guitar	0.837256494	44
+tambourine	tambourine	74428.57143000001	musical instrument	tambourine	0.430272109	42
+cello	cello	78717.94872	musical instrument	cello	0.449786325	39
+banjo	banjo	81688.88889	musical instrument	banjo	0.455687831	45
+bongo	bongo	68000.0	musical instrument	bongo	0.300595238	44
+harp	harp	70069.76744000001	musical instrument	harp	0.335354374	43
+tuba	tuba	75000.0	musical instrument	tuba	0.45923913	46
+french horn	french_horn	86086.95652	musical instrument	french horn	0.37189441	46
+violin	violin	96708.33333	musical instrument	violin	0.758407738	48
+trumpet	trumpet	63978.26087	musical instrument	trumpet	0.742624224	46
+piano	piano	65468.08511000001	musical instrument	piano	0.815197568	47
+bell	bell	92372.09302	musical instrument	bell	0.211517165	43
+bassoon	bassoon	110842.1053	musical instrument	bassoon	0.152725564	38
+accordion	accordion	76979.16666999999	musical instrument	accordion	0.34375	48
+harmonica	harmonica	101978.2609	musical instrument	harmonica	0.505098344	46
+organ	organ	73369.56522	musical instrument	organ	0.41576087	46
+cow	cow	77866.66667	farm animal	cow	0.807936508	45
+rooster	rooster	81311.11111	farm animal	rooster	0.600793651	45
+horse	horse	72500.0	farm animal	horse	0.535714286	42
+calf	calf1	66813.95349	farm animal	calf (cattle)	0.641196013	43
+goat	goat	76906.97674	farm animal	goat	0.509966777	43
+donkey	donkey	73568.18182000001	farm animal	donkey	0.260551948	44
+lamb	lamb	66441.86047	farm animal	lamb	0.386627907	43
+ram	ram	63756.09756	farm animal	ram	0.12804878	41
+rabbit	rabbit	79659.09091	farm animal	rabbit	0.234577922	44
+goose	goose	75976.19048	farm animal	goose	0.200255102	42
+bull	bull	75933.33333	farm animal	bull	0.386111111	45
+sheep	sheep	67431.81817999999	farm animal	sheep	0.538961039	44
+bison	bison	85119.04762	farm animal	bison	0.096513605	42
+chicken	chicken2	70042.55319	farm animal	chicken (animal)	0.747340426	47
+pig	pig	86461.53846	farm animal	pig	0.695512821	39
+piglet	piglet	60772.72727	farm animal	piglet	0.463068182	44
+duck	duck	78150.0	farm animal	duck	0.253571429	40
+turkey	turkey	62731.70732	farm animal	turkey	0.320121951	41
+breakfast	breakfast	60558.13953	breakfast food	breakfast	0.416860465	43
+yogurt	yogurt	56225.0	breakfast food	yogurt	0.425446429	40
+muffin	muffin	57547.61905	breakfast food	muffin	0.559098639	42
+sausage	sausage	56813.95349	breakfast food	sausage	0.571013289	43
+grits	grits	68170.73171	breakfast food	grits	0.348286876	41
+maple syrup	maple_syrup	66954.54544999999	breakfast food	maple syrup	0.388744589	44
+peanut butter	peanut_butter	56658.53659	breakfast food	peanut butter	0.158536585	41
+crepe	crepe	58975.60976	breakfast food	crepe	0.308943089	41
+hamburger	hamburger	74954.54544999999	breakfast food	hamburger	0.140151515	44
+french fries	french_fries	70307.69231	breakfast food	french fries	0.061965812	39
+oatmeal	oatmeal	67533.33333000001	breakfast food	oatmeal	0.669444444	45
+toast	toast	78477.27273	breakfast food	toast	0.628409091	44
+waffle	waffle	63883.72093	breakfast food	waffle	0.672757475	43
+croissant	croissant	62533.33333	breakfast food	croissant	0.433333333	45
+sandwich	sandwich	58608.69565	breakfast food	sandwich	0.239130435	46
+scrambled egg	scrambled_egg	63045.45455	breakfast food	scrambled egg	0.701677489	44
+omelet	omelet	70275.0	breakfast food	omelet	0.631696429	40
+roll	roll	62840.90909	breakfast food	roll	0.189393939	44
+bread	bread	70900.0	breakfast food	bread	0.378720238	40
+granola	granola	73523.80952	breakfast food	granola	0.461309524	42
+bacon	bacon	68000.0	breakfast food	bacon	0.722883598	45
+egg	egg	74652.17391	breakfast food	egg	0.809782609	46
+marmalade	marmalade	64250.0	breakfast food	marmalade	0.20211039	44
+cream cheese	cream_cheese	62363.63636	breakfast food	cream cheese	0.278409091	44
+jam	jam	72340.90909	breakfast food	jam	0.338068182	44
+ham	ham	58282.05128	breakfast food	ham	0.336538462	39
+scone	scone	61146.34146	breakfast food	scone	0.290505226	41
+cereal	cereal	53000.0	breakfast food	cereal	0.772009967	43
+pancake	pancake	61750.0	breakfast food	pancake	0.696022727	44
+pastry	pastry	62675.0	breakfast food	pastry	0.37797619	40
+hash	hash	71525.0	breakfast food	hash	0.296875	40
+syrup	syrup	66377.77778	breakfast food	syrup	0.410714286	45
+honey	honey	52422.22222	breakfast food	honey	0.194444444	45
+donut	donut	63050.0	breakfast food	donut	0.516964286	40
+bagel	bagel	67473.68421	breakfast food	bagel	0.595394737	38
+vegetable	vegetable	76818.18182000001	vegetable	vegetable	0.644615801	44
+carrot	carrot	77340.42553000001	vegetable	carrot	0.779255319	47
+cauliflower	cauliflower	70000.0	vegetable	cauliflower	0.603174603	45
+kale	kale	83382.97872	vegetable	kale	0.457294833	47
+squash	squash	65386.36364	vegetable	squash	0.485660173	44
+sweet potato	sweet_potato	75062.5	vegetable	sweet potato	0.426959325	48
+scallion	scallion	73227.27273	vegetable	scallion	0.24607684	44
+chickpea	chickpea	80904.7619	vegetable	chickpea	0.171853741	42
+spinach	spinach	106021.2766	vegetable	spinach	0.647973658	47
+green beans	green_beans	69818.18182000001	vegetable	green beans	0.701001082	44
+onion	onion	79282.6087	vegetable	onion	0.643297101	46
+pea	pea	83413.04348	vegetable	pea	0.580745342	46
+bell pepper	bell_pepper	82914.89362	vegetable	bell pepper	0.535334347	47
+pepper	pepper2	61222.22222	vegetable	pepper (vegetable)	0.494312169	45
+artichoke	artichoke	78177.77778	vegetable	artichoke	0.342460317	45
+rhubarb	rhubarb	79813.95349	vegetable	rhubarb	0.081395349	43
+bok choy	bok_choy	79232.55814	vegetable	bok choy	0.175387597	43
+corn	corn	90568.18182	vegetable	corn	0.719561688	44
+cilantro	cilantro	99136.36364	vegetable	cilantro	0.145698052	44
+cucumber	cucumber	73888.88889	vegetable	cucumber	0.596031746	45
+radish	radish	83477.27273	vegetable	radish	0.359577922	44
+pumpkin	pumpkin	86260.86957	vegetable	pumpkin	0.360895445	46
+sprouts	sprouts	67086.95652	vegetable	sprouts	0.304347826	46
+parsley	parsley	80869.56522	vegetable	parsley	0.176630435	46
+potato	potato	66187.5	vegetable	potato	0.602827381	48
+arugula	arugula	69395.34883999999	vegetable	arugula	0.226744186	43
+leek	leek	72878.04878	vegetable	leek	0.228658537	41
+okra	okra	81673.46939	vegetable	okra	0.239067055	49
+lettuce	lettuce	59893.61702	vegetable	lettuce	0.699848024	47
+cabbage	cabbage	64458.33333	vegetable	cabbage	0.501364087	48
+jalapeno	jalapeno	73800.0	vegetable	jalapeno	0.232275132	45
+garlic	garlic	64255.81395	vegetable	garlic	0.27948505	43
+gourd	gourd	82075.0	vegetable	gourd	0.151041667	40
+broccoli	broccoli	63522.72727	vegetable	broccoli	0.748863636	44
+eggplant	eggplant	72111.11111	vegetable	eggplant	0.376322751	45
+tomato	tomato	71729.16666999999	vegetable	tomato	0.604166667	48
+asparagus	asparagus	95272.72727	vegetable	asparagus	0.51663961	44
+beet	beet	74590.90909	vegetable	beet	0.353246753	44
+celery	celery	85380.95238	vegetable	celery	0.556122449	42
+brussels sprouts	brussels_sprouts	101239.1304	vegetable	brussels sprouts	0.501164596	46
+chive	chive	86333.33333000001	vegetable	chive	0.158333333	45
+zucchini	zucchini	69000.0	vegetable	zucchini	0.538690476	42
+chair	chair	66977.77778	furniture	chair	0.75026455	45
+bench	bench	94680.85106	furniture	bench	0.459219858	47
+loveseat	loveseat	83044.44444	furniture	loveseat	0.672486772	45
+rocking chair	rocking_chair	74804.34783	furniture	rocking chair	0.504528986	46
+sofa bed	sofa_bed	78050.0	furniture	sofa bed	0.583928571	40
+highchair	highchair	62697.67442	furniture	highchair	0.332641196	43
+closet	closet	81800.0	furniture	closet	0.201636905	40
+counter	counter	82978.26087	furniture	counter	0.253493789	46
+bed	bed	71761.90475999999	furniture	bed	0.764880952	42
+bookshelf	bookshelf	74088.88889	furniture	bookshelf	0.577910053	45
+coffee table	coffee_table	73688.88889	furniture	coffee table	0.703968254	45
+beanbag	beanbag	73065.21739	furniture	beanbag	0.248447205	46
+coat rack	coat_rack	65916.66666999999	furniture	coat rack	0.282118056	48
+crib	crib	78130.43478	furniture	crib	0.416666667	46
+lectern	lectern	71852.94118000001	furniture	lectern	0.082107843	34
+workbench	workbench	80191.48936	furniture	workbench	0.183510638	47
+chest	chest2	63066.66667	furniture	chest (box)	0.414417989	45
+footrest	footrest	68707.31707	furniture	footrest	0.343205575	41
+step stool	step_stool	58477.27273	furniture	step stool	0.260551948	44
+air mattress	air_mattress	94136.36364	furniture	air mattress	0.248376623	44
+dresser	dresser	65680.85106	furniture	dresser	0.665653495	47
+recliner	recliner	81297.87234	furniture	recliner	0.706306991	47
+stool	stool	83355.55556	furniture	stool	0.467857143	45
+table	table	80234.04255	furniture	table	0.768490375	47
+hammock	hammock	69636.36364	furniture	hammock	0.178977273	44
+rack	rack1	94750.0	furniture	rack (frame)	0.173295455	44
+bassinet	bassinet	74139.53488	furniture	bassinet	0.257890365	43
+shelf	shelf	74413.04348	furniture	shelf	0.466614907	46
+couch	couch	79090.90909	furniture	couch	0.796942641	44
+nightstand	nightstand	83255.81395000001	furniture	nightstand	0.621262458	43
+cot	cot	69808.51064	furniture	cot	0.238981763	47
+mattress	mattress	61583.33333	furniture	mattress	0.53125	48
+filing cabinet	filing_cabinet	92489.3617	furniture	filing cabinet	0.265957447	47
+rack	rack2	86772.72727	furniture	rack (display)	0.251623377	44
+ottoman	ottoman	80558.13953	furniture	ottoman	0.455149502	43
+desk	desk	65906.97674	furniture	desk	0.677325581	43
+cabinet	cabinet	60318.18182	furniture	cabinet	0.473349567	44
+throne	throne	67787.87878999999	furniture	throne	0.126623377	33
+bunkbed	bunkbed	76159.09091	furniture	bunkbed	0.450622294	44
+earplug	earplug	80000.0	safety equipment	earplug	0.548015873	45
+smoke alarm	smoke_alarm	81311.11111	safety equipment	smoke alarm	0.478968254	45
+mouthpiece	mouthpiece	80021.2766	safety equipment	mouthpiece	0.359042553	47
+fire alarm	fire_alarm	71878.04878	safety equipment	fire alarm	0.487369338	41
+lifesaver	lifesaver	96025.0	safety equipment	lifesaver	0.391071429	40
+parachute	parachute	90844.44444	safety equipment	parachute	0.363095238	45
+lab coat	lab_coat	100395.3488	safety equipment	lab coat	0.292358804	43
+armor	armor	81375.0	safety equipment	armor	0.221428571	40
+life jacket	life_jacket	64232.55814	safety equipment	life jacket	0.646594684	43
+gas mask	gas_mask	116767.4419	safety equipment	gas mask	0.424003322	43
+coverall	coverall	87000.0	safety equipment	coverall	0.181547619	42
+face mask	face_mask	101936.1702	safety equipment	face mask	0.636398176	47
+helmet	helmet	111512.8205	safety equipment	helmet	0.703754579	39
+harness	harness	91418.60465	safety equipment	harness	0.441860465	43
+seatbelt	seatbelt	87023.80952	safety equipment	seatbelt	0.677295918	42
+extinguisher	extinguisher	84022.22222	safety equipment	extinguisher	0.508333333	45
+bulletproof vest	bulletproof_vest	84222.22222000001	safety equipment	bulletproof vest	0.442460317	45
+kneepad	kneepad	82047.61905	safety equipment	kneepad	0.447278912	42
+football helmet	football_helmet	73022.22222	safety equipment	football helmet	0.499603175	45
+spacesuit	spacesuit	74021.73913	safety equipment	spacesuit	0.076086957	46
+shield	shield	105326.087	safety equipment	shield	0.369565217	46
+candy	candy	60954.54545	candy	candy	0.730113636	44
+chocolate	chocolate	64652.173910000005	candy	chocolate	0.695781573	46
+candy bar	candy_bar	71804.87805	candy	candy bar	0.721544715	41
+gumdrop	gumdrop	76238.09524000001	candy	gumdrop	0.327380952	42
+licorice	licorice	69500.0	candy	licorice	0.349404762	40
+taffy	taffy	71022.22222	candy	taffy	0.363888889	45
+cotton candy	cotton_candy	70562.5	candy	cotton candy	0.360119048	48
+marshmallow	marshmallow	62733.33333	candy	marshmallow	0.147222222	45
+caramel	caramel	57595.2381	candy	caramel	0.434098639	42
+lollipop	lollipop	54333.33333	candy	lollipop	0.633928571	42
+candy cane	candy_cane	64674.4186	candy	candy cane	0.427048726	43
+fudge	fudge	66575.0	candy	fudge	0.290625	40
+gumball	gumball	63488.37209	candy	gumball	0.383028793	43
+gum	gum	77951.21951	candy	gum	0.293699187	41
+peppermint	peppermint	68733.33333	candy	peppermint	0.286111111	45
+jelly bean	jelly_bean	63272.72727	candy	jelly bean	0.546401515	44
+jetski	jetski	63925.0	watercraft	jetski	0.527410714	40
+kayak	kayak	83891.30435	watercraft	kayak	0.462732919	46
+yacht	yacht	89400.0	watercraft	yacht	0.597589286	40
+tugboat	tugboat	84186.04651	watercraft	tugboat	0.404069767	43
+gondola	gondola	87116.27907	watercraft	gondola	0.159883721	43
+seaplane	seaplane	82439.02439	watercraft	seaplane	0.201219512	41
+torpedo	torpedo	82571.42856999999	watercraft	torpedo	0.0625	42
+aircraft carrier	aircraft_carrier	89536.58537	watercraft	aircraft carrier	0.245993031	41
+ship	ship	83804.34783	watercraft	ship	0.714208075	46
+ferry	ferry	74973.68421	watercraft	ferry	0.378759398	38
+raft	raft	107434.7826	watercraft	raft	0.452199793	46
+hovercraft	hovercraft	74375.0	watercraft	hovercraft	0.2	40
+sailboat	sailboat	93142.85714	watercraft	sailboat	0.682539683	42
+cruise ship	cruise_ship	94571.42857	watercraft	cruise ship	0.590901361	42
+canoe	canoe	78613.63636	watercraft	canoe	0.457792208	44
+speedboat	speedboat	110536.5854	watercraft	speedboat	0.644018583	41
+airboat	airboat	115578.9474	watercraft	airboat	0.326315789	38
+submarine	submarine	100071.4286	watercraft	submarine	0.374121315	42
+boat	boat	108025.641	watercraft	boat	0.790018315	39
+rifle	rifle	98260.86957	weapon	rifle	0.771350932	46
+axe	axe	66911.11111	weapon	axe	0.475396825	45
+cleaver	cleaver	94565.21739	weapon	cleaver	0.363483437	46
+chainsaw	chainsaw	69521.73913	weapon	chainsaw	0.326475155	46
+whip	whip	68413.04348	weapon	whip	0.241149068	46
+baseball bat	baseball_bat	90282.6087	weapon	baseball bat	0.480978261	46
+flamethrower	flamethrower	68452.38095	weapon	flamethrower	0.370323129	42
+boomerang	boomerang	100878.0488	weapon	boomerang	0.140243902	41
+bow	bow2	70522.72727	weapon	bow (weapon)	0.566558442	44
+sword	sword	78800.0	weapon	sword	0.764285714	40
+brass knuckles	brass_knuckles	86318.18182000001	weapon	brass knuckles	0.480113636	44
+arrow	arrow	82318.18182000001	weapon	arrow	0.567640693	44
+slingshot	slingshot	64913.04348	weapon	slingshot	0.367753623	46
+landmine	landmine	72500.0	weapon	landmine	0.287267081	46
+bat	bat2	72688.88889	weapon	bat (sports)	0.461111111	45
+machine gun	machine_gun	87936.17021	weapon	machine gun	0.791413374	47
+baton	baton2	86521.73913	weapon	baton (police)	0.50621118	46
+crossbow	crossbow	92021.73913	weapon	crossbow	0.564829193	46
+torpedo	torpedo	89444.44443999999	weapon	torpedo	0.336111111	45
+cannonball	cannonball	75625.0	weapon	cannonball	0.263392857	40
+icepick	icepick	81911.11111	weapon	icepick	0.248412698	45
+dart	dart	90222.22222	weapon	dart	0.278968254	45
+pocketknife	pocketknife	88025.0	weapon	pocketknife	0.545982143	40
+scissors	scissors	92977.27273	weapon	scissors	0.176136364	44
+bomb	bomb	79604.65116000001	weapon	bomb	0.615448505	43
+knife	knife	64297.87234	weapon	knife	0.766717325	47
+scalpel	scalpel	63066.66667	weapon	scalpel	0.167857143	45
+catapult	catapult	70534.88372	weapon	catapult	0.157807309	43
+gun	gun	76111.11111	weapon	gun	0.845079365	45
+bullet	bullet	82521.73913	weapon	bullet	0.651319876	46
+crowbar	crowbar	64021.27659999999	weapon	crowbar	0.354483283	47
+dynamite	dynamite	69414.63415	weapon	dynamite	0.321718931	41
+grenade	grenade	61600.0	weapon	grenade	0.587301587	45
+cannon	cannon	65413.04348	weapon	cannon	0.472826087	46
+bazooka	bazooka	84113.63636	weapon	bazooka	0.460227273	44
+revolver	revolver	82090.90909	weapon	revolver	0.76663961	44
+machete	machete	75166.66666999999	weapon	machete	0.501612103	48
+pitchfork	pitchfork	70173.91304	weapon	pitchfork	0.285714286	46
+spear	spear	69288.88889	weapon	spear	0.548280423	45
+pickax	pickax	74146.34146	weapon	pickax	0.265563298	41
+blowtorch	blowtorch	68733.33333	weapon	blowtorch	0.164285714	45
+missile	missile	61863.63636	weapon	missile	0.435470779	44
+blowgun	blowgun	89256.41025999999	weapon	blowgun	0.241758242	39
+tank	tank1	76239.13043	weapon	tank (vehicle)	0.436335404	46
+dagger	dagger	62425.53191	weapon	dagger	0.613221884	47
+hammer	hammer	100760.8696	weapon	hammer	0.376035197	46
+razor blade	razor_blade	67410.25641	weapon	razor blade	0.31456044	39
+trident	trident	74906.97674	weapon	trident	0.125	43
+candlestick	candlestick	72022.72727	home decor	candlestick	0.612012987	44
+hourglass	hourglass	78829.78722999999	home decor	hourglass	0.281914894	47
+rug	rug	95918.91892	home decor	rug	0.766216216	37
+birdcage	birdcage	77651.16279	home decor	birdcage	0.274916944	43
+wind chimes	wind_chimes	106822.2222	home decor	wind chimes	0.45	45
+candelabra	candelabra	103170.7317	home decor	candelabra	0.454703833	41
+pinecone	pinecone	94386.36364	home decor	pinecone	0.20275974	44
+centerpiece	centerpiece	75883.72093	home decor	centerpiece	0.618826135	43
+lampshade	lampshade	82880.95238	home decor	lampshade	0.621173469	42
+poster	poster	71148.93617	home decor	poster	0.538399189	47
+cornucopia	cornucopia	69625.0	home decor	cornucopia	0.179017857	40
+cuckoo clock	cuckoo_clock	73937.5	home decor	cuckoo clock	0.355952381	48
+crystal ball	crystal_ball	108627.907	home decor	crystal ball	0.147840532	43
+candle	candle	85000.0	home decor	candle	0.707936508	45
+frame	frame	95950.0	home decor	frame	0.667172619	40
+stained glass	stained_glass	81666.66666999999	home decor	stained glass	0.380634921	45
+birdbath	birdbath	81936.17021	home decor	birdbath	0.254432624	47
+pinwheel	pinwheel	74250.0	home decor	pinwheel	0.117857143	40
+wreath	wreath	83000.0	home decor	wreath	0.561180124	46
+chandelier	chandelier	98914.89362	home decor	chandelier	0.686170213	47
+aquarium	aquarium	73800.0	home decor	aquarium	0.352380952	45
+gourd	gourd	73333.33333000001	home decor	gourd	0.156462585	42
+abacus	abacus	56179.48718	home decor	abacus	0.070512821	39
+pillow	pillow	65930.23255999999	home decor	pillow	0.732973422	43
+tapestry	tapestry	95260.86957	home decor	tapestry	0.476397516	46
+mirror	mirror	89190.47619	home decor	mirror	0.725878685	42
+vase	vase	80512.19512	home decor	vase	0.709465738	41
+coaster	coaster	74558.13953	home decor	coaster	0.476052049	43
+statue	statue	101813.9535	home decor	statue	0.403792913	43
+album	album	87520.83333000001	home decor	album	0.32328869	48
+lamp	lamp	67227.27273	home decor	lamp	0.800378788	44
+curtain	curtain	91760.86957	home decor	curtain	0.770341615	46
+figurine	figurine	112525.0	home decor	figurine	0.526130952	40
+globe	globe	123282.6087	home decor	globe	0.375905797	46
+doily	doily	87902.43902	home decor	doily	0.302264808	41
+bonsai	bonsai	73476.19048	home decor	bonsai	0.337755102	42
+weather vane	weather_vane	100297.2973	home decor	weather vane	0.16023166	37
+wallpaper	wallpaper	60382.97872	home decor	wallpaper	0.677558257	47
+doorknocker	doorknocker	78244.44443999999	home decor	doorknocker	0.329232804	45
+potpourri	potpourri	63538.46154	home decor	potpourri	0.347832723	39
+christmas tree	christmas_tree	77347.82609	home decor	christmas tree	0.408385093	46
+scarecrow	scarecrow	93812.5	home decor	scarecrow	0.090525794	48
+place mat	place_mat	89340.90909	home decor	place mat	0.569669913	44
+birdhouse	birdhouse	89976.74419000001	home decor	birdhouse	0.290005537	43
+terrarium	terrarium	71000.0	home decor	terrarium	0.272321429	40
+bracelet	bracelet2	73707.31707	jewelry	bracelet (jewelry)	0.660133566	41
+crown	crown	74829.26829	jewelry	crown	0.226916376	41
+cufflink	cufflink	68157.89474	jewelry	cufflink	0.262531328	38
+pocket watch	pocket_watch	71957.44681	jewelry	pocket watch	0.210233029	47
+brooch	brooch	68078.94737	jewelry	brooch	0.317199248	38
+jewelry	jewelry	77128.20513	jewelry	jewelry	0.594017094	39
+anklet	anklet	81953.48837	jewelry	anklet	0.377574751	43
+barrette	barrette	83441.17647	jewelry	barrette	0.169117647	34
+ring	ring	62750.0	jewelry	ring	0.741071429	44
+earring	earring	66090.90909	jewelry	earring	0.728409091	44
+watch	watch	74065.21739	jewelry	watch	0.500543478	46
+tiara	tiara	72733.33333	jewelry	tiara	0.259920635	45
+locket	locket	74000.0	jewelry	locket	0.423809524	45
+necklace	necklace	63777.77778	jewelry	necklace	0.770873016	45
+hairpin	hairpin	67619.04762	jewelry	hairpin	0.224489796	42
+padlock	padlock	76100.0	fastener	padlock	0.294285714	40
+buckle	buckle	65772.72727	fastener	buckle	0.597402597	44
+hook	hook1	65121.95122	fastener	hook (door catch)	0.408826945	41
+safety pin	safety_pin	70659.57446999999	fastener	safety pin	0.555851064	47
+knot	knot	71780.4878	fastener	knot	0.448170732	41
+tack	tack	66625.0	fastener	tack	0.320870536	32
+paperclip	paperclip	70179.48718	fastener	paperclip	0.55982906	39
+button	button1	75725.0	fastener	button (textiles)	0.537946429	40
+strap	strap	85342.10526	fastener	strap	0.500469925	38
+barrette	barrette	81270.27027	fastener	barrette	0.258526384	37
+peg	peg	78422.22222	fastener	peg	0.165079365	45
+bow	bow1	79073.17073	fastener	bow (knot)	0.465069686	41
+thumbtack	thumbtack	85333.33333000001	fastener	thumbtack	0.375	42
+clasp	clasp	60595.2381	fastener	clasp	0.543792517	42
+clothespin	clothespin	72813.95349	fastener	clothespin	0.42248062	43
+nail	nail	64605.26316000001	fastener	nail	0.355263158	38
+screw	screw	76431.81817999999	fastener	screw	0.550730519	44
+latch	latch	71461.53846	fastener	latch	0.455128205	39
+chain	chain	77951.21951	fastener	chain	0.406794425	41
+combination lock	combination_lock	65046.51163	fastener	combination lock	0.289700997	43
+pin	pin	82564.10256	fastener	pin	0.5	39
+bolt	bolt	63000.0	fastener	bolt	0.455925325	44
+staple	staple	77902.43902	fastener	staple	0.548780488	41
+zipper	zipper	72133.33333	fastener	zipper	0.611111111	45
+gasket	gasket	59833.33333	fastener	gasket	0.094246032	36
+belt buckle	belt_buckle	71186.04651	fastener	belt buckle	0.561184939	43
+rubber band	rubber_band	76636.36364	fastener	rubber band	0.403409091	44
+hairpin	hairpin	72363.63636	fastener	hairpin	0.337662338	44
+velcro	velcro	75952.38095	fastener	velcro	0.553004535	42
+cufflink	cufflink	82295.45455000001	fastener	cufflink	0.221590909	44
+tape	tape	75326.08696	fastener	tape	0.60313147	46
+lock	lock	66976.74419000001	fastener	lock	0.469684385	43
+car	car	76521.73913	vehicle	car	0.861801242	46
+van	van	82021.73913	vehicle	van	0.787137681	46
+firetruck	firetruck	72162.7907	vehicle	firetruck	0.655869324	43
+jeep	jeep	75581.39534999999	vehicle	jeep	0.737790698	43
+ambulance	ambulance	77166.66666999999	vehicle	ambulance	0.635204082	42
+quad	quad	82023.80952	vehicle	quad	0.420493197	42
+cruise ship	cruise_ship	93088.88889	vehicle	cruise ship	0.410714286	45
+tugboat	tugboat	90627.90698	vehicle	tugboat	0.298311185	43
+kayak	kayak	74250.0	vehicle	kayak	0.216145833	48
+scooter	scooter	68717.3913	vehicle	scooter	0.500698758	46
+rickshaw	rickshaw	94562.5	vehicle	rickshaw	0.180245536	32
+snowmobile	snowmobile	75954.54544999999	vehicle	snowmobile	0.465638528	44
+rocket	rocket	83200.0	vehicle	rocket	0.136772487	45
+skateboard	skateboard	80111.11111	vehicle	skateboard	0.287962963	45
+yacht	yacht	118266.6667	vehicle	yacht	0.401455026	45
+aircraft carrier	aircraft_carrier	95295.45455	vehicle	aircraft carrier	0.299648268	44
+submarine	submarine	89521.73913	vehicle	submarine	0.284937888	46
+speedboat	speedboat	79891.30435	vehicle	speedboat	0.448628364	46
+motorcycle	motorcycle	101977.7778	vehicle	motorcycle	0.732407407	45
+camper	camper	80976.74419000001	vehicle	camper	0.50982835	43
+snowplow	snowplow	98813.95349	vehicle	snowplow	0.39576412	43
+tricycle	tricycle	87288.88889	vehicle	tricycle	0.335714286	45
+trolley	trolley	94681.81818	vehicle	trolley	0.391369048	44
+bus	bus	102159.0909	vehicle	bus	0.786796537	44
+ferry	ferry	95088.88889	vehicle	ferry	0.392063492	45
+carriage	carriage	84217.3913	vehicle	carriage	0.302795031	46
+chariot	chariot	67418.60465000001	vehicle	chariot	0.168189369	43
+bike	bike	100377.7778	vehicle	bike	0.477380952	45
+sailboat	sailboat	84021.73913	vehicle	sailboat	0.400491718	46
+gondola	gondola	78634.14634	vehicle	gondola	0.165650407	41
+train	train	92957.44681	vehicle	train	0.595364742	47
+raft	raft	74239.13043	vehicle	raft	0.214673913	46
+subway	subway	81558.13953	vehicle	subway	0.446843854	43
+bulldozer	bulldozer	79465.11628	vehicle	bulldozer	0.382059801	43
+humvee	humvee	69526.31579	vehicle	humvee	0.558740602	38
+steamroller	steamroller	89044.44444	vehicle	steamroller	0.221031746	45
+taxi	taxi	109568.1818	vehicle	taxi	0.743100649	44
+cart	cart	87702.12766	vehicle	cart	0.246453901	47
+airboat	airboat	75048.78049	vehicle	airboat	0.211382114	41
+police car	police_car	80204.08163	vehicle	police car	0.725655977	49
+buggy	buggy	86065.21739	vehicle	buggy	0.332298137	46
+helicopter	helicopter	75076.92308	vehicle	helicopter	0.499084249	39
+limousine	limousine	73463.41463	vehicle	limousine	0.638211382	41
+canoe	canoe	82347.82609	vehicle	canoe	0.25	46
+truck	truck	66142.85714000001	vehicle	truck	0.838435374	42
+garbage truck	garbage_truck	97697.67442	vehicle	garbage truck	0.615033223	43
+forklift	forklift	93933.33333	vehicle	forklift	0.351984127	45
+boat	boat	85854.16666999999	vehicle	boat	0.506473214	48
+school bus	school_bus	100750.0	vehicle	school bus	0.724553571	40
+wagon	wagon	85500.0	vehicle	wagon	0.344979296	46
+hot-air balloon	hot-air_balloon	93613.63636	vehicle	hot-air balloon	0.188717532	44
+station wagon	station_wagon	73863.63636	vehicle	station wagon	0.752840909	44
+golf cart	golf_cart	78785.71429	vehicle	golf cart	0.522959184	42
+airplane	airplane	83422.22222	vehicle	airplane	0.57989418	45
+minivan	minivan	88707.31707	vehicle	minivan	0.807926829	41
+dirt bike	dirt_bike	84522.72727	vehicle	dirt bike	0.55762987	44
+stroller	stroller	79272.72727	vehicle	stroller	0.206304113	44
+hovercraft	hovercraft	72534.88372	vehicle	hovercraft	0.23089701	43
+seaplane	seaplane	85936.17021	vehicle	seaplane	0.302051672	47
+jetski	jetski	82800.0	vehicle	jetski	0.286160714	40
+roadsweeper	roadsweeper	74976.19048	vehicle	roadsweeper	0.350623583	42
+jet	jet	94136.36364	vehicle	jet	0.489448052	44
+hearse	hearse	81128.20513	vehicle	hearse	0.445512821	39
+wheelchair	wheelchair	66309.52381	vehicle	wheelchair	0.164965986	42
+ship	ship	78195.12195	vehicle	ship	0.471689895	41
+unicycle	unicycle	80466.66666999999	vehicle	unicycle	0.16031746	45
+space shuttle	space_shuttle	103804.878	vehicle	space shuttle	0.253919861	41
+go-kart	go-kart	103250.0	vehicle	go-kart	0.500446429	40
+tractor	tractor	96361.70213	vehicle	tractor	0.574721378	47
+sled	sled	94090.90909	vehicle	sled	0.166801948	44
+fish	fish	61046.51163	sea animal	fish	0.780426357	43
+turtle	turtle	83404.7619	sea animal	turtle	0.538690476	42
+shrimp	shrimp	74478.26087	sea animal	shrimp	0.529114907	46
+sea urchin	sea_urchin	91395.34884	sea animal	sea urchin	0.308139535	43
+oyster	oyster	63755.55556	sea animal	oyster	0.362222222	45
+snail	snail	72808.51064	sea animal	snail	0.156914894	47
+barnacle	barnacle	71955.55556	sea animal	barnacle	0.080555556	45
+coral	coral	68232.55814	sea animal	coral	0.13372093	43
+dolphin	dolphin	73204.54544999999	sea animal	dolphin	0.780844156	44
+starfish	starfish	69369.56522	sea animal	starfish	0.55318323	46
+catfish	catfish	91711.11111	sea animal	catfish	0.314021164	45
+jellyfish	jellyfish	79292.68293	sea animal	jellyfish	0.530487805	41
+sardine	sardine	75404.7619	sea animal	sardine	0.256377551	42
+shark	shark	64363.63636	sea animal	shark	0.775568182	44
+crab	crab	87255.81395000001	sea animal	crab	0.593023256	43
+scallop	scallop	64418.60465000001	sea animal	scallop	0.186046512	43
+seahorse	seahorse	76068.18182000001	sea animal	seahorse	0.471590909	44
+clam	clam	81083.33333000001	sea animal	clam	0.357886905	48
+eel	eel	85833.33333000001	sea animal	eel	0.393707483	42
+lobster	lobster	67822.22222	sea animal	lobster	0.57037037	45
+swordfish	swordfish	63511.11111	sea animal	swordfish	0.402777778	45
+manatee	manatee	72311.11111	sea animal	manatee	0.341137566	45
+octopus	octopus	76400.0	sea animal	octopus	0.653333333	45
+mussel	mussel	88000.0	sea animal	mussel	0.219512195	41
+stingray	stingray	68488.88889	sea animal	stingray	0.492592593	45
+whale	whale	71208.33333000001	sea animal	whale	0.680009921	48
+walrus	walrus	79340.90909	sea animal	walrus	0.362012987	44
+seal	seal	84794.87179	sea animal	seal	0.485042735	39
+blowfish	blowfish	69372.09302	sea animal	blowfish	0.327242525	43
+squid	squid	58666.66667	sea animal	squid	0.465728716	33
+tweezers	tweezers	64869.56522	scientific equipment	tweezers	0.32810559	46
+petri dish	petri_dish	74318.18182000001	scientific equipment	petri dish	0.628382035	44
+telescope	telescope	72583.33333000001	scientific equipment	telescope	0.6546875	48
+stethoscope	stethoscope	65770.83333000001	scientific equipment	stethoscope	0.502232143	48
+tape measure	tape_measure	65659.57446999999	scientific equipment	tape measure	0.311930091	47
+centrifuge	centrifuge	66439.02439	scientific equipment	centrifuge	0.502439024	41
+lab coat	lab_coat	79744.18604999999	scientific equipment	lab coat	0.529263566	43
+prism	prism	91326.08696	scientific equipment	prism	0.163431677	46
+incubator	incubator	85340.42553000001	scientific equipment	incubator	0.47606383	47
+microscope	microscope	73795.45455000001	scientific equipment	microscope	0.812824675	44
+tongs	tongs	79239.13043	scientific equipment	tongs	0.343452381	46
+calculator	calculator	69413.04348	scientific equipment	calculator	0.491459627	46
+ruler	ruler	78255.31915000001	scientific equipment	ruler	0.397922999	47
+swab	swab	68638.29787000001	scientific equipment	swab	0.372720365	47
+filter	filter	79208.33333000001	scientific equipment	filter	0.270089286	48
+tank	tank2	60904.7619	scientific equipment	tank (storage)	0.193707483	42
+polygraph	polygraph	67400.0	scientific equipment	polygraph	0.266666667	45
+seismograph	seismograph	78785.71429	scientific equipment	seismograph	0.383928571	42
+pendulum	pendulum	59210.52632	scientific equipment	pendulum	0.205513784	38
+beaker	beaker	67000.0	scientific equipment	beaker	0.718964563	43
+magnifying glass	magnifying_glass	70866.66667	scientific equipment	magnifying glass	0.630740741	45
+funnel	funnel	62909.090910000006	scientific equipment	funnel	0.402218615	44
+radar	radar	71244.44443999999	scientific equipment	radar	0.302857143	45
+magnifier	magnifier	67173.91304	scientific equipment	magnifier	0.526009317	46
+measuring cup	measuring_cup	72136.36364	scientific equipment	measuring cup	0.473160173	44
+syringe	syringe	78978.7234	scientific equipment	syringe	0.437563323	47
+gauge	gauge	81756.09756	scientific equipment	gauge	0.391550523	41
+gyroscope	gyroscope	74184.21053	scientific equipment	gyroscope	0.236842105	38
+blowtorch	blowtorch	81255.81395000001	scientific equipment	blowtorch	0.193106312	43
+scalpel	scalpel	80413.04348	scientific equipment	scalpel	0.405279503	46
+test tube	test_tube	60476.19048	scientific equipment	test tube	0.731037415	42
+timer	timer	68900.0	scientific equipment	timer	0.345178571	40
+scale	scale	70957.44681	scientific equipment	scale	0.550531915	47
+thermometer	thermometer	77111.11111	scientific equipment	thermometer	0.648809524	45
+magnet	magnet	68282.05128	scientific equipment	magnet	0.374389499	39
+football	football	56928.57143	sports equipment	football	0.770975057	42
+football helmet	football_helmet	77953.48837	sports equipment	football helmet	0.729651163	43
+basketball hoop	basketball_hoop	112441.8605	sports equipment	basketball hoop	0.653654485	43
+wetsuit	wetsuit	89625.0	sports equipment	wetsuit	0.199032738	48
+paddle	paddle	75369.56522	sports equipment	paddle	0.29076087	46
+snowshoe	snowshoe	75400.0	sports equipment	snowshoe	0.177380952	45
+target	target	71295.45455000001	sports equipment	target	0.247159091	44
+baton	baton3	80577.77778	sports equipment	baton (drums)	0.046560847	45
+helmet	helmet	83869.56522	sports equipment	helmet	0.723990683	46
+baseball	baseball	76173.91304	sports equipment	baseball	0.785429607	46
+cleat	cleat	87809.52381	sports equipment	cleat	0.503826531	42
+kneepad	kneepad	75511.62791	sports equipment	kneepad	0.511627907	43
+ski	ski	75318.18182000001	sports equipment	ski	0.5	44
+saddle	saddle	83400.0	sports equipment	saddle	0.248660714	40
+springboard	springboard	85272.72727	sports equipment	springboard	0.224025974	44
+dartboard	dartboard	84543.47826	sports equipment	dartboard	0.30007764	46
+ping-pong table	ping-pong_table	65736.84211	sports equipment	ping-pong table	0.378853383	38
+bat	bat2	61422.22222	sports equipment	bat (sports)	0.736984127	45
+snowboard	snowboard	88220.0	sports equipment	snowboard	0.4875	50
+bowling ball	bowling_ball	76000.0	sports equipment	bowling ball	0.457446809	47
+stopwatch	stopwatch	79727.27273	sports equipment	stopwatch	0.277678571	44
+hockey stick	hockey_stick	79521.73913	sports equipment	hockey stick	0.639829193	46
+surfboard	surfboard	89000.0	sports equipment	surfboard	0.398538961	44
+scuba	scuba	71782.6087	sports equipment	scuba	0.207298137	46
+exerciser	exerciser	86536.58537	sports equipment	exerciser	0.24695122	41
+golf club	golf_club	67627.90698	sports equipment	golf club	0.662984496	43
+ball	ball	65837.2093	sports equipment	ball	0.798781838	43
+boxing gloves	boxing_gloves	61204.54545	sports equipment	boxing gloves	0.552353896	44
+rollerskate	rollerskate	64348.83721	sports equipment	rollerskate	0.401162791	43
+snorkel	snorkel	69081.63265	sports equipment	snorkel	0.221938776	49
+bobsled	bobsled	87651.16279	sports equipment	bobsled	0.177740864	43
+ski boots	ski_boots	81866.66667	sports equipment	ski boots	0.361111111	45
+goggles	goggles	63697.67442	sports equipment	goggles	0.355232558	43
+volleyball	volleyball	68000.0	sports equipment	volleyball	0.699031008	43
+jump rope	jump_rope	102866.6667	sports equipment	jump rope	0.541269841	45
+oar	oar	68652.17391	sports equipment	oar	0.279114907	46
+ski pole	ski_pole	70093.02326	sports equipment	ski pole	0.389950166	43
+trampoline	trampoline	80600.0	sports equipment	trampoline	0.241666667	45
+home plate	home_plate	78791.66666999999	sports equipment	home plate	0.287946429	48
+treadmill	treadmill	66727.27273	sports equipment	treadmill	0.493641775	44
+frisbee	frisbee	59600.0	sports equipment	frisbee	0.473214286	40
+balance beam	balance_beam	67886.36364	sports equipment	balance beam	0.299512987	44
+baseball bat	baseball_bat	62044.44444	sports equipment	baseball bat	0.765740741	45
+racket	racket	91357.14286	sports equipment	racket	0.571428571	42
+dumbbell	dumbbell	77173.91304	sports equipment	dumbbell	0.451086957	46
+dart	dart	73369.56522	sports equipment	dart	0.251552795	46
+javelin	javelin	75704.54544999999	sports equipment	javelin	0.280438312	44
+flipper	flipper	75906.97674	sports equipment	flipper	0.223837209	43
+punching bag	punching_bag	81755.55556000001	sports equipment	punching bag	0.497222222	45
+face mask	face_mask	71209.30233	sports equipment	face mask	0.302740864	43
+beachball	beachball	63479.16667	sports equipment	beachball	0.367906746	48
+barbell	barbell	79666.66666999999	sports equipment	barbell	0.437301587	45
+puck	puck	72476.19048	sports equipment	puck	0.415816327	42
+tee	tee	81952.38095	sports equipment	tee	0.348214286	42
+sled	sled	76159.09091	sports equipment	sled	0.247159091	44
+rollerblade	rollerblade	91326.08696	sports equipment	rollerblade	0.404891304	46
+soccer ball	soccer_ball	73000.0	sports equipment	soccer ball	0.75166113	43
+skateboard	skateboard	104288.8889	sports equipment	skateboard	0.470767196	45
+tennis ball	tennis_ball	82619.04762	sports equipment	tennis ball	0.670918367	42
+baseball glove	baseball_glove	70347.82609	sports equipment	baseball glove	0.755434783	46
+mouthpiece	mouthpiece	60795.45455	sports equipment	mouthpiece	0.333198052	44
+baton	baton4	63976.74419	sports equipment	baton (running)	0.23255814	43
+basketball	basketball	73375.0	sports equipment	basketball	0.75	48
+iceskate	iceskate	65555.55556000001	sports equipment	iceskate	0.48031746	45
+steering wheel	steering_wheel	64363.63636	part of car	steering wheel	0.772321429	44
+brake	brake	63666.66667	part of car	brake	0.596153846	39
+car door	car_door	66076.92308	part of car	car door	0.626373626	39
+car seat	car_seat	65400.00000000001	part of car	car seat	0.40952381	45
+exhaust pipe	exhaust_pipe	71681.81817999999	part of car	exhaust pipe	0.32224026	44
+gearshift	gearshift	73953.48837	part of car	gearshift	0.35755814	43
+gasket	gasket	75536.58537	part of car	gasket	0.167682927	41
+hubcap	hubcap	85439.02439	part of car	hubcap	0.305749129	41
+wheel	wheel	74086.95652	part of car	wheel	0.714673913	46
+pedal	pedal	61116.27907	part of car	pedal	0.528239203	43
+speedometer	speedometer	60972.97297	part of car	speedometer	0.414414414	37
+handbrake	handbrake	78073.17073	part of car	handbrake	0.233449477	41
+bumper	bumper	73575.0	part of car	bumper	0.637053571	40
+license plate	license_plate	65534.88372	part of car	license plate	0.331395349	43
+rim	rim	62523.80952	part of car	rim	0.281746032	42
+dashboard	dashboard	66951.21951	part of car	dashboard	0.632404181	41
+grille	grille	66700.0	part of car	grille	0.234821429	40
+taillight	taillight	72750.0	part of car	taillight	0.431994048	40
+spark plug	spark_plug	69918.91892	part of car	spark plug	0.219594595	37
+seatbelt	seatbelt	73452.38095	part of car	seatbelt	0.553571429	42
+odometer	odometer	82857.14285999999	part of car	odometer	0.303571429	42
+sunroof	sunroof	74409.09091	part of car	sunroof	0.267045455	44
+rearview mirror	rearview_mirror	82194.44443999999	part of car	rearview mirror	0.507275132	36
+airbag	airbag	72100.0	part of car	airbag	0.354166667	40
+windshield	windshield	72463.41463	part of car	windshield	0.668699187	41
+engine	engine	68341.46341	part of car	engine	0.768873403	41
+headlight	headlight	80659.09091	part of car	headlight	0.649350649	44
+roof rack	roof_rack	71977.77778	part of car	roof rack	0.087037037	45
+windshield wiper	windshield_wiper	75973.68421	part of car	windshield wiper	0.507988722	38
+headrest	headrest	71428.57143000001	part of car	headrest	0.232142857	42
+bandanna	bandanna	92650.0	headwear	bandanna	0.565625	40
+wig	wig	64948.717950000006	headwear	wig	0.382326007	39
+football helmet	football_helmet	65255.81395	headwear	football helmet	0.424418605	43
+veil	veil	82318.18182000001	headwear	veil	0.217938312	44
+headscarf	headscarf	89315.78947	headwear	headscarf	0.416666667	38
+headdress	headdress	84347.82609	headwear	headdress	0.204192547	46
+turban	turban	72425.53191	headwear	turban	0.28698075	47
+crown	crown	86341.46341	headwear	crown	0.381533101	41
+beanie	beanie	60531.91489	headwear	beanie	0.661474164	47
+helmet	helmet	73658.53659	headwear	helmet	0.618466899	41
+headband	headband	61069.76744	headwear	headband	0.63538206	43
+hood	hood	58767.44186	headwear	hood	0.560631229	43
+top hat	top_hat	69166.66666999999	headwear	top hat	0.472718254	36
+tiara	tiara	56170.73171	headwear	tiara	0.285569106	41
+bonnet	bonnet	80023.80952	headwear	bonnet	0.334325397	42
+hairnet	hairnet	59795.45455	headwear	hairnet	0.255681818	44
+hat	hat	77930.23255999999	headwear	hat	0.835409745	43
+sombrero	sombrero	71217.3913	headwear	sombrero	0.444616977	46
+bowler hat	bowler_hat	84875.0	headwear	bowler hat	0.325	40
+checkers	checkers	87840.90909	game	checkers	0.681412338	44
+playing card	playing_card	72767.44186	game	playing card	0.566860465	43
+domino	domino	72190.47619	game	domino	0.358843537	42
+videogame	videogame	87756.09756	game	videogame	0.685714286	41
+backgammon	backgammon	64404.7619	game	backgammon	0.31547619	42
+game	game	74648.64865	game	game	0.539382239	37
+jump rope	jump_rope	66756.09756	game	jump rope	0.193815331	41
+jigsaw puzzle	jigsaw_puzzle	73707.31707	game	jigsaw puzzle	0.307578397	41
+board game	board_game	90275.0	game	board game	0.709375	40
+scrabble	scrabble	84642.85714000001	game	scrabble	0.582482993	42
+chessboard	chessboard	72325.0	game	chessboard	0.509375	40
+yo-yo	yo-yo	71282.05128	game	yo-yo	0.122252747	39
+shuffleboard	shuffleboard	67371.42857	game	shuffleboard	0.242857143	35
+dice	dice	81390.2439	game	dice	0.405487805	41
+slot machine	slot_machine	84775.0	game	slot machine	0.310714286	40
+hopscotch	hopscotch	96292.68293	game	hopscotch	0.324825784	41
+pinball	pinball	70157.89474	game	pinball	0.398026316	38
+computer	computer	81000.0	game	computer	0.453296703	39
+ticktacktoe	ticktacktoe	68945.94595	game	ticktacktoe	0.555019305	37
+paper	paper	87690.47619	school supply	paper	0.6875	42
+crayon	crayon	80068.18182000001	school supply	crayon	0.457386364	44
+eraser	eraser	74642.85714000001	school supply	eraser	0.592261905	42
+ruler	ruler	87652.17391	school supply	ruler	0.483695652	46
+chalk	chalk	89375.0	school supply	chalk	0.23125	40
+stapler	stapler	59088.88889	school supply	stapler	0.246031746	45
+inkwell	inkwell	61210.52632	school supply	inkwell	0.013157895	38
+ink	ink	73428.57143000001	school supply	ink	0.12202381	42
+backpack	backpack	82613.63636	school supply	backpack	0.616477273	44
+calculator	calculator	92658.53659	school supply	calculator	0.447299652	41
+pencil sharpener	pencil_sharpener	70217.3913	school supply	pencil sharpener	0.402950311	46
+highlighter	highlighter	79600.0	school supply	highlighter	0.411111111	45
+chalkboard	chalkboard	80452.38095	school supply	chalkboard	0.181547619	42
+whiteboard	whiteboard	85860.46512	school supply	whiteboard	0.284053156	43
+glue	glue	75461.53846	school supply	glue	0.426282051	39
+marker	marker	61302.32558	school supply	marker	0.447674419	43
+binder	binder	97627.90698	school supply	binder	0.537790698	43
+notepad	notepad	99697.67442	school supply	notepad	0.51910299	43
+paperclip	paperclip	71219.5122	school supply	paperclip	0.271341463	41
+pencil	pencil	79717.94872	school supply	pencil	0.736721612	39
+lunchbox	lunchbox	75457.14286	school supply	lunchbox	0.375	35
+pen	pen	58931.81818	school supply	pen	0.70413961	44
+folder	folder	71279.06977	school supply	folder	0.550249169	43
+book	book	83363.63636	school supply	book	0.558847403	44
+fountain pen	fountain_pen	66025.64103	school supply	fountain pen	0.246794872	39
+notebook	notebook	75243.24324	school supply	notebook	0.781853282	37
+lingerie	lingerie	78159.09091	women's clothing	lingerie	0.545183983	44
+bra	bra	78152.17391	women's clothing	bra	0.715838509	46
+corset	corset	58234.04255	women's clothing	corset	0.309650456	47
+pantyhose	pantyhose	68155.55556	women's clothing	pantyhose	0.508730159	45
+tiara	tiara	64090.90909	women's clothing	tiara	0.12012987	44
+stiletto	stiletto	78152.17391	women's clothing	stiletto	0.329192547	46
+headscarf	headscarf	63869.56522	women's clothing	headscarf	0.248447205	46
+dress	dress	84183.67347000001	women's clothing	dress	0.818999028	49
+blouse	blouse	63617.02128	women's clothing	blouse	0.661854103	47
+leggings	leggings	91595.74468	women's clothing	leggings	0.622973658	47
+pantsuit	pantsuit	64200.0	women's clothing	pantsuit	0.444312169	45
+veil	veil	70041.66666999999	women's clothing	veil	0.169642857	48
+fishnet stockings	fishnet_stockings	64888.88889	women's clothing	fishnet stockings	0.318253968	45
+kimono	kimono	77510.63829999999	women's clothing	kimono	0.238221884	47
+tube top	tube_top	81521.73913	women's clothing	tube top	0.413819876	46
+garter	garter	83456.52174	women's clothing	garter	0.259704969	46
+stockings	stockings	69653.06122	women's clothing	stockings	0.484693878	49
+bikini	bikini	56804.34783	women's clothing	bikini	0.596661491	46
+boa	boa	54921.05263	women's clothing	boa	0.049342105	38
+skirt	skirt	66234.04255	women's clothing	skirt	0.777735562	47
+refrigerator	refrigerator	64425.531910000005	home appliance	refrigerator	0.777659574	47
+freezer	freezer	69452.38095	home appliance	freezer	0.615136054	42
+cooler	cooler	89113.63636	home appliance	cooler	0.213068182	44
+air conditioner	air_conditioner	78739.13043	home appliance	air conditioner	0.513586957	46
+oven	oven	56510.20408	home appliance	oven	0.726603499	49
+water cooler	water_cooler	76177.77778	home appliance	water cooler	0.238888889	45
+flatiron	flatiron	80911.11111	home appliance	flatiron	0.166666667	45
+blower	blower	84186.04651	home appliance	blower	0.180232558	43
+stove	stove1	69304.34783	home appliance	stove (cooking)	0.778726708	46
+dryer	dryer	71800.0	home appliance	dryer	0.544047619	45
+iron	iron	85200.0	home appliance	iron	0.444444444	45
+heater	heater	70586.95652	home appliance	heater	0.394409938	46
+water heater	water_heater	84380.95238	home appliance	water heater	0.344387755	42
+dishwasher	dishwasher	114142.8571	home appliance	dishwasher	0.696428571	42
+microwave	microwave	73565.21739	home appliance	microwave	0.741847826	46
+food processor	food_processor	88738.09524000001	home appliance	food processor	0.416666667	42
+wine cooler	wine_cooler	61611.111110000005	home appliance	wine cooler	0.128472222	36
+cooker	cooker	65395.83333	home appliance	cooker	0.420386905	48
+blender	blender	76195.65217	home appliance	blender	0.581521739	46
+vacuum	vacuum	66422.22222	home appliance	vacuum	0.537777778	45
+washing machine	washing_machine	75384.61538	home appliance	washing machine	0.683882784	39
+hairdryer	hairdryer	72956.52174	home appliance	hairdryer	0.347826087	46
+hotplate	hotplate	82022.72727	home appliance	hotplate	0.25487013	44
+juicer	juicer2	83260.86957	home appliance	juicer (electrical)	0.355978261	46
+icemaker	icemaker	65428.57143	home appliance	icemaker	0.393707483	42
+television	television	87173.91304	home appliance	television	0.489518634	46
+coffeemaker	coffeemaker	88461.53846	home appliance	coffeemaker	0.638644689	39
+curling iron	curling_iron	90521.73913	home appliance	curling iron	0.230978261	46
+waffle iron	waffle_iron	76675.0	home appliance	waffle iron	0.40625	40
+sewing machine	sewing_machine	83642.85714000001	home appliance	sewing machine	0.24702381	42
+lawnmower	lawnmower	72829.78722999999	home appliance	lawnmower	0.247340426	47
+mixer	mixer	70441.86047	home appliance	mixer	0.523255814	43
+soda fountain	soda_fountain	102466.6667	home appliance	soda fountain	0.102777778	45
+fan	fan	77000.0	home appliance	fan	0.397959184	49
+toaster	toaster	76955.55556	home appliance	toaster	0.688888889	45
+meat grinder	meat_grinder	91659.57447	home appliance	meat grinder	0.234042553	47
+toaster oven	toaster_oven	72413.04348	home appliance	toaster oven	0.586956522	46
+thermostat	thermostat	93717.3913	home appliance	thermostat	0.277173913	46
+rake	rake	116720.9302	garden tool	rake	0.708471761	43
+shovel	shovel	107045.4545	garden tool	shovel	0.689772727	44
+hose	hose	79590.90909	garden tool	hose	0.589285714	44
+trowel	trowel	97720.93023	garden tool	trowel	0.523671096	43
+pitchfork	pitchfork	113869.5652	garden tool	pitchfork	0.349767081	46
+pickax	pickax	111717.3913	garden tool	pickax	0.145186335	46
+shears	shears	100522.7273	garden tool	shears	0.493912338	44
+scissors	scissors	114448.9796	garden tool	scissors	0.275874636	49
+hoe	hoe	91347.82609	garden tool	hoe	0.646661491	46
+watering can	watering_can	103813.9535	garden tool	watering can	0.662541528	43
+axe	axe	86687.5	garden tool	axe	0.269419643	48
+chainsaw	chainsaw	108446.8085	garden tool	chainsaw	0.262917933	47
+lawnmower	lawnmower	107282.6087	garden tool	lawnmower	0.64673913	46
+saw	saw	114000.0	garden tool	saw	0.196428571	46
+sickle	sickle	113065.2174	garden tool	sickle	0.190993789	46
+clipper	clipper1	63391.30435	garden tool	clipper (for hedges)	0.61568323	46
+hatchet	hatchet	107097.561	garden tool	hatchet	0.214721254	41
+scaffolding	scaffolding	68243.90244	construction equipment	scaffolding	0.441202091	41
+screwdriver	screwdriver	79276.59574	construction equipment	screwdriver	0.466945289	47
+cement mixer	cement_mixer	99410.25641	construction equipment	cement mixer	0.584371184	39
+shovel	shovel	82931.81817999999	construction equipment	shovel	0.498457792	44
+rope	rope	89266.66667	construction equipment	rope	0.242063492	45
+saw	saw	98363.63636	construction equipment	saw	0.568641775	44
+tarp	tarp	77651.16279	construction equipment	tarp	0.212209302	43
+chain	chain	80545.45455000001	construction equipment	chain	0.266098485	44
+bulldozer	bulldozer	71468.08511	construction equipment	bulldozer	0.706180344	47
+sawhorse	sawhorse	78232.55814	construction equipment	sawhorse	0.321013289	43
+wheelbarrow	wheelbarrow	79347.82609	construction equipment	wheelbarrow	0.449145963	46
+drill	drill	83000.0	construction equipment	drill	0.669237013	44
+staple gun	staple_gun	79613.63636	construction equipment	staple gun	0.329680736	44
+pulley	pulley	84833.33333000001	construction equipment	pulley	0.232142857	42
+steamroller	steamroller	81909.09091	construction equipment	steamroller	0.351136364	44
+sledgehammer	sledgehammer	76477.27273	construction equipment	sledgehammer	0.597132035	44
+pliers	pliers	75177.77778	construction equipment	pliers	0.397883598	45
+jackhammer	jackhammer	93148.93617	construction equipment	jackhammer	0.675734549	47
+scaffold	scaffold	83333.33333000001	construction equipment	scaffold	0.488236961	42
+chainsaw	chainsaw	69000.0	construction equipment	chainsaw	0.384814815	45
+hammer	hammer	70800.0	construction equipment	hammer	0.702380952	45
+crane	crane	87488.88889	construction equipment	crane	0.62484127	45
+trowel	trowel	71951.21951	construction equipment	trowel	0.263501742	41
+helmet	helmet	80485.71429	construction equipment	helmet	0.475680272	35
+pump	pump	80893.61701999999	construction equipment	pump	0.147416413	47
+wrench	wrench	77075.0	construction equipment	wrench	0.426785714	40
+blowtorch	blowtorch	76750.0	construction equipment	blowtorch	0.389204545	44
+chisel	chisel	63421.05263	construction equipment	chisel	0.253289474	38
+ball	ball	58666.66667	toy	ball	0.781349206	45
+puppet	puppet	59333.33333	toy	puppet	0.450793651	45
+lego	lego	68354.16666999999	toy	lego	0.774553571	48
+hobbyhorse	hobbyhorse	63368.42105	toy	hobbyhorse	0.343045113	38
+skateboard	skateboard	79695.65217	toy	skateboard	0.479943064	46
+slingshot	slingshot	64200.0	toy	slingshot	0.334259259	45
+pinwheel	pinwheel	73425.0	toy	pinwheel	0.251339286	40
+robot	robot	74638.29787000001	toy	robot	0.433383992	47
+toy	toy	76551.02041000001	toy	toy	0.705539359	49
+doll	doll	69574.46809	toy	doll	0.730749747	47
+marble	marble	81465.11628	toy	marble	0.426495017	43
+pogo stick	pogo_stick	59217.3913	toy	pogo stick	0.339803313	46
+yo-yo	yo-yo	67617.02128	toy	yo-yo	0.561170213	47
+stilt	stilt	86317.07317	toy	stilt	0.06445993	41
+teddy bear	teddy_bear	66809.52381	toy	teddy bear	0.62585034	42
+rattle	rattle	79911.11111	toy	rattle	0.53531746	45
+boomerang	boomerang	63340.42553	toy	boomerang	0.274316109	47
+kite	kite	68365.85366	toy	kite	0.486933798	41
+beachball	beachball	59380.95238	toy	beachball	0.384353741	42
+rocking horse	rocking_horse	64022.22222	toy	rocking horse	0.440608466	45
+whoopee cushion	whoopee_cushion	63911.11111	toy	whoopee cushion	0.220238095	45
+noisemaker	noisemaker	71111.11111	toy	noisemaker	0.190873016	45
+dollhouse	dollhouse	67891.30435	toy	dollhouse	0.635481366	46
+squirt gun	squirt_gun	66782.6087	toy	squirt gun	0.54360766	46
+music box	music_box	62744.18605	toy	music box	0.182724252	43
+train set	train_set	71872.34043	toy	train set	0.707066869	47
+gyroscope	gyroscope	66052.63158	toy	gyroscope	0.108552632	38
+hula hoop	hula_hoop	82148.93617	toy	hula hoop	0.492021277	47
+dreidel	dreidel	66738.09524000001	toy	dreidel	0.125	42
+crayon	crayon	69731.70732	toy	crayon	0.396341463	41
+balloon	balloon	63952.38095	toy	balloon	0.304563492	42
+kaleidoscope	kaleidoscope	86133.33333	toy	kaleidoscope	0.228968254	45
+frisbee	frisbee	62674.418600000005	toy	frisbee	0.558139535	43
+scooter	scooter	73510.20408	toy	scooter	0.479956268	49
+stethoscope	stethoscope	80000.0	medical equipment	stethoscope	0.773561508	48
+defibrillator	defibrillator	88204.54544999999	medical equipment	defibrillator	0.560876623	44
+bandage	bandage	79886.36364	medical equipment	bandage	0.691558442	44
+swab	swab	77333.33333000001	medical equipment	swab	0.378826531	42
+eyedropper	eyedropper	71978.26087	medical equipment	eyedropper	0.235119048	46
+cane	cane	92000.0	medical equipment	cane	0.386212625	43
+bedpan	bedpan	67347.82609	medical equipment	bedpan	0.270703934	46
+plaster cast	plaster_cast	112477.2727	medical equipment	plaster cast	0.28125	44
+sling	sling	78808.51064	medical equipment	sling	0.381458967	47
+pillbox	pillbox	72173.91304	medical equipment	pillbox	0.220496894	46
+crutch	crutch	76326.08696	medical equipment	crutch	0.576216356	46
+hearing aid	hearing_aid	70068.18182000001	medical equipment	hearing aid	0.302353896	44
+wheelchair	wheelchair	60291.66667	medical equipment	wheelchair	0.657738095	48
+ice pack	ice_pack	62478.26087	medical equipment	ice pack	0.398291925	46
+gurney	gurney	79466.66666999999	medical equipment	gurney	0.495634921	45
+vial	vial	89437.5	medical equipment	vial	0.342509921	48
+eye patch	eye_patch	93875.0	medical equipment	eye patch	0.174727183	48
+syringe	syringe	80611.11111	medical equipment	syringe	0.683531746	36
+stretcher	stretcher	111564.1026	medical equipment	stretcher	0.513278388	39
+penlight	penlight	82470.58824	medical equipment	penlight	0.1875	34
+first-aid kit	first-aid_kit	86382.97872	medical equipment	first-aid kit	0.656155015	47
+brace	brace	77291.66666999999	medical equipment	brace	0.439112103	48
+tweezers	tweezers	83260.86957	medical equipment	tweezers	0.241847826	46
+gauze	gauze	83611.11111	medical equipment	gauze	0.541170635	36
+walker	walker1	100555.5556	medical equipment	walker (for elderly)	0.349206349	36
+inhaler	inhaler	81041.66666999999	medical equipment	inhaler	0.421875	48
+scalpel	scalpel	75108.69565	medical equipment	scalpel	0.627199793	46
+armor	armor	74488.88889	protective clothing	armor	0.472407407	45
+helmet	helmet	71434.78261	protective clothing	helmet	0.690993789	46
+football helmet	football_helmet	74857.14285999999	protective clothing	football helmet	0.505952381	42
+kneepad	kneepad	87022.72727	protective clothing	kneepad	0.452408009	44
+visor	visor	87152.17391	protective clothing	visor	0.281909938	46
+coverall	coverall	97052.63158	protective clothing	coverall	0.274122807	38
+wetsuit	wetsuit	70977.77778	protective clothing	wetsuit	0.272222222	45
+spacesuit	spacesuit	79288.88889	protective clothing	spacesuit	0.228412698	45
+face mask	face_mask	77765.95745	protective clothing	face mask	0.681864235	47
+apron	apron	89666.66666999999	protective clothing	apron	0.351190476	42
+bulletproof vest	bulletproof_vest	98425.53191	protective clothing	bulletproof vest	0.553824721	47
+lab coat	lab_coat	105350.0	protective clothing	lab coat	0.333333333	40
+overalls	overalls	101977.2727	protective clothing	overalls	0.222537879	44
+life jacket	life_jacket	89558.82353	protective clothing	life jacket	0.523284314	34
+raincoat	raincoat	72488.37209	protective clothing	raincoat	0.48961794	43
+glove	glove	69822.22222	protective clothing	glove	0.613095238	45
+clam	clam	89733.33333	seafood	clam	0.559259259	45
+scallop	scallop	73444.44443999999	seafood	scallop	0.598015873	45
+shrimp	shrimp	77500.0	seafood	shrimp	0.782220497	46
+mussel	mussel	62702.127660000006	seafood	mussel	0.486702128	47
+caviar	caviar	66866.66667	seafood	caviar	0.401984127	45
+calamari	calamari	88441.17647	seafood	calamari	0.511029412	34
+eel	eel	103863.6364	seafood	eel	0.201704545	44
+snail	snail	66325.58140000001	seafood	snail	0.235049834	43
+blowfish	blowfish	100348.8372	seafood	blowfish	0.151162791	43
+fish	fish	113930.2326	seafood	fish	0.80841639	43
+shark	shark	80888.88889	seafood	shark	0.166931217	45
+jellyfish	jellyfish	100177.7778	seafood	jellyfish	0.131878307	45
+swordfish	swordfish	81311.11111	seafood	swordfish	0.417460317	45
+sea urchin	sea_urchin	84282.05128	seafood	sea urchin	0.092948718	39
+oyster	oyster	73230.76923	seafood	oyster	0.585164835	39
+seaweed	seaweed	70659.57446999999	seafood	seaweed	0.274822695	47
+catfish	catfish	75704.54544999999	seafood	catfish	0.546536797	44
+seafood	seafood	68800.0	seafood	seafood	0.576190476	45
+lobster	lobster	69829.26829	seafood	lobster	0.68466899	41
+squid	squid	91282.6087	seafood	squid	0.394151139	46
+sardine	sardine	81595.2381	seafood	sardine	0.445153061	42
+crab	crab	86297.87234	seafood	crab	0.702887538	47
+octopus	octopus	77181.81817999999	seafood	octopus	0.402056277	44
+crayfish	crayfish	62465.11628	seafood	crayfish	0.31769103	43
+drink	drink	76794.87179	drink	drink	0.471153846	39
+champagne	champagne	65097.56098	drink	champagne	0.301829268	41
+punch	punch1	68756.09756	drink	punch (drink)	0.271777003	41
+smoothie	smoothie	64153.846150000005	drink	smoothie	0.299450549	39
+milkshake	milkshake	72511.62791	drink	milkshake	0.290697674	43
+latte	latte	72000.0	drink	latte	0.329703833	41
+espresso	espresso	62428.57143	drink	espresso	0.276785714	42
+milk	milk	70190.47619	drink	milk	0.611819728	42
+juice	juice	62477.27273	drink	juice	0.637581169	44
+soda	soda	55000.0	drink	soda	0.740384615	39
+beer	beer	68452.38095	drink	beer	0.575680272	42
+coffee	coffee	67022.22222	drink	coffee	0.751984127	45
+tea	tea	61044.44444	drink	tea	0.59484127	45
+cocktail	cocktail	71083.33333000001	drink	cocktail	0.368055556	36
+margarita	margarita	68318.18182000001	drink	margarita	0.355925325	44
+hot chocolate	hot_chocolate	75465.11628	drink	hot chocolate	0.33513289	43
+wine	wine	63743.58974	drink	wine	0.473443223	39
+eggnog	eggnog	70951.21951	drink	eggnog	0.051829268	41
+lemonade	lemonade	64139.53488	drink	lemonade	0.522425249	43
+diaper	diaper	82418.60465000001	personal hygiene item	diaper	0.237126246	43
+swab	swab	91710.52632	personal hygiene item	swab	0.361842105	38
+toothpick	toothpick	101200.0	personal hygiene item	toothpick	0.258333333	45
+curling iron	curling_iron	81289.47368	personal hygiene item	curling iron	0.197368421	38
+flatiron	flatiron	78666.66666999999	personal hygiene item	flatiron	0.148809524	42
+nail polish	nail_polish	95391.30435	personal hygiene item	nail polish	0.214673913	46
+clipper	clipper2	68953.48837	personal hygiene item	clipper (for nails)	0.484883721	43
+nail file	nail_file	100047.619	personal hygiene item	nail file	0.368622449	42
+nail clippers	nail_clippers	74934.78261	personal hygiene item	nail clippers	0.564751553	46
+toilet paper	toilet_paper	102725.0	personal hygiene item	toilet paper	0.69702381	40
+hairbrush	hairbrush	72552.63158	personal hygiene item	hairbrush	0.633458647	38
+lip gloss	lip_gloss	77555.55556000001	personal hygiene item	lip gloss	0.217460317	45
+shaving cream	shaving_cream	98553.19149	personal hygiene item	shaving cream	0.534219858	47
+deodorant	deodorant	74750.0	personal hygiene item	deodorant	0.765097403	44
+toothpaste	toothpaste	71266.66667	personal hygiene item	toothpaste	0.767724868	45
+makeup	makeup	80048.78049	personal hygiene item	makeup	0.345818815	41
+lipstick	lipstick	91733.33333	personal hygiene item	lipstick	0.182142857	45
+washcloth	washcloth	100690.4762	personal hygiene item	washcloth	0.553571429	42
+razor	razor	72166.66666999999	personal hygiene item	razor	0.621598639	42
+soap	soap	71487.80488	personal hygiene item	soap	0.806184669	41
+eyeliner	eyeliner	91682.92683	personal hygiene item	eyeliner	0.18742741	41
+shower cap	shower_cap	79827.58621000001	personal hygiene item	shower cap	0.321428571	29
+tweezers	tweezers	72772.72727	personal hygiene item	tweezers	0.465909091	44
+lip balm	lip_balm	66022.22222	personal hygiene item	lip balm	0.348015873	45
+mascara	mascara	100022.2222	personal hygiene item	mascara	0.194444444	45
+floss	floss	85121.95122	personal hygiene item	floss	0.62412892	41
+comb	comb	86804.34783	personal hygiene item	comb	0.614130435	46
+hairspray	hairspray	67047.61905	personal hygiene item	hairspray	0.288690476	42
+toothbrush	toothbrush	90477.27273	personal hygiene item	toothbrush	0.806006494	44
+hairdryer	hairdryer	85244.89796	personal hygiene item	hairdryer	0.415816327	49
+perfume	perfume	83837.2093	personal hygiene item	perfume	0.289036545	43
+flashlight	flashlight	62500.0	lighting	flashlight	0.691123188	46
+candle	candle	70086.95652	lighting	candle	0.517986542	46
+lighter	lighter	85808.51064	lighting	lighter	0.361448835	47
+candelabra	candelabra	75953.48837	lighting	candelabra	0.206395349	43
+chandelier	chandelier	84304.34783	lighting	chandelier	0.510869565	46
+streetlight	streetlight	77733.33333	lighting	streetlight	0.566269841	45
+taillight	taillight	70770.83333000001	lighting	taillight	0.2578125	48
+flashbulb	flashbulb	77840.90909	lighting	flashbulb	0.25	44
+headlight	headlight	92680.85106	lighting	headlight	0.481509625	47
+headlamp	headlamp	88583.33333000001	lighting	headlamp	0.335565476	48
+torch	torch	82428.57143000001	lighting	torch	0.278790087	49
+match	match	80108.69565	lighting	match	0.298913043	46
+lantern	lantern	74608.69565	lighting	lantern	0.507634576	46
+lightbulb	lightbulb	60836.73469	lighting	lightbulb	0.716229349	49
+lamp	lamp	84208.33333000001	lighting	lamp	0.813864087	48
+penlight	penlight	79791.66666999999	lighting	penlight	0.177083333	48
+pepper mill	pepper_mill	81913.04348	kitchen tool	pepper mill	0.258695652	46
+scoop	scoop	93000.0	kitchen tool	scoop	0.358101045	41
+cleaver	cleaver	105347.8261	kitchen tool	cleaver	0.305900621	46
+grinder	grinder	78717.3913	kitchen tool	grinder	0.242391304	46
+rolling pin	rolling_pin	90714.28571	kitchen tool	rolling pin	0.545068027	42
+nutcracker	nutcracker	68733.33333	kitchen tool	nutcracker	0.094444444	45
+sifter	sifter	88031.25	kitchen tool	sifter	0.266741071	32
+icepick	icepick	91545.45455	kitchen tool	icepick	0.083333333	44
+measuring cup	measuring_cup	58500.0	kitchen tool	measuring cup	0.701339286	40
+spoon	spoon	71104.16666999999	kitchen tool	spoon	0.708333333	48
+can opener	can_opener	68565.21739	kitchen tool	can opener	0.693581781	46
+bottle opener	bottle_opener	79466.66666999999	kitchen tool	bottle opener	0.518650794	45
+spatula	spatula	97326.08696	kitchen tool	spatula	0.719565217	46
+tongs	tongs	85025.64103	kitchen tool	tongs	0.53003663	39
+ladle	ladle	77478.26087	kitchen tool	ladle	0.521273292	46
+whisk	whisk	54822.22222	kitchen tool	whisk	0.608333333	45
+strainer	strainer	57804.34783	kitchen tool	strainer	0.541149068	46
+funnel	funnel	53543.47826	kitchen tool	funnel	0.301630435	46
+knife	knife	59833.33333	kitchen tool	knife	0.785714286	48
+corkscrew	corkscrew	75022.22222	kitchen tool	corkscrew	0.303174603	45
+timer	timer	86510.63829999999	kitchen tool	timer	0.362082067	47
+juicer	juicer1	60489.3617	kitchen tool	juicer (manual)	0.247340426	47
+peeler	peeler	83418.60465000001	kitchen tool	peeler	0.535714286	43
+grater	grater	82238.09524000001	kitchen tool	grater	0.5236678	42
+skewer	skewer	70466.66666999999	kitchen tool	skewer	0.144444444	45
+kettle	kettle	69046.51163	kitchen tool	kettle	0.487541528	43
+eggbeater	eggbeater	66000.0	kitchen tool	eggbeater	0.363247863	39
+boot	boot	65187.5	footwear	boot	0.750372024	48
+ski boots	ski_boots	67808.51064	footwear	ski boots	0.306231003	47
+slipper	slipper	66688.88889	footwear	slipper	0.603571429	45
+moccasin	moccasin	67813.95349	footwear	moccasin	0.35589701	43
+stockings	stockings	67375.0	footwear	stockings	0.28125	48
+rollerblade	rollerblade	65543.47826	footwear	rollerblade	0.23757764	46
+flip-flop	flip_flop	64510.6383	footwear	flip-flop	0.629179331	47
+shoe	shoe	58681.81818	footwear	shoe	0.857548701	44
+sock	sock	64595.2381	footwear	sock	0.583333333	42
+stiletto	stiletto	61674.418600000005	footwear	stiletto	0.493355482	43
+iceskate	iceskate	55000.0	footwear	iceskate	0.208730159	45
+snowshoe	snowshoe	54695.65217	footwear	snowshoe	0.211180124	46
+flipper	flipper	60934.78261	footwear	flipper	0.067934783	46
+sandal	sandal	58183.67347	footwear	sandal	0.728498542	49
+rollerskate	rollerskate	59288.88889	footwear	rollerskate	0.238888889	45
+jacket	jacket	72954.54544999999	outerwear	jacket	0.827435065	44
+fur coat	fur_coat	74951.21951	outerwear	fur coat	0.488066202	41
+raincoat	raincoat	78025.0	outerwear	raincoat	0.676964286	40
+lab coat	lab_coat	78888.88889	outerwear	lab coat	0.140555556	45
+coat	coat	73285.71429	outerwear	coat	0.821428571	42
+jumpsuit	jumpsuit	70250.0	outerwear	jumpsuit	0.265625	32
+scarf	scarf	75682.92683	outerwear	scarf	0.576219512	41
+glove	glove	68926.82927	outerwear	glove	0.571864111	41
+coverall	coverall	60863.63636	outerwear	coverall	0.28125	44
+cape	cape	81854.16666999999	outerwear	cape	0.229166667	48
+overalls	overalls	70175.0	outerwear	overalls	0.35	40
+snowsuit	snowsuit	68975.0	outerwear	snowsuit	0.445982143	40
+shawl	shawl	69525.0	outerwear	shawl	0.425	40
+apron	apron	82355.55556	outerwear	apron	0.163888889	45
+cloak	cloak	73847.82609	outerwear	cloak	0.23136646	46
+blazer	blazer	84692.30769	outerwear	blazer	0.560897436	39
