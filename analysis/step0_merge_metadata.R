@@ -6,6 +6,31 @@ library(tidyverse)
 test_corpus <- read_csv(here::here("data/item_metadata/test_items.csv")) %>%
   filter(!Word1 %in% c('honey','scrabble')) # manually excluded after piloting
 
+# load things dataset for item 1
+things_meta_word_1 <- read_tsv(here::here("data/item_metadata/things_concepts.tsv")) %>%
+  filter(Word %in% c(test_corpus$Word1)) %>%
+  mutate(log_freq_target_word = log1p(`SUBTLEX freq`)) %>%
+  mutate(concreteness_target_word = `Concreteness (M)`) %>%
+  select(Word, log_freq_target_word, concreteness_target_word)
+
+things_meta_word_2 <- read_tsv(here::here("data/item_metadata/things_concepts.tsv")) %>%
+  filter(Word %in% c(test_corpus$Word2)) %>%
+  mutate(log_freq_answer_word = log1p(`SUBTLEX freq`)) %>%
+  mutate(concreteness_answer_word = `Concreteness (M)`) %>%
+  select(Word, log_freq_answer_word, concreteness_answer_word)
+
+
+# load things typicality for item 1
+things_typ_word_1 <- read_tsv(here::here("data/item_metadata/things_typicality.tsv")) %>%
+  filter(Word %in% c(test_corpus$Word1)) %>%
+  group_by(Word) %>%
+  summarize(mean_typicality = mean(typicality_score))
+
+things_typ_word_2 <- read_tsv(here::here("data/item_metadata/things_typicality.tsv")) %>%
+  filter(Word %in% c(test_corpus$Word2)) %>%
+  group_by(Word) %>%
+  summarize(mean_typicality = mean(typicality_score))
+
 
 # Load clip correlations
 item_meta_data <- read_csv(here::here("data/raw/exp1_all_trials2023-04-11.csv")) %>%
@@ -18,13 +43,26 @@ item_meta_data <- read_csv(here::here("data/raw/exp1_all_trials2023-04-11.csv"))
 
 
 
+# load item data about phonological similarity
+phonological_sim = read_csv(file=here::here('data/item_metadata/phon_sim.csv')) %>%
+  rename(targetWord = target, answerWord = word)  %>%
+  filter(answerWord != targetWord)  %>%
+  select(targetWord, answerWord, phon_sim) %>% 
+  filter(targetWord %in% test_corpus$Word1) %>%
+  filter(answerWord %in% test_corpus$Word2) 
 
 
 # Join with metadata about the text/image/multimodal simialrities
 item_meta_and_model_sim = read_csv(file=here::here('data/item_metadata/vv_clip_similarities.csv')) %>%
   rename(targetWord = target, answerWord = image)  %>%
   filter(answerWord != targetWord)  %>%
-  right_join(item_meta_data)
+  right_join(item_meta_data) %>%
+  right_join(phonological_sim) %>%
+  right_join(things_meta_word_1, by=c('targetWord'='Word')) %>%
+  right_join(things_meta_word_2, by=c('answerWord'='Word'))
+  # right_join(things_typ_word_1, by=c('targetWord'='Word')) %>%
+  # right_join(things_typ_word_2, by=c('answerWord'='Word'))
+  
 
 
 write_csv(item_meta_and_model_sim, file=here::here('data/item_metadata/item_meta_and_model_sim.csv'))
