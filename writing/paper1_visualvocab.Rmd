@@ -67,8 +67,8 @@ library(MuMIn)
 ```
 
 ```{r}
-# RAW_DATA=TRUE # if within the research team
-RAW_DATA=FALSE # if exterior to the research team
+RAW_DATA=TRUE # if within the research team
+# RAW_DATA=FALSE # if exterior to the research team
 ```
 
 # Introduction
@@ -571,7 +571,7 @@ dist_by_4afc_by_item_by_age <- df.4AFC.distractor.summary.byPid %>%
   select(targetWord, wordPairing, prop, total_num_errors, age_group, AoA_Est_Word1) %>%
   mutate(prop = replace_na(prop, replace=0)) %>%
   mutate(wordPairing = str_split_fixed(wordPairing,'_',2)[,2]) %>%
-  left_join(item_meta_and_model_sim %>% distinct(targetWord, wordPairing, sim_img_img, sim_img_txt, sim_txt_txt)) 
+  left_join(item_meta_and_model_sim %>% distinct(targetWord, wordPairing, sim_img_img, sim_img_txt, sim_txt_txt, phon_sim, log_freq_target_word, concreteness_target_word)) 
 
 save(dist_by_4afc_by_item_by_age, file=here::here('data/preprocessed/dist_by_4afc_by_item_by_age.RData'))
 }
@@ -625,11 +625,11 @@ ggsave('figures/fig4b-similarity_by_item.pdf', width=2.5)
 # cross validation of lmer models 
 all_cor = tibble(lang = double(),
   vision = double(), multi = double(), all=double())
-  dataset = dist_by_4afc_by_item_by_age 
+  dataset = dist_by_4afc_by_item_by_age %>% filter(age_group<25)
 
 all_model_r2 = tibble(lang = double(),
   vision = double(), multi = double(), all=double())
-dataset = dist_by_4afc_by_item_by_age 
+dataset = dist_by_4afc_by_item_by_age   %>% filter(age_group<25)
 
 for (iter in 1:50){
 
@@ -689,7 +689,7 @@ all_model_r2_cis <- all_model_r2_long %>%
 
 
 
-```{r modelfigure, out.width='50%', fig.align='center', fig.cap = "Average explained variance in children's error patterns (conditional R-squared in linear mixed effect models) by linguistic, visual, multimodal, or combined predictors in cross-validated mixed efffect models. Error bars represent bootstrapped 95 percent confidence intervals across 50 iterations." }
+```{r modelfigurecis, out.width='50%', fig.align='center', fig.cap = "Average explained variance in children's error patterns (conditional R-squared in linear mixed effect models) by linguistic, visual, multimodal, or combined predictors in cross-validated mixed efffect models. Error bars represent bootstrapped 95 percent confidence intervals across 50 iterations." }
 ggplot(data=all_model_r2_cis, aes(x=model, y=mean, color=model)) +
   geom_linerange(aes(ymin=ci_lower, ymax=ci_upper)) +
   geom_point(size=3, alpha=.8) +
@@ -710,6 +710,37 @@ ggsave('figures/fig4c-model_comparison.pdf', height=3, units='in')
   
 ```
 
+```{r}
+all_data_to_model <- dist_by_4afc_by_item_by_age 
+
+all_data_to_model$sem_resid <- resid(
+  lm(sim_txt_txt ~ sim_img_img, data = all_data_to_model)
+)
+
+resid_model_fit = lmer(data=all_data_to_model, prop ~ scale(sem_resid)*scale(age_group) + scale(sim_img_txt) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+
+summary(resid_model_fit)
+```
+
+```{r}
+ggplot(all_data_to_model, aes(x=sem_resid, y=prop, col=sim_img_txt)) +
+  geom_point(alpha=.8) +
+  geom_smooth(method='lm') +
+  facet_wrap(~age_group)+
+  theme_few() +
+  ylab('Proportion distractor chosen (errors)') +
+  xlab('Ling ~ Visual Sim. Resid.')
+```
+
+
+
+```{r}
+exploratory_model_fit  = lmer(data=all_data_to_model, prop ~ scale(sem_resid)*scale(age_group) + scale(phon_sim)*scale(age_group) + scale(sim_img_txt) + scale(log_freq_target_word) + scale(concreteness_target_word) + (AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+```
+
+```{r}
+summary(exploratory_model_fit)
+```
 
 
 ```{r}
