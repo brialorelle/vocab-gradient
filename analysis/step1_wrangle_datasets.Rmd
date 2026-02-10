@@ -38,11 +38,15 @@ test_corpus <- read_csv(here::here("data/item_metadata/test_items.csv")) %>%
 
 # New merged data post preprcoessing
 ```{r}
-multiafc_combined <- read_csv(here::here("data/raw/multiAFC_4AFC_clean_combined_data_20240909.csv")) %>%
+multiafc_combined <- read_csv(here::here("data/raw/multiAFC_4AFC_clean_combined_data_20251203.csv")) %>%
   mutate(bing = str_detect(pid, 'bing')) %>%
   filter(bing==FALSE) %>% # will merge in later manually
   mutate(cohort='schools')
+
+
 ```
+
+
 
 # Load metadata
 ## examine items across aoa bins
@@ -137,7 +141,13 @@ adults <- read_csv(here::here("data/raw/multi-afc-april28.csv"))  %>%
 
 ```
 
-
+```{r}
+manual_pids <- garden %>% 
+  select(pid) %>%
+  full_join(adults %>% select(pid)) %>%
+  full_join(bing %>% select(pid)) %>%
+  distinct()
+```
 
 ## Make trial-levels data structure across all ages
 ```{R}
@@ -145,6 +155,7 @@ trial_data <- multiafc_combined %>%
   mutate(age_group = floor(ageMonths/12)) %>%
   filter(age_group<15) %>%
   filter(group!='B') %>% # garden participants, will merge manually
+  filter(!pid %in% manual_pids$pid) %>%
   full_join(garden) %>% # manually merge garden instead for age/pid difficulties
   full_join(adults)  %>%
   full_join(bing) %>%
@@ -153,6 +164,12 @@ trial_data <- multiafc_combined %>%
   
 ```
 
+
+```{R}
+missing = trial_data %>% filter(is.na(age_group))
+
+length(unique(missing$pid))
+```
 
 
 ## Parse out item-level responses 
@@ -185,7 +202,8 @@ We removed `r length(at_chance$pid)` participants who were older than 6 years of
 
 ```{r}
 df.4AFC.trials.clean <- df.4AFC.trials %>%
-  filter(!pid %in% at_chance$pid)
+  # filter(!pid %in% at_chance$pid) %>%
+  filter(age_group>0) # 1 weird participant with no metadata
 ```
 
 
@@ -325,6 +343,9 @@ sanity_check <- df.4AFC.distractor.summary.byAge.clean %>%
 assert_that(sum(sanity_check$count!=4)==0) # 
 ```
 
+```{R}
+df.4AFC.distractor.summary.byAge.clean
+```
 
 ```{r}
 save(df.4AFC.distractor.summary.byAge.clean, file=here::here('data/preprocessed/summary_by_distractor.Rdata'))
