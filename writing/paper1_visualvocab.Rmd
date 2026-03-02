@@ -98,17 +98,18 @@ With these data, we investigated three main questions. First, we examined whethe
 if (RAW_DATA==TRUE) 
 {
 load(file=here::here('data/raw/all_trial_data.Rdata'))
+school_type_meta = read_csv(file=here::here('data/raw/pid_with_school_type.csv'))
 }
 ```
 
 ```{r}
-# summarized across age group/distractor, so okay to shae
+# summarized across age group/distractor, so okay to share
 load(file=here::here('data/preprocessed/summary_by_distractor.Rdata'))
 ```
 
 ```{R}
 # load item data
-item_meta_and_model_sim = read_csv(file=here::here('data/item_metadata/item_meta_and_model_sim.csv'))
+item_meta_and_model_sim = read_csv(file=here::here('data/item_metadata/item_meta_and_model_sim.csv')) 
 ```
 
 
@@ -131,6 +132,13 @@ trials_by_participant <- df.4AFC.trials.clean %>%
   group_by(pid) %>%
   summarize(mean_pc = mean(correct), num_trials = length(unique(targetWord)))
 
+trials_by_age <- df.4AFC.trials.clean %>%
+  group_by(pid,age_group) %>%
+  summarize(mean_pc = mean(correct), num_trials = length(unique(targetWord))) %>%
+  group_by(age_group) %>%
+  summarize(mean_num_trials = mean(num_trials), sd_num_trials = sd(num_trials), n=length(unique(pid)))
+
+
 longitudinal_participants <- sum(trials_by_participant$num_trials>80)
 
 by_cohort = df.4AFC.trials.clean %>%
@@ -139,6 +147,38 @@ by_cohort = df.4AFC.trials.clean %>%
   mutate(cohort = replace_na(cohort,'adults'))
 
 save(n_by_age_group, trials_by_participant, longitudinal_participants, by_cohort, file=here::here('data/preprocessed/descriptives_data_structures.RData'))
+
+### school type analysis
+
+adults_only <- df.4AFC.trials.clean %>%
+  filter(cohort %in% c('adults_monolingual','adults_ell')) %>%
+  mutate(age_group=25) %>%
+  group_by(pid, age_group, cohort) %>%
+  summarize(mean_pc = mean(correct)) %>%
+  mutate(school_type = cohort) %>%
+  group_by(age_group, school_type) %>%
+  multi_boot_standard(col='mean_pc') 
+
+trials_by_participant_by_school_type <- trials_by_participant %>%
+  left_join(school_type_meta) %>%
+  filter(!is.na(school_type)) %>%
+  filter(school_type!='test') %>%
+  mutate(age_group = floor(ageMonths/12)) %>%
+  group_by(school_type, age_group) %>%
+  multi_boot_standard(col='mean_pc') %>%
+  full_join(adults_only)
+
+ggplot(trials_by_participant_by_school_type %>% mutate(cohort = school_type), aes(x=age_group, y=mean, col=cohort, fill=cohort)) +
+  geom_point(size = 1, alpha=.6) +
+  geom_linerange(aes(y=mean, ymax = ci_upper, ymin = ci_lower), alpha=.6)  +
+  geom_smooth(alpha=.2, span=10) +
+  theme_few() +
+  ylim(0,1) +
+  xlim(2,26) +
+  ylab('Average proportion correct') +
+  xlab('Age group (years old)')
+
+###
 
 }
 
@@ -169,6 +209,8 @@ Children were invited to participate in a picture matching game where they were 
 
 ## Data and code sharing
 These data were collected with the secondary goal of creating an open-source measure of children's developing vocabulary knowledge. These analyses presented in the paper were not pre-registered, and children's data were analyzed both during and at the end of data collection. All pre-processed data and analysis and plotting code have been made available in an online repository. The raw, trial-by-trial data cannot be shared due to data sharing agreements between the participating schools and the institution's IRB.
+
+
 
 ```{r}
 df.4AFC.distractor.summary.byAge.perc <- df.4AFC.distractor.summary.byAge.clean %>% 
@@ -232,6 +274,63 @@ ggplot(data = df.4AFC.distractor.summary.byAge.perc.byaoa %>%
 ggsave('figures/fig2c-trajectory.pdf',width=6.5, units='in')
 ```
 
+
+```{r}
+df.4AFC.distractor.summary.byAge.clean.withmeta <- df.4AFC.distractor.summary.byAge.clean %>%
+  left_join(item_meta_and_model_sim %>% distinct(targetWord, log_freq_target_word, concreteness_target_word, superordinate_category_target_word, mean_typicality), by=c('targetWord'))
+
+```
+
+```{r include=FALSE}
+# some of the words that were never seen in each age group, have NAs
+what <- df.4AFC.distractor.summary.byAge.clean.withmeta %>%
+  filter(is.na(perc))
+```
+
+```{r include=FALSE}
+# supplemental analyses
+by_category <- df.4AFC.distractor.summary.byAge.clean.withmeta %>%
+  filter(wordPairing=='target') %>%
+  filter(!is.na(superordinate_category_target_word)) %>%
+  filter(!is.na(perc)) %>%
+  group_by(superordinate_category_target_word) %>%
+  multi_boot_standard(col = 'perc') 
+
+words_in_each_category <- df.4AFC.distractor.summary.byAge.clean.withmeta %>%
+  filter(wordPairing=='target') %>%
+  filter(!is.na(superordinate_category_target_word)) %>%
+  filter(!is.na(perc)) %>%
+   group_by(superordinate_category_target_word) %>%
+  distinct(targetWord, superordinate_category_target_word)
+  
+```
+
+
+
+
+```{r}
+## Main results lmer adding in covarates
+d <- df.4AFC.distractor.summary.byAge.clean.withmeta %>%
+  filter(wordPairing=='target')
+
+
+main_results = lmer(data = d, perc ~  scale(log_freq_target_word)  + concreteness_target_word + scale(mean_typicality) + n + scale(age_group)*scale(AoA_Est_Word1) + (1|targetWord))
+
+```
+
+```{r main-modeling-table}
+apa_lm <- apa_print(main_results)
+apa_table(
+  apa_lm$table
+  , caption = "Linear mixed-effect model coefficients predicting the proportion correct for each item as a function of it's frequency, concreteness, typicality,and estimated AoA. All predictors were standardized before analysis."
+)
+```
+
+
+
+
+
+
 ```{r}
 if (RAW_DATA==TRUE){
 df.4AFC.distractor.summary.byPid <- df.4AFC.trials.clean %>%
@@ -243,8 +342,6 @@ df.4AFC.distractor.summary.byPid <- df.4AFC.trials.clean %>%
 
 ## A protracted developmental trajectory
 Do children gradually acquire visual vocabulary knowledge, or are precise representations for most nouns acquired by middle childhood? We found a gradual increase in children’s ability to correctly identify the target picture across our entire age range; Figure 2 shows the proportion of time that children identified the target, highlighting a protracted developmental trajectory and little evidence for a plateau in the elementary years.  Children became increasingly accurate over development at identifying the correct referent that a word referred to, with the oldest children in our sample (13- and 14-year-olds) still performing less accurately than adults. 
-
-
 
 
 ```{r}
@@ -279,20 +376,23 @@ l_slope <- slopes %>%
 easiest_words <- item_effects %>% 
   filter(AoA_Bin==1) %>%
   filter(age_group==3) %>%
-  distinct(targetWord, perc, AoA_Est_Word1)
+  distinct(targetWord, perc, AoA_Est_Word1) %>%
+  arrange(-perc)
 
-medium_words <- item_effects %>% 
-  filter(AoA_Bin==2) %>%
-  filter(age_group==14) %>%
-  distinct(targetWord, perc, AoA_Est_Word1)
-
-hard_words <- item_effects %>% 
-  filter(AoA_Bin==3) %>%
-  filter(age_group==14) %>%
-  distinct(targetWord, perc, AoA_Est_Word1)
-
+# medium_words <- item_effects %>% 
+#   filter(AoA_Bin==2) %>%
+#   filter(age_group==14) %>%
+#   distinct(targetWord, perc, AoA_Est_Word1) %>%
+#   arrange(perc)
+# 
+# hard_words <- item_effects %>% 
+#   filter(AoA_Bin==3) %>%
+#   filter(age_group==14) %>%
+#   distinct(targetWord, perc, AoA_Est_Word1) %>%
+#   arrange(perc)
+```
+```{r}
 # examples in above text come from this analysis -- slope$targetWord
-
 easiest_words %>% filter(targetWord %in% c('watermelon','turtle','lollipop'))
 
 easiest_words %>% filter(targetWord %in% c('squirrel','hamster','map'))
@@ -310,22 +410,22 @@ adult_acc_high_slopes <- item_effects %>%
   mutate(adult_perc = mean(perc))  %>%
   select(targetWord, adult_perc) 
 
-# adult_acc_low_slopes <- item_effects %>% 
-#   filter(targetWord %in% l_slope$targetWord)  %>%
-#   filter(age_group==25) %>%
-#   group_by(targetWord) %>%
-#   mutate(adult_perc = mean(perc))  %>%
-#   select(targetWord, adult_perc) 
+adult_acc_low_slopes <- item_effects %>%
+  filter(targetWord %in% l_slope$targetWord)  %>%
+  filter(age_group==25) %>%
+  group_by(targetWord) %>%
+  mutate(adult_perc = mean(perc))  %>%
+  select(targetWord, adult_perc)
 
 high_slopes = item_effects %>% 
   filter(targetWord %in% h_slope$targetWord)  %>%
   left_join(adult_acc_high_slopes, by=c('targetWord')) %>%
   mutate(targetWord = fct_reorder(targetWord, adult_perc, .desc=TRUE)) 
 
-# low_slopes = item_effects %>% 
-#   filter(targetWord %in% l_slope$targetWord)  %>%
-#   left_join(adult_acc_low_slopes, by=c('targetWord')) %>%
-#   mutate(targetWord = fct_reorder(targetWord, adult_perc, .desc=TRUE)) 
+low_slopes = item_effects %>%
+  filter(targetWord %in% l_slope$targetWord)  %>%
+  left_join(adult_acc_low_slopes, by=c('targetWord')) %>%
+  mutate(targetWord = fct_reorder(targetWord, adult_perc, .desc=TRUE))
 
 ```
 
@@ -335,16 +435,16 @@ high_slopes = item_effects %>%
 ggplot(high_slopes %>% filter(age_group<25) , aes(x=fct_reorder(targetWord, adult_perc, .desc=FALSE), y=perc, col=age_group)) +
     geom_point(alpha=.5) +
     geom_point(data=high_slopes %>% filter(age_group==25),  aes(x=fct_reorder(targetWord, adult_perc, .desc=TRUE), y=perc, col=age_group), color='black', alpha=.6, size=1.5, shape=17) +
-    theme_apa(base_size=) +
+    theme_apa(base_size=8) +
   ylab('Proportion correct') +
   scale_color_viridis_c(name='Age group (in years)') +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size=6)) +
   # coord_flip() +
-  theme(legend.position='bottom') +
-  xlab('Target word') +
+  theme(legend.position='one') +
+   xlab('') +
   ylim(0,1)
 
-ggsave('figures/fig2a_itemeffects.pdf', width=4, units='in')
+ggsave('figures/fig2a_itemeffects.pdf', width=3.5, height=3, units='in')
 ```
 
 
@@ -454,7 +554,7 @@ error_by4afc_by_item_for_glmer <- df.4AFC.distractor.summary.byPid %>%
   mutate(distal = replace_na(distal, replace=0)) %>%
   group_by(targetWord, age_group) %>%
   mutate(total_num_errors = sum(c(hard,easy,distal))) %>%
-  left_join(item_meta_data %>% select(targetWord, AoA_Est_Word1))
+  left_join(item_meta_and_model_sim %>% select(targetWord, AoA_Est_Word1))
 
 save(error_by4afc_by_item_for_glmer, file=here::here('data/preprocessed/error_by4afc_by_item_for_glmer.RData'))
 
@@ -474,6 +574,8 @@ load(file=here::here('data/preprocessed/error_by4afc_by_item_for_glmer.RData'))
 #So, it makes sense to model this in a linear regression, where we've already averaged across participant, and to ask if age predicts the proportion of hard distractors they are choosing
 
 if (RAW_DATA==TRUE){
+  
+  
 model = lm(prop_hard ~ scale(age_group) + scale(total_num_errors), data = error_by4afc_for_glmer %>% mutate(prop_hard = hard/total_num_errors))
 
 
@@ -481,6 +583,15 @@ model = lm(prop_hard ~ scale(age_group) + scale(total_num_errors), data = error_
 model_sanity = lm(prop_hard ~ scale(age_group) + scale(num_trials), data = error_by4afc_for_glmer %>% mutate(prop_hard = hard/total_num_errors))
 
 save(model, file=here::here('data/preprocessed/model_output.RData'))
+
+### with school type -- random effects explain no real variance
+error_by4afc_for_glmer_school_type = error_by4afc_for_glmer %>% 
+  mutate(prop_hard = hard/total_num_errors) %>%
+  right_join(school_type_meta) 
+  
+model_school_type = lmer(prop_hard ~ scale(age_group) + scale(total_num_errors) + (1|school_type), data = error_by4afc_for_glmer_school_type)
+
+
 }
 
 if (RAW_DATA==FALSE){
@@ -493,6 +604,15 @@ load(file=here::here('data/preprocessed/model_output.RData'))
 model_on_items = lmer(prop_hard ~ scale(age_group) + scale(total_num_errors) + scale(AoA_Est_Word1) + (1|targetWord), data = error_by4afc_by_item_for_glmer %>% mutate(prop_hard = hard/total_num_errors))
 
 ```
+
+```{r modeling-on-items-table}
+apa_lm <- apa_print(model_on_items)
+apa_table(
+  apa_lm$table
+  , caption = "Coefficients of a linear regression assessing changes in the proportion of related distractors chosen over development. Age and number of trials were standardized prior to analysis."
+)
+```
+
 
 ```{r}
 # Extract and format fixed effects
@@ -550,7 +670,7 @@ ggplot(data = dist_by_cond_by_age, aes(x=age_group, y=mean, col=wordPairing, fil
   theme(legend.position='none') +
   geom_smooth(span=20) 
   
-ggsave('figures/fig3-errors.pdf', width=4, units='in')
+ggsave('figures/fig3-errors.pdf', width=4, height=4, units='in')
 ```
 
 ## Modeling changes in children's error patterns
@@ -571,7 +691,7 @@ dist_by_4afc_by_item_by_age <- df.4AFC.distractor.summary.byPid %>%
   select(targetWord, wordPairing, prop, total_num_errors, age_group, AoA_Est_Word1) %>%
   mutate(prop = replace_na(prop, replace=0)) %>%
   mutate(wordPairing = str_split_fixed(wordPairing,'_',2)[,2]) %>%
-  left_join(item_meta_and_model_sim %>% distinct(targetWord, wordPairing, sim_img_img, sim_img_txt, sim_txt_txt, phon_sim, log_freq_target_word, concreteness_target_word)) 
+  left_join(item_meta_and_model_sim %>% distinct(targetWord, wordPairing, sim_img_img, sim_img_txt, sim_txt_txt, phon_sim, log_freq_target_word, log_freq_answer_word, concreteness_target_word, AoA_Est_Word2)) 
 
 save(dist_by_4afc_by_item_by_age, file=here::here('data/preprocessed/dist_by_4afc_by_item_by_age.RData'))
 }
@@ -622,12 +742,19 @@ ggsave('figures/fig4b-similarity_by_item.pdf', width=2.5)
 
 
 ```{r output=FALSE}
+dist_by_4afc_by_item_by_age$sem_resid <- resid(
+  lm(sim_txt_txt ~ sim_img_img, data = dist_by_4afc_by_item_by_age)
+)
+```
+
+```{r}
+
 # cross validation of lmer models 
-all_cor = tibble(lang = double(),
+all_cor = tibble(sem_resid = double(), phon=double(), lang = double(),
   vision = double(), multi = double(), all=double())
   dataset = dist_by_4afc_by_item_by_age %>% filter(age_group<25)
 
-all_model_r2 = tibble(lang = double(),
+all_model_r2 = tibble(sem_resid = double(), phon=double(), lang = double(),
   vision = double(), multi = double(), all=double())
 dataset = dist_by_4afc_by_item_by_age   %>% filter(age_group<25)
 
@@ -640,17 +767,23 @@ for (iter in 1:50){
   held_out = dataset %>%
   anti_join(sampled)
   
-  lang_model_fit = lmer(data=sampled, prop ~ scale(sim_txt_txt)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+    phon_model_fit = lmer(data=sampled, prop ~ scale(phon_sim)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+
+    lang_model_fit = lmer(data=sampled, prop ~ scale(sim_txt_txt)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
   
   vision_model_fit = lmer(data=sampled, prop ~ scale(sim_img_img)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
     
     multi_model_fit = lmer(data=sampled, prop ~ scale(sim_img_txt)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
     
+    sem_resid_fit = lmer(data=sampled, prop ~ scale(sem_resid)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+    
     vision_plus_lang_model_fit = lmer(data=sampled, prop ~ scale(sim_img_img) + scale(sim_txt_txt)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
     
-    all_model_fit = lmer(data=sampled, prop ~ scale(sim_img_txt)*scale(age_group) + scale(sim_img_img) + scale(sim_txt_txt) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+    all_model_fit = lmer(data=sampled, prop ~ scale(sim_img_txt)*scale(age_group) + scale(sim_img_img) + scale(sim_txt_txt) + scale(phon_sim) + scale(sem_resid) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
   
   # get predicted values
+  predicted_resid = predict(sem_resid_fit, newdata = held_out) 
+  predicted_phon = predict(phon_model_fit, newdata = held_out) 
   predicted_lang = predict(lang_model_fit, newdata = held_out) 
   predicted_vision = predict(vision_model_fit, newdata = held_out) 
   predicted_mutli = predict(multi_model_fit, newdata = held_out) 
@@ -658,15 +791,17 @@ for (iter in 1:50){
   
 
    all_cor = all_cor %>%
-     add_row(lang = cor(predicted_lang, held_out$prop), vision = cor(predicted_vision, held_out$prop), multi = cor(predicted_mutli, held_out$prop), all = cor(predicted_all, held_out$prop))
+     add_row(sem_resid = cor(predicted_resid, held_out$prop), phon = cor(predicted_phon, held_out$prop), lang = cor(predicted_lang, held_out$prop), vision = cor(predicted_vision, held_out$prop), multi = cor(predicted_mutli, held_out$prop), all = cor(predicted_all, held_out$prop))
    
+  sem_resid_r2 <- r.squaredGLMM(sem_resid_fit)
+  phon_r2 <- r.squaredGLMM(phon_model_fit)
   vision_r2 <- r.squaredGLMM(vision_model_fit)
   lang_r2 <- r.squaredGLMM(lang_model_fit)
   multi_r2 <- r.squaredGLMM(multi_model_fit)
   all_r2 =  r.squaredGLMM(all_model_fit)
   
   all_model_r2 = all_model_r2 %>%
-     add_row(vision = vision_r2[2], lang = lang_r2[2], multi = multi_r2[2],all = all_r2[2])
+     add_row(sem_resid = sem_resid_r2[2], phon = phon_r2[2], vision = vision_r2[2], lang = lang_r2[2], multi = multi_r2[2],all = all_r2[2])
    
 }
 ```
@@ -676,9 +811,9 @@ for (iter in 1:50){
 ```{r output=FALSE}
 # plot of model r^2 for 50 samples of 80% of the dataset
 all_model_r2_long <- all_model_r2 %>%
-  rename('all predictors' = all, 'multimodal embeddings' = multi, 'language embeddings' = lang, 'vision embeddings' = vision) %>%
+  rename('ling - visual residuals' = sem_resid, 'phonological similarity' = phon, 'all predictors' = all, 'multimodal embeddings' = multi, 'language embeddings' = lang, 'vision embeddings' = vision) %>%
   pivot_longer(cols=everything(), values_to="cor", names_to = "model")  %>%
-  mutate(model = fct_relevel(model,  'all predictors','multimodal embeddings','language embeddings','vision embeddings'))
+  mutate(model = fct_relevel(model,  'all predictors','multimodal embeddings','language embeddings','vision embeddings','ling - visual residuals','phonological similarity'))
   # mutate(model = fct_relevel(model, 'language','vision', 'multimodal','all predictors')) 
 
 all_model_r2_cis <- all_model_r2_long %>%
@@ -698,12 +833,13 @@ ggplot(data=all_model_r2_cis, aes(x=model, y=mean, color=model)) +
   theme_few(base_size=14) +
   papaja::theme_apa() +
   ylab('Average conditional R^2 in mixed-effect models')  +
-    scale_color_manual(values = c('#146816','#66bc45','#3897bc','#e4ab24'), name="")  +
-  scale_fill_manual(values = c('#146816','#66bc45','#3897bc','#e4ab24'), name="") +
+    scale_color_manual(values = c('#000000','#66bc45','#3897bc','#e4ab24','#146816','#add8e6'), name="")  +
+  scale_fill_manual(values = c('#000000','#66bc45','#3897bc','#e4ab24','#146816','#add8e6'), name="") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
   theme(legend.position='none') +
   coord_flip() +
-theme(aspect.ratio=2/4)
+theme(aspect.ratio=2/4) +
+  ylim(0,.3)
   
 ggsave('figures/fig4c-model_comparison.pdf', height=3, units='in')
   
@@ -711,19 +847,19 @@ ggsave('figures/fig4c-model_comparison.pdf', height=3, units='in')
 ```
 
 ```{r}
-all_data_to_model <- dist_by_4afc_by_item_by_age 
+all_data_to_model <- dist_by_4afc_by_item_by_age  
 
 all_data_to_model$sem_resid <- resid(
   lm(sim_txt_txt ~ sim_img_img, data = all_data_to_model)
 )
 
-resid_model_fit = lmer(data=all_data_to_model, prop ~ scale(sem_resid)*scale(age_group) + scale(sim_img_txt) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+resid_model_fit = lmer(data=all_data_to_model, prop ~  scale(sim_img_txt)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
 
 summary(resid_model_fit)
 ```
 
 ```{r}
-ggplot(all_data_to_model, aes(x=sem_resid, y=prop, col=sim_img_txt)) +
+ggplot(all_data_to_model, aes(x=phon_sim, y=prop, col=sim_img_txt)) +
   geom_point(alpha=.8) +
   geom_smooth(method='lm') +
   facet_wrap(~age_group)+
@@ -735,11 +871,35 @@ ggplot(all_data_to_model, aes(x=sem_resid, y=prop, col=sim_img_txt)) +
 
 
 ```{r}
-exploratory_model_fit  = lmer(data=all_data_to_model, prop ~ scale(sem_resid)*scale(age_group) + scale(phon_sim)*scale(age_group) + scale(sim_img_txt) + scale(log_freq_target_word) + scale(concreteness_target_word) + (AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+exploratory_model_fit  = lmer(data=all_data_to_model, prop ~ scale(AoA_Est_Word1) + scale(AoA_Est_Word2) + scale(sem_resid)*scale(age_group) + scale(phon_sim) + scale(sim_img_txt) + scale(log_freq_target_word) + scale(log_freq_answer_word) + scale(concreteness_target_word) + scale(total_num_errors) +  (1 | targetWord))
+
+summary(exploratory_model_fit)
 ```
 
-```{r}
-summary(exploratory_model_fit)
+```{r modeling table}
+apa_lm <- apa_print(exploratory_model_fit)
+apa_table(
+  apa_lm$table
+  , caption = "Full model coefficients modeling the proportion of errors children and adults made on each trial in the entire dataset."
+)
+```
+
+```{r model-comparison, include=FALSE}
+maximal_model  = lmer(data=all_data_to_model, prop ~ scale(sem_resid)*scale(age_group) + scale(phon_sim) + scale(AoA_Est_Word1) + scale(sim_img_txt)*scale(age_group)  + scale(total_num_errors) +  (1 | targetWord))
+
+maximal_modl_without_phon = lmer(data=all_data_to_model, prop ~ scale(sem_resid)*scale(age_group) + scale(AoA_Est_Word1) +  scale(sim_img_txt)  + scale(total_num_errors) +  (1 | targetWord))
+
+max_modl_without_multimodal = lmer(data=all_data_to_model, prop ~ scale(sem_resid)*scale(age_group) + scale(phon_sim)   + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
+
+
+max_modl_without_aoa = lmer(data=all_data_to_model, prop ~ scale(sem_resid)*scale(age_group) + scale(phon_sim) + scale(total_num_errors) +  (1 | targetWord))
+
+
+anova(maximal_model,maximal_modl_without_phon)
+
+anova(maximal_model,max_modl_without_multimodal)
+
+anova(maximal_model,max_modl_without_aoa)
 ```
 
 
@@ -780,6 +940,49 @@ This was was supported by a [BLINDED] to [BLINDED]. We gratefully acknowledge th
 # Appendix
 
 
+```{r trials_by_age}
+
+apa_table(
+  trials_by_age
+  , caption = "Linear mixed-effect model coefficients predicting the proportion correct for each item as a function of it's frequency, concreteness, typicality,and estimated AoA. All predictors were standardized before analysis."
+)
+```
+
+```{r include=FALSE}
+# supplemental figure
+ggplot(by_category, aes(x=fct_reorder(superordinate_category_target_word, mean, .desc = FALSE), y=mean)) +
+  geom_point() +
+  geom_linerange(aes(ymin=ci_lower, ymax=ci_upper)) +
+  theme_few() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  ylab('Average accuracy') +
+  xlab('') +
+  coord_flip()
+
+ggsave('figures/broad_category_accuracy.pdf', width=4, height=4, units='in')
+  
+```
+
+
+
+
+```{r supplemental-aoa-plot, include=FALSE}
+ggplot(d %>% filter(age_group<25), aes(x=AoA_Est_Word1, y=perc, col=age_group, fill=age_group, size=n)) +
+  scale_color_viridis_c() +
+  scale_fill_viridis_c() +
+  scale_size_area(name="", guide = "none") +
+  geom_line(aes(group=targetWord), col='grey', alpha=.1) +
+  geom_point(alpha=.4) +
+  geom_smooth(aes(group=age_group), method='lm', alpha=.2) +
+  theme_few() +
+  ylab('Proportion correct') +
+  xlab('Estimated AoA') 
+  # facet_wrap(~age_group)
+
+ggsave('figures/supplemental-aoa-plot.pdf', width=4, height=4, units='in')
+
+```
+```
 # References
 ```{r create_r-references}
 r_refs(file = "r-references.bib")
