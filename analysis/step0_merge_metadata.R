@@ -11,13 +11,15 @@ things_meta_word_1 <- read_tsv(here::here("data/item_metadata/things_concepts.ts
   filter(Word %in% c(test_corpus$Word1)) %>%
   mutate(log_freq_target_word = log1p(`SUBTLEX freq`)) %>%
   mutate(concreteness_target_word = `Concreteness (M)`) %>%
-  select(Word, log_freq_target_word, concreteness_target_word)
+  mutate(superordinate_category_target_word = `Top-down Category (manual selection)`) %>%
+  select(Word, log_freq_target_word, superordinate_category_target_word, concreteness_target_word)
 
 things_meta_word_2 <- read_tsv(here::here("data/item_metadata/things_concepts.tsv")) %>%
   filter(Word %in% c(test_corpus$Word2)) %>%
   mutate(log_freq_answer_word = log1p(`SUBTLEX freq`)) %>%
   mutate(concreteness_answer_word = `Concreteness (M)`) %>%
-  select(Word, log_freq_answer_word, concreteness_answer_word)
+  mutate(superordinate_category_answer_word = `Top-down Category (manual selection)`) %>%
+  select(Word, log_freq_answer_word,superordinate_category_answer_word, concreteness_answer_word)
 
 
 # load things typicality for item 1
@@ -57,12 +59,12 @@ item_meta_and_model_sim = read_csv(file=here::here('data/item_metadata/vv_clip_s
   rename(targetWord = target, answerWord = image)  %>%
   filter(answerWord != targetWord)  %>%
   right_join(item_meta_data) %>%
-  right_join(phonological_sim) %>%
-  right_join(things_meta_word_1, by=c('targetWord'='Word')) %>%
-  right_join(things_meta_word_2, by=c('answerWord'='Word'))
-  # right_join(things_typ_word_1, by=c('targetWord'='Word')) %>%
-  # right_join(things_typ_word_2, by=c('answerWord'='Word'))
+  left_join(phonological_sim) %>%
+  left_join(things_meta_word_1, by=c('targetWord'='Word')) %>%
+  left_join(things_meta_word_2, by=c('answerWord'='Word'))  %>%
+  left_join(things_typ_word_1, by=c('targetWord'='Word')) 
   
-
+# should match the number of trials * 3 distractors
+assert_that(length(item_meta_and_model_sim$targetWord)==108*3)
 
 write_csv(item_meta_and_model_sim, file=here::here('data/item_metadata/item_meta_and_model_sim.csv'))
