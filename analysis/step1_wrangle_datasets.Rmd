@@ -135,9 +135,9 @@ Set age to "25" so we can plot it together
 ```{r}
 adults <- read_csv(here::here("data/raw/multi-afc-april28.csv"))  %>%
   mutate(age_group = as.numeric(25)) %>% # set 
+  mutate(cohort = paste0('adults','_', schoolId)) %>%
   filter(task == 'test_response') %>%
-  select(pid, targetWord, answerWord, correct, rt, numAFC, age_group) %>%
-    mutate(cohort='adults') 
+  select(pid, cohort, targetWord, answerWord, correct, rt, numAFC, age_group) 
 
 ```
 
@@ -198,7 +198,9 @@ at_chance <- df.4AFC.trials %>%
   filter(pc<.3)
 ```
 
-We removed `r length(at_chance$pid)` participants who were older than 6 years of age and at chance on this assessment and completed `r mean(at_chance$num_trials)`
+In the initial submission, `r length(at_chance$pid)` participants who were older than 6 years of age and at chance on this assessment and completed `r mean(at_chance$num_trials)`
+
+In the revised submission, we included all data.
 
 ```{r}
 df.4AFC.trials.clean <- df.4AFC.trials %>%
@@ -350,7 +352,7 @@ df.4AFC.distractor.summary.byAge.clean
 ```{r}
 save(df.4AFC.distractor.summary.byAge.clean, file=here::here('data/preprocessed/summary_by_distractor.Rdata'))
 
-save(df.4AFC.trials.clean, file=here::here('data/preprocessed/all_trial_data.Rdata'))
+save(df.4AFC.trials.clean, file=here::here('data/raw/all_trial_data.Rdata'))
 ```
 
 
