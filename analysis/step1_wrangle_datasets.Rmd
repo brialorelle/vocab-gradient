@@ -188,8 +188,7 @@ df.4AFC.trials <- df.multiAFC.trials %>%
 rm(df.multiAFC.trials) # force 4afc from now on
 ```
 
-# Now get rid of weird participants
-# Get rid of people who are at chance
+# Look at participants who are at chance
 ```{r}
 at_chance <- df.4AFC.trials %>%
   group_by(age_group, pid) %>%
@@ -355,5 +354,11 @@ save(df.4AFC.distractor.summary.byAge.clean, file=here::here('data/preprocessed/
 save(df.4AFC.trials.clean, file=here::here('data/raw/all_trial_data.Rdata'))
 ```
 
+# Save out raw data that we can share
+```{r}
+df.4AFC.trials.clean.noschools <- df.4AFC.trials.clean %>%
+  filter(cohort != 'schools')
 
+save(df.4AFC.trials.clean.noschools, file=here::here('data/preprocessed/all_trial_data_noschools.Rdata'))
+```
 
