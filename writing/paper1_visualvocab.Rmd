@@ -12,7 +12,7 @@ abstract: |
   
   
 keywords          : "visual concepts, receptive vocabulary, large language models, object recognition"
-wordcount         : "1999 excluding Method/Results"
+wordcount         : "2010 excluding Method/Results"
 
 bibliography      : "r-references.bib"
 
@@ -72,21 +72,24 @@ RAW_DATA=TRUE # if within the research team
 ```
 
 # Introduction
-Across the world’s languages, many words refer to visible things in the environment (e.g. “thermos”, “prism”, “whale”). How precise are the visual representations that underlie children’s understanding of these words—children’s visual concepts? For example, depending on how old a child is (and how much they know about whales) a child might understand that the word whale refers to blue whales—but not whale sharks—or instead only know that a whale is a large animal that lives in the ocean.  Children’s acquisition of the boundaries of visual categories and how they map onto words is a key developmental process, as children who lag behind their peers in vocabulary learning are at increased risk for language delays with significant academic and social consequences [@rescorla_late_2013].
 
-Most empirical work on the precision of children’s visual concepts has focused on the first few years of life, when children learn words at an astonishing rate [@bloom_how_2000; @braginsky_consistency_2019]. In looking-while-listening tasks [@fernald2008looking], infants as young as 6 months look to events associated with common nouns like “bottle” and “banana” [@bergelson2017nature], and 14- to 18-month-olds extend newly learned words to atypical exemplars of these categories  [@weaver2024becoming]. By around their second birthday, children also generalize nouns to stylized, 3D exemplars [@pereira2009developmental] as they learn that shape is a valuable cue to basic-level category membership. In parallel, empirical work on children’s developing ability to recognize objects [@ayzenberg_development_2024] has focused on these first few years of childhood as an important period of developmental change.
+Across the world’s languages, many words refer to visible things in the environment (e.g., “thermos”, “prism”, “whale”). How precise are the visual representations that underlie children’s understanding of these words—children’s visual vocabulary knowledge? For example, depending on how old a child is (and how much they know about whales) a child might understand that the word whale refers to blue whales—but not whale sharks—or instead only know that a whale is a large animal that lives in the ocean. Children’s acquisition of the boundaries of visual categories and how they map onto words is a key developmental process, as children who lag behind their peers in vocabulary learning are at increased risk for language delays with significant academic and social consequences [@rescorla_late_2013].
+
+Most empirical work on the precision of children’s visual knowledge has focused on the first few years of life, when children learn words at an astonishing rate[@bloom_how_2000; @braginsky_consistency_2019]. In looking-while-listening tasks [@fernald2008looking], infants as young as 6 months look to events associated with common nouns like “bottle” and “banana” [@bergelson_at_2012], and 14- to 18-month-olds extend newly learned words to atypical exemplars of these categories  [@weaver2024becoming]. By around their second birthday, children also generalize nouns to stylized, 3D exemplars [@pereira2009developmental] as they learn that shape is a valuable cue to basic-level category membership. Empirical work on children’s developing ability to recognize shapes [@ayzenberg_development_2024]  has also focused on these first few years of childhood as the most important period of rapid developmental change.
 
 An implicit assumption underlying much of this research is that preschoolers and school-aged children’s visual concepts—e.g., their knowledge of what whales “look like” —may not change substantially after they can understand the word “whale” in conversations. On this account, children associate words (e.g., “whale”) with high-fidelity visual information about a particular exemplar (or a few) during learning, and this is sufficient for acquiring the visual concept. Instead, the enrichment for this concept is thought to happen solely at the level of semantics (e.g., “whales eat krill”); on this semantic enrichment hypothesis, later learning during the elementary school years does not influence the content of the visual concepts per se. 
 
-But these assumptions may be incorrect. Perhaps these visual concepts themselves undergo considerable and gradual change beyond the first few years of childhood. On this alternative view, in parallel with learning an increasingly rich semantic space of word meanings, children also develop an increasingly detailed representation of the diagnostic features of these visual concepts, and a better understanding of the boundaries of these visual categories. Indeed, classic theories have long articulated a view of this type, in which children might initially set up a place-holder concept via “fast mapping” but then gradually fill in later details [@carey1978acquiring; @swingley2010fast; @dale1965vocabulary]. An example from this early work focused on a case where three-year-olds remembered that a word (“chromium”) was a color word, but they did not know which color it was.  Similarly, in foundational theories of vocabulary acquisition, children’s vocabulary knowledge has been thought of as progressing along stages [@dale1965vocabulary], with an intermediate stage where children were thought to have a “vague knowledge of the word’s meaning” [@dale1965vocabulary] before they fully grasp what a word means.  For example, there might be an intermediate phase in which children understand that “whales” are animals that live in the ocean, but have less precision on the visual features that distinguish them from fish and other sea mammals. 
+Little work has systematically examined how children’s visual vocabulary knowledge changes beyond these first few years of life, however. In parallel with acquiring an increasingly rich semantic knowledge about the meanings of words, children likely also develop increasingly detailed representations of their visual referents. For example, they might develop a more refined representation of a typical exemplar from a category, and a better understanding of the diagnostic features that distinguishes that category from another. Indeed, there is likely an intermediate phase for many words in which children understand, for example, that “whales” are animals that live in the ocean, but have less precision about the visual features that distinguish them from “sharks” and other sea mammals. Classic theories of early word learning have long articulated a view of this type, in which children might initially set up a place-holder concept via “fast mapping” but then gradually fill in later details about the exact perceptual content of this concept  [@carey1978acquiring; @swingley2010fast; @dale1965vocabulary].  An example from this early work focused on a case where three-year-olds remembered that a word (“chromium”) was a color word, but they did not know which color it was [@carey1978acquiring].   Theories of later vocabulary acquisition have also characterized children’s word knowledge as progressing through stages [@dale1965vocabulary; @beck2014effects], with an intermediate stage where children were thought to have a “vague knowledge of the word’s meaning” [@dale1965vocabulary] before they fully grasp what a word means.  
 
-Yet despite this long-standing recognition that children likely have partial word knowledge [@carey1978acquiring; @dale1965vocabulary], all assessments of receptive vocabulary characterize word knowledge in an all-or-nothing fashion, perhaps because it is indeed difficult to quantify what it would mean to have a low-precision representation for a word. Both direct measures, such as the Peabody Picture Vocabulary Test [@dunn2003peabody; @gershon2014language], and parent-report measures of vocabulary knowledge  [@braginsky2019consistency] characterize children as either “knowing” a word or not. Since the distractors for these assessments are chosen carefully, children’s error patterns could in principle reveal evidence for partial knowledge (e.g., selecting a whale shark when the target word is whale), but the datasets resulting from these proprietary assessments are unavailable for re-analysis. 
+Yet despite this long-standing recognition that children likely have partial word knowledge [@carey1978acquiring; @dale1965vocabulary], all assessments of receptive vocabulary characterize word knowledge in an all-or-nothing fashion, perhaps because it is indeed difficult to quantify what it would mean to have a low-precision representation for a word. Both direct measures, such as the Peabody Picture Vocabulary Test [@dunn2003peabody; @gershon2014language], and parent-report measures of vocabulary knowledge  [@fenson1994variability; @marchman2023macarthur] characterize children as either “knowing” a word or not. Since the distractors for these assessments are chosen carefully, children’s error patterns could in principle reveal evidence for partial knowledge (e.g., selecting a whale shark when the target word is whale), but the datasets resulting from these proprietary assessments are unavailable for re-analysis;  the open-source parent-report measures are questionnaires that lack distractors. 
 
-In parallel, a large literature on expertise suggests that visual learning almost certainly extends throughout early and middle childhood and into adulthood [@harel2016special; @curby2010trained] Decades of empirical work has established that birding experts, car aficionados [@tanaka1997expertise], and graphic artists [@perdreau2013artist], among others, have both qualitatively and quantitatively different kinds of visual representations for the visual concepts that they have significant expertise with that is reflected in both behavioral and neural responses. Thus, on a visual expertise hypothesis, children’s visual concepts might continually be enriched throughout early and middle childhood. More recent developmental work supports this idea [@long2024parallel]: In a large observational study, children became increasingly able to both depict and recognize line drawings of visual concepts (e.g., “whale”, “clock”, “tiger”) from 3-10 years of age, hinting at underlying changes in how children represent the diagnostic features of these visual concepts. 
+In parallel, a large literature on expertise suggests that visual learning almost certainly extends throughout early and middle childhood and into adulthood [@harel2016special; @curby2010trained] Decades of empirical work has established that birding experts, car aficionados [@tanaka1997expertise], and graphic artists [@perdreau2013artist], among others, have both qualitatively and quantitatively different kinds of visual representations for the visual concepts that they have significant expertise with that is reflected in both behavioral and neural responses. Children’s visual representations are thus likely continually refined throughout early and middle childhood as they acquire expertise and perhaps become experts in their own particular domains (e.g., dinosaurs). More recent developmental work supports this idea [@long2024parallel]: In a large observational study, children became increasingly able to both depict and recognize line drawings of visual concepts (e.g., “whale”, “clock”, “tiger”) from 3-10 years of age, hinting at underlying changes in how children represent the diagnostic features of these visual concepts. 
 
-Our theoretical accounts of visual concept development have thus been limited by (1) a need for larger developmental datasets with dense data on individual items and (2) the difficulty of systematically quantifying what it means to have a partial or imprecise representation of a visual concept. Here, we take steps to address both of these challenges. We created a new, open-source picture matching task and developed research partnerships with schools across the country in order to gather dense item data across a wide age range (3–14 years) from many children (N=3575 children, N=211 adults).  We built a new, open-source “visual vocabulary” task where children heard a word (e.g., “swordfish”) and had to choose a picture in order to teach aliens about their meanings. We then collected data from a large sample of representative children in both online contexts as well as through research-practice partnership with preschools and elementary school contexts across the U.S. Next, we leveraged modern computational models to choose distractor items systematically and to analyze children’s resulting responses. For each word we chose distractor items that varied in their linguistic similarity to the target word as operationalized via the similarity of the target and distractor words in the language encoder of a multimodal language model (Contrastive Language-Image Pre-training model, or CLIP; [@radford2021learning]), and we used embeddings from the visual encoder to model children’s error patterns. These advances in data and models thus allow us to quantify changes in the precision of children’s visual concepts across early and middle childhood for the first time.
+Our empirical and theoretical accounts of visual vocabulary development have thus been limited by (1) a need for larger developmental datasets with dense data on individual items and (2) the difficulty of systematically quantifying what it means to have a partial or imprecise representation of a visual concept. Here, we take steps to address both of these challenges. First, we created a new, open-source picture matching task and developed research partnerships with schools across the U.S. in order to gather dense item data across a wide age range (3–14 years) from many children (N=3995 children, N=211 adults).    We built a new, open-source “visual vocabulary” task where children heard a word (e.g., “swordfish”) and had to choose a picture in order to teach aliens about their meanings. We then collected data from a large sample of representative children in both online contexts as well as through research-practice partnership with preschools and elementary school contexts across the U.S. Next, we leveraged modern computational models to choose distractor items systematically and to analyze children’s resulting responses, as prior work suggests that similarity metrics derived from model embeddings are strongly (though imperfectly) related to human similarity judgements [@muttenthaler2021thingsvision]. For each word we chose distractor items that varied in their linguistic similarity to the target word as operationalized via the similarity of the target and distractor words in the language encoder of a multimodal language model (Contrastive Language-Image Pre-training model, or CLIP; [@radford2021learning]).  We then quantified the visual similarity of each target and distractor image using the visual encoder of this model, and used these similarity metrics to analyze variance in children’s error patterns. These advances in data and models thus allow us to quantify changes in the quantity and the precision of children’s visual vocabulary knowledge across early and middle childhood.
 
-With these data, we investigated three main questions. First, we examined whether we see evidence for continual learning of visual vocabulary knowledge throughout middle childhood (consistent with a visual expertise hypothesis) versus a plateau in performance in the elementary school years (consistent with a semantic enrichment hypothesis). Second, we examined evidence for changes in the precision of visual concepts before word knowledge is solidified, as per Dale (1965)’s account. If younger children's representations are initially overly broad, then we would expect younger children to select distractors of all types when they do not know a word’s exact meaning, and older children to almost exclusively choose high-similarity distractors (e.g., whale sharks); if children bypass this stage where they have lossy representations, then children should choose distractors randomly. Finally, we examined children’s error patterns: if changes in children’s error patterns are driven by their knowledge of what visual information “goes with the word”, then a combination of linguistic and visual similarity metrics should explain variance in children’s error patterns. In contrast, if children are primarily drawn to visually-similar distractors when they do not know a word’s meaning—irrespective of their linguistic similarity to the target word—then visual similarity alone should be a driving factor in children’s error patterns.  
+Our empirical and theoretical accounts of visual vocabulary development have thus been limited by (1) a need for larger developmental datasets with dense data on individual items and (2) the difficulty of systematically quantifying what it means to have a partial or imprecise representation of a word. Here, we take steps to address both of these challenges.  First, we created a new, open-source picture matching task and developed research partnerships with schools across the U.S. in order to gather dense item data across a wide age range (3–14 years) from many children (N=3995 children, N=211 adults).  We built a new, open-source “visual vocabulary” task where children heard a word (e.g., “swordfish”) and had to choose a picture in order to teach aliens about their meanings.  Next, we leveraged modern computational models to choose distractor items systematically and to analyze children’s resulting responses. For each word we chose distractor items that varied in their linguistic similarity to the target word as operationalized via the similarity of the target and distractor words in the language encoder of a multimodal language model (Contrastive Language-Image Pre-training model, or CLIP; Radford et al., 2021). We then quantified the visual similarity of each target and distractor image using the visual encoder of this model, and used these similarity metrics to analyze variance in children’s error patterns. These advances in data and models thus allow us to quantify changes in the quantity and the precision of children’s visual vocabulary knowledge across early and middle childhood.
+
+With these data, we investigated three main questions. First, we examined the trajectory for continual learning of visual vocabulary knowledge throughout this age range, highlighting words with more or less variability across age.  Second, we examined evidence for changes in the precision of representations before word knowledge is solidified, as per Dale’s (1965) account. If children do not have a visual representation of a word, then they should choose a distractor relatively randomly (assuming they do not also know the meanings of the distractor words) However, if children have some visual knowledge about a word, then we would expect them to systematically choose high-similarity distractors when they do not know the words meaning (e.g., sharks). We thus modeled changes in children’s error patterns across development—asking about the degree to which phonological, semantic, visual, and multimodal similarity metrics between each target and distractor word explained variance. If changes in children’s performance is driven mostly by their knowledge of what visual information “goes with the word”, then a combination of linguistic and visual similarity metrics should explain variance in children’s error patterns. In contrast, if children are primarily drawn to visually-similar distractors when they do not know a word’s meaning—irrespective of their linguistic similarity to the target word—then visual similarity alone should be a driving factor in error patterns.  
 
 
 
@@ -97,18 +100,21 @@ With these data, we investigated three main questions. First, we examined whethe
 
 if (RAW_DATA==TRUE) 
 {
+# all raw data is not avaliable for this paper, due to IRB restrictions within our school partnerships. 
 load(file=here::here('data/raw/all_trial_data.Rdata'))
 school_type_meta = read_csv(file=here::here('data/raw/pid_with_school_type.csv'))
 }
 ```
 
 ```{r}
+# load in both cases -- from step1_wrangle_dataset.Rmd in analysis folder
 # summarized across age group/distractor, so okay to share
 load(file=here::here('data/preprocessed/summary_by_distractor.Rdata'))
+
 ```
 
 ```{R}
-# load item data
+# load item data in either case for all items
 item_meta_and_model_sim = read_csv(file=here::here('data/item_metadata/item_meta_and_model_sim.csv')) 
 ```
 
@@ -117,8 +123,6 @@ item_meta_and_model_sim = read_csv(file=here::here('data/item_metadata/item_meta
 knitr::include_graphics("figures/fig1_stimuli.png")
 ```
 
-
-.
 
 ## Participants
 
@@ -146,9 +150,16 @@ by_cohort = df.4AFC.trials.clean %>%
   summarize(num_participants = length(unique(pid))) %>%
   mutate(cohort = replace_na(cohort,'adults'))
 
-save(n_by_age_group, trials_by_participant, longitudinal_participants, by_cohort, file=here::here('data/preprocessed/descriptives_data_structures.RData'))
 
 ### school type analysis
+
+garden_only <- df.4AFC.trials.clean %>%
+  filter(cohort %in% c('garden')) %>%
+  mutate(school_type='CHS') %>%
+  group_by(pid, age_group,school_type) %>%
+  summarize(mean_pc = mean(correct)) %>%
+  group_by(age_group, school_type) %>%
+  multi_boot_standard(col='mean_pc') 
 
 adults_only <- df.4AFC.trials.clean %>%
   filter(cohort %in% c('adults_monolingual','adults_ell')) %>%
@@ -159,26 +170,19 @@ adults_only <- df.4AFC.trials.clean %>%
   group_by(age_group, school_type) %>%
   multi_boot_standard(col='mean_pc') 
 
-trials_by_participant_by_school_type <- trials_by_participant %>%
+accuracy_by_cohort_by_age <- trials_by_participant %>%
   left_join(school_type_meta) %>%
-  filter(!is.na(school_type)) %>%
+  # filter(!is.na(school_type)) %>%
   filter(school_type!='test') %>%
   mutate(age_group = floor(ageMonths/12)) %>%
   group_by(school_type, age_group) %>%
   multi_boot_standard(col='mean_pc') %>%
-  full_join(adults_only)
+  full_join(adults_only) %>%
+  full_join(garden_only)
 
-ggplot(trials_by_participant_by_school_type %>% mutate(cohort = school_type), aes(x=age_group, y=mean, col=cohort, fill=cohort)) +
-  geom_point(size = 1, alpha=.6) +
-  geom_linerange(aes(y=mean, ymax = ci_upper, ymin = ci_lower), alpha=.6)  +
-  geom_smooth(alpha=.2, span=10) +
-  theme_few() +
-  ylim(0,1) +
-  xlim(2,26) +
-  ylab('Average proportion correct') +
-  xlab('Age group (years old)')
 
-###
+
+save(n_by_age_group, trials_by_participant, longitudinal_participants, by_cohort, accuracy_by_cohort_by_age, file=here::here('data/preprocessed/descriptives_data_structures.RData'))
 
 }
 
@@ -188,22 +192,28 @@ if (RAW_DATA==FALSE){
 
 ```
 
-To obtain a large sample of responses for individual items across development, we collected data from children across several different testing contexts, totaling $N$ = `r sum(by_cohort$num_participants)` unique participants. We collected data from children in an in-person preschool ($N$ = `r by_cohort$num_participants[by_cohort$cohort=='bing']`, 3-5 year-olds), from the Children Helping Science (CHS) Platform, ($N$=`r by_cohort$num_participants[by_cohort$cohort=='garden']`, 3-7 year-olds), and representative samples from schools across the United States through the [BLINDED] platform $N$=`r by_cohort$num_participants[by_cohort$cohort=='schools']`, 5-14 year-olds) (BLINDED et al.). We also recruited adults online ($N$=`r by_cohort$num_participants[by_cohort$cohort=='adults']`) via Prolific; we sampled from monolinguals and adults who spoke English as a second language to maximize our chance of finding item variability. Schools included seven public school districts (14 schools), three independent schools specializing for students with learning differences, two independent schools, and one summer program; these diverse student data were obtained through research-practice partnerships. Most school-aged participants responded directly via clicking through a laptop or tapping through a tablet  or a tablet, except those recruited online through CHS and Prolific; children’s parents responded via clicking on the image on CHS, and adults responded via clicking on the images.
+To obtain a large sample of responses for individual items across development, we collected data from children across several different testing contexts, totaling $N$ = `r sum(by_cohort$num_participants)` unique participants. We collected data from children in an in-person preschool ($N$ = `r by_cohort$num_participants[by_cohort$cohort=='bing']`, 3-5 year-olds) and from the Children Helping Science (CHS) Platform ($N$=`r by_cohort$num_participants[by_cohort$cohort=='garden']`, 3-7 year-olds), We also recruited adults online via Prolific; we sampled from monolinguals ($N$=`r by_cohort$num_participants[by_cohort$cohort=='adults_monolingual']`) and adults who spoke English as a second language ($N$=`r by_cohort$num_participants[by_cohort$cohort=='adults_ell']`) to maximize our chance of finding item variability, and to measure a range of adult abilities.  
 
-Children completed, on average, `r mean(trials_by_participant$num_trials)` trials that were sampled randomly from the stimulus set (maximum = 86; different maximum numbers of trials were included in different testing contexts). 
-All participants who contributed data and scored above chance (chance = 25%, threshold of >30% accuracy) were included, regardless of the number of trials they completed (minimum trials = `r min(trials_by_participant$num_trials)`, maximum trials = `r  max(trials_by_participant$num_trials)`. Some participants participated in the game more than once ($N$ = 214 children), and their data are included as if they completed additional trials; note that our statistical models include random intercepts for each participant and operate at the trial level; however, excluding these participants did not change the pattern of results.
-We excluded an additional 84 participants who scored near chance on 4AFC trials (< 30% accurate) and were school-aged (>6 years of age); these participants completed an average of 17.72 trials.  
+In addition, we recruited representative samples from schools across the United States through the [BLINDED] platform $N$=`r by_cohort$num_participants[by_cohort$cohort=='schools']`, 5-14 year-olds) (BLINDED et al.). Schools included seven public or public charter school districts (33 schools), three independent schools focused on supporting students with learning differences, two independent schools, and one summer program; these diverse student data were obtained through research-practice partnerships.  
+
+Most participants responded directly via clicking through the games on a laptop or tapping through the games on a tablet, except those recruited online through CHS and Prolific; children’s parents responded via clicking on the image that the child indicated on CHS, and adults responded via clicking on the images. Children completed, on average, `r mean(trials_by_participant$num_trials)` trials (SD = `r sd(trials_by_participant$num_trials)`) that were sampled randomly from the stimulus set (maximum = 86; different maximum numbers of trials were included in different testing contexts).  All participants who contributed any data were included (minimum trials = 2, maximum trials = 86).  
+Some participants participated in the game more than once ($N$ = `r longitudinal_participants` children), and their data are included as if they completed additional trials; note that our statistical models include random intercepts for each participant and operate at the trial level; however, excluding these participants did not change the pattern of results.
+
 
 ## Materials
-We capitalized on publicly available existing image and audio databases to generate trials. Visual concepts were taken from the THINGS+ dataset [@stoinski2024thingsplus], after filtering out non-child safe images (e.g., weapons, cigarettes) and images with low-nameability (<.3), as per Stoinski et al., 2023. We used the copyright-free, high-quality image released for each visual concept. We subset to visual concepts that had available age-of-acquisition (AoA) ratings from a previous existing dataset [@kuperman2012age] where adults were asked to retrospect on the age that they learned a word in development; these estimated AoAs were used as a proxy for item difficulty. Audio for each target word was taken from the MALD database [@tucker2019massive].
+We capitalized on publicly available existing image and audio databases to generate trials. Visual concepts were taken from the THINGS+ dataset [@stoinski2024thingsplus], after filtering out non-child safe images (e.g., weapons, cigarettes) and images with low-nameability (<.3), as per Stoinski et al., 2024. We used the copyright-free, high-quality image released for each visual concept. We subset to visual concepts that had available age-of-acquisition (AoA) ratings from a previous existing dataset [@kuperman2012age] where adults were asked to retrospect on the age that they learned a word in development; these estimated AoAs were used as a proxy for item difficulty. Audio for each target word was taken from the MALD database [@tucker2019massive].
 
-We used these stimuli to create trials that contained a target image paired with distractor images of similar difficulty (estimated using AoA) and varying similarity (estimated using a computational model). To do so, we sampled distractors with high, medium, and low similarity to the target word as operationalized via the embedding similarity of the words in the language encoder of a multimodal large language model (Radford et al., 2021).We determined high-, medium-, and low-similarity values relative to the distribution of all possible target-distractor similarity values for each word in the THINGS+ dataset. Stimuli were selected to optimize for having a maximum number of trials with unique target and distractors; in addition, we constrained the sampling such that target-distractor pairs had estimated AoA within 3 years of each other. For each target word, we first selected a high-similarity distractor that had the highest cosine similarity to the target (and was itself not one of the target words). For low-similarity words, we sampled a unique distractor word that had the lowest cosine similarity among the remaining distractors. For medium-similarity distractors, we then randomly sampled a distractor word that was the same animacy as the target word, and unique to the dataset. In our final set, we had 108 items with a range of different estimated age-of-acquisitions (e.g., hedgehog, mandolin, mulch, swordfish, waterwheel, bobsled) with all unique targets and distractors.  All stimuli and their metadata are available on the public repository for this project (BLINDED). 
+We used these stimuli to create trials that contained a target image paired with distractor images of similar difficulty (estimated using AoA) and varying similarity (estimated using a computational model). To do so, we sampled distractors with high, medium, and low similarity to the target word as operationalized via the cosine embedding similarity of the words in the language encoder of a multimodal large language model [@radford2021learning]. We determined high-, medium-, and low-similarity values relative to the distribution of all possible target-distractor similarity values for each word in the THINGS+ dataset. Stimuli were selected to optimize for having a maximum number of trials with unique target and distractors; in addition, we constrained the sampling such that target-distractor pairs had estimated AoA within 3 years of each other. For each target word, we first selected a high-similarity distractor that had the highest cosine similarity to the target (and was itself not one of the target words). For low-similarity words, we sampled a unique distractor word that had the lowest cosine similarity among the remaining distractors. For medium-similarity distractors, we then randomly sampled a distractor word that was the same animacy as the target word, and unique to the dataset. In our final set, we had 108 items with a range of different estimated age-of-acquisitions (e.g., hedgehog, mandolin, mulch, swordfish, waterwheel, bobsled) with all unique targets and distractors.  All stimuli and their metadata are available on the public repository for this project (BLINDED). 
+
+For modeling item-level variance, we used the word frequency (SUBTLEX) measures taken directly from Stoinski et al., 2024, as well as their aggregated word typicality judgements for the 84/108 target words for which it was available. All stimuli and their metadata are available on the public repository for this project (BLINDED). 
+
 	
 ## Model features
-We obtained all model features using the Open AI available implementation of CLIP available at https://github.com/openai/CLIP. For language similarity, we computed the cosine similarity of the embeddings of the target word to each distractor word on each trial (e.g., tulip – rose, tulip – glove, tulip – hubcap). For visual similarity, we repeated this procedure but by obtaining image similarity vectors in the vision transformer for each target image and distractor image on each trial. For multimodal similarity, we computed the cosine similarity of the embedding of the target word in the language model to the embeddings for each of the distractor images; this is possible because the embedding spaces for the vision and language transformers in the CLIP model are aligned and have the same number of dimensions. All code is available on the repository associated with this project.
+We extracted embeddings for all of the words and the images used in the study in the same multimodal large language model [@radford2021learning] This model has both a language and vision encoder and is trained on the contrastive loss between pairs of images and their corresponding captions. In these encoders, each word or image can be represented by a 512 dimensional vector in either linguistic or visual similarity space, respectively. 
 
+We next computed semantic similarity scores by taking the cosine similarity between the embeddings for each target and distractor word on each trial in the language encoder (e.g., tulip – rose, tulip – glove, tulip – hubcap); this metric calculates the angle between any given two high-dimensional vectors.  For visual similarity, we repeated this procedure but by using image similarity vectors from the vision transformer for each target image and distractor image on each trial. For multimodal similarity, we computed the cosine similarity of the embedding of the target word in the language encoder to the embeddings for each of the distractor images in the vision encoder; this is possible because the embedding spaces for the vision and language transformers in this model are aligned and have the same number of dimensions. This procedure thus yielded semantic, visual, and multimodal similarity scores for each target-distractor pairing on each trial. We obtained all model features using  https://github.com/openai/CLIP; All code is available on the repository associated with this project.
 
-Procedure
+## Procedure
 Children were invited to participate in a picture matching game where they were asked to “teach aliens on another planet about some of the words on our planet”; children picked a particular alien to “accompany them on their journey.” Before the images appeared, children heard a target word (e.g., “apple”) and then were asked to “choose the picture that goes with the word”. The four images appeared in randomized locations on the screen, and one of the images always corresponded to the target word (see \ref{fig:procedure-figure}). On practice trials, the distractor images were all very dissimilar to the target concept, and the target word was relatively easy. The game played a chime sound if children chose the correct image, and a slightly unpleasant sound if they responded incorrectly; this feedback ensured that children of all ages understood the task correctly. Each child viewed a random subset of the item bank, and the items they viewed were displayed in a random order. Children were allowed to stop the game whenever they wanted to. Different versions of the game included varying amounts of total possible trials and additional items, as these games were developed as part of an additional project to create an open-sourced measure of children’s vocabulary knowledge (Blinded et al., in prep).  Here, we analyze children’s responses to items that were generated using the THINGS+ dataset with distractors of varying difficulty (see Stimuli).
 
 
@@ -239,7 +249,7 @@ aoa_by_bin <- df.4AFC.distractor.summary.byAge.clean %>%
 ```
 
 # Results
-```{r accuracy-fig, out.width='90%', fig.cap="Visual vocabulary task performance as a function of the age of the child completing the task, plotted separately for relatively easy, harder, or difficult words; words are binned into terciles based on the estimated AoA from Kuperman et al., 2012. Lines refer to the proportion of words that children chose the target (red), high-similarity (green), medium similarity (turqouise), or low similarity (purple) distractor  at each age; error bars represent boostrapped confidence intervals.", fig.align='center'}
+```{r accuracy-fig, out.width='90%', fig.cap="Visual vocabulary task performance as a function of the age of the child completing the task, plotted separately for relatively easy, harder, or difficult words; words are binned into terciles based on the estimated AoA from Kuperman et al., 2012. Lines refer to the proportion of words that children chose the target (orange), high-similarity (pink), medium similarity (purple), or low similarity (dark purple) distractor  at each age; error bars represent boostrapped confidence intervals.", fig.align='center'}
 labels_graph = df.4AFC.distractor.summary.byAge.perc.byaoa %>% filter(age_group==25) %>% 
   mutate(AoA_Bin_Name = recode(AoA_Bin_Name,
                                   "Early AoA" = "Easy words",
@@ -314,19 +324,9 @@ d <- df.4AFC.distractor.summary.byAge.clean.withmeta %>%
   filter(wordPairing=='target')
 
 
-main_results = lmer(data = d, perc ~  scale(log_freq_target_word)  + concreteness_target_word + scale(mean_typicality) + n + scale(age_group)*scale(AoA_Est_Word1) + (1|targetWord))
+main_results = lmer(data = d, perc ~  scale(log_freq_target_word)  + scale(concreteness_target_word) + scale(mean_typicality) + n + scale(age_group)*scale(AoA_Est_Word1) + (1|targetWord))
 
 ```
-
-```{r main-modeling-table}
-apa_lm <- apa_print(main_results)
-apa_table(
-  apa_lm$table
-  , caption = "Linear mixed-effect model coefficients predicting the proportion correct for each item as a function of it's frequency, concreteness, typicality,and estimated AoA. All predictors were standardized before analysis."
-)
-```
-
-
 
 
 
@@ -341,8 +341,7 @@ df.4AFC.distractor.summary.byPid <- df.4AFC.trials.clean %>%
 ```
 
 ## A protracted developmental trajectory
-Do children gradually acquire visual vocabulary knowledge, or are precise representations for most nouns acquired by middle childhood? We found a gradual increase in children’s ability to correctly identify the target picture across our entire age range; Figure 2 shows the proportion of time that children identified the target, highlighting a protracted developmental trajectory and little evidence for a plateau in the elementary years.  Children became increasingly accurate over development at identifying the correct referent that a word referred to, with the oldest children in our sample (13- and 14-year-olds) still performing less accurately than adults. 
-
+We found a gradual increase across our age groups in how well children could correctly identify the target picture; Figure 2 shows the proportion of time that children identified the target picture, highlighting a protracted developmental trajectory. Older children were more accurate at identifying the correct visual referent that a word referred to, with the oldest children in our sample (13- and 14-year-olds) still performing less accurately than adults. 
 
 ```{r}
 item_effects <- df.4AFC.distractor.summary.byAge.clean %>%
@@ -399,7 +398,32 @@ easiest_words %>% filter(targetWord %in% c('squirrel','hamster','map'))
 
 ```
 
-We found a slight developmental trend for relatively easy words that had an average estimated age-of-acquisition (Kuperman et al., 2012) (AoA) of `r round(aoa_by_bin$avg_aoa[aoa_by_bin$AoA_Bin==1],2)`  years (SD = 0.87; acorn, bulldozer, scoop, puddle, sprinkler), but change over development was much more pronounced for more difficult words (barrel, buffet, coaster, stump, carousel; average AoA = 6.95 years, SD = 0.65) and challenging words (e.g., tapestry, scaffolding, mandolin, aloe; average AoA = 9.60 years, SD = 1.21) (see Figure 2).  At an item level, 3-year-olds’ performance on the easiest words (watermelon, M = .93; turtle, M = .93, lollipop, M = .95) suggests that they understood the task. However, other items with relatively low AoAs (squirrel, M = .78, hamster, M = .72;  map, M = .73) were more difficult for young children. Over development, the words that showed the greatest change across age (see Figure 3a), included some animals (e.g., swordfish), as well as inanimate objects (prism, antenna, sandbag, turbine) but also other kinds of objects, including parts of buildings (scaffolding, gutter).  Some items, however, showed relatively little change across age: these tended to be easy words that children across all ages identified correctly (sunflower, rice, potato, hedgehog). Overall, these results highlight variability across individual items and suggest that children gradually build knowledge of many visual concepts throughout childhood.
+We found a slight developmental trend for relatively easy words that had an average estimated age-of-acquisition (Kuperman et al., 2012) (AoA) of `r round(aoa_by_bin$avg_aoa[aoa_by_bin$AoA_Bin==1],2)`  years (SD = 0.87; acorn, bulldozer, scoop, puddle, sprinkler), but change over development was much more pronounced for more difficult words (barrel, buffet, coaster, stump, carousel; average AoA = 6.95 years, SD = 0.65) and challenging words (e.g., tapestry, scaffolding, mandolin, aloe; average AoA = 9.60 years, SD = 1.21) (see Figure 2).   Statistically, this was reflected as an interaction between estimated AoA and the age group of participants in a linear mixed effect model (see Table 1), where AoA was modeled as a continuous predictor (see data in Supplemental Figure 3).  While “easy” words with overall low AoA tended to be words that were relatively concrete and high frequency, these factors did not explain additional variance in children’s overall accuracy.  
+```{r}
+# foornote
+
+concrete_vs_aoa = cor.test(item_meta_and_model_sim$concreteness_target_word, item_meta_and_model_sim$AoA_Est_Word1)
+#Concreteness correlation
+#round(concrete_vs_aoa$estimate,3)
+ 
+## frequency correlation
+freq_vs_aoa = cor.test(item_meta_and_model_sim$log_freq_target_word, item_meta_and_model_sim$AoA_Est_Word1)
+
+# round(freq_vs_aoa$estimate,3)
+
+
+```
+
+
+```{r main-modeling-table}
+apa_lm <- apa_print(main_results)
+apa_table(
+  apa_lm$table
+  , caption = "Linear mixed-effect model coefficients predicting the proportion correct for each item in each age group as a function of the frequency, concreteness, typicality, included trials, estimated AoA of the target word, the age group of the child (in years) and their interaction. All predictors were standardized before analysis."
+)
+```
+
+At an item level, 3-year-olds’ performance on the easiest words (watermelon, M = .93; turtle, M = .93, lollipop, M = .95) suggests that they understood the task. However, other items with relatively low AoAs (squirrel, M = .78, hamster, M = .72;  map, M = .73) were more difficult for young children. Over development, the words that showed the greatest change across age (see Figure 3a), included some animals (e.g., swordfish), as well as inanimate objects (prism, antenna, sandbag, turbine) but also other kinds of objects, including parts of buildings (scaffolding, gutter).  Some items, however, showed relatively little change across age: these tended to be easy words that children across all ages identified correctly (sunflower, rice, potato, hedgehog). Overall, these results highlight variability across individual items and suggest that children gradually build knowledge of many visual concepts throughout childhood.
 
 
 ```{r}
@@ -440,11 +464,11 @@ ggplot(high_slopes %>% filter(age_group<25) , aes(x=fct_reorder(targetWord, adul
   scale_color_viridis_c(name='Age group (in years)') +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size=6)) +
   # coord_flip() +
-  theme(legend.position='one') +
+  theme(legend.position='none') +
    xlab('') +
   ylim(0,1)
 
-ggsave('figures/fig2a_itemeffects.pdf', width=3.5, height=3, units='in')
+ggsave('figures/fig3a_itemeffects.pdf', width=3.5, height=3, units='in')
 ```
 
 
@@ -522,7 +546,7 @@ dist_by_pid_by_age_by_aoa <- dist_by_pid_4afc_by_aoa %>%
 ```
 
 
-Do children begin with high-fidelity representations of what word referents look like or are they acquired more slowly? Thus far, these analyses support a view where children progressively acquire visual vocabulary knowledge via precise visual concepts (e.g., that can distinguish between a whale and a whale shark) on a relatively long developmental timeline. However, they do not yet establish whether children have visual concepts that become more precise en route to mature word understanding. If children's visual concepts indeed have an intermediate stage where they are overly broad (e.g., encompass both whales and whale sharks), then we would expect younger children to be more likely to choose distractors of all types (showing evidence for a very coarse representation or no representation at all), whereas we would expect older children to almost exclusively choose related distractors (showing evidence of partial knowledge). Alternatively, if children quickly acquire relatively high-fidelity representations, then we should only observe changes in how accurate children are at identifying the target word, with no changes in the types of distractors that children choose when they choose incorrectly.
+Do children begin with high-fidelity representations of what word referents look like or are they acquired more gradually? Thus far, these analyses support a view where children progressively acquire precise visual vocabulary knowledge for new words on a relatively long developmental timeline (e.g., visual knowledge that can distinguish between a whale and a whale shark). However, they do not yet provide evidence for the longstanding account that children have partial visual vocabulary knowledge that becomes more precise en route to mature word understanding. If children have visual knowledge that is overly broad (e.g., encompassing both whales and sharks), then we would expect children to exclusively choose related distractors (showing evidence of partial knowledge) when they do not know the precise visual meaning of a word. Alternatively, if children quickly acquire relatively high-fidelity representations, then we should only observe changes in how accurate children are at identifying the target word, with no changes in the types of distractors that children choose when they choose incorrectly.
 
 
 
@@ -645,32 +669,30 @@ kable(table_data,
   kable_styling(full_width = FALSE) 
 ```
 
-
-
-We examined whether there are systematic changes in how children made errors across development, shown in Figure 3b. Consistent with the partial knowledge hypothesis, we found that older children chose more closely related distractors than younger children. Adults were still more likely to choose the related distractors than to the oldest children in our sample (14-year-olds). We confirmed this result via a linear regression, modeling the proportion of errors that each child chose related distractors as our dependent variable as a function of children’s age (in years); we also included the number of errors each child made as a covariate as this varied widely by participant and age group. We found a main effect of age (B = `r table_data$b[2]`,  SE = `r table_data$SE[2]`,  t = `r table_data$t[2]`, p <  .001): older children were more likely to choose linguistically related vs. unrelated distractors. However, we did not find strong differences between distractors that were less related to the target word: both low-similarity and medium-similarity distractors were equally unlikely to be chosen, suggesting that even though model similarities distinguished these options, children did not. Overall, these results suggest a progression where children gradually build up detailed knowledge about the visual referents of many challenging words. 
+We thus examined whether there are systematic changes in how children made errors across development, shown in Figure 3b. Consistent with the longstanding view that children have partial knowledge, we found that older children chose more closely related distractors than younger children. Adults were still more likely to choose the related distractors than the oldest children in our sample (14-year-olds) when they made errors. We confirmed this result via a linear regression, modeling the proportion of errors that each child chose related distractors as our dependent variable as a function of children’s age (in years); we also included the number of errors each child made as a covariate as this varied widely by participant and age group. We found a main effect of age (B = `r table_data$b[2]`,  SE = `r table_data$SE[2]`,  t = `r table_data$t[2]`, p <  .001): older children were more likely to choose linguistically related vs. unrelated distractors. However, we did not find strong differences between distractors that were less related to the target word. We found that both low-similarity and medium-similarity distractors were equally unlikely to be chosen—even though model similarities distinguished these options, children did not. These results suggest that when children know something about the visual meaning of a word, they know enough to reject both the low and medium similarity distrators—e.g., for example, if children have any knowledge of what “whales” are, they know it is not likely to be a cow or an animate household object, but might perhaps confuse it with an another sea mammal (see Figure 1). Overall, these results suggest progression where children gradually build up detailed knowledge about the visual referents of many challenging words. 
 
 
 
 ```{r errorbyage, fig.align='center', out.width='75%', fig.cap="Changes in the proportion of errors chosen as a function of childrens age, where green lines reflected higher similarity distractors. Dot size represents the number of errors made by children in each age group. Error bars represent 95 percent bootrstrapped confidence intervals."}
 
-ggplot(data = dist_by_cond_by_age, aes(x=age_group, y=mean, col=wordPairing, fill=wordPairing)) +
+errors_by_age_plot = ggplot(data = dist_by_cond_by_age, aes(x=age_group, y=mean, col=wordPairing, fill=wordPairing)) +
   geom_linerange(data = dist_by_cond_by_age, aes(y=mean, ymin=ci_lower, ymax = ci_upper), position=position_dodge(width=.4)) +
   geom_point(data = dist_by_cond_by_age, aes(y=mean,  size=num_errors), alpha=.8, position=position_dodge(width=.4)) +
   geom_smooth(data = dist_by_cond_by_age, aes(group=age_group, weight=num_errors)) +
   ylab('Proportion of errors') +
   xlab('Age Group (in years)') +
   papaja::theme_apa() +
-  scale_size_continuous(name="") + 
-  guides(size = "none") +
+  scale_size_continuous(name="Num. errors") + 
+  # guides(size = "none") +
   scale_color_manual(values = c( '#D8476D', '#942c80','#522a79'), name="")  +
   scale_fill_manual(values = c( '#D8476D', '#942c80','#522a79'), name="")+
   scale_x_continuous(breaks = c(seq(3, 14, 2), 25),  # Show ages every 2 years plus adults
                     labels = function(x) ifelse(x == 25, "Adults", as.character(x)))  +
   ylim(0,1) +
-  theme(legend.position='none') +
+  theme(legend.position='bottom') +
   geom_smooth(span=20) 
   
-ggsave('figures/fig3-errors.pdf', width=4, height=4, units='in')
+ggsave(errors_by_age_plot, filename='figures/fig3b-errors.pdf', width=5, height=5.5, units='in')
 ```
 
 ## Modeling changes in children's error patterns
@@ -720,7 +742,7 @@ target_item_visualize <- dist_by_4afc_by_item_by_age %>%
 ```
 
 ```{r modelfigure, out.width='20%', fig.align='center', fig.cap = "(a) Schematic of the three different ways that embedding similarity was calculated in CLIP (Radford et al., 2021) as a function of the different distractor types." }
-ggplot(data = target_item_visualize, aes(x=sim_img_img, y=sim_txt_txt, col=wordPairing)) +
+visualize_target_item = ggplot(data = target_item_visualize, aes(x=sim_img_img, y=sim_txt_txt, col=wordPairing)) +
   geom_point(size=.5, alpha=.8) +
   theme(legend.position='none') +
   ylab('Linguistic similarity') +
@@ -734,20 +756,16 @@ ggplot(data = target_item_visualize, aes(x=sim_img_img, y=sim_txt_txt, col=wordP
  ylim(.29, 1) +
  xlim(.29, 1)
   
-ggsave('figures/fig4b-similarity_by_item.pdf', width=2.5)
+ggsave(visualize_target_item, filename='figures/fig4b-similarity_by_item.pdf', width=2.5)
 ```
-
-
-
 
 
 ```{r output=FALSE}
+
+# create semantic residual metric for modeling
 dist_by_4afc_by_item_by_age$sem_resid <- resid(
   lm(sim_txt_txt ~ sim_img_img, data = dist_by_4afc_by_item_by_age)
 )
-```
-
-```{r}
 
 # cross validation of lmer models 
 all_cor = tibble(sem_resid = double(), phon=double(), lang = double(),
@@ -756,11 +774,18 @@ all_cor = tibble(sem_resid = double(), phon=double(), lang = double(),
 
 all_model_r2 = tibble(sem_resid = double(), phon=double(), lang = double(),
   vision = double(), multi = double(), all=double())
-dataset = dist_by_4afc_by_item_by_age   %>% filter(age_group<25)
 
+
+## Only model children for this part?
+all_data_to_model = dist_by_4afc_by_item_by_age   %>% filter(age_group<25)
+```
+
+```{r cross-validation}
+
+# conduct the model fitting
 for (iter in 1:50){
 
-  sampled =  dataset %>%
+  sampled =  all_data_to_model %>%
     group_by(targetWord) %>%
     sample_frac(.8)
   
@@ -807,14 +832,12 @@ for (iter in 1:50){
 ```
 
 
-
 ```{r output=FALSE}
 # plot of model r^2 for 50 samples of 80% of the dataset
 all_model_r2_long <- all_model_r2 %>%
   rename('ling - visual residuals' = sem_resid, 'phonological similarity' = phon, 'all predictors' = all, 'multimodal embeddings' = multi, 'language embeddings' = lang, 'vision embeddings' = vision) %>%
   pivot_longer(cols=everything(), values_to="cor", names_to = "model")  %>%
   mutate(model = fct_relevel(model,  'all predictors','multimodal embeddings','language embeddings','vision embeddings','ling - visual residuals','phonological similarity'))
-  # mutate(model = fct_relevel(model, 'language','vision', 'multimodal','all predictors')) 
 
 all_model_r2_cis <- all_model_r2_long %>%
   group_by(model) %>%
@@ -825,7 +848,7 @@ all_model_r2_cis <- all_model_r2_long %>%
 
 
 ```{r modelfigurecis, out.width='50%', fig.align='center', fig.cap = "Average explained variance in children's error patterns (conditional R-squared in linear mixed effect models) by linguistic, visual, multimodal, or combined predictors in cross-validated mixed efffect models. Error bars represent bootstrapped 95 percent confidence intervals across 50 iterations." }
-ggplot(data=all_model_r2_cis, aes(x=model, y=mean, color=model)) +
+modelfigurecis = ggplot(data=all_model_r2_cis, aes(x=model, y=mean, color=model)) +
   geom_linerange(aes(ymin=ci_lower, ymax=ci_upper)) +
   geom_point(size=3, alpha=.8) +
   geom_point(data=all_model_r2_long, aes(x=model, y=cor), alpha=.2) +
@@ -841,39 +864,33 @@ ggplot(data=all_model_r2_cis, aes(x=model, y=mean, color=model)) +
 theme(aspect.ratio=2/4) +
   ylim(0,.3)
   
-ggsave('figures/fig4c-model_comparison.pdf', height=3, units='in')
+ggsave(modelfigurecis, filename='figures/fig4c-model_comparison.pdf', height=3, units='in')
   
   
 ```
 
-```{r}
-all_data_to_model <- dist_by_4afc_by_item_by_age  
 
-all_data_to_model$sem_resid <- resid(
-  lm(sim_txt_txt ~ sim_img_img, data = all_data_to_model)
-)
-
-resid_model_fit = lmer(data=all_data_to_model, prop ~  scale(sim_img_txt)*scale(age_group) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
-
-summary(resid_model_fit)
-```
-
-```{r}
-ggplot(all_data_to_model, aes(x=phon_sim, y=prop, col=sim_img_txt)) +
-  geom_point(alpha=.8) +
-  geom_smooth(method='lm') +
-  facet_wrap(~age_group)+
-  theme_few() +
-  ylab('Proportion distractor chosen (errors)') +
-  xlab('Ling ~ Visual Sim. Resid.')
+```{r include=FALSE}
+# ggplot(all_data_to_model, aes(x=phon_sim, y=prop, col=sim_img_txt)) +
+#   geom_point(alpha=.8) +
+#   geom_smooth(method='lm') +
+#   facet_wrap(~age_group)+
+#   theme_few() +
+#   ylab('Proportion distractor chosen (errors)') +
+#   xlab('Ling ~ Visual Sim. Resid.')
 ```
 
 
+```{r}
+# fit exploratory model with all predictors.
+exploratory_model_fit  = lmer(data=dist_by_4afc_by_item_by_age, prop ~ scale(AoA_Est_Word1) + scale(AoA_Est_Word2) + scale(sim_img_txt) + scale(sem_resid)*scale(age_group) + scale(phon_sim) + scale(sim_img_txt) + scale(log_freq_target_word) + scale(log_freq_answer_word) + scale(concreteness_target_word) + scale(total_num_errors) +  (1 | targetWord))
+
+```
 
 ```{r}
-exploratory_model_fit  = lmer(data=all_data_to_model, prop ~ scale(AoA_Est_Word1) + scale(AoA_Est_Word2) + scale(sem_resid)*scale(age_group) + scale(phon_sim) + scale(sim_img_txt) + scale(log_freq_target_word) + scale(log_freq_answer_word) + scale(concreteness_target_word) + scale(total_num_errors) +  (1 | targetWord))
+# fit exploratory model with all predictors.
+exploratory_model_fit_no_adults  = lmer(data=dist_by_4afc_by_item_by_age %>% filter(age_group<25), prop ~ scale(AoA_Est_Word1) + scale(AoA_Est_Word2) + scale(sim_img_txt) + scale(sem_resid)*scale(age_group) + scale(phon_sim) + scale(sim_img_txt) + scale(log_freq_target_word) + scale(log_freq_answer_word) + scale(concreteness_target_word) + scale(total_num_errors) +  (1 | targetWord))
 
-summary(exploratory_model_fit)
 ```
 
 ```{r modeling table}
@@ -884,32 +901,13 @@ apa_table(
 )
 ```
 
-```{r model-comparison, include=FALSE}
-maximal_model  = lmer(data=all_data_to_model, prop ~ scale(sem_resid)*scale(age_group) + scale(phon_sim) + scale(AoA_Est_Word1) + scale(sim_img_txt)*scale(age_group)  + scale(total_num_errors) +  (1 | targetWord))
-
-maximal_modl_without_phon = lmer(data=all_data_to_model, prop ~ scale(sem_resid)*scale(age_group) + scale(AoA_Est_Word1) +  scale(sim_img_txt)  + scale(total_num_errors) +  (1 | targetWord))
-
-max_modl_without_multimodal = lmer(data=all_data_to_model, prop ~ scale(sem_resid)*scale(age_group) + scale(phon_sim)   + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
-
-
-max_modl_without_aoa = lmer(data=all_data_to_model, prop ~ scale(sem_resid)*scale(age_group) + scale(phon_sim) + scale(total_num_errors) +  (1 | targetWord))
-
-
-anova(maximal_model,maximal_modl_without_phon)
-
-anova(maximal_model,max_modl_without_multimodal)
-
-anova(maximal_model,max_modl_without_aoa)
-```
-
 
 ```{r}
-# could include this is a table, maybe in SI?
-# all_model_fit_full_dataset = lmer(data=dataset, prop ~ scale(sim_img_txt)*scale(age_group) + scale(sim_img_img) + scale(sim_txt_txt) + scale(AoA_Est_Word1) + scale(total_num_errors) +  (1 | targetWord))
-
-# summary(all_model_fit_full_dataset)
+scoop = item_meta_and_model_sim %>% filter(targetWord=='scoop')
+tulip = item_meta_and_model_sim %>% filter(targetWord=='tulip')
 ```
-In a final set of analyses, we aimed to understand the source of changes in children’s error patterns by leveraging similarity metrics derived from a large, multimodal language model (Radford et al., 2021). When we created our stimuli, we paired targets and distractors by using word similarity in a linguistic embedding space, but of course the corresponding visual stimuli naturally vary in their visual similarity to each other.  This is true both at a category level— that is, animals are more similar visually to each other than to inanimate objects (Long et al., 2017; Krigeskorte et al., 2008) but also can be true at an image level—e.g., the flowers in the images of rose and tulip were both pink. Thus, some stimuli on certain trials could be more related to the target concept semantically and less related visually, or vice versa. For example, the words scoop and sauce had high similarity in the language encoder (r = .924), and their corresponding images had lower similarity in the vision encoder (r = .560).  Conversely, the words tulip and rose had relatively lower similarity in the vision encoder (r = .785) than their corresponding images in the vision encoder (r = .872) (see Figure 4A, Figures 4B). Thus, our large and varied set of stimuli—and the ability to easily parameterize the relative linguistic and visual similarity of all target-distractor pairs—affords the opportunity to examine what drives item-level variability in this task. We thus examined the degree to which children’s error patterns reflected changes in how they processed the visual similarity of the targets and distractors, their semantic similarity, or—perhaps most likely—some combination.
+In a final set of analyses, we aimed to understand the source of changes in children’s error patterns by leveraging similarity metrics derived from a large, multimodal language model (Radford et al., 2021). When we created our stimuli, we paired targets and distractors by using word similarity in a linguistic embedding space, but of course the corresponding visual stimuli naturally vary in their visual similarity to each other.  This is true both at a category level— that is, animals are more similar visually to each other than to inanimate objects [@long2017mid; @kriegeskorte2008RSA] but also can be true at an image level—e.g., the flowers in the images of rose and tulip were both pink. Thus, some stimuli on certain trials could be more related to the target concept semantically and less related visually, or vice versa. For example, the words scoop and sauce had high similarity in the language encoder (r = .924), and their corresponding images had lower similarity in the vision encoder (r = .560).  Conversely, the words tulip and rose had relatively lower similarity in the vision encoder (r = .785) than their corresponding images in the vision encoder (r = .872) (see Figure 4A, Figures 4B). Thus, our large and varied set of stimuli—and the ability to easily parameterize the relative linguistic and visual similarity of all target-distractor pairs—affords the opportunity to examine what drives item-level variability in this task. We thus examined the degree to which children’s error patterns reflected changes in how they processed the visual similarity of the targets and distractors, their semantic similarity, or—perhaps most likely—some combination.
+
 To do so, we used a series of cross-validated linear mixed effect models, where we examined the degree to which visual, linguistic, and multimodal similarity metrics (and their combination) derived from multimodal large language model embeddings could explain children’s error patterns. Specifically, we modeled the proportion of time that children chose each distractor for a target word as a function of the age (in years) of the children participating, and (1) the similarity of the target word to each distractor word (linguistic embeddings), (2) the similarity of the target image to each distractor image (visual embeddings), and (3) the similarity of the target word to each distractor image (multimodal embeddings), and (4) a model with all predictors combined; we additionally added the total number of errors per item as a covariate, with random intercepts for each target word. We iteratively sampled 80 percent of the dataset 50 times, and then evaluated the conditional R-squared for each model for each split; these values are plotted in Figure 4C.  These results revealed that combining both the visual and linguistic embeddings—either together in one, large mixed-effect model, or via multimodal embeddings—led to increased explained variance in children’s error patterns. These results thus suggest that changes in children’s error patterns across age are not solely due to changes in children’s ability to reject the distractor images that are visually similar to the target concept. Rather, children’s errors are driven by a combination of both visual and linguistic similarity.
 
 
@@ -917,18 +915,17 @@ To do so, we used a series of cross-validated linear mixed effect models, where 
 
 # Discussion
 
-How precise is children’s visual concept knowledge, and how does this change across development?  Here, we collect and analyze a large dataset of picture matching performance across development, finding evidence for a transition from coarse to finer-grained visual representations over early and middle childhood. Children became more accurate at identifying the referents of words over this entire age range, and their error patterns progressed from relatively random towards related distractors.
+How does children’s visual vocabulary knowledge change across childhood? We collected a large dataset of picture-matching performance in adults and children 3–14 years of age where the distractors were systematically related to the target concept. Children from older vs. younger age groups were more accurate at identifying the referents of words; in addition, older children and adults systematically chose similar vs. dissimilar distractors, suggesting that they had partial knowledge of many difficult words. We found that incorporating the semantic similarity of the target and distractor words and the high-level visual similarity of the referent images best explained children’s error patterns—with additional contributions from the phonological similarity of the target and distractor words. Together, these analyses document gradual changes in visual vocabulary knowledge across childhood, with abundant partial knowledge along the way. 
 
-Broadly, these data support a theoretical view where these is substantial enrichment and change in existing representations for everyday visual concepts throughout childhood.  For example, certain visual features may become more or less salient in children's visual concepts as children understand their functional roles (e.g., camels have humps to store water) or the degree to which they help delineate a category boundary (e.g., between whales and whale sharks). On this account, even school-aged children’s visual representations may undergo substantial change as they learn more about the world around them. 
+These data thus hint at substantial enrichment in children’s existing visual knowledge throughout childhood. Rather than acquiring high-fidelity visual information about a particular exemplar (or a few) during learning, these data highlight that children’s representations are likely refined through iterative, repeated interactions with real-life or depicted versions of many categories in learning contexts.  For example, certain visual features may become more salient in children’s representations as children understand their functional roles (e.g., whales have baleen to filter feed) or the degree to which they delineate a category boundary (e.g., between whales and whale sharks). Thus, even after a child can successfully understand a word in a supportive context (i.e., a picture book for young children), their underlying visual representation may still change throughout later childhood [@long2024parallel] -- and may also change as a function of their particular interests org learning experiences. Indeed, while adults likely have precise representations for categories they interact with frequently—such as trees, cups, and cars -- they likely cannot distinguish between many categories unless they are relative experts in that particular domain, for example, gazelles vs. antelopes.
 
-This protraction of the timeline for visual concept learning into middle childhood substantially broadens the scope of potential learning mechanisms beyond associative label-object matching. For example, children's learning environments extend beyond the home and into structured educational contexts; children's learning partners include their peers, teachers, and siblings (who may be more or less reliable), and children's individualized experiences, interests, and hobbies may influence which words they have detailed visual representations for. As children begin to learn why animals and objects are classified the way they are, this semantic learning likely influences the visual features that are prioritized in children’s representations. To make matters even more complicated, children also likely learn about visual features from generic utterances (e.g., "Tigers have stripes") [@gelman2010effects] in verbal conversations where visual referents are nowhere to be found. Thus in order for our models and theories of visual concept learning to account for this full developmental trajectory, we need to think beyond labelled (or even captioned) photos or videos of referents. 
+These findings thus raise new questions about how exactly children’s representations are changing. For example, if a child picks a related distractor (e.g., shark) when they hear a target word (whale), we cannot tell exactly why from these data. Children’s visual knowledge could be both too narrow -- excluding the particular exemplar of the whale that represents the target concept -- and also too broad at the same time, including the “shark” as part of the “whale” concept. Future studies that iteratively test the boundaries of individual children’s representations could help delineate the evolving content, how they vary across individuals, and how they change across development [@leon2022uncovering].
 
-Indeed, we suspect that visual concept learning extends into adulthood, and that many adults have coarse visual representations for many different words (and indeed, we culled some items during pilot testing because adults could not discriminate them!). Consider that while  many adults in Western contexts experience the referents of some visual concepts relatively frequently e.g., trees, computers, cups, cars -- other words refer to visual concepts that different individuals may have varying amounts of interest in and frequency in interacting with -- like telescopes, or antelopes. Visual concept learning is likely influenced by both individuals pre-occupations and very intense interests, be they professional or not.  And indeed decades of work has established that birding experts, car aficionados, [@tanaka1997expertise] and graphic artists [@perdreau2013artists] have both qualitatively and quantitatively different kinds of visual representations for the visual concepts that they engage with. 
+As the timeline for visual learning extends into middle childhood, so does the scope of their learning environment into educational contexts where children’s learning partners include their peers, teachers, and siblings. Further, throughout this entire developmental age range, children’s individualized interests and active information seeking may influence how they acquire detailed visual representations for words. In these contexts, children likely learn about visual features from generic utterances (e.g., “Tigers have stripes”) [@gelman2010effects], where their semantic learning (e.g., “whales are mammals”) also likely influences which visual features are most prominent in children’s representations. Our theories of visual learning, accordingly, need to expand beyond thinking about how children generalize from labelled groups of exemplars. 
 
-There are several limitations to the current work that future work could address. While we include data from a diverse group of children over a wide developmental age range, at present our conclusions are drawn primarily from around one hundred experimental items and distractors; further work that expands the range and diversity of the visual concepts -- and that expands to populations outside of the continental U.S.[@henrich2010most] will be necessary to understand the generalizability of these findings. In addition, the present data are large but cross-sectional, and thus cannot provide  evidence for changes in the precision of representations within individual minds. Dense data collected from children over longer ranges of developmental time could confirm the hypotheses and theories raised by these analyses. Nonetheless, the present work highlights the promise of large-scale, online games for collecting large datasets that can be used to examine the consistency and variability in visual concept representations across childhood. 
+There are several limitations to the current work. While we include data from a diverse group of children over a wide developmental age range, our conclusions are drawn from just over one hundred experimental stimuli; expanding the range and diversity of both the participants and items in our study [@henrich2010most] is necessary to understand the generalizability of these findings. Further, our data are cross-sectional, and thus cannot provide evidence for changes in the precision of representations within individual minds. Longitudinal data could confirm the theories suggested here. 
 
-Overall, these findings suggest that children's visual concepts gradually become more precise across childhood, and broaden our view on the timeline and mechanisms for visual concept learning. We hope that future work will build on the tools and ideas developed here to understand the visual mind in both children and adults.
-
+Nonetheless, the present work highlights the promise of large-scale, online platforms for collecting datasets to examine the development of visual vocabulary knowledge, and we hope that future researchers will build upon the paradigm, data, and findings presented here. Our results provide evidence that children have abundant partial knowledge for many words before they learn their precise meanings, and highlight that children’s visual knowledge accumulates gradually throughout middle childhood. More broadly, these results expand the timeline and mechanisms relevant for visual learning.
 
 
 
@@ -941,14 +938,36 @@ This was was supported by a [BLINDED] to [BLINDED]. We gratefully acknowledge th
 
 
 ```{r trials_by_age}
+trials_by_age <- trials_by_age %>%
+  rename('Age Group (yrs)'=age_group, "Mean Num Trials"=mean_num_trials) %>%
+  rename('SD Num Trials'=sd_num_trials, "Participants"=n) 
+```
 
+
+```{r fig.width=6}
 apa_table(
-  trials_by_age
-  , caption = "Linear mixed-effect model coefficients predicting the proportion correct for each item as a function of it's frequency, concreteness, typicality,and estimated AoA. All predictors were standardized before analysis."
+  trials_by_age, caption = "Average number and SD of completed trials for participants in each age group in the dataset (adults as marked as age group=25)."
 )
 ```
 
-```{r include=FALSE}
+```{r supp-cohort-figure, fig.cap="Proportion correct as a function of the age group of the child participating as well as the cohort in which the task was administered. All error bars are bootstrapped confidence intervals."}
+accuracy_by_cohort_plot = ggplot(accuracy_by_cohort_by_age %>% mutate(cohort = school_type), aes(x=age_group, y=mean, col=cohort, fill=cohort)) +
+  geom_point(size = 1, alpha=.6) +
+  geom_linerange(aes(y=mean, ymax = ci_upper, ymin = ci_lower), alpha=.6)  +
+  geom_smooth(alpha=.2, span=10) +
+  theme_few(base_size=10) +
+  ylim(0,1) +
+  xlim(2,26) +
+  ylab('Average proportion correct') +
+  xlab('Age group (years old)') +
+  theme(legend.position = 'bottom')
+
+
+ggsave(accuracy_by_cohort_plot,filename='figures/fig-S1-accuracy_by_cohort_plot.png', width=7, height=4.5, units='in')
+
+```
+
+```{r supp-category-figure, fig.width=5, fig.cap="Proportion correct as a superordinate category of the target word, as classified by Stoinski et al., 2023."}
 # supplemental figure
 ggplot(by_category, aes(x=fct_reorder(superordinate_category_target_word, mean, .desc = FALSE), y=mean)) +
   geom_point() +
@@ -959,30 +978,38 @@ ggplot(by_category, aes(x=fct_reorder(superordinate_category_target_word, mean, 
   xlab('') +
   coord_flip()
 
-ggsave('figures/broad_category_accuracy.pdf', width=4, height=4, units='in')
+ggsave('figures/fig-S2-broad_category_accuracy.png', width=5, height=4, units='in')
   
 ```
 
 
 
 
-```{r supplemental-aoa-plot, include=FALSE}
-ggplot(d %>% filter(age_group<25), aes(x=AoA_Est_Word1, y=perc, col=age_group, fill=age_group, size=n)) +
+```{r supplemental-aoa-plot, fig.cap="Proportion correct as a function of the AoA of the target word, shown continously. Vertical lines connect data points for individual words across age groups."}
+ggplot(d, aes(x=AoA_Est_Word1, y=perc, col=age_group, fill=age_group, size=n)) +
   scale_color_viridis_c() +
   scale_fill_viridis_c() +
   scale_size_area(name="", guide = "none") +
   geom_line(aes(group=targetWord), col='grey', alpha=.1) +
-  geom_point(alpha=.4) +
-  geom_smooth(aes(group=age_group), method='lm', alpha=.2) +
-  theme_few() +
+  geom_point(alpha=.3) +
+  geom_smooth(aes(group=age_group), method='lm', alpha=.1) +
+  theme_few(base_size=10) +
   ylab('Proportion correct') +
-  xlab('Estimated AoA') 
+  xlab('Estimated AoA')  +
+  theme(legend.position='bottom')
   # facet_wrap(~age_group)
 
-ggsave('figures/supplemental-aoa-plot.pdf', width=4, height=4, units='in')
+ggsave('figures/Fig-S3-supplemental-aoa-plot.png', width=6, height=4, units='in')
 
 ```
+```{r supp-modeling-table}
+apa_lm <- apa_print(exploratory_model_fit_no_adults)
+apa_table(
+  apa_lm$table
+  , caption = "Full model coefficients modeling the proportion of errors children (excluding adults) made on each trial."
+)
 ```
+
 # References
 ```{r create_r-references}
 r_refs(file = "r-references.bib")
