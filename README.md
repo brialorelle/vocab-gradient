@@ -1,6 +1,9 @@
 # vocab-gradient
 
 Repository for analyses, stimuli construction, and manuscript assets for a developmental psychology project on how children’s visual word knowledge becomes more semantically precise with age.
+# 📘 Developmental changes in the precision of visual vocabulary knowledge.
+
+This repository contains analysis scripts, stimuli, and writing files for a developmental psychology project examining how children’s visual word knowledge changes over time. The project includes data from multiple experiments, computational analyses (e.g., CLIP similarity), and a manuscript draft.
 
 ## What this repository contains
 
@@ -11,6 +14,14 @@ This project combines:
 - **Manuscript-ready plots and model summaries**.
 
 Primary analysis language is **R** (with `renv` lockfile support), plus a small Python script used for CLIP-based similarity extraction.
+Children's visual concept knowledge becomes increasingly refined over development. In this project, we assess the precision of visual word knowledge using a forced-choice picture-matching paradigm, where distractors are selected based on semantic similarity via multimodal language models (e.g., CLIP).
+
+The repository includes:
+
+- Preprocessing and analysis scripts in R  
+- Documentation of the stimulus generation and item selection 
+- Embedding similarity computations  
+- Drafts and figures for associated publications  
 
 ---
 
@@ -142,8 +153,12 @@ These `.RData/.Rdata` objects are saved artifacts used by manuscript analyses:
 3. **Merge item metadata** with lexical/phonological/model features via `analysis/step0_merge_metadata.R`.
 4. **Wrangle participant trial data** and compute age/item summaries in `analysis/step1_wrangle_datasets.Rmd`.
 5. **Run manuscript analyses/figures** from `writing/paper1_visualvocab.Rmd` using saved preprocessed objects.
+## Reproducing key analyses from original files
 
----
+1. Open the RStudio project: `vocab-gradient.Rproj` and ensure that you have the required libraries
+2. All key analysis are contained in the RMarkdown file in `writing/paper1_visualvocab.Rmd`
+
+Other files (e.g., `analysis/step1_wrangle_datasets.Rmd`) were used to clean and format the raw datasets, and can only be used by the research team with IRB access to these data, but is provided for transparency purposes.
 
 ## Reproducibility
 
@@ -152,6 +167,7 @@ These `.RData/.Rdata` objects are saved artifacts used by manuscript analyses:
 - Dependency lock: `renv.lock`
 
 If R is available locally:
+
 
 ```bash
 R -q -e "install.packages('renv'); renv::restore(prompt = FALSE)"
