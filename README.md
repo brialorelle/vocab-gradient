@@ -1,17 +1,17 @@
-# 📘 vocab-gradient
+# 📘 Developmental changes in the precision of visual vocabulary knowledge.
 
-This repository contains analysis scripts, stimuli, and writing files for a developmental psychology project examining how children’s visual word knowledge changes over time. The project includes multiple experiments, computational analyses (e.g., CLIP similarity), and manuscript drafts.
+This repository contains analysis scripts, stimuli, and writing files for a developmental psychology project examining how children’s visual word knowledge changes over time. The project includes data from multiple experiments, computational analyses (e.g., CLIP similarity), and a manuscript draft.
 
 ---
 
 ## 🔍 Project Overview
 
-Children's visual concept knowledge becomes increasingly refined over development. In this project, we assess the **semantic precision of visual word knowledge** using a forced-choice picture-matching paradigm, where distractors are selected based on semantic similarity via multimodal language models (e.g., CLIP).
+Children's visual concept knowledge becomes increasingly refined over development. In this project, we assess the precision of visual word knowledge using a forced-choice picture-matching paradigm, where distractors are selected based on semantic similarity via multimodal language models (e.g., CLIP).
 
 The repository includes:
 
 - Preprocessing and analysis scripts in R  
-- Stimulus generation and item selection  
+- Documentation of the stimulus generation and item selection 
 - Embedding similarity computations  
 - Drafts and figures for associated publications  
 
@@ -41,17 +41,14 @@ Rscript -e "rmarkdown::render('writing/paper1_visualvocab.Rmd')"
 
 
 
-## Option 2: Reproducing key analyses from original files
+## Reproducing key analyses from original files
 
 1. Open the RStudio project: `vocab-gradient.Rproj` and ensure that you have the required libraries
-2. Start with `analysis/step1_wrangle_datasets.Rmd` to clean and format the datasets (not required)
-3. Run key analysis using the RMarkdown files in `writing/paper1_visualvocab.Rmd`
+2. All key analysis are contained in the RMarkdown file in `writing/paper1_visualvocab.Rmd`
 
----
+Other files (e.g., `analysis/step1_wrangle_datasets.Rmd`) were used to clean and format the raw datasets, and can only be used by the research team with IRB access to these data, but is provided for transparency purposes.
 
-## 📜 License
 
-This project is licensed under the MIT License. See `LICENSE` for details.
 
 ```
 
