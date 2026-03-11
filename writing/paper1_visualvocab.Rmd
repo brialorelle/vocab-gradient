@@ -194,7 +194,7 @@ if (RAW_DATA==FALSE){
 
 To obtain a large sample of responses for individual items across development, we collected data from children across several different testing contexts, totaling $N$ = `r sum(by_cohort$num_participants)` unique participants. We collected data from children in an in-person preschool ($N$ = `r by_cohort$num_participants[by_cohort$cohort=='bing']`, 3-5 year-olds) and from the Children Helping Science (CHS) Platform ($N$=`r by_cohort$num_participants[by_cohort$cohort=='garden']`, 3-7 year-olds), We also recruited adults online via Prolific; we sampled from monolinguals ($N$=`r by_cohort$num_participants[by_cohort$cohort=='adults_monolingual']`) and adults who spoke English as a second language ($N$=`r by_cohort$num_participants[by_cohort$cohort=='adults_ell']`) to maximize our chance of finding item variability, and to measure a range of adult abilities.  
 
-In addition, we recruited representative samples from schools across the United States through the [BLINDED] platform $N$=`r by_cohort$num_participants[by_cohort$cohort=='schools']`, 5-14 year-olds) (BLINDED et al.). Schools included seven public or public charter school districts (33 schools), three independent schools focused on supporting students with learning differences, two independent schools, and one summer program; these diverse student data were obtained through research-practice partnerships.  
+In addition, we recruited representative samples from schools across the United States through the [BLINDED] platform $N$=`r by_cohort$num_participants[by_cohort$cohort=='schools']`, 5-14 year-olds) (BLINDED et al.). Schools included seven public or public charter school districts (33 schools), three independent schools focused on supporting students with learning differences, two independent schools, and one summer program.  This task was offered as a pilot vocabulary assessment along with other foundational reading measures that were developed for use in school-research partnerships throughout the United States [@wentworth2023brokering; @coburn2016research].
 
 Most participants responded directly via clicking through the games on a laptop or tapping through the games on a tablet, except those recruited online through CHS and Prolific; children’s parents responded via clicking on the image that the child indicated on CHS, and adults responded via clicking on the images. Children completed, on average, `r mean(trials_by_participant$num_trials)` trials (SD = `r sd(trials_by_participant$num_trials)`) that were sampled randomly from the stimulus set (maximum = 86; different maximum numbers of trials were included in different testing contexts).  All participants who contributed any data were included (minimum trials = 2, maximum trials = 86).  
 Some participants participated in the game more than once ($N$ = `r longitudinal_participants` children), and their data are included as if they completed additional trials; note that our statistical models include random intercepts for each participant and operate at the trial level; however, excluding these participants did not change the pattern of results.
@@ -271,7 +271,7 @@ ggplot(data = df.4AFC.distractor.summary.byAge.perc.byaoa %>%
   facet_wrap(~AoA_Bin_Name) +
   xlab('Age Group (in years)') +
   ylab('Proportion Chosen') +
-  papaja::theme_apa(base_size=8) +
+  papaja::theme_apa(base_size=10) +
   coord_cartesian(ylim = c(0, 1)) +
    scale_x_continuous(breaks = c(seq(3, 14, 2), 25),  
                     labels = function(x) ifelse(x == 25, "Adults", as.character(x)))  +
@@ -1003,9 +1003,9 @@ ggsave('figures/Fig-S3-supplemental-aoa-plot.png', width=6, height=4, units='in'
 
 ```
 ```{r supp-modeling-table}
-apa_lm <- apa_print(exploratory_model_fit_no_adults)
+apa_lm_no_adults <- apa_print(exploratory_model_fit_no_adults)
 apa_table(
-  apa_lm$table
+  apa_lm_no_adults$table
   , caption = "Full model coefficients modeling the proportion of errors children (excluding adults) made on each trial."
 )
 ```
