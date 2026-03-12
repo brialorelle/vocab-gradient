@@ -160,7 +160,6 @@ These `.RData/.Rdata` objects are saved artifacts used by manuscript analyses:
 
 Other files (e.g., `analysis/step1_wrangle_datasets.Rmd`) were used to clean and format the raw datasets, and can only be used by the research team with IRB access to these data, but is provided for transparency purposes.
 
-## Reproducibility
 
 ## Environment
 - R project file: `vocab-gradient.Rproj`
