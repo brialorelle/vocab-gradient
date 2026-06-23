@@ -33,7 +33,11 @@ library(viridis)
 First load all metadata we'll need for the items
 ```{r}
 test_corpus <- read_csv(here::here("data/item_metadata/test_items.csv")) %>%
-  filter(!Word1 %in% c('honey','scrabble')) # manually excluded
+  # `honey` and `scrabble` were excluded from the final stimulus set:
+  # `scrabble` is a trademarked brand name (IP risk for sharing stimuli);
+  # `honey` was dropped because the THINGS+ image was an ambiguous closeup
+  # with poor child-name agreement during piloting. See Method §Materials.
+  filter(!Word1 %in% c('honey','scrabble'))
 ```
 
 # New merged data post preprcoessing
@@ -59,7 +63,7 @@ clip_cor_by_model <- read_csv(here::here("data/raw/exp1_all_trials2023-04-11.csv
   filter(!Word1 %in% c('honey','scrabble')) %>% # manually excluded for symmetry across blocks
   ungroup() %>%
   mutate(AoA_Bin = ntile(AoA_Est_Word1,3)) %>%
-  mutate(AoA_Bin_Name = factor(AoA_Bin,  levels = c('1','2','3'), labels = c("Early AoA", "Med AoA", "Late AOA"))) 
+  mutate(AoA_Bin_Name = factor(AoA_Bin,  levels = c('1','2','3'), labels = c("Early AoA", "Med AoA", "Late AoA")))
 ```
 
 ```{r}
@@ -77,7 +81,8 @@ test_clip_cor <- read_csv(here::here("data/raw/exp1_all_trials2023-04-11.csv")) 
   rename(wordPairing = trial_type) %>%
   rename(clip_cor = cor) %>%
   filter(Word1 %in% unique(test_corpus$Word1)) %>%
-  filter(!Word1 %in% c('honey','scrabble')) # manually excluded for symmetry across blocks
+  # `honey` and `scrabble` excluded for symmetry across blocks (see line 36 for rationale).
+  filter(!Word1 %in% c('honey','scrabble'))
 ```
 
 Create data structure and merge that has clip cor==1 for target selection
@@ -179,7 +184,10 @@ df.multiAFC.trials <- trial_data %>%
   left_join(test_corpus %>% rename(targetWord = "Word1", answerWord = "Word2")) %>%
   filter(is.na(itemGroup) | (itemGroup == "test")) %>% 
   mutate(wordPairing = ifelse(is.na(wordPairing), "target", wordPairing)) %>%
-  filter(!targetWord %in%  c("ant","ball","bear","scrabble","honey")) %>% 
+  # Items dropped from the analyzed 108-target set:
+  #   honey, scrabble — see comment at line 36 (image ambiguity / trademark)
+  #   ant, ball, bear — used as practice trials (not part of the test bank)
+  filter(!targetWord %in%  c("ant","ball","bear","scrabble","honey")) %>%
   select(pid, answerWord, targetWord, numAFC, correct, rt, wordPairing, age_group, clip_cor,cohort) 
 
 df.4AFC.trials <- df.multiAFC.trials %>% 
@@ -215,7 +223,7 @@ age_group_pid <- df.4AFC.trials.clean %>%
   summarize(num_pids = length(unique(pid))) 
 ```
 
-We have `r sum(age_group_pid$num_pids)-205` children aged 3-11 years, and 205 adults.
+We have `r sum(age_group_pid$num_pids[age_group_pid$age_group < 25])` children aged 3–14 years, and `r sum(age_group_pid$num_pids[age_group_pid$age_group == 25])` adults.
 
 
 
@@ -278,10 +286,10 @@ df.4AFC.totalAttempts.byAge <- df.4AFC.trials.clean %>%
 df.4AFC.distractor.summary.byAge <- df.4AFC.trials.clean %>% 
   group_by(targetWord,  answerWord, wordPairing, age_group) %>%
   summarise(n = n(), medianRT = median(rt)) %>% 
+  full_join(full_item_structure_by_age_4afc) %>%
   left_join(df.4AFC.totalAttempts.byAge) %>% 
-  mutate(perc = n/totalAttempts) %>%
-  full_join(full_item_structure_by_age_4afc)
-
+  mutate(perc = n/totalAttempts) 
+  
 ```
 
 ```{r}
@@ -331,7 +339,7 @@ df.4AFC.distractor.summary.byAge.clean <- df.4AFC.distractor.summary.byAge %>%
   full_join(unseen_items) %>% # rejoin these  true NAs
   ungroup() %>%
   mutate(AoA_Bin = ntile(AoA_Est_Word1,3)) %>%
-  mutate(AoA_Bin_Name = factor(AoA_Bin,  levels = c('1','2','3'), labels = c("Early AoA", "Med AoA", "Late AOA"))) 
+  mutate(AoA_Bin_Name = factor(AoA_Bin,  levels = c('1','2','3'), labels = c("Early AoA", "Med AoA", "Late AoA")))
 ```
 
 Make sure we have it all filled out correctly

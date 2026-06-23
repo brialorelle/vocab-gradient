@@ -193,6 +193,7 @@ Contains objects: `dist_by_cond_by_age_count`, `dist_by_cond_by_age`.
 | `log_freq_target_word` | numeric | Log word frequency (target) | continuous | log-frequency |
 | `log_freq_answer_word` | numeric | Log word frequency (answer) | continuous | log-frequency |
 | `concreteness_target_word` | numeric | Concreteness rating of target | continuous | rating scale |
+| `AoA_Est_Word2` | numeric | Estimated AoA for answer word | positive numeric | years (estimated) |
 
 ---
 
