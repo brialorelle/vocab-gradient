@@ -93,3 +93,19 @@ data/preprocessed/all_trial_data.Rdata
 writing/asdf.docx
 writing/~$per1_visualvocab.docx
 /writing/revision_materials
+
+# A5 background-isolation pipeline artifacts (heavy; rebuildable from analysis/A5_background_isolation.py).
+# The committable output is data/item_metadata/visual_similarity_isolated.csv.
+.venv-rembg/
+stimuli/_isolated/
+stimuli/_isolated_first_pass/
+analysis/A5_isolation_run.log
+analysis/A5_isolation_log.tsv
+.clip_trajectory_weights/
+
+# R Markdown knit build artifacts (figures/caches regenerate on knit).
+# NOTE: .docx output is intentionally NOT ignored — it stays tracked.
+writing/*_files/
+writing/*_cache/
+writing/*.knit.md
+writing/*.utf8.md
