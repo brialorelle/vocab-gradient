@@ -251,20 +251,21 @@ aoa_by_bin <- df.4AFC.distractor.summary.byAge.clean %>%
 
 # Results
 ```{r accuracy-fig, out.width='90%', fig.cap="Task performance as a function of the age of the child completing the task, plotted separately for relatively easy, harder, or difficult words; words are binned based on the estimated AoA from Kuperman et al., 2012 solely for visualization purposes. Lines refer to the proportion of words that children chose the target (orange), high-similarity (pink), medium similarity (purple), or low similarity (dark purple) distractor at each age; error bars represent bootstrapped 95% confidence intervals.", fig.align='center'}
-labels_graph = df.4AFC.distractor.summary.byAge.perc.byaoa %>% filter(age_group==25) %>% 
-  mutate(AoA_Bin_Name = recode(AoA_Bin_Name,
+labels_graph = df.4AFC.distractor.summary.byAge.perc.byaoa %>%
+  mutate(AoA_Bin_Name = dplyr::recode(AoA_Bin_Name,
                                   "Early AoA" = "Easy words",
-                                  "Med AoA" = "Intermediate words", 
-                                  "Late AOA" = "Difficult words"))  %>%
+                                  "Med AoA" = "Intermediate words",
+                                  "Late AoA" = "Difficult words"))  %>%
+  filter(age_group==25) %>%
   filter(AoA_Bin_Name=='Difficult words')
 
 ggplot(data = df.4AFC.distractor.summary.byAge.perc.byaoa %>% 
        mutate(age_label = ifelse(age_group == 25, "Adults", as.character(age_group)),
               age_label = factor(age_label, levels = c(as.character(3:14), "Adults")), # Added empty level for spacing
-              AoA_Bin_Name = recode(AoA_Bin_Name,
+              AoA_Bin_Name = dplyr::recode(AoA_Bin_Name,
                                   "Early AoA" = "Easy words",
                                   "Med AoA" = "Intermediate words", 
-                                  "Late AOA" = "Difficult words")), 
+                                  "Late AoA" = "Difficult words")), 
        aes(x=age_group, y=mean, col=wordPairing, fill=wordPairing)) +
   geom_point(size = 1, alpha=.6) +
   geom_linerange(aes(y=mean, ymax = ci_upper, ymin = ci_lower), alpha=.6) +
@@ -660,6 +661,8 @@ error_by4afc_for_glmer_school_type = error_by4afc_for_glmer %>%
 ## 
 model_school_type = lmer(prop_hard ~ scale(age_group) + scale(total_num_errors) + (1|school_type), data = error_by4afc_for_glmer_school_type)
 
+MuMIn::r.squaredGLMM(model_school_type)
+
 
 }
 
@@ -1036,33 +1039,6 @@ ggsave(accuracy_by_cohort_plot,filename='figures/fig-S1-accuracy_by_cohort_plot.
 ```
 
 
-```{r supp-school-clustering}
-# Supplementary analysis: school-type clustering for the participant-level  model. School-type information is available only for a subset of participants (joined via school_type_meta). 
-
-if (RAW_DATA == TRUE) {
-
-  # Build participant-level prop_hard data and join school metadata
-  err_school <- df.4AFC.trials.clean %>%
-    filter(numAFC == 4, !is.na(correct), as.logical(correct) == FALSE) %>%
-    group_by(pid, age_group, wordPairing) %>%
-    summarise(n = n(), .groups = "drop") %>%
-    pivot_wider(names_from = wordPairing, values_from = n, values_fill = 0) %>%
-    mutate(total_num_errors = hard + easy + distal,
-           prop_hard = hard / total_num_errors) %>%
-    filter(total_num_errors > 0) %>%
-    inner_join(school_type_meta %>% distinct(pid, school_type), by = "pid") %>%
-    filter(school_type != "test")
-
-  model_school_type <- lmer(
-    prop_hard ~ scale(age_group) + (1 | school_type),
-    data = err_school,
-    control = lmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 1e5))
-  )
-
-  MuMIn::r.squaredGLMM(model_school_type)
-
-}
-```
 
 
 
