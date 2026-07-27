@@ -109,3 +109,4 @@ writing/*_files/
 writing/*_cache/
 writing/*.knit.md
 writing/*.utf8.md
+writing/REPRODUCIBILITY_NOTES.md
