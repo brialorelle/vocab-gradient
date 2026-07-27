@@ -142,7 +142,12 @@ These `.RData/.Rdata` objects are saved artifacts used by manuscript analyses:
 - `summary_by_distractor.Rdata`: distractor-choice summary by item/age pairing.
 - `dist_by_cond_by_age.RData`, `dist_by_4afc_by_item_by_age.RData`: distributional summaries for plotting/modeling.
 - `error_by4afc_by_item_for_glmer.RData`: item-level error structure for mixed-effects models.
-- `descriptives_data_structures.RData`, `model_output.RData`: manuscript descriptive/model outputs.
+- `error_by4afc_for_glmer.RData`: participant-level error structure behind manuscript Table 2.
+- `descriptives_data_structures.RData`: participant descriptives; also carries the
+  repeat-participant count the supplement needs, so the manuscript must be knitted
+  before the supplement (see the reproducibility guide below).
+- `model_output.RData`: fitted Table 2 model, retained for reference. The manuscript
+  refits from `error_by4afc_for_glmer.RData` rather than restoring this object.
 
 ---
 
@@ -152,30 +157,131 @@ These `.RData/.Rdata` objects are saved artifacts used by manuscript analyses:
 2. **Select and curate item sets** in `stimuli/1_select_items/` notebooks.
 3. **Merge item metadata** with lexical/phonological/model features via `analysis/step0_merge_metadata.R`.
 4. **Wrangle participant trial data** and compute age/item summaries in `analysis/step1_wrangle_datasets.Rmd`.
-5. **Run manuscript analyses/figures** from `writing/paper1_visualvocab.Rmd` using saved preprocessed objects.
-## Reproducing key analyses from original files
+5. **Run manuscript analyses/figures** from `writing/visual_vocab_manuscript_r4.Rmd` using saved preprocessed objects.
 
-1. Open the RStudio project: `vocab-gradient.Rproj` and ensure that you have the required libraries
-2. All key analysis are contained in the RMarkdown file in `writing/paper1_visualvocab.Rmd`
+---
 
-Other files (e.g., `analysis/step1_wrangle_datasets.Rmd`) were used to clean and format the raw datasets, and can only be used by the research team with IRB access to these data, but is provided for transparency purposes.
+# Reproducibility guide
 
+**Everything reported in the manuscript is computed at knit time.** No statistic,
+sample size, or model coefficient is typed as a literal — each is produced by
+inline R against the data. Re-knitting the two documents below regenerates every
+number, table, and data-bearing figure panel.
 
-## Environment
-- R project file: `vocab-gradient.Rproj`
-- Dependency lock: `renv.lock`
-
-If R is available locally:
-
+## Quick start
 
 ```bash
+# 1. Restore the recorded package environment
 R -q -e "install.packages('renv'); renv::restore(prompt = FALSE)"
-Rscript -e "rmarkdown::render('analysis/step1_wrangle_datasets.Rmd')"
-Rscript -e "rmarkdown::render('writing/paper1_visualvocab.Rmd')"
+
+# 2. Render the manuscript, then the supplement (order matters — see below)
+Rscript -e "rmarkdown::render('writing/visual_vocab_manuscript_r4.Rmd')"
+Rscript -e "rmarkdown::render('writing/visual_vocab_supplement_r4.Rmd')"
 ```
 
-## Important caveat
-Because some raw input files under `data/raw/` are not included in this snapshot, complete end-to-end regeneration may require access to private/internal source exports.
+Outputs land beside the sources as `visual_vocab_manuscript_r4.docx` and
+`visual_vocab_supplement_r4.docx`.
+
+## The two documents
+
+| File | Contents |
+|---|---|
+| `writing/visual_vocab_manuscript_r4.Rmd` | Main manuscript: Tables 1–2, Figures 1–4 |
+| `writing/visual_vocab_supplement_r4.Rmd` | Supplement: Tables 1–3, Figures 1–4 |
+| `writing/REPRODUCIBILITY_NOTES.md` | Verification record and audit trail |
+
+`writing/visual_vocab_manuscript_r3.Rmd` is the previous revision, retained for
+history. It hardcodes some values and should not be used for reproduction.
+
+## `RAW_DATA`: which data you have
+
+Near the top of each `.Rmd` is a switch:
+
+```r
+RAW_DATA <- TRUE   # recompute from trial-level data (research team only)
+RAW_DATA <- FALSE  # use the shareable preprocessed summaries
+```
+
+**Outside the research team, set `RAW_DATA <- FALSE`.** Trial-level data for the
+school cohort is governed by district data-sharing agreements and FERPA and is
+not in this repository. The `FALSE` branch reads the preprocessed summaries in
+`data/preprocessed/`, which *are* included.
+
+Both paths produce **identical reported values**. This was verified by moving
+`data/raw/` out of the tree entirely and re-rendering: 349 numeric tokens in the
+manuscript and 207 in the supplement, with no differences between modes.
+
+### Ordering constraint
+
+The manuscript writes `data/preprocessed/descriptives_data_structures.RData`,
+which the supplement reads. **Render the manuscript first.** If that file is
+missing or stale, the supplement stops with an explanatory message rather than
+producing wrong numbers.
+
+### Files the `RAW_DATA = FALSE` path needs
+
+All are committed:
+
+```
+data/preprocessed/summary_by_distractor.Rdata
+data/preprocessed/descriptives_data_structures.RData
+data/preprocessed/dist_by_cond_by_age.RData
+data/preprocessed/error_by4afc_for_glmer.RData
+data/preprocessed/dist_by_4afc_by_item_by_age.RData
+data/item_metadata/item_meta_and_model_sim.csv
+```
+
+## Determinism
+
+`set.seed(42)` is set once at the top of each document. Bootstrapped confidence
+intervals and the 50 cross-validation splits behind Figure 4C reproduce exactly
+under the package versions in `renv.lock`. The environment used for the
+verification run:
+
+```
+R 4.3.1           papaja 0.1.4        tidyverse 2.0.0     lme4 1.1.34
+lmerTest 3.1.3    MuMIn 1.47.5        langcog 0.1.9001    broom.mixed 0.2.9.4
+car 3.1.2         ggthemes 4.2.4      viridis 0.6.4       knitr 1.51
+rmarkdown 2.30    here 1.0.1          assertthat 0.2.1    kableExtra 1.4.0
+```
+
+`langcog` is not on CRAN: `remotes::install_github("langcog/langcog")`.
+
+## Built-in self-checks
+
+The documents assert their own claims and **fail the knit** rather than emitting
+a wrong number if any of these break:
+
+- Cohort sample sizes sum to the reported total
+- Every example word cited in the text is present in the figure it refers to
+- Figure 3A displays exactly the number of items its caption states
+- Multimodal similarity remains the strongest single predictor in Figure 4C,
+  with a confidence interval that does not overlap the runner-up
+- Supplemental Table 1's participant column reconciles with the total sample
+
+## Figures
+
+Figures 1–4 are composites assembled in Illustrator. The `.Rmd` regenerates the
+data-bearing panels into `writing/figures/` on every knit (`REGEN_PANELS <- TRUE`),
+so a change shows up in `git diff`, but **the composites themselves must be
+rebuilt by hand** — the `.Rmd` displays the finished `.png`. If a panel changes,
+update the corresponding `.ai` file.
+
+## Known limitation
+
+`writing/number_tables.lua` repairs table-caption numbering. papaja's docx filter
+assumes pandoc's caption inlines have no leading anchor `Span`; because one is
+present, its rewrite overwrites the table number and captions render as a bare
+"Table". The filter removes that span to restore the expected alignment. Keep it
+wired in via `pandoc_args` or the tables lose their numbers.
+
+## Caveat on full end-to-end regeneration
+
+Stimulus construction (`stimuli/`) and the initial data wrangling
+(`analysis/step1_wrangle_datasets.Rmd`) require raw exports that are not in this
+repository. They are provided for transparency but can only be run by the
+research team with IRB access. Reproducing the *manuscript* does not require
+them — the preprocessed summaries are sufficient.
 
 ---
 

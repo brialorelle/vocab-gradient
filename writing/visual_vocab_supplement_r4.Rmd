@@ -1,0 +1,471 @@
+---
+title             : "Supplemental Materials"
+shorttitle        : "Supplemental Materials"
+
+authornote: |
+  .
+
+abstract: ""
+
+bibliography      : "r-references.bib"
+
+floatsintext      : yes
+linenumbers       : no
+draft             : no
+mask              : yes
+
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+
+classoption       : "man"
+
+# number_tables.lua fills in the table numbers that papaja's docx output leaves
+# blank; without it captions render as a bare "Table" while the text says
+# "see Table 1". See writing/number_tables.lua.
+output:
+  papaja::apa6_docx:
+    pandoc_args: ["--lua-filter=number_tables.lua"]
+---
+
+<!--
+==============================================================================
+ visual_vocab_supplement_r4.Rmd
+
+ Supplemental Materials for PSCI-25-0881, made fully reproducible.
+
+ Propagated from
+   writing/revision_materials/second_revision/SupplementalMaterials.docx
+ with two corrections to the numbering in that file:
+
+   * The .docx jumped from Supplemental Table 1 to Supplemental Table 3;
+     there was no Table 2. Tables are renumbered contiguously here, so the
+     former Table 3 is now Table 2 and the former Table 4 is now Table 3.
+     The main text has been updated to cite Supplemental Table 2.
+
+   * The main text cited "Supplemental Figure 3" for the continuous-AoA plot,
+     which is Supplemental Figure 2 in the .docx. The main text now cites
+     Supplemental Figure 2. Figure numbering here is unchanged from the .docx.
+
+ Every value below is computed from the data; none are typed literals.
+==============================================================================
+-->
+
+```{r setup, include = FALSE}
+library("papaja")
+```
+
+```{r analysis-preferences}
+set.seed(42)
+knitr::opts_chunk$set(echo = FALSE, cache = FALSE, warning = FALSE,
+                      message = FALSE, fig.pos = 'H')
+```
+
+```{r libraries}
+library(tidyverse)
+library(ggthemes)
+library(assertthat)
+library(langcog)
+library(knitr)
+library(here)
+library(lme4)
+library(lmerTest)
+library(viridis)
+library(broom.mixed)
+library(car)
+
+# assert_that() returns TRUE *visibly*, which knitr would print into the
+# rendered document as "## [1] TRUE". Wrap it so checks stay silent unless
+# they fail, in which case they still halt the knit.
+# assert_that() resolves its assertions in parent.frame(), so the caller's
+# environment must be threaded through explicitly or checks inside other
+# functions cannot see local variables.
+check <- function(..., env = parent.frame()) {
+  invisible(assertthat::assert_that(..., env = env))
+}
+
+```
+
+```{r reproducibility-switches}
+# See the equivalent block in visual_vocab_manuscript_r4.Rmd.
+RAW_DATA <- TRUE
+REGEN_PANELS <- TRUE
+```
+
+```{r load-data}
+if (RAW_DATA == TRUE) {
+  load(file = here::here('data/raw/all_trial_data.Rdata'))
+  school_type_meta <- read_csv(file = here::here('data/raw/pid_with_school_type.csv'))
+}
+load(file = here::here('data/preprocessed/summary_by_distractor.Rdata'))
+item_meta_and_model_sim <- read_csv(
+  file = here::here('data/item_metadata/item_meta_and_model_sim.csv'))
+```
+
+```{r descriptives}
+if (RAW_DATA == TRUE) {
+
+  trials_by_participant <- df.4AFC.trials.clean %>%
+    group_by(pid) %>%
+    summarize(mean_pc = mean(correct), num_trials = length(unique(targetWord)))
+
+  trials_by_age <- df.4AFC.trials.clean %>%
+    group_by(pid, age_group) %>%
+    summarize(mean_pc = mean(correct), num_trials = length(unique(targetWord))) %>%
+    group_by(age_group) %>%
+    summarize(mean_num_trials = mean(num_trials),
+              sd_num_trials = sd(num_trials),
+              n = length(unique(pid)))
+
+  garden_only <- df.4AFC.trials.clean %>%
+    filter(cohort %in% c('garden')) %>%
+    mutate(school_type = 'CHS') %>%
+    group_by(pid, age_group, school_type) %>%
+    summarize(mean_pc = mean(correct)) %>%
+    group_by(age_group, school_type) %>%
+    multi_boot_standard(col = 'mean_pc')
+
+  adults_only <- df.4AFC.trials.clean %>%
+    filter(cohort %in% c('adults_monolingual', 'adults_ell')) %>%
+    mutate(age_group = 25) %>%
+    group_by(pid, age_group, cohort) %>%
+    summarize(mean_pc = mean(correct)) %>%
+    mutate(school_type = cohort) %>%
+    group_by(age_group, school_type) %>%
+    multi_boot_standard(col = 'mean_pc')
+
+  accuracy_by_cohort_by_age <- trials_by_participant %>%
+    left_join(school_type_meta) %>%
+    filter(school_type != 'test') %>%
+    mutate(age_group = floor(ageMonths / 12)) %>%
+    group_by(school_type, age_group) %>%
+    multi_boot_standard(col = 'mean_pc') %>%
+    full_join(adults_only) %>%
+    full_join(garden_only)
+
+  # Participants who contributed data at more than one age, needed by the
+  # Supplemental Table 1 caption. Also saved into the shareable summary by the
+  # manuscript, so the RAW_DATA == FALSE branch below gets it for free.
+  n_spanning_two_ages <- df.4AFC.trials.clean %>%
+    group_by(pid) %>%
+    summarize(n_ages = n_distinct(age_group)) %>%
+    filter(n_ages > 1) %>%
+    nrow()
+}
+
+if (RAW_DATA == FALSE) {
+  load(file = here::here('data/preprocessed/descriptives_data_structures.RData'))
+
+  # Guard against an out-of-date summary file: this supplement cannot compute
+  # the value itself without trial-level data.
+  check(
+    exists("n_spanning_two_ages"),
+    msg = paste("descriptives_data_structures.RData predates this script.",
+                "Re-knit visual_vocab_manuscript_r4.Rmd with RAW_DATA <- TRUE",
+                "to regenerate it."))
+}
+```
+
+# Supplemental Materials
+
+```{r supp-table-1}
+trials_by_age_display <- trials_by_age %>%
+  ungroup() %>%
+  mutate(
+    `Age Group (yrs)` = ifelse(age_group == 25, "Adults", as.character(age_group)),
+    `Mean Num Trials` = printnum(mean_num_trials),
+    `SD Num Trials`   = printnum(sd_num_trials),
+    `Participants`    = n
+  ) %>%
+  select(`Age Group (yrs)`, `Mean Num Trials`, `SD Num Trials`, `Participants`)
+
+# the participants column counts unique participants *within* each age group.
+# A participant who played the game more than once either side of a birthday
+# contributes to two rows, so the column sums to more than the total sample.
+# Quantify that gap here rather than leaving the two numbers to disagree
+# silently across the manuscript and this table.
+
+# n_spanning_two_ages comes from the descriptives chunk above, which either
+# computes it from trial-level data or loads it from the shareable summary.
+n_unique_participants <- length(unique(trials_by_participant$pid))
+participants_column_sum <- sum(trials_by_age$n)
+
+# The gap must be exactly accounted for by the participants spanning two ages.
+check(
+  participants_column_sum == n_unique_participants + n_spanning_two_ages)
+
+apa_table(
+  trials_by_age_display,
+  caption = paste0(
+    "Average number and SD of completed trials for participants in each age ",
+    "group in the dataset. The Participants column counts unique participants ",
+    "within each age group; ", n_spanning_two_ages, " participants contributed ",
+    "data at two different ages (having played the game more than once) and are ",
+    "therefore counted in two rows. The column consequently sums to ",
+    participants_column_sum, " rather than the ", n_unique_participants,
+    " unique participants reported in the main text."),
+  align = c("l", "r", "r", "r")
+)
+```
+
+```{r supp-fig-1, fig.cap="Proportion correct as a function of the age group of the child participating as well as the cohort in which the task was administered. All error bars are bootstrapped 95% confidence intervals.", fig.width=7, fig.height=4.5}
+accuracy_by_cohort_plot <- ggplot(
+  accuracy_by_cohort_by_age %>% mutate(cohort = school_type),
+  aes(x = age_group, y = mean, col = cohort, fill = cohort)) +
+  geom_point(size = 1, alpha = .6) +
+  geom_linerange(aes(y = mean, ymax = ci_upper, ymin = ci_lower), alpha = .6) +
+  geom_smooth(alpha = .2, span = 10) +
+  theme_few(base_size = 10) +
+  ylim(0, 1) +
+  xlim(2, 26) +
+  ylab('Average proportion correct') +
+  xlab('Age group (years old)') +
+  theme(legend.position = 'bottom')
+
+accuracy_by_cohort_plot
+
+if (REGEN_PANELS) {
+  ggsave(accuracy_by_cohort_plot,
+         filename = here::here('writing/figures/fig-S1-accuracy_by_cohort_plot.png'),
+         width = 7, height = 4.5, units = 'in')
+}
+```
+
+```{r item-meta}
+df.4AFC.distractor.summary.byAge.clean.withmeta <- df.4AFC.distractor.summary.byAge.clean %>%
+  left_join(item_meta_and_model_sim %>%
+              distinct(targetWord, log_freq_target_word, concreteness_target_word,
+                       superordinate_category_target_word, mean_typicality),
+            by = c('targetWord'))
+
+d <- df.4AFC.distractor.summary.byAge.clean.withmeta %>%
+  filter(wordPairing == 'target')
+```
+
+```{r supp-fig-2, fig.cap="Proportion correct as a function of the AoA of the target word, shown continuously. Vertical lines connect data points for individual words across age groups.", fig.width=6, fig.height=4}
+supplemental_aoa_plot <- ggplot(d, aes(x = AoA_Est_Word1, y = perc,
+                                       col = age_group, fill = age_group, size = n)) +
+  scale_color_viridis_c() +
+  scale_fill_viridis_c() +
+  scale_size_area(name = "", guide = "none") +
+  geom_line(aes(group = targetWord), col = 'grey', alpha = .1) +
+  geom_point(alpha = .3) +
+  geom_smooth(aes(group = age_group), method = 'lm', alpha = .1) +
+  theme_few(base_size = 10) +
+  ylab('Proportion correct') +
+  xlab('Estimated AoA') +
+  theme(legend.position = 'bottom')
+
+supplemental_aoa_plot
+
+if (REGEN_PANELS) {
+  ggsave(supplemental_aoa_plot,
+         filename = here::here('writing/figures/Fig-S2-supplemental-aoa-plot.png'),
+         width = 6, height = 4, units = 'in')
+}
+```
+
+```{r error-model-data}
+if (RAW_DATA == TRUE) {
+  df.4AFC.distractor.summary.byPid <- df.4AFC.trials.clean %>%
+    group_by(targetWord, answerWord, numAFC, wordPairing, pid, age_group) %>%
+    tally() %>%
+    filter(wordPairing != 'target')
+
+  dist_by_4afc_by_item_by_age <- df.4AFC.distractor.summary.byPid %>%
+    left_join(item_meta_and_model_sim %>%
+                distinct(targetWord, answerWord, AoA_Est_Word1, AoA_Bin_Name)) %>%
+    ungroup() %>%
+    group_by(targetWord, wordPairing, AoA_Est_Word1, age_group) %>%
+    summarize(num_errors = n()) %>%
+    pivot_wider(values_from = "num_errors", names_from = "wordPairing") %>%
+    group_by(age_group, targetWord, AoA_Est_Word1) %>%
+    mutate(total_num_errors = sum(c(hard, easy, distal), na.rm = TRUE)) %>%
+    mutate(prop_hard   = hard / total_num_errors) %>%
+    mutate(prop_easy   = easy / total_num_errors) %>%
+    mutate(prop_distal = distal / total_num_errors) %>%
+    pivot_longer(cols = starts_with('prop'), names_to = "wordPairing", values_to = "prop") %>%
+    select(targetWord, wordPairing, prop, total_num_errors, age_group, AoA_Est_Word1) %>%
+    mutate(prop = replace_na(prop, replace = 0)) %>%
+    mutate(wordPairing = str_split_fixed(wordPairing, '_', 2)[, 2]) %>%
+    left_join(item_meta_and_model_sim %>%
+                distinct(targetWord, wordPairing, sim_img_img, sim_img_txt, sim_txt_txt,
+                         phon_sim, log_freq_target_word, log_freq_answer_word,
+                         concreteness_target_word, AoA_Est_Word2))
+
+  save(dist_by_4afc_by_item_by_age,
+       file = here::here('data/preprocessed/dist_by_4afc_by_item_by_age.RData'))
+}
+
+if (RAW_DATA == FALSE) {
+  load(file = here::here('data/preprocessed/dist_by_4afc_by_item_by_age.RData'))
+}
+
+dist_by_4afc_by_item_by_age$sem_resid <- resid(
+  lm(sim_txt_txt ~ sim_img_img, data = dist_by_4afc_by_item_by_age))
+```
+
+```{r prettify-terms, include=FALSE}
+prettify_terms <- function(tab) {
+  col <- intersect(c("Predictor", "predictor", "term", "Term"), names(tab))[1]
+  if (is.na(col)) return(tab)
+  raw <- as.character(tab[[col]])
+
+  raw <- gsub("\\$\\\\times\\$", "×", raw)
+  raw <- gsub("$\\times$", "×", raw, fixed = TRUE)
+  raw <- gsub("\\\\times", "×", raw)
+  raw <- gsub("\\bScale", "", raw)
+  raw <- gsub("scale\\(([^)]+)\\)", "\\1", raw)
+  raw <- gsub(":", " × ", raw, fixed = TRUE)
+  raw <- trimws(raw)
+
+  renames <- list(
+    c("log_freq_target_word",     "log freq target word",     "Log. freq. (target)"),
+    c("log_freq_answer_word",     "log freq answer word",     "Log. freq. (answer)"),
+    c("concreteness_target_word", "concreteness target word", "Concreteness (target)"),
+    c("sim_img_img",              "sim img img",              "Visual sim."),
+    c("sim_img_txt",              "sim img txt",              "Multimodal sim."),
+    c("sim_txt_txt",              "sim txt txt",              "Semantic sim."),
+    c("sem_resid",                "sem resid",                "Semantic residual"),
+    c("phon_sim",                 "phon sim",                 "Phonological sim."),
+    c("AoA_Est_Word1",            "AoA Est Word1",            "AoA (target)"),
+    c("AoA_Est_Word2",            "AoA Est Word2",            "AoA (answer)"),
+    c("age_group",                "age group",                "Age"),
+    c("total_num_errors",         "total num errors",         "Total errors"),
+    c("totalAttempts",            "total Attempts",           "Total attempts"),
+    c("mean_typicality",          "mean typicality",          "Typicality")
+  )
+  for (r in renames) {
+    raw <- gsub(r[1], r[3], raw, fixed = TRUE)
+    raw <- gsub(r[2], r[3], raw, fixed = TRUE)
+  }
+  tab[[col]] <- raw
+  tab
+}
+
+vif_tidy <- function(m) {
+  v <- car::vif(m)
+  if (is.matrix(v)) v <- v[, "GVIF^(1/(2*Df))"]^2
+  round(sort(v, decreasing = TRUE), 2)
+}
+
+# Unrounded maximum, so the threshold quoted in a caption is derived from the
+# actual value rather than from a display-rounded one.
+max_vif_raw <- function(m) {
+  v <- car::vif(m)
+  if (is.matrix(v)) v <- v[, "GVIF^(1/(2*Df))"]^2
+  max(v)
+}
+```
+
+```{r supp-fig-3, fig.cap="Proportion times an image was chosen as a function of the multimodal similarity between the target word and distractor image. Dot size scales with the number of errors for that image in the dataset. Trend lines show weighted best fit lines by the number of errors, faceted by each age group in the dataset.", fig.width=6.5, fig.height=4}
+plot_df <- dist_by_4afc_by_item_by_age %>%
+  filter(wordPairing %in% c("hard", "easy", "distal")) %>%
+  mutate(wordPairing = factor(wordPairing,
+                              levels = c("hard", "easy", "distal"),
+                              labels = c("High sim.", "Med sim.", "Low sim.")))
+
+multimodal_plot <- ggplot(plot_df, aes(x = sim_img_txt, y = prop, color = wordPairing)) +
+  geom_point(aes(size = total_num_errors), alpha = .2) +
+  geom_smooth(aes(weight = total_num_errors), method = "lm",
+              color = "black", linewidth = .7) +
+  facet_wrap(~age_group, nrow = 2) +
+  scale_color_manual(values = c("#D8476D", "#942c80", "#522a79")) +
+  scale_size_continuous(name = "Num. errors", range = c(.3, 4)) +
+  labs(x = "Multimodal similarity (target word – distractor image)",
+       y = "Proportion chosen") +
+  theme_few(base_size = 8) +
+  theme(legend.position = "bottom", aspect.ratio = 1)
+
+multimodal_plot
+
+if (REGEN_PANELS) {
+  ggsave(multimodal_plot,
+         filename = here::here('writing/figures/suppfigures-multimodalsim.pdf'),
+         width = 6.5, height = 4, units = 'in')
+}
+```
+
+```{r supp-table-2}
+# Exploratory model with all predictors, all participants.
+# (This table was numbered "Supplemental Table 3" in the .docx; renumbered here
+#  because the .docx had no Table 2.)
+exploratory_model_fit <- lmer(
+  data = dist_by_4afc_by_item_by_age,
+  prop ~ scale(AoA_Est_Word1) + scale(AoA_Est_Word2) + scale(sim_img_txt) +
+         scale(sem_resid) * scale(age_group) + scale(phon_sim) +
+         scale(log_freq_target_word) + scale(log_freq_answer_word) +
+         scale(concreteness_target_word) + scale(total_num_errors) +
+         (1 | targetWord))
+
+max_vif_supp <- max_vif_raw(exploratory_model_fit)
+
+apa_lm <- apa_print(exploratory_model_fit)
+apa_table(
+  prettify_terms(apa_lm$table),
+  caption = paste0(
+    "Model coefficients for the linear mixed-effect model of error proportions. ",
+    "Predictors include multimodal similarity (target word to distractor image), ",
+    "the residual of the semantic similarity after regressing on visual similarity, ",
+    "phonological similarity, the AoA of the target and answer words, the log ",
+    "frequency of the target and answer words, the concreteness of the target word, ",
+    "the total number of errors per (item, age) cell, the age group of the ",
+    "participant, and the interaction of the residual semantic similarity with age. ",
+    "Random intercepts for target word were included. All predictors were ",
+    # As in Table 1: next tenth strictly above the observed maximum. The .docx
+    # stated "< 2.6"; the observed maximum is lower, so this is tighter and
+    # still true.
+    "standardized prior to analysis. All VIFs were < ",
+    sprintf("%.1f", floor(max_vif_supp * 10) / 10 + 0.1), ".")
+)
+```
+
+```{r supp-table-3}
+# Same model, children only.
+# (Numbered "Supplemental Table 4" in the .docx.)
+exploratory_model_fit_no_adults <- lmer(
+  data = dist_by_4afc_by_item_by_age %>% filter(age_group < 25),
+  prop ~ scale(AoA_Est_Word1) + scale(AoA_Est_Word2) + scale(sim_img_txt) +
+         scale(sem_resid) * scale(age_group) + scale(phon_sim) +
+         scale(log_freq_target_word) + scale(log_freq_answer_word) +
+         scale(concreteness_target_word) + scale(total_num_errors) +
+         (1 | targetWord))
+
+apa_lm_no_adults <- apa_print(exploratory_model_fit_no_adults)
+apa_table(
+  prettify_terms(apa_lm_no_adults$table),
+  caption = paste0(
+    "Full model coefficients modeling the proportion of errors children ",
+    "(excluding adults) made on each trial. All other model specifications are ",
+    "identical to Supplemental Table 2.")
+)
+```
+
+```{r supp-fig-4, fig.cap="Proportion times an image was chosen as a function of the residualized semantic similarity between the target and distractor images (semantic - visual similarity). Dot size scales with the number of errors for that image in the dataset. Trend lines show weighted best fit lines by the number of errors, faceted by each age group in the dataset.", fig.width=6.5, fig.height=4}
+semantic_resid_plot <- ggplot(plot_df, aes(x = sem_resid, y = prop, color = wordPairing)) +
+  geom_point(aes(size = total_num_errors), alpha = .2) +
+  geom_smooth(aes(weight = total_num_errors), method = "lm",
+              color = "black", linewidth = .7) +
+  facet_wrap(~age_group, nrow = 2) +
+  scale_color_manual(values = c("#D8476D", "#942c80", "#522a79"), guide = "none") +
+  scale_size_continuous(name = "Num. errors", range = c(.3, 4)) +
+  labs(x = "Residualized semantic vs. visual similarity",
+       y = "Proportion chosen") +
+  theme_few(base_size = 8) +
+  theme(legend.position = "bottom", aspect.ratio = 1)
+
+semantic_resid_plot
+
+if (REGEN_PANELS) {
+  ggsave(semantic_resid_plot,
+         filename = here::here('writing/figures/suppfigures-semanticresiduals.pdf'),
+         width = 6.5, height = 4, units = 'in')
+}
+```
+
+\newpage
+
+# References
+
+::: {#refs custom-style="Bibliography"}
+:::
