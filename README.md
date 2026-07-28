@@ -1,10 +1,10 @@
 # vocab-gradient
 
-Repository for analyses, stimuli construction, and manuscript assets for a developmental psychology project on how children’s visual word knowledge becomes more semantically precise with age.
+
 # 📘 Developmental changes in the precision of visual vocabulary knowledge.
 
-This repository contains analysis scripts, stimuli, and writing files for a developmental psychology project examining how children’s visual word knowledge changes over time. The project includes data from multiple experiments, computational analyses (e.g., CLIP similarity), and a manuscript draft.
-
+This repository contains analysis scripts, stimuli, and writing files for a developmental psychology project examining how children’s representatinos of noun meanings changes over time. The project includes data, computational analyses (e.g., CLIP similarity), analysis scripts, and manuscript draft and reproducible materials. In this project, we assess the precision of children's representations via a forced-choice picture-matching paradigm, where distractors are selected based on semantic similarity via multimodal language models (e.g., CLIP). 
+ 
 ## What this repository contains
 
 This project combines:
@@ -14,14 +14,7 @@ This project combines:
 - **Manuscript-ready plots and model summaries**.
 
 Primary analysis language is **R** (with `renv` lockfile support), plus a small Python script used for CLIP-based similarity extraction.
-Children's visual concept knowledge becomes increasingly refined over development. In this project, we assess the precision of visual word knowledge using a forced-choice picture-matching paradigm, where distractors are selected based on semantic similarity via multimodal language models (e.g., CLIP).
 
-The repository includes:
-
-- Preprocessing and analysis scripts in R  
-- Documentation of the stimulus generation and item selection 
-- Embedding similarity computations  
-- Drafts and figures for associated publications  
 
 ---
 
@@ -73,11 +66,11 @@ The repository includes:
 
 ## Data structures (raw + derived)
 
-> Note: Some **raw participant-level source files** are referenced in scripts under `data/raw/` but are not fully included in this repository snapshot.
+> Note: Some **raw participant-level source files** are referenced in scripts under `data/raw/` but are not fully included in this repository snapshot. See further notes on reproducing figures for the manuscript.
 
 ## 1) Raw / source-like structures
 
-### A. Trial design file (garden)
+### A. Trial design file 
 - **File**: `stimuli/exp3_garden/all_trials_garden_final2023-11-09.csv`
 - **Role**: final trial list for experiment deployment.
 - **Columns**:
@@ -151,7 +144,7 @@ These `.RData/.Rdata` objects are saved artifacts used by manuscript analyses:
 
 ---
 
-## End-to-end workflow
+## Overview of the workflow used
 
 1. **Generate candidate similarities** from THINGS concepts using CLIP utilities in `stimuli/0_get_CLIP_similarities/`.
 2. **Select and curate item sets** in `stimuli/1_select_items/` notebooks.
@@ -163,9 +156,7 @@ These `.RData/.Rdata` objects are saved artifacts used by manuscript analyses:
 
 # Reproducibility guide
 
-**Everything reported in the manuscript is computed at knit time.** No statistic,
-sample size, or model coefficient is typed as a literal — each is produced by
-inline R against the data. Re-knitting the two documents below regenerates every
+**Everything reported in the manuscript is computed at knit time.** . Re-knitting the two documents below regenerates every
 number, table, and data-bearing figure panel.
 
 ## Quick start
@@ -179,8 +170,8 @@ Rscript -e "rmarkdown::render('writing/visual_vocab_manuscript_r4.Rmd')"
 Rscript -e "rmarkdown::render('writing/visual_vocab_supplement_r4.Rmd')"
 ```
 
-Outputs land beside the sources as `visual_vocab_manuscript_r4.docx` and
-`visual_vocab_supplement_r4.docx`.
+Outputs land as `visual_vocab_manuscript_r4.docx` and
+`visual_vocab_supplement_r4.docx`.  Some additional formatting may be need to match the submitted word .docx.
 
 ## The two documents
 
@@ -188,10 +179,6 @@ Outputs land beside the sources as `visual_vocab_manuscript_r4.docx` and
 |---|---|
 | `writing/visual_vocab_manuscript_r4.Rmd` | Main manuscript: Tables 1–2, Figures 1–4 |
 | `writing/visual_vocab_supplement_r4.Rmd` | Supplement: Tables 1–3, Figures 1–4 |
-| `writing/REPRODUCIBILITY_NOTES.md` | Verification record and audit trail |
-
-`writing/visual_vocab_manuscript_r3.Rmd` is the previous revision, retained for
-history. It hardcodes some values and should not be used for reproduction.
 
 ## `RAW_DATA`: which data you have
 
@@ -207,9 +194,6 @@ school cohort is governed by district data-sharing agreements and FERPA and is
 not in this repository. The `FALSE` branch reads the preprocessed summaries in
 `data/preprocessed/`, which *are* included.
 
-Both paths produce **identical reported values**. This was verified by moving
-`data/raw/` out of the tree entirely and re-rendering: 349 numeric tokens in the
-manuscript and 207 in the supplement, with no differences between modes.
 
 ### Ordering constraint
 
@@ -247,17 +231,6 @@ rmarkdown 2.30    here 1.0.1          assertthat 0.2.1    kableExtra 1.4.0
 
 `langcog` is not on CRAN: `remotes::install_github("langcog/langcog")`.
 
-## Built-in self-checks
-
-The documents assert their own claims and **fail the knit** rather than emitting
-a wrong number if any of these break:
-
-- Cohort sample sizes sum to the reported total
-- Every example word cited in the text is present in the figure it refers to
-- Figure 3A displays exactly the number of items its caption states
-- Multimodal similarity remains the strongest single predictor in Figure 4C,
-  with a confidence interval that does not overlap the runner-up
-- Supplemental Table 1's participant column reconciles with the total sample
 
 ## Figures
 
